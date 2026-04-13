@@ -1,0 +1,557 @@
+{
+  "lastUpdated": "2026-04-13T21:00:00Z",
+  "updatedBy": "Claudio",
+
+  "humans": [
+    { "name": "Lucas", "role": "Co-CEO / Socio Fundador", "email": "lucas@bebamaat.com.br", "scope": "Estrategia, produto, agrofloresta, parcerias" },
+    { "name": "Julia", "role": "Co-CEO / Socia Fundadora", "email": "julia@bebamaat.com.br", "scope": "Estrategia, impacto, negocios regenerativos" },
+    { "name": "Cleber", "role": "Head de Tecnologia", "email": "cleber@bebamaat.com.br", "scope": "Tech, digital, sistemas, automacao, lider MAAT Virtual" },
+    { "name": "Paula", "role": "Logistica", "email": "paula@bebamaat.com.br", "scope": "Supply chain, despacho, fulfillment, entregas" }
+  ],
+
+  "agents": [
+    {
+      "name": "Claudio", "role": "Chief of Staff", "color": "#E07434", "initials": "CL",
+      "status": "active",
+      "description": "Braco direito do Cleber. Coordena toda a diretoria virtual, garante alinhamento entre agentes e humanos.",
+      "tags": ["Coordenacao", "Estrategia", "Comunicacao", "Projetos"],
+      "focus": "Coordenar lancamento B2C, manter painel atualizado, alinhar diretoria"
+    },
+    {
+      "name": "Theo", "role": "CTO", "color": "#00b894", "initials": "TH",
+      "status": "active",
+      "description": "Braco direito tecnico do Cleber. Arquitetura, infra, qualidade de codigo, performance, SEO tecnico.",
+      "tags": ["Arquitetura", "Shopify", "Performance", "SEO", "Integracoes"],
+      "focus": "Integracoes Shopify (Bling, Melhor Envio, Mercado Pago, Judge.me), WhatsApp API, pixels"
+    },
+    {
+      "name": "Helena", "role": "CMO", "color": "#e84393", "initials": "HE",
+      "status": "active",
+      "description": "Dona do crescimento. Branding, social media, campanhas, influenciadores, comunidade.",
+      "tags": ["Growth", "Social Media", "Branding", "Comunidade", "Conteudo"],
+      "focus": "Klaviyo setup, Social Snowball, calendario de conteudo, plano de lancamento"
+    },
+    {
+      "name": "Dante", "role": "CRO", "color": "#7c5cbf", "initials": "DA",
+      "status": "active",
+      "description": "Dono da receita. Funil de vendas, conversao, CRM, retencao, analytics.",
+      "tags": ["Conversao", "E-commerce", "CRM", "Analytics", "Retencao"],
+      "focus": "GA4/Pixels, Pipedrive CRM, Mercado Livre, BI & Analytics"
+    },
+    {
+      "name": "Rafael", "role": "CFO", "color": "#3b82f6", "initials": "RA",
+      "status": "active",
+      "description": "Guardiao financeiro. Unit economics, margens, fluxo de caixa, projecoes.",
+      "tags": ["Financas", "Unit Economics", "Margens", "Fluxo de Caixa"],
+      "focus": "Estrategia de preco ML, relatorio financeiro, migracao Conta Azul → Bling"
+    },
+    {
+      "name": "Marina", "role": "COO", "color": "#58AA43", "initials": "MA",
+      "status": "active",
+      "description": "Dona dos processos. Fulfillment, supply chain, automacao operacional. Complementa Paula.",
+      "tags": ["Operacoes", "Supply Chain", "Fulfillment", "Processos"],
+      "focus": "Migracao Bling, setup modulos ERP, integracao logistica, fulfillment B2C"
+    },
+    {
+      "name": "Sofia", "role": "CSO", "color": "#f39c12", "initials": "SO",
+      "status": "active",
+      "description": "Dona da experiencia do cliente. WhatsApp commerce, atendimento, pos-compra, fidelizacao.",
+      "tags": ["Customer Success", "WhatsApp", "Atendimento", "Pos-venda", "NPS"],
+      "focus": "Automacoes WhatsApp, atendimento, pedido conversacional, pos-compra"
+    }
+  ],
+
+  "subAgents": [
+    {
+      "name": "Nexus", "role": "Especialista em Integracoes", "color": "#00b894", "initials": "NX",
+      "createdBy": "Theo",
+      "description": "Conecta todos os sistemas: Bling, Pipedrive, Klaviyo, Melhor Envio, Mercado Pago, Judge.me, pixels, WhatsApp API.",
+      "tags": ["API", "Bling", "Shopify", "Mercado Pago", "Melhor Envio"]
+    },
+    {
+      "name": "Luna", "role": "Social Media & Content", "color": "#e84393", "initials": "LU",
+      "createdBy": "Helena",
+      "description": "Calendario de conteudo, posts, reels, stories. Voz da MAAT nas redes.",
+      "tags": ["Instagram", "TikTok", "Conteudo", "Calendario Editorial"]
+    },
+    {
+      "name": "Vitor", "role": "Referral & Affiliates", "color": "#e84393", "initials": "VI",
+      "createdBy": "Helena",
+      "description": "Programa de indicacao e afiliados via Social Snowball.",
+      "tags": ["Social Snowball", "Referral", "Afiliados", "Embaixadores"]
+    },
+    {
+      "name": "Atlas", "role": "Marketplace Specialist", "color": "#7c5cbf", "initials": "AT",
+      "createdBy": "Dante",
+      "description": "Mercado Livre, futuros marketplaces (Amazon, Magalu). Listings, ads, reputacao.",
+      "tags": ["Mercado Livre", "Marketplace", "Listings", "Product Ads"]
+    },
+    {
+      "name": "Iris", "role": "Analytics & BI", "color": "#7c5cbf", "initials": "IR",
+      "createdBy": "Dante",
+      "description": "Dashboards, GA4, reportes cross-platform. Dados para decisao.",
+      "tags": ["GA4", "BI", "Dashboards", "Metricas", "Reportes"]
+    },
+    {
+      "name": "Otto", "role": "Logistics & ERP", "color": "#58AA43", "initials": "OT",
+      "createdBy": "Marina",
+      "description": "Bling, Melhor Envio, estoque, NF-e, fulfillment. Complementa Paula.",
+      "tags": ["Bling", "NF-e", "Estoque", "Melhor Envio", "Fulfillment"]
+    }
+  ],
+
+  "projects": [
+    {
+      "id": "ecommerce-b2c",
+      "name": "E-commerce B2C (Shopify)",
+      "status": "in_progress",
+      "progress": 85,
+      "description": "Loja bebamaat.com.br — tema Dawn customizado com design system MAAT.",
+      "stagingVersion": "v0.2.0",
+      "productionVersion": "v0.1.1",
+      "components": [
+        { "name": "Homepage", "status": "done" },
+        { "name": "PDP (Produto)", "status": "done" },
+        { "name": "Header + Nav + Mobile", "status": "done" },
+        { "name": "Footer + Newsletter", "status": "done" },
+        { "name": "Contato", "status": "done" },
+        { "name": "Frete", "status": "done" },
+        { "name": "Design System CSS", "status": "done" },
+        { "name": "Interacoes JS", "status": "done" },
+        { "name": "Pagina de Colecao", "status": "missing" },
+        { "name": "Pagina de Busca", "status": "missing" },
+        { "name": "Carrinho Customizado", "status": "missing" },
+        { "name": "Contas de Cliente", "status": "default" },
+        { "name": "Emails Transacionais", "status": "default" },
+        { "name": "Analytics / GA4", "status": "missing" },
+        { "name": "SEO Schema", "status": "partial" }
+      ]
+    },
+    {
+      "id": "shopify-integracoes",
+      "name": "Shopify — Integracoes e Melhorias",
+      "status": "pending",
+      "progress": 0,
+      "description": "Bling, Melhor Envio, Mercado Pago, Judge.me, WhatsApp widget, Pipedrive.",
+      "components": [
+        { "name": "Integracao Bling (ERP)", "status": "pending" },
+        { "name": "Melhor Envio (frete)", "status": "pending" },
+        { "name": "Mercado Pago (gateway)", "status": "pending" },
+        { "name": "Judge.me (reviews)", "status": "pending" },
+        { "name": "WhatsApp widget", "status": "pending" },
+        { "name": "Pipedrive (CRM)", "status": "pending" }
+      ]
+    },
+    {
+      "id": "tracking-pixels",
+      "name": "Tracking & Pixels",
+      "status": "pending",
+      "progress": 0,
+      "description": "GA4, Google Search Console, Meta Pixel, TikTok Pixel.",
+      "components": [
+        { "name": "Google Analytics 4", "status": "pending" },
+        { "name": "Google Search Console", "status": "pending" },
+        { "name": "Meta Pixel", "status": "pending" },
+        { "name": "TikTok Pixel", "status": "pending" }
+      ]
+    },
+    {
+      "id": "crm-email",
+      "name": "CRM & Email Marketing",
+      "status": "pending",
+      "progress": 0,
+      "description": "Pipedrive CRM, Klaviyo email marketing, Social Snowball referral.",
+      "components": [
+        { "name": "Pipedrive setup", "status": "pending" },
+        { "name": "Klaviyo setup", "status": "pending" },
+        { "name": "Social Snowball", "status": "pending" }
+      ]
+    },
+    {
+      "id": "mercado-livre",
+      "name": "Mercado Livre",
+      "status": "pending",
+      "progress": 0,
+      "description": "Abrir canal de vendas no Mercado Livre com estoque sincronizado via Bling.",
+      "components": [
+        { "name": "Conta seller", "status": "pending" },
+        { "name": "Listings de produto", "status": "pending" },
+        { "name": "Integracao Bling → ML", "status": "pending" },
+        { "name": "Estrategia de preco", "status": "pending" },
+        { "name": "Product Ads ML", "status": "pending" }
+      ]
+    },
+    {
+      "id": "whatsapp-commerce",
+      "name": "WhatsApp Commerce",
+      "status": "pending",
+      "progress": 0,
+      "description": "Automacoes, atendimento e vendas conversacionais via WhatsApp.",
+      "components": [
+        { "name": "Automacoes WhatsApp", "status": "pending" },
+        { "name": "Pedido pelo WhatsApp (POV)", "status": "pending" },
+        { "name": "Atendimento WhatsApp", "status": "pending" }
+      ]
+    },
+    {
+      "id": "bi-analytics",
+      "name": "BI & Analytics",
+      "status": "pending",
+      "progress": 0,
+      "description": "Dashboard central de vendas, trafego, conversao, CAC, LTV. Reportes cross-platform.",
+      "components": [
+        { "name": "Dashboard central", "status": "pending" },
+        { "name": "Relatorio financeiro", "status": "pending" },
+        { "name": "Cross-platform reporting", "status": "pending" }
+      ]
+    },
+    {
+      "id": "bling-erp",
+      "name": "Bling (ERP)",
+      "status": "pending",
+      "progress": 0,
+      "description": "Migracao Conta Azul → Bling. Setup de estoque, NF-e, financeiro, integracoes.",
+      "components": [
+        { "name": "Migracao Conta Azul → Bling", "status": "pending" },
+        { "name": "Setup modulos Bling", "status": "pending" },
+        { "name": "Integracao Bling ↔ Shopify", "status": "pending" },
+        { "name": "Integracao Bling ↔ ML", "status": "pending" }
+      ]
+    },
+    {
+      "id": "maat-virtual",
+      "name": "MAAT Virtual",
+      "status": "in_progress",
+      "progress": 85,
+      "description": "Empresa virtual com agentes IA. Painel central + agentes autonomos.",
+      "components": [
+        { "name": "Documentacao base empresarial", "status": "done" },
+        { "name": "Painel central (Next.js + Auth)", "status": "done" },
+        { "name": "Claudio (coordenador)", "status": "done" },
+        { "name": "Diretoria (6 agentes + CSO)", "status": "done" },
+        { "name": "Sub-agentes operacionais (6)", "status": "done" },
+        { "name": "System prompts", "status": "done" },
+        { "name": "Deploy com Google OAuth", "status": "done" },
+        { "name": "Reuniao de diretoria", "status": "done" }
+      ]
+    }
+  ],
+
+  "phases": [
+    {
+      "id": "fase-1",
+      "name": "Fase 1 — Fundacao",
+      "timeline": "Semanas 1-2",
+      "status": "active",
+      "description": "Infraestrutura base: ERP, analytics, frete, gateway. Bloqueante para tudo mais."
+    },
+    {
+      "id": "fase-2",
+      "name": "Fase 2 — CRM & Marketing",
+      "timeline": "Semanas 2-3",
+      "status": "upcoming",
+      "description": "Pipedrive, Klaviyo, Judge.me, Social Snowball."
+    },
+    {
+      "id": "fase-3",
+      "name": "Fase 3 — Novos Canais",
+      "timeline": "Semanas 3-4",
+      "status": "upcoming",
+      "description": "Mercado Livre, WhatsApp Commerce."
+    },
+    {
+      "id": "fase-4",
+      "name": "Fase 4 — Inteligencia",
+      "timeline": "Semana 4+",
+      "status": "upcoming",
+      "description": "BI dashboards, POV WhatsApp."
+    }
+  ],
+
+  "tasks": [
+    {
+      "id": "macro-cleber",
+      "title": "Lancar e-commerce MAAT 1.0 — Shopify vendendo com integracoes",
+      "assignee": "Cleber",
+      "assigneeType": "human",
+      "type": "macro",
+      "project": "E-commerce B2C",
+      "priority": "critical",
+      "status": "in_progress",
+      "description": "Objetivo: loja bebamaat.com.br 100% operacional, vendendo, com gateway, frete, analytics e ERP integrados.",
+      "createdAt": "2026-04-13",
+      "subtasks": [
+        { "id": "mc-01", "title": "Revisar redesign v0.2.0 no staging Shopify", "status": "pending", "priority": "critical" },
+        { "id": "mc-02", "title": "Definir data alvo de lancamento com Lucas e Julia", "status": "pending", "priority": "high" },
+        { "id": "mc-03", "title": "Validar gateway de pagamento (Mercado Pago)", "status": "pending", "priority": "high" },
+        { "id": "mc-04", "title": "Aprovar regras de frete escalonado (Melhor Envio)", "status": "pending", "priority": "high" },
+        { "id": "mc-05", "title": "Testar fluxo completo: compra → pagamento → NF-e → envio", "status": "pending", "priority": "critical" },
+        { "id": "mc-06", "title": "Go-live: publicar tema 1.0 em producao", "status": "pending", "priority": "critical" }
+      ]
+    },
+    {
+      "id": "macro-lucas",
+      "title": "Alinhar estrategia de lancamento e go-live B2C",
+      "assignee": "Lucas",
+      "assigneeType": "human",
+      "type": "macro",
+      "project": "E-commerce B2C",
+      "priority": "high",
+      "status": "pending",
+      "description": "Definir data, validar posicionamento, aprovar lancamento publico da loja.",
+      "createdAt": "2026-04-13",
+      "subtasks": [
+        { "id": "ml-01", "title": "Definir data de go-live com Cleber e Julia", "status": "pending", "priority": "high" },
+        { "id": "ml-02", "title": "Validar posicionamento de produto e pricing B2C", "status": "pending", "priority": "high" },
+        { "id": "ml-03", "title": "Aprovar go-live final", "status": "pending", "priority": "high" }
+      ]
+    },
+    {
+      "id": "macro-julia",
+      "title": "Aprovar conteudo, marca e comunicacao para lancamento",
+      "assignee": "Julia",
+      "assigneeType": "human",
+      "type": "macro",
+      "project": "E-commerce B2C",
+      "priority": "high",
+      "status": "pending",
+      "description": "Garantir que todo conteudo da loja e comunicacao de lancamento refletem a essencia MAAT.",
+      "createdAt": "2026-04-13",
+      "subtasks": [
+        { "id": "mj-01", "title": "Revisar e aprovar copy da homepage", "status": "pending", "priority": "high" },
+        { "id": "mj-02", "title": "Validar tom de voz nos emails transacionais", "status": "pending", "priority": "medium" },
+        { "id": "mj-03", "title": "Aprovar plano de comunicacao de lancamento (com Helena)", "status": "pending", "priority": "high" }
+      ]
+    },
+    {
+      "id": "macro-paula",
+      "title": "Preparar operacao de fulfillment B2C para vender",
+      "assignee": "Paula",
+      "assigneeType": "human",
+      "type": "macro",
+      "project": "E-commerce B2C",
+      "priority": "high",
+      "status": "pending",
+      "description": "Estoque validado, processo de despacho definido, SLA de entrega claro. Pronta para receber pedidos.",
+      "createdAt": "2026-04-13",
+      "subtasks": [
+        { "id": "mp-01", "title": "Validar estoque disponivel para lancamento", "status": "pending", "priority": "high" },
+        { "id": "mp-02", "title": "Definir capacidade diaria de despacho", "status": "pending", "priority": "high" },
+        { "id": "mp-03", "title": "Testar fluxo Bling → separacao → embalagem → Melhor Envio", "status": "pending", "priority": "high" },
+        { "id": "mp-04", "title": "Confirmar SLA de entrega por regiao", "status": "pending", "priority": "medium" }
+      ]
+    },
+
+    {
+      "id": "macro-claudio",
+      "title": "Coordenar lancamento B2C e manter diretoria alinhada",
+      "assignee": "Claudio",
+      "assigneeType": "agent",
+      "type": "macro",
+      "project": "MAAT Virtual",
+      "priority": "critical",
+      "status": "in_progress",
+      "description": "Garantir que todos os diretores e humanos estejam sincronizados rumo ao lancamento. Painel atualizado, decisoes documentadas.",
+      "createdAt": "2026-04-13",
+      "subtasks": [
+        { "id": "mcl-01", "title": "Manter painel virtual.bebamaat.com.br atualizado", "status": "in_progress", "priority": "high" },
+        { "id": "mcl-02", "title": "Documentar todas as decisoes da diretoria", "status": "in_progress", "priority": "high" },
+        { "id": "mcl-03", "title": "Acompanhar execucao das 4 fases e reportar bloqueios", "status": "pending", "priority": "high" },
+        { "id": "mcl-04", "title": "Fazer ponte entre humanos e agentes nas entregas", "status": "in_progress", "priority": "high" }
+      ]
+    },
+    {
+      "id": "macro-theo",
+      "title": "Completar Shopify + integrar todas as plataformas",
+      "assignee": "Theo",
+      "assigneeType": "agent",
+      "type": "macro",
+      "project": "Shopify Integracoes",
+      "priority": "critical",
+      "status": "in_progress",
+      "description": "Shopify 100% customizado (colecao, carrinho, busca) e conectado a Bling, Melhor Envio, Mercado Pago, Judge.me, Pipedrive, WhatsApp, Mercado Livre.",
+      "createdAt": "2026-04-13",
+      "subtasks": [
+        { "id": "mt-01", "title": "Completar pagina de colecao customizada", "status": "pending", "priority": "high", "phase": "fase-1" },
+        { "id": "mt-02", "title": "Customizar pagina do carrinho (upsell, frete gratis bar)", "status": "pending", "priority": "high", "phase": "fase-1" },
+        { "id": "mt-03", "title": "Otimizar performance (hero 6.3MB, Core Web Vitals)", "status": "pending", "priority": "high", "phase": "fase-1" },
+        { "id": "mt-04", "title": "Integrar Melhor Envio com regras de frete escalonado", "status": "pending", "priority": "critical", "phase": "fase-1" },
+        { "id": "mt-05", "title": "Configurar Mercado Pago (Pix + cartao)", "status": "pending", "priority": "critical", "phase": "fase-1" },
+        { "id": "mt-06", "title": "Integrar Bling ↔ Shopify (pedidos + estoque)", "status": "pending", "priority": "high", "phase": "fase-1" },
+        { "id": "mt-07", "title": "Instalar Judge.me (reviews no PDP)", "status": "pending", "priority": "high", "phase": "fase-2" },
+        { "id": "mt-08", "title": "Conectar Pipedrive ao checkout", "status": "pending", "priority": "medium", "phase": "fase-2" },
+        { "id": "mt-09", "title": "WhatsApp widget na loja", "status": "pending", "priority": "high", "phase": "fase-3" },
+        { "id": "mt-10", "title": "Integrar Bling ↔ Mercado Livre", "status": "pending", "priority": "high", "phase": "fase-3" }
+      ]
+    },
+    {
+      "id": "macro-helena",
+      "title": "Lancar marca MAAT no digital — marketing e conteudo",
+      "assignee": "Helena",
+      "assigneeType": "agent",
+      "type": "macro",
+      "project": "CRM & Email Marketing",
+      "priority": "high",
+      "status": "pending",
+      "description": "Plano de lancamento completo, email marketing automatizado, programa de indicacao ativo, calendario de conteudo rodando.",
+      "createdAt": "2026-04-13",
+      "subtasks": [
+        { "id": "mh-01", "title": "Criar plano de lancamento (pre/durante/pos)", "status": "pending", "priority": "high", "phase": "fase-1" },
+        { "id": "mh-02", "title": "Setup Klaviyo (welcome, carrinho abandonado, pos-compra)", "status": "pending", "priority": "high", "phase": "fase-2" },
+        { "id": "mh-03", "title": "Configurar Social Snowball (indicacao/afiliados)", "status": "pending", "priority": "medium", "phase": "fase-2" },
+        { "id": "mh-04", "title": "Montar calendario editorial de lancamento", "status": "pending", "priority": "high", "phase": "fase-2" }
+      ]
+    },
+    {
+      "id": "macro-dante",
+      "title": "Setup completo de analytics, CRM e novos canais de venda",
+      "assignee": "Dante",
+      "assigneeType": "agent",
+      "type": "macro",
+      "project": "Tracking & Pixels",
+      "priority": "critical",
+      "status": "pending",
+      "description": "Todos os pixels rodando, CRM ativo, Mercado Livre vendendo, BI unificado para decisao.",
+      "createdAt": "2026-04-13",
+      "subtasks": [
+        { "id": "md-01", "title": "GA4 com e-commerce enhanced (view_item, add_to_cart, purchase)", "status": "pending", "priority": "critical", "phase": "fase-1" },
+        { "id": "md-02", "title": "Google Search Console (SEO tracking)", "status": "pending", "priority": "high", "phase": "fase-1" },
+        { "id": "md-03", "title": "Meta Pixel (Facebook/Instagram)", "status": "pending", "priority": "high", "phase": "fase-1" },
+        { "id": "md-04", "title": "TikTok Pixel", "status": "pending", "priority": "high", "phase": "fase-1" },
+        { "id": "md-05", "title": "Pipedrive CRM — pipeline de vendas, leads, deals", "status": "pending", "priority": "high", "phase": "fase-2" },
+        { "id": "md-06", "title": "Mercado Livre — setup completo (conta, listings, ads)", "status": "pending", "priority": "high", "phase": "fase-3" },
+        { "id": "md-07", "title": "Estrategia de preco ML (margem vs competitividade)", "status": "pending", "priority": "medium", "phase": "fase-3" },
+        { "id": "md-08", "title": "Dashboard central de BI (vendas, CAC, LTV, conversao)", "status": "pending", "priority": "high", "phase": "fase-4" },
+        { "id": "md-09", "title": "Cross-platform reporting (Shopify + ML unificado)", "status": "pending", "priority": "medium", "phase": "fase-4" }
+      ]
+    },
+    {
+      "id": "macro-rafael",
+      "title": "Garantir saude financeira e viabilidade do B2C",
+      "assignee": "Rafael",
+      "assigneeType": "agent",
+      "type": "macro",
+      "project": "BI & Analytics",
+      "priority": "high",
+      "status": "pending",
+      "description": "Unit economics claro, margens saudaveis, fluxo de caixa projetado, pricing inteligente por canal.",
+      "createdAt": "2026-04-13",
+      "subtasks": [
+        { "id": "mr-01", "title": "Calcular unit economics completo (custo/lata, margem B2C vs B2B)", "status": "pending", "priority": "high", "phase": "fase-1" },
+        { "id": "mr-02", "title": "Projecao de fluxo de caixa pos-lancamento", "status": "pending", "priority": "high", "phase": "fase-1" },
+        { "id": "mr-03", "title": "Apoiar migracao financeira Conta Azul → Bling", "status": "pending", "priority": "critical", "phase": "fase-1" },
+        { "id": "mr-04", "title": "Definir estrategia de preco Mercado Livre", "status": "pending", "priority": "medium", "phase": "fase-3" },
+        { "id": "mr-05", "title": "Relatorio financeiro periodico (margens, unit economics)", "status": "pending", "priority": "medium", "phase": "fase-4" }
+      ]
+    },
+    {
+      "id": "macro-marina",
+      "title": "Migrar para Bling e estruturar toda operacao",
+      "assignee": "Marina",
+      "assigneeType": "agent",
+      "type": "macro",
+      "project": "Bling (ERP)",
+      "priority": "critical",
+      "status": "pending",
+      "description": "Bling 100% operacional: estoque, NF-e, financeiro, pedidos. Integrado com Shopify e Mercado Livre. Conta Azul desligada.",
+      "createdAt": "2026-04-13",
+      "subtasks": [
+        { "id": "mm-01", "title": "Migracao completa Conta Azul → Bling", "status": "pending", "priority": "critical", "phase": "fase-1" },
+        { "id": "mm-02", "title": "Setup modulos Bling (estoque, NF-e, financeiro, pedidos)", "status": "pending", "priority": "critical", "phase": "fase-1" },
+        { "id": "mm-03", "title": "Mapear fluxo fulfillment B2C (pedido → despacho → rastreio)", "status": "pending", "priority": "high", "phase": "fase-1" },
+        { "id": "mm-04", "title": "Treinar Paula no novo fluxo Bling", "status": "pending", "priority": "high", "phase": "fase-1" }
+      ]
+    },
+    {
+      "id": "macro-sofia",
+      "title": "Estruturar atendimento e vendas via WhatsApp",
+      "assignee": "Sofia",
+      "assigneeType": "agent",
+      "type": "macro",
+      "project": "WhatsApp Commerce",
+      "priority": "high",
+      "status": "pending",
+      "description": "WhatsApp como canal de atendimento, vendas e fidelizacao. Automacoes rodando, FAQ pronto, fluxo de venda conversacional.",
+      "createdAt": "2026-04-13",
+      "subtasks": [
+        { "id": "ms-01", "title": "Automacoes WhatsApp (boas-vindas, pos-compra, reativacao)", "status": "pending", "priority": "high", "phase": "fase-3" },
+        { "id": "ms-02", "title": "Fluxos de atendimento e FAQ automatico", "status": "pending", "priority": "high", "phase": "fase-3" },
+        { "id": "ms-03", "title": "POV — Pedido conversacional pelo WhatsApp", "status": "pending", "priority": "high", "phase": "fase-4" },
+        { "id": "ms-04", "title": "Programa de fidelizacao e recompra", "status": "pending", "priority": "medium", "phase": "fase-4" }
+      ]
+    },
+
+    {
+      "id": "d1",
+      "title": "Aprovar diretoria virtual",
+      "assignee": "Cleber",
+      "assigneeType": "human",
+      "type": "micro",
+      "project": "MAAT Virtual",
+      "priority": "high",
+      "status": "done",
+      "createdAt": "2026-04-13",
+      "completedAt": "2026-04-13"
+    },
+    {
+      "id": "d2",
+      "title": "Fornecer materiais de identidade visual",
+      "assignee": "Cleber",
+      "assigneeType": "human",
+      "type": "micro",
+      "project": "MAAT Virtual",
+      "priority": "high",
+      "status": "done",
+      "createdAt": "2026-04-13",
+      "completedAt": "2026-04-13"
+    },
+    {
+      "id": "d3",
+      "title": "Informar equipe atual e papeis",
+      "assignee": "Cleber",
+      "assigneeType": "human",
+      "type": "micro",
+      "project": "MAAT Virtual",
+      "priority": "high",
+      "status": "done",
+      "createdAt": "2026-04-13",
+      "completedAt": "2026-04-13"
+    },
+    {
+      "id": "d4",
+      "title": "Definir prioridade #1",
+      "assignee": "Cleber",
+      "assigneeType": "human",
+      "type": "micro",
+      "project": "MAAT Virtual",
+      "priority": "high",
+      "status": "done",
+      "createdAt": "2026-04-13",
+      "completedAt": "2026-04-13"
+    },
+    {
+      "id": "d5",
+      "title": "Criar OAuth e deploy do painel",
+      "assignee": "Cleber",
+      "assigneeType": "human",
+      "type": "micro",
+      "project": "MAAT Virtual",
+      "priority": "critical",
+      "status": "done",
+      "createdAt": "2026-04-13",
+      "completedAt": "2026-04-13"
+    },
+    {
+      "id": "d6",
+      "title": "Reuniao de diretoria — organizar proximos passos",
+      "assignee": "Claudio",
+      "assigneeType": "agent",
+      "type": "micro",
+      "project": "MAAT Virtual",
+      "priority": "critical",
+      "status": "done",
+      "createdAt": "2026-04-13",
+      "completedAt": "2026-04-13"
+    }
+  ]
+}

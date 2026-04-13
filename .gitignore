@@ -1,0 +1,20 @@
+# Dependencies
+painel/node_modules/
+painel/.next/
+painel/.vercel/
+
+# Environment
+.env
+.env.local
+.env.production
+*.key
+*.pem
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea/
+.vscode/
+*.swp

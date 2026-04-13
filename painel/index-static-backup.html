@@ -1,0 +1,1035 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MAAT Virtual — Painel Central</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --floresta: #19433A;
+      --floresta-light: #1e5349;
+      --agua: #B9DFFC;
+      --agua-light: #e8f4ff;
+      --laranja: #E07434;
+      --laranja-light: #f5a66a;
+      --folha: #58AA43;
+      --branco: #FDFDFD;
+      --cinza-100: #f5f7f6;
+      --cinza-200: #e8edeb;
+      --cinza-300: #d1d9d6;
+      --cinza-500: #8a9691;
+      --cinza-700: #4a5854;
+      --vermelho: #dc3545;
+      --amarelo: #f0ad4e;
+      --roxo: #7c5cbf;
+      --radius: 12px;
+      --radius-sm: 8px;
+      --shadow: 0 2px 12px rgba(25,67,58,0.08);
+      --shadow-lg: 0 8px 32px rgba(25,67,58,0.12);
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--agua-light);
+      color: var(--floresta);
+      min-height: 100vh;
+    }
+
+    /* HEADER */
+    .header {
+      background: var(--floresta);
+      color: var(--branco);
+      padding: 1.5rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: var(--shadow-lg);
+    }
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .header h1 {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 800;
+      letter-spacing: 3px;
+    }
+    .header h1 span {
+      font-weight: 400;
+      font-size: 0.9rem;
+      letter-spacing: 1px;
+      opacity: 0.7;
+      margin-left: 0.5rem;
+    }
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      font-size: 0.85rem;
+    }
+    .header-badge {
+      background: var(--laranja);
+      padding: 0.3rem 0.8rem;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 0.75rem;
+      letter-spacing: 0.5px;
+    }
+    .header-date { opacity: 0.6; }
+
+    /* TABS */
+    .tabs {
+      display: flex;
+      gap: 0;
+      background: var(--branco);
+      border-bottom: 2px solid var(--cinza-200);
+      padding: 0 2rem;
+      overflow-x: auto;
+    }
+    .tab {
+      padding: 1rem 1.5rem;
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      border-bottom: 3px solid transparent;
+      transition: all 0.2s;
+      white-space: nowrap;
+      color: var(--cinza-500);
+    }
+    .tab:hover { color: var(--floresta); }
+    .tab.active {
+      color: var(--floresta);
+      border-bottom-color: var(--laranja);
+    }
+
+    /* CONTENT */
+    .content {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+
+    /* CARDS */
+    .card {
+      background: var(--branco);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+    .card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1rem;
+    }
+    .card-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+    }
+
+    /* GRID */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+      gap: 1.5rem;
+    }
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1rem;
+    }
+
+    /* STATS */
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    .stat {
+      background: var(--branco);
+      border-radius: var(--radius);
+      padding: 1.2rem;
+      box-shadow: var(--shadow);
+      text-align: center;
+    }
+    .stat-value {
+      font-family: 'Syne', sans-serif;
+      font-size: 2rem;
+      font-weight: 800;
+      line-height: 1;
+      margin-bottom: 0.3rem;
+    }
+    .stat-label {
+      font-size: 0.8rem;
+      color: var(--cinza-500);
+      font-weight: 500;
+    }
+    .stat-value.green { color: var(--folha); }
+    .stat-value.orange { color: var(--laranja); }
+    .stat-value.blue { color: #3b82f6; }
+    .stat-value.purple { color: var(--roxo); }
+
+    /* STATUS BADGES */
+    .badge {
+      display: inline-block;
+      padding: 0.2rem 0.7rem;
+      border-radius: 50px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.3px;
+      text-transform: uppercase;
+    }
+    .badge-green { background: #e6f5e4; color: var(--folha); }
+    .badge-orange { background: #fef3e2; color: var(--laranja); }
+    .badge-red { background: #fde8ea; color: var(--vermelho); }
+    .badge-blue { background: #e8f0fe; color: #3b82f6; }
+    .badge-purple { background: #f0e8ff; color: var(--roxo); }
+    .badge-gray { background: var(--cinza-100); color: var(--cinza-500); }
+
+    /* AGENT CARDS */
+    .agent-card {
+      background: var(--branco);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 1.5rem;
+      border-left: 4px solid var(--floresta);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .agent-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-lg);
+    }
+    .agent-card.coordenador { border-left-color: var(--laranja); }
+    .agent-card.marketing { border-left-color: #e84393; }
+    .agent-card.financas { border-left-color: #3b82f6; }
+    .agent-card.operacoes { border-left-color: var(--folha); }
+    .agent-card.revenue { border-left-color: var(--roxo); }
+    .agent-card.humano { border-left-color: var(--cinza-300); background: var(--cinza-100); }
+
+    .agent-avatar {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: var(--branco);
+      margin-bottom: 0.8rem;
+      font-family: 'Syne', sans-serif;
+    }
+    .agent-name {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 1.1rem;
+      margin-bottom: 0.2rem;
+    }
+    .agent-role {
+      font-size: 0.8rem;
+      color: var(--cinza-500);
+      font-weight: 600;
+      margin-bottom: 0.8rem;
+    }
+    .agent-desc {
+      font-size: 0.85rem;
+      line-height: 1.5;
+      color: var(--cinza-700);
+      margin-bottom: 1rem;
+    }
+    .agent-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+    .agent-tag {
+      padding: 0.15rem 0.5rem;
+      border-radius: 50px;
+      font-size: 0.65rem;
+      font-weight: 600;
+      background: var(--cinza-100);
+      color: var(--cinza-700);
+    }
+
+    /* PROJECT CARDS */
+    .project-card {
+      background: var(--branco);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 1.5rem;
+    }
+    .project-name {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      margin-bottom: 0.3rem;
+    }
+    .project-desc {
+      font-size: 0.8rem;
+      color: var(--cinza-500);
+      margin-bottom: 1rem;
+    }
+    .progress-bar {
+      width: 100%;
+      height: 8px;
+      background: var(--cinza-200);
+      border-radius: 50px;
+      overflow: hidden;
+      margin-bottom: 0.5rem;
+    }
+    .progress-fill {
+      height: 100%;
+      border-radius: 50px;
+      transition: width 0.6s ease;
+    }
+    .progress-fill.green { background: var(--folha); }
+    .progress-fill.orange { background: var(--laranja); }
+    .progress-fill.blue { background: #3b82f6; }
+    .progress-label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.75rem;
+      color: var(--cinza-500);
+      font-weight: 600;
+    }
+
+    /* TASK LIST */
+    .task-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.8rem;
+      padding: 1rem 0;
+      border-bottom: 1px solid var(--cinza-200);
+    }
+    .task-item:last-child { border-bottom: none; }
+    .task-check {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      border: 2px solid var(--cinza-300);
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .task-check.done {
+      background: var(--folha);
+      border-color: var(--folha);
+      position: relative;
+    }
+    .task-check.done::after {
+      content: '';
+      position: absolute;
+      top: 3px; left: 6px;
+      width: 5px; height: 9px;
+      border: solid var(--branco);
+      border-width: 0 2px 2px 0;
+      transform: rotate(45deg);
+    }
+    .task-check.in-progress {
+      border-color: var(--laranja);
+      background: #fef3e2;
+    }
+    .task-check.blocked {
+      border-color: var(--vermelho);
+      background: #fde8ea;
+    }
+    .task-body { flex: 1; }
+    .task-title {
+      font-weight: 600;
+      font-size: 0.9rem;
+      margin-bottom: 0.2rem;
+    }
+    .task-title.done { text-decoration: line-through; color: var(--cinza-500); }
+    .task-meta {
+      font-size: 0.75rem;
+      color: var(--cinza-500);
+      display: flex;
+      gap: 0.8rem;
+      flex-wrap: wrap;
+    }
+
+    /* SECTION TITLE */
+    .section-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .section-title .count {
+      background: var(--cinza-200);
+      color: var(--cinza-700);
+      padding: 0.15rem 0.6rem;
+      border-radius: 50px;
+      font-size: 0.75rem;
+      font-weight: 700;
+    }
+
+    /* TABLE */
+    .table-wrap { overflow-x: auto; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.85rem;
+    }
+    th {
+      text-align: left;
+      padding: 0.8rem 1rem;
+      border-bottom: 2px solid var(--cinza-200);
+      font-weight: 700;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--cinza-500);
+    }
+    td {
+      padding: 0.8rem 1rem;
+      border-bottom: 1px solid var(--cinza-100);
+      vertical-align: top;
+    }
+    tr:hover td { background: var(--cinza-100); }
+
+    /* ORG CHART */
+    .org-chart {
+      text-align: center;
+      padding: 2rem 0;
+    }
+    .org-level {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      margin-bottom: 1.5rem;
+      position: relative;
+    }
+    .org-node {
+      background: var(--branco);
+      border: 2px solid var(--cinza-200);
+      border-radius: var(--radius-sm);
+      padding: 0.8rem 1.2rem;
+      min-width: 140px;
+      text-align: center;
+      box-shadow: var(--shadow);
+    }
+    .org-node.human { border-color: var(--cinza-300); background: var(--cinza-100); }
+    .org-node.ai { border-color: var(--laranja); background: #fef9f3; }
+    .org-node-name {
+      font-weight: 700;
+      font-size: 0.85rem;
+      margin-bottom: 0.15rem;
+    }
+    .org-node-role {
+      font-size: 0.7rem;
+      color: var(--cinza-500);
+    }
+    .org-node-type {
+      font-size: 0.6rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-top: 0.3rem;
+    }
+    .org-node-type.human-type { color: var(--floresta); }
+    .org-node-type.ai-type { color: var(--laranja); }
+    .org-divider {
+      text-align: center;
+      color: var(--cinza-300);
+      font-size: 1.2rem;
+      margin: 0.5rem 0;
+    }
+    .org-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: var(--cinza-500);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 0.8rem;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      .content { padding: 1rem; }
+      .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+      .stats { grid-template-columns: repeat(2, 1fr); }
+      .header { flex-direction: column; gap: 0.5rem; text-align: center; }
+      .tabs { padding: 0 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-left">
+      <h1>MAAT <span>VIRTUAL</span></h1>
+    </div>
+    <div class="header-right">
+      <span class="header-badge">FASE: CRESCIMENTO</span>
+      <span class="header-date">Atualizado: 13 Abr 2026</span>
+    </div>
+  </div>
+
+  <!-- TABS -->
+  <div class="tabs">
+    <div class="tab active" data-tab="overview">Visao Geral</div>
+    <div class="tab" data-tab="agents">Agentes</div>
+    <div class="tab" data-tab="projects">Projetos</div>
+    <div class="tab" data-tab="tasks">Tarefas Humanos</div>
+    <div class="tab" data-tab="org">Organograma</div>
+  </div>
+
+  <div class="content">
+
+    <!-- ========== VISAO GERAL ========== -->
+    <div class="tab-content active" id="tab-overview">
+
+      <div class="stats">
+        <div class="stat">
+          <div class="stat-value orange">6</div>
+          <div class="stat-label">Agentes Virtuais (todos ativos)</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value green">4</div>
+          <div class="stat-label">Humanos na Equipe</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value blue">2</div>
+          <div class="stat-label">Projetos Ativos</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value purple">85%</div>
+          <div class="stat-label">E-commerce B2C</div>
+        </div>
+      </div>
+
+      <div class="grid-2">
+
+        <!-- PRIORIDADE #1 -->
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">Prioridade #1: E-commerce B2C</div>
+            <span class="badge badge-orange">Em Andamento</span>
+          </div>
+          <p style="font-size:0.85rem;color:var(--cinza-700);margin-bottom:1rem;">Lancar a loja bebamaat.com.br e vender muito. Shopify theme v0.2.0 em staging, pronto para revisao.</p>
+          <div class="progress-bar"><div class="progress-fill orange" style="width:85%"></div></div>
+          <div class="progress-label"><span>Progresso geral</span><span>85%</span></div>
+          <div style="margin-top:1rem;">
+            <div style="font-size:0.8rem;font-weight:600;margin-bottom:0.5rem;">Proximos passos criticos:</div>
+            <div style="font-size:0.8rem;color:var(--cinza-700);line-height:1.6;">
+              1. Validar redesign v0.2.0 no staging<br>
+              2. Criar pagina de colecao customizada<br>
+              3. Customizar pagina do carrinho<br>
+              4. Configurar analytics e tracking<br>
+              5. Promover para producao e lancar
+            </div>
+          </div>
+        </div>
+
+        <!-- EQUIPE REAL -->
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">Equipe Humana</div>
+            <span class="badge badge-green">4 Pessoas</span>
+          </div>
+          <table>
+            <tr><td style="font-weight:600;">Lucas</td><td>Co-CEO / Socio Fundador</td><td><span class="badge badge-green">Ativo</span></td></tr>
+            <tr><td style="font-weight:600;">Julia</td><td>Co-CEO / Socia Fundadora</td><td><span class="badge badge-green">Ativo</span></td></tr>
+            <tr><td style="font-weight:600;">Cleber</td><td>Head de Tecnologia</td><td><span class="badge badge-green">Ativo</span></td></tr>
+            <tr><td style="font-weight:600;">Paula</td><td>Logistica</td><td><span class="badge badge-green">Ativo</span></td></tr>
+          </table>
+        </div>
+
+        <!-- DIRETORIA VIRTUAL RESUMO -->
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">Diretoria Virtual</div>
+            <span class="badge badge-green">Todos Ativos</span>
+          </div>
+          <p style="font-size:0.85rem;color:var(--cinza-700);margin-bottom:1rem;">1 coordenador + 5 diretores. Todos ativos e com system prompts definidos.</p>
+          <table>
+            <tr><td style="font-weight:600;color:var(--laranja);">Claudio</td><td>Chief of Staff</td><td><span class="badge badge-green">Ativo</span></td></tr>
+            <tr><td style="font-weight:600;color:#00b894;">Theo</td><td>CTO — Tecnologia</td><td><span class="badge badge-green">Ativo</span></td></tr>
+            <tr><td style="font-weight:600;color:#e84393;">Helena</td><td>CMO — Marketing</td><td><span class="badge badge-green">Ativo</span></td></tr>
+            <tr><td style="font-weight:600;color:var(--roxo);">Dante</td><td>CRO — Revenue</td><td><span class="badge badge-green">Ativo</span></td></tr>
+            <tr><td style="font-weight:600;color:#3b82f6;">Rafael</td><td>CFO — Financas</td><td><span class="badge badge-green">Ativo</span></td></tr>
+            <tr><td style="font-weight:600;color:var(--folha);">Marina</td><td>COO — Operacoes</td><td><span class="badge badge-green">Ativo</span></td></tr>
+          </table>
+        </div>
+
+        <!-- SHOPIFY STATUS -->
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">Shopify — Status Tecnico</div>
+            <span class="badge badge-blue">v0.2.0 staging</span>
+          </div>
+          <table>
+            <tr><td style="font-weight:600;">Homepage</td><td><span class="badge badge-green">Pronta</span></td></tr>
+            <tr><td style="font-weight:600;">PDP (Produto)</td><td><span class="badge badge-green">Pronta</span></td></tr>
+            <tr><td style="font-weight:600;">Header + Footer</td><td><span class="badge badge-green">Prontos</span></td></tr>
+            <tr><td style="font-weight:600;">Contato + Frete</td><td><span class="badge badge-green">Prontos</span></td></tr>
+            <tr><td style="font-weight:600;">Design System CSS</td><td><span class="badge badge-green">Completo</span></td></tr>
+            <tr><td style="font-weight:600;">Colecao/Busca</td><td><span class="badge badge-red">Faltando</span></td></tr>
+            <tr><td style="font-weight:600;">Carrinho Custom</td><td><span class="badge badge-red">Faltando</span></td></tr>
+            <tr><td style="font-weight:600;">Analytics/Tracking</td><td><span class="badge badge-red">Faltando</span></td></tr>
+            <tr><td style="font-weight:600;">Emails Transacionais</td><td><span class="badge badge-orange">Shopify Default</span></td></tr>
+          </table>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ========== AGENTES ========== -->
+    <div class="tab-content" id="tab-agents">
+
+      <div class="section-title">Coordenacao <span class="count">1</span></div>
+
+      <div class="grid-3" style="margin-bottom:2rem;">
+        <div class="agent-card coordenador">
+          <div class="agent-avatar" style="background:var(--laranja);">CL</div>
+          <div class="agent-name">Claudio</div>
+          <div class="agent-role">Chief of Staff — Coordenador Geral</div>
+          <div class="agent-desc">Braco direito do Cleber. Coordena toda a diretoria virtual, garante alinhamento entre agentes e equipe humana. Traduz estrategia em execucao.</div>
+          <div class="agent-tags">
+            <span class="agent-tag">Coordenacao</span>
+            <span class="agent-tag">Estrategia</span>
+            <span class="agent-tag">Comunicacao</span>
+            <span class="agent-tag">Projetos</span>
+          </div>
+          <div style="margin-top:0.8rem;"><span class="badge badge-green">Ativo</span></div>
+        </div>
+      </div>
+
+      <div class="section-title">Diretoria Virtual <span class="count">5</span></div>
+
+      <div class="grid-2" style="margin-bottom:2rem;">
+
+        <div class="agent-card" style="border-left-color:#00b894;">
+          <div class="agent-avatar" style="background:#00b894;">TH</div>
+          <div class="agent-name">Theo</div>
+          <div class="agent-role">CTO — Chief Technology Officer</div>
+          <div class="agent-desc">Braco direito tecnico do Cleber. Cuida de arquitetura, infra, qualidade de codigo, performance, SEO tecnico, integracoes e automacoes. Trabalha lado a lado com o Cleber em tudo que e tech.</div>
+          <div style="font-size:0.8rem;color:var(--cinza-700);margin:0.5rem 0;"><strong>Foco imediato:</strong> Completar Shopify (colecao, carrinho, busca), GA4, performance (hero 6.3MB!), SEO tecnico, integracoes de pagamento.</div>
+          <div class="agent-tags">
+            <span class="agent-tag">Arquitetura</span>
+            <span class="agent-tag">Shopify</span>
+            <span class="agent-tag">Performance</span>
+            <span class="agent-tag">SEO Tecnico</span>
+            <span class="agent-tag">Integracoes</span>
+          </div>
+          <div style="margin-top:0.8rem;"><span class="badge badge-green">Ativo</span></div>
+        </div>
+
+        <div class="agent-card marketing">
+          <div class="agent-avatar" style="background:#e84393;">HE</div>
+          <div class="agent-name">Helena</div>
+          <div class="agent-role">CMO — Chief Marketing Officer</div>
+          <div class="agent-desc">Responsavel por growth, branding, social media, community e campanhas. Dona da estrategia "vender muito" — toda aquisicao de clientes, posicionamento e comunicacao.</div>
+          <div style="font-size:0.8rem;color:var(--cinza-700);margin:0.5rem 0;"><strong>Foco imediato:</strong> Estrategia de lancamento do e-commerce B2C, campanhas de aquisicao, plano de conteudo, influenciadores.</div>
+          <div class="agent-tags">
+            <span class="agent-tag">Growth</span>
+            <span class="agent-tag">Social Media</span>
+            <span class="agent-tag">Branding</span>
+            <span class="agent-tag">Comunidade</span>
+            <span class="agent-tag">Conteudo</span>
+          </div>
+          <div style="margin-top:0.8rem;"><span class="badge badge-green">Ativo</span></div>
+        </div>
+
+        <div class="agent-card revenue">
+          <div class="agent-avatar" style="background:var(--roxo);">DA</div>
+          <div class="agent-name">Dante</div>
+          <div class="agent-role">CRO — Chief Revenue Officer</div>
+          <div class="agent-desc">Dono da conversao e receita. Cuida do funil de vendas, otimizacao de e-commerce, CRM, retencao e upsell. Trabalha junto com Helena (aquisicao) para maximizar cada visitante.</div>
+          <div style="font-size:0.8rem;color:var(--cinza-700);margin:0.5rem 0;"><strong>Foco imediato:</strong> Setup de analytics, funil de conversao Shopify, abandoned cart, email marketing, pricing.</div>
+          <div class="agent-tags">
+            <span class="agent-tag">Conversao</span>
+            <span class="agent-tag">E-commerce</span>
+            <span class="agent-tag">CRM</span>
+            <span class="agent-tag">Analytics</span>
+            <span class="agent-tag">Retencao</span>
+          </div>
+          <div style="margin-top:0.8rem;"><span class="badge badge-green">Ativo</span></div>
+        </div>
+
+        <div class="agent-card financas">
+          <div class="agent-avatar" style="background:#3b82f6;">RA</div>
+          <div class="agent-name">Rafael</div>
+          <div class="agent-role">CFO — Chief Financial Officer</div>
+          <div class="agent-desc">Gestao financeira, unit economics, margens, fluxo de caixa, orcamentos e viabilidade de projetos. Garante que crescimento seja sustentavel financeiramente.</div>
+          <div style="font-size:0.8rem;color:var(--cinza-700);margin:0.5rem 0;"><strong>Foco imediato:</strong> Unit economics da lata (custo vs preco), margem por canal (B2C vs B2B), projecao de receita pos-lancamento.</div>
+          <div class="agent-tags">
+            <span class="agent-tag">Financas</span>
+            <span class="agent-tag">Unit Economics</span>
+            <span class="agent-tag">Margens</span>
+            <span class="agent-tag">Fluxo de Caixa</span>
+          </div>
+          <div style="margin-top:0.8rem;"><span class="badge badge-green">Ativo</span></div>
+        </div>
+
+        <div class="agent-card operacoes">
+          <div class="agent-avatar" style="background:var(--folha);">MA</div>
+          <div class="agent-name">Marina</div>
+          <div class="agent-role">COO — Chief Operating Officer</div>
+          <div class="agent-desc">Operacoes, processos, supply chain e fulfillment. Complementa o trabalho da Paula (logistica humana) com inteligencia de processos e automacao.</div>
+          <div style="font-size:0.8rem;color:var(--cinza-700);margin:0.5rem 0;"><strong>Foco imediato:</strong> Processo de fulfillment B2C, integracao Shopify-logistica, SLAs de entrega, gestao de estoque.</div>
+          <div class="agent-tags">
+            <span class="agent-tag">Operacoes</span>
+            <span class="agent-tag">Supply Chain</span>
+            <span class="agent-tag">Fulfillment</span>
+            <span class="agent-tag">Processos</span>
+          </div>
+          <div style="margin-top:0.8rem;"><span class="badge badge-green">Ativo</span></div>
+        </div>
+
+      </div>
+
+      <div class="section-title">Equipe Humana <span class="count">4</span></div>
+
+      <div class="grid-4">
+        <div class="agent-card humano">
+          <div class="agent-name">Lucas</div>
+          <div class="agent-role">Co-CEO / Socio Fundador</div>
+          <div class="agent-desc">Estrategia geral, produto, agrofloresta, parcerias produtivas.</div>
+          <div style="margin-top:0.5rem;"><span class="badge badge-green">Humano</span></div>
+        </div>
+        <div class="agent-card humano">
+          <div class="agent-name">Julia</div>
+          <div class="agent-role">Co-CEO / Socia Fundadora</div>
+          <div class="agent-desc">Estrategia geral, impacto, negocios regenerativos, parcerias.</div>
+          <div style="margin-top:0.5rem;"><span class="badge badge-green">Humano</span></div>
+        </div>
+        <div class="agent-card humano">
+          <div class="agent-name">Cleber</div>
+          <div class="agent-role">Head de Tecnologia</div>
+          <div class="agent-desc">Tecnologia, sistemas, e-commerce, automacao. Lider da MAAT Virtual.</div>
+          <div style="margin-top:0.5rem;"><span class="badge badge-green">Humano</span></div>
+        </div>
+        <div class="agent-card humano">
+          <div class="agent-name">Paula</div>
+          <div class="agent-role">Logistica</div>
+          <div class="agent-desc">Cadeia de suprimentos, despacho, fulfillment, entregas.</div>
+          <div style="margin-top:0.5rem;"><span class="badge badge-green">Humano</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========== PROJETOS ========== -->
+    <div class="tab-content" id="tab-projects">
+
+      <div class="section-title">Projetos Ativos <span class="count">2</span></div>
+
+      <div class="grid-2">
+
+        <!-- PROJETO SHOPIFY -->
+        <div class="card" style="border-top: 4px solid var(--laranja);">
+          <div class="card-header">
+            <div class="card-title">E-commerce B2C (Shopify)</div>
+            <span class="badge badge-orange">Em Andamento</span>
+          </div>
+          <p style="font-size:0.85rem;color:var(--cinza-700);margin-bottom:1rem;">Loja bebamaat.com.br — tema Dawn customizado com design system MAAT completo.</p>
+
+          <div style="margin-bottom:1rem;">
+            <div style="font-size:0.8rem;font-weight:700;margin-bottom:0.5rem;">Ambientes</div>
+            <table>
+              <tr><td>Producao</td><td><span class="badge badge-blue">v0.1.1</span></td><td>Branch: main</td></tr>
+              <tr><td>Staging</td><td><span class="badge badge-purple">v0.2.0</span></td><td>Branch: develop</td></tr>
+            </table>
+          </div>
+
+          <div style="margin-bottom:1rem;">
+            <div style="font-size:0.8rem;font-weight:700;margin-bottom:0.5rem;">Componentes</div>
+            <div class="table-wrap">
+              <table>
+                <thead><tr><th>Componente</th><th>Status</th><th>Linhas</th></tr></thead>
+                <tbody>
+                  <tr><td>Homepage</td><td><span class="badge badge-green">Pronto</span></td><td>333</td></tr>
+                  <tr><td>PDP (Pagina de Produto)</td><td><span class="badge badge-green">Pronto</span></td><td>190</td></tr>
+                  <tr><td>Header + Nav + Mobile Menu</td><td><span class="badge badge-green">Pronto</span></td><td>90</td></tr>
+                  <tr><td>Footer + Newsletter</td><td><span class="badge badge-green">Pronto</span></td><td>70</td></tr>
+                  <tr><td>Pagina Contato</td><td><span class="badge badge-green">Pronto</span></td><td>52</td></tr>
+                  <tr><td>Pagina Frete</td><td><span class="badge badge-green">Pronto</span></td><td>33</td></tr>
+                  <tr><td>Design System CSS</td><td><span class="badge badge-green">Pronto</span></td><td>1.840</td></tr>
+                  <tr><td>Interacoes JS</td><td><span class="badge badge-green">Pronto</span></td><td>271</td></tr>
+                  <tr><td>Pagina de Colecao</td><td><span class="badge badge-red">Faltando</span></td><td>—</td></tr>
+                  <tr><td>Pagina de Busca</td><td><span class="badge badge-red">Faltando</span></td><td>—</td></tr>
+                  <tr><td>Carrinho Customizado</td><td><span class="badge badge-red">Faltando</span></td><td>—</td></tr>
+                  <tr><td>Contas de Cliente</td><td><span class="badge badge-orange">Default Shopify</span></td><td>—</td></tr>
+                  <tr><td>Emails Transacionais</td><td><span class="badge badge-orange">Default Shopify</span></td><td>—</td></tr>
+                  <tr><td>Analytics / GA4 / Pixels</td><td><span class="badge badge-red">Faltando</span></td><td>—</td></tr>
+                  <tr><td>SEO (Schema avancado)</td><td><span class="badge badge-orange">Parcial</span></td><td>—</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="progress-bar"><div class="progress-fill orange" style="width:85%"></div></div>
+          <div class="progress-label"><span>Progresso</span><span>85%</span></div>
+        </div>
+
+        <!-- PROJETO MAAT VIRTUAL -->
+        <div class="card" style="border-top: 4px solid var(--roxo);">
+          <div class="card-header">
+            <div class="card-title">MAAT Virtual</div>
+            <span class="badge badge-purple">Fase 1</span>
+          </div>
+          <p style="font-size:0.85rem;color:var(--cinza-700);margin-bottom:1rem;">Empresa virtual com agentes IA atuando como diretoria. Painel central + agentes autonomos.</p>
+
+          <div style="margin-bottom:1rem;">
+            <div style="font-size:0.8rem;font-weight:700;margin-bottom:0.5rem;">Entregas Fase 1</div>
+            <table>
+              <tr><td>Documentacao base empresarial</td><td><span class="badge badge-green">Pronto</span></td></tr>
+              <tr><td>Painel central (este HTML)</td><td><span class="badge badge-green">Pronto</span></td></tr>
+              <tr><td>Claudio (coordenador) ativo</td><td><span class="badge badge-green">Pronto</span></td></tr>
+              <tr><td>Diretoria aprovada (5 agentes + coordenador)</td><td><span class="badge badge-green">Pronto</span></td></tr>
+              <tr><td>System prompts dos diretores</td><td><span class="badge badge-green">Pronto</span></td></tr>
+              <tr><td>Painel web com auth Google</td><td><span class="badge badge-gray">Futuro</span></td></tr>
+            </table>
+          </div>
+
+          <div class="progress-bar"><div class="progress-fill blue" style="width:70%"></div></div>
+          <div class="progress-label"><span>Fase 1</span><span>70%</span></div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ========== TAREFAS HUMANOS ========== -->
+    <div class="tab-content" id="tab-tasks">
+
+      <div class="section-title">Tarefas Pendentes para Humanos <span class="count">6</span></div>
+
+      <div class="card">
+        <div class="task-item">
+          <div class="task-check in-progress"></div>
+          <div class="task-body">
+            <div class="task-title">Revisar redesign v0.2.0 no staging Shopify</div>
+            <div class="task-meta">
+              <span><strong>Para:</strong> Cleber</span>
+              <span><strong>Prioridade:</strong> Critica</span>
+              <span><strong>Projeto:</strong> E-commerce B2C</span>
+              <span>Acessar via admin Shopify > Temas > MAAT Staging > Preview</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="task-item">
+          <div class="task-check"></div>
+          <div class="task-body">
+            <div class="task-title">Definir data alvo de lancamento do e-commerce B2C</div>
+            <div class="task-meta">
+              <span><strong>Para:</strong> Cleber + Lucas + Julia</span>
+              <span><strong>Prioridade:</strong> Alta</span>
+              <span><strong>Projeto:</strong> E-commerce B2C</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="task-item">
+          <div class="task-check"></div>
+          <div class="task-body">
+            <div class="task-title">Configurar Google Analytics 4 + Pixels na loja Shopify</div>
+            <div class="task-meta">
+              <span><strong>Para:</strong> Cleber</span>
+              <span><strong>Prioridade:</strong> Alta</span>
+              <span><strong>Projeto:</strong> E-commerce B2C</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="task-item">
+          <div class="task-check"></div>
+          <div class="task-body">
+            <div class="task-title">Validar estoque disponivel e capacidade de fulfillment B2C</div>
+            <div class="task-meta">
+              <span><strong>Para:</strong> Paula + Lucas</span>
+              <span><strong>Prioridade:</strong> Alta</span>
+              <span><strong>Projeto:</strong> E-commerce B2C</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="task-item">
+          <div class="task-check"></div>
+          <div class="task-body">
+            <div class="task-title">Definir metodos de pagamento ativos no Shopify (Pix, cartao, boleto)</div>
+            <div class="task-meta">
+              <span><strong>Para:</strong> Cleber + Lucas</span>
+              <span><strong>Prioridade:</strong> Alta</span>
+              <span><strong>Projeto:</strong> E-commerce B2C</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="task-item">
+          <div class="task-check"></div>
+          <div class="task-body">
+            <div class="task-title">Aprovar copy e conteudo da homepage para lancamento</div>
+            <div class="task-meta">
+              <span><strong>Para:</strong> Julia + Lucas</span>
+              <span><strong>Prioridade:</strong> Media</span>
+              <span><strong>Projeto:</strong> E-commerce B2C</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-title" style="margin-top:2rem;">Tarefas Concluidas <span class="count">5</span></div>
+
+      <div class="card">
+        <div class="task-item">
+          <div class="task-check done"></div>
+          <div class="task-body">
+            <div class="task-title done">Aprovar diretoria virtual (Theo, Helena, Dante, Rafael, Marina)</div>
+            <div class="task-meta"><span><strong>Por:</strong> Cleber</span><span>13 Abr 2026</span></div>
+          </div>
+        </div>
+        <div class="task-item">
+          <div class="task-check done"></div>
+          <div class="task-body">
+            <div class="task-title done">Fornecer materiais de identidade visual para MAAT Virtual</div>
+            <div class="task-meta"><span><strong>Por:</strong> Cleber</span><span>13 Abr 2026</span></div>
+          </div>
+        </div>
+        <div class="task-item">
+          <div class="task-check done"></div>
+          <div class="task-body">
+            <div class="task-title done">Informar equipe atual e papeis</div>
+            <div class="task-meta"><span><strong>Por:</strong> Cleber</span><span>13 Abr 2026</span></div>
+          </div>
+        </div>
+        <div class="task-item">
+          <div class="task-check done"></div>
+          <div class="task-body">
+            <div class="task-title done">Definir prioridade #1 (e-commerce + vendas)</div>
+            <div class="task-meta"><span><strong>Por:</strong> Cleber</span><span>13 Abr 2026</span></div>
+          </div>
+        </div>
+        <div class="task-item">
+          <div class="task-check done"></div>
+          <div class="task-body">
+            <div class="task-title done">Confirmar que Shopify e o projeto do e-commerce</div>
+            <div class="task-meta"><span><strong>Por:</strong> Cleber</span><span>13 Abr 2026</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========== ORGANOGRAMA ========== -->
+    <div class="tab-content" id="tab-org">
+
+      <div class="section-title">Organograma MAAT (Humanos + Virtual)</div>
+
+      <div class="card">
+        <div class="org-chart">
+
+          <div class="org-label">Lideranca Estrategica (Humanos)</div>
+          <div class="org-level">
+            <div class="org-node human">
+              <div class="org-node-name">Lucas</div>
+              <div class="org-node-role">Co-CEO</div>
+              <div class="org-node-type human-type">Humano</div>
+            </div>
+            <div class="org-node human">
+              <div class="org-node-name">Julia</div>
+              <div class="org-node-role">Co-CEO</div>
+              <div class="org-node-type human-type">Humano</div>
+            </div>
+          </div>
+
+          <div class="org-divider">|</div>
+
+          <div class="org-label">Tecnologia + Coordenacao Virtual</div>
+          <div class="org-level">
+            <div class="org-node human">
+              <div class="org-node-name">Cleber</div>
+              <div class="org-node-role">Head de Tecnologia</div>
+              <div class="org-node-type human-type">Humano</div>
+            </div>
+            <div class="org-node ai" style="border-color:var(--laranja);">
+              <div class="org-node-name">Claudio</div>
+              <div class="org-node-role">Chief of Staff</div>
+              <div class="org-node-type ai-type">IA — Ativo</div>
+            </div>
+          </div>
+
+          <div class="org-divider">|</div>
+
+          <div class="org-label">Diretoria Virtual (Todos Ativos)</div>
+          <div class="org-level">
+            <div class="org-node ai" style="border-color:#00b894;">
+              <div class="org-node-name">Theo</div>
+              <div class="org-node-role">CTO</div>
+              <div class="org-node-type ai-type">IA — Ativo</div>
+            </div>
+            <div class="org-node ai" style="border-color:#e84393;">
+              <div class="org-node-name">Helena</div>
+              <div class="org-node-role">CMO</div>
+              <div class="org-node-type ai-type">IA — Ativo</div>
+            </div>
+            <div class="org-node ai" style="border-color:var(--roxo);">
+              <div class="org-node-name">Dante</div>
+              <div class="org-node-role">CRO</div>
+              <div class="org-node-type ai-type">IA — Ativo</div>
+            </div>
+            <div class="org-node ai" style="border-color:#3b82f6;">
+              <div class="org-node-name">Rafael</div>
+              <div class="org-node-role">CFO</div>
+              <div class="org-node-type ai-type">IA — Ativo</div>
+            </div>
+            <div class="org-node ai" style="border-color:var(--folha);">
+              <div class="org-node-name">Marina</div>
+              <div class="org-node-role">COO</div>
+              <div class="org-node-type ai-type">IA — Ativo</div>
+            </div>
+          </div>
+
+          <div class="org-divider">|</div>
+
+          <div class="org-label">Operacoes (Humano)</div>
+          <div class="org-level">
+            <div class="org-node human">
+              <div class="org-node-name">Paula</div>
+              <div class="org-node-role">Logistica</div>
+              <div class="org-node-type human-type">Humano</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    // Tab switching
+    document.querySelectorAll('.tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+        tab.classList.add('active');
+        document.getElementById('tab-' + tab.dataset.tab).classList.add('active');
+      });
+    });
+  </script>
+
+</body>
+</html>
