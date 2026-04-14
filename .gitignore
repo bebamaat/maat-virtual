@@ -1,3 +1,6 @@
+# Identidade local do humano (cada maquina tem o seu)
+.eu
+
 # Assets pesados (>100MB nao aceito pelo GitHub)
 materiais/
 
