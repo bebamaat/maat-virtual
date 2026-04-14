@@ -1,3 +1,6 @@
+# Assets pesados (>100MB nao aceito pelo GitHub)
+materiais/
+
 # Dependencies
 painel/node_modules/
 painel/.next/
