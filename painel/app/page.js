@@ -1,19 +1,7 @@
 "use client";
 import { useSession, signOut } from "next-auth/react";
-import { useState } from "react";
+import { useState, useEffect, useCallback } from "react";
 import data from "../data/maat-virtual.json";
-
-function getFirstName(email) {
-  if (!email) return "";
-  const map = {
-    "cleber@bebamaat.com.br": "Cleber",
-    "alo@bebamaat.com.br": "Cleber",
-    "lucas@bebamaat.com.br": "Lucas",
-    "julia@bebamaat.com.br": "Julia",
-    "paula@bebamaat.com.br": "Paula",
-  };
-  return map[email.toLowerCase()] || email.split("@")[0];
-}
 
 function BadgeStatus({ status }) {
   const map = {
@@ -35,37 +23,56 @@ function BadgePriority({ priority }) {
   return <span className={`badge ${map[priority] || "badge-gray"}`}>{labels[priority] || priority}</span>;
 }
 
-function SubtaskItem({ task }) {
+function SubtaskCheckbox({ task, isCompleted, onToggle }) {
+  return (
+    <div className="subtask-item">
+      <button
+        className={`subtask-check-btn ${isCompleted ? "done" : ""}`}
+        onClick={() => onToggle(task.id)}
+        title={isCompleted ? "Desmarcar" : "Marcar como feito"}
+      />
+      <span className={`subtask-title ${isCompleted ? "done" : ""}`}>{task.title}</span>
+      <BadgePriority priority={task.priority} />
+    </div>
+  );
+}
+
+function SubtaskReadonly({ task }) {
   const checkClass = task.status === "done" ? "done" : task.status === "in_progress" ? "in-progress" : "";
   return (
     <div className="subtask-item">
-      <div className={`subtask-check ${checkClass}`}></div>
+      <div className={`subtask-check ${checkClass}`} />
       <span className={`subtask-title ${task.status === "done" ? "done" : ""}`}>{task.title}</span>
       <BadgePriority priority={task.priority} />
     </div>
   );
 }
 
-function MacroTaskCard({ task, showAssignee }) {
+function MacroCard({ task, completedTasks, onToggle, showAssignee }) {
   const [expanded, setExpanded] = useState(false);
   const subtasks = task.subtasks || [];
-  const doneCount = subtasks.filter(s => s.status === "done").length;
+  const isHuman = task.assigneeType === "human";
+
+  const doneCount = isHuman
+    ? subtasks.filter(s => completedTasks.includes(s.id)).length
+    : subtasks.filter(s => s.status === "done").length;
   const totalCount = subtasks.length;
   const progressPct = totalCount > 0 ? Math.round((doneCount / totalCount) * 100) : 0;
 
+  const allDone = totalCount > 0 && doneCount === totalCount;
   const priorityColor = {
     critical: "var(--vermelho)", high: "var(--laranja)", medium: "#3b82f6", low: "var(--cinza-500)"
   };
 
   return (
-    <div className="macro-card" style={{ borderLeft: `4px solid ${priorityColor[task.priority] || "var(--cinza-300)"}` }}>
+    <div className={`macro-card ${allDone ? "macro-done" : ""}`} style={{ borderLeft: `4px solid ${priorityColor[task.priority] || "var(--cinza-300)"}` }}>
       <div className="macro-header" onClick={() => setExpanded(!expanded)} style={{ cursor: "pointer" }}>
         <div className="macro-header-left">
-          <div className="macro-title">{task.title}</div>
+          <div className={`macro-title ${allDone ? "done" : ""}`}>{task.title}</div>
           <div className="macro-meta">
-            {showAssignee && <span><strong>{task.assignee}</strong></span>}
+            {showAssignee && <span className="macro-assignee">{task.assignee}</span>}
             <BadgePriority priority={task.priority} />
-            <BadgeStatus status={task.status} />
+            {allDone ? <span className="badge badge-green">Concluido</span> : <BadgeStatus status={task.status} />}
             <span className="macro-project">{task.project}</span>
           </div>
         </div>
@@ -74,48 +81,143 @@ function MacroTaskCard({ task, showAssignee }) {
           <span className="macro-expand">{expanded ? "−" : "+"}</span>
         </div>
       </div>
-      {task.description && (
-        <div className="macro-desc">{task.description}</div>
-      )}
+      {task.description && <div className="macro-desc">{task.description}</div>}
       {totalCount > 0 && (
         <div style={{ marginTop: "0.7rem" }}>
-          <div className="progress-bar"><div className="progress-fill" style={{ width: `${progressPct}%`, background: priorityColor[task.priority] || "var(--cinza-300)" }}></div></div>
+          <div className="progress-bar"><div className="progress-fill" style={{ width: `${progressPct}%`, background: allDone ? "var(--folha)" : (priorityColor[task.priority] || "var(--cinza-300)") }}></div></div>
         </div>
       )}
       {expanded && subtasks.length > 0 && (
         <div className="subtask-list">
-          {subtasks.map(s => <SubtaskItem key={s.id} task={s} />)}
+          {isHuman
+            ? subtasks.map(s => <SubtaskCheckbox key={s.id} task={s} isCompleted={completedTasks.includes(s.id)} onToggle={onToggle} />)
+            : subtasks.map(s => <SubtaskReadonly key={s.id} task={s} />)
+          }
         </div>
       )}
     </div>
   );
 }
 
+function QuestionCard({ q, onAnswer }) {
+  const [answer, setAnswer] = useState("");
+  const [sending, setSending] = useState(false);
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+    if (!answer.trim()) return;
+    setSending(true);
+    await onAnswer(q.id, answer.trim());
+    setSending(false);
+  }
+
+  if (q.status === "answered") {
+    return (
+      <div className="question-card answered">
+        <div className="question-from">{q.from}</div>
+        <div className="question-to">Para: <strong>{q.to}</strong></div>
+        <div className="question-text">{q.question}</div>
+        <div className="question-answer">
+          <strong>Resposta:</strong> {q.answer}
+        </div>
+        <div className="question-date">Respondido em {new Date(q.answeredAt).toLocaleDateString("pt-BR")}</div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="question-card pending">
+      <div className="question-from">{q.from}</div>
+      <div className="question-to">Para: <strong>{q.to}</strong></div>
+      <div className="question-text">{q.question}</div>
+      <form onSubmit={handleSubmit} className="question-form">
+        <textarea
+          value={answer}
+          onChange={e => setAnswer(e.target.value)}
+          placeholder="Digite sua resposta..."
+          rows={2}
+        />
+        <button type="submit" disabled={sending || !answer.trim()} className="btn-answer">
+          {sending ? "Enviando..." : "Responder"}
+        </button>
+      </form>
+    </div>
+  );
+}
+
 export default function Dashboard() {
   const { data: session } = useSession();
-  const [activeTab, setActiveTab] = useState("mytasks");
+  const [activeTab, setActiveTab] = useState("overview");
+  const [state, setState] = useState({ completedTasks: [], questions: [] });
+  const [loading, setLoading] = useState(true);
+
+  const fetchState = useCallback(async () => {
+    try {
+      const res = await fetch("/api/state");
+      if (res.ok) {
+        const data = await res.json();
+        setState(data);
+      }
+    } catch (e) {
+      console.error("Erro ao carregar estado:", e);
+    } finally {
+      setLoading(false);
+    }
+  }, []);
+
+  useEffect(() => { fetchState(); }, [fetchState]);
+
+  async function toggleTask(taskId) {
+    const prev = state.completedTasks.includes(taskId)
+      ? state.completedTasks.filter(id => id !== taskId)
+      : [...state.completedTasks, taskId];
+    setState(s => ({ ...s, completedTasks: prev }));
+
+    try {
+      const res = await fetch("/api/state", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ action: "toggleTask", taskId }),
+      });
+      if (res.ok) setState(await res.json());
+    } catch (e) {
+      console.error("Erro ao salvar:", e);
+      fetchState();
+    }
+  }
+
+  async function answerQuestion(questionId, answer) {
+    try {
+      const res = await fetch("/api/state", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ action: "answerQuestion", questionId, answer }),
+      });
+      if (res.ok) setState(await res.json());
+    } catch (e) {
+      console.error("Erro ao responder:", e);
+      fetchState();
+    }
+  }
 
   if (!session) return null;
 
-  const userName = getFirstName(session.user?.email);
-
   const macroTasks = data.tasks.filter(t => t.type === "macro");
-  const doneTasks = data.tasks.filter(t => t.type !== "macro" && t.status === "done");
-
-  const myMacros = macroTasks.filter(t => t.assignee === userName && t.status !== "done");
-  const myDoneMacros = macroTasks.filter(t => t.assignee === userName && t.status === "done");
-  const humanMacros = macroTasks.filter(t => t.assigneeType === "human" && t.status !== "done");
-  const agentMacros = macroTasks.filter(t => t.assigneeType === "agent" && t.status !== "done");
-  const allPendingMacros = macroTasks.filter(t => t.status !== "done");
-
-  const nextMacro = myMacros.find(t => t.priority === "critical") || myMacros.find(t => t.priority === "high") || myMacros[0];
-
+  const doneMicros = data.tasks.filter(t => t.type !== "macro" && t.status === "done");
+  const humanMacros = macroTasks.filter(t => t.assigneeType === "human");
+  const agentMacros = macroTasks.filter(t => t.assigneeType === "agent");
   const subAgents = data.subAgents || [];
   const phases = data.phases || [];
 
+  const pendingQuestions = state.questions.filter(q => q.status === "pending");
+  const answeredQuestions = state.questions.filter(q => q.status === "answered");
+
+  const humanPendingSubtasks = humanMacros.flatMap(t => (t.subtasks || []).filter(s => !state.completedTasks.includes(s.id)));
+  const pendingCount = humanPendingSubtasks.length + pendingQuestions.length;
+
   const tabs = [
-    { id: "mytasks", label: `Meu Foco (${myMacros.length})`, highlight: true },
     { id: "overview", label: "Visao Geral" },
+    { id: "pendencias", label: `Pendencias`, alert: pendingCount },
     { id: "agents", label: "Agentes" },
     { id: "projects", label: "Projetos" },
     { id: "tasks", label: "Todas Tarefas" },
@@ -124,86 +226,53 @@ export default function Dashboard() {
 
   return (
     <>
-      {/* HEADER */}
       <div className="header">
         <h1>MAAT <span>VIRTUAL</span></h1>
         <div className="header-right">
           <span className="header-badge">CRESCIMENTO</span>
           <div className="user-info">
             {session.user?.image && <img className="user-avatar" src={session.user.image} alt="" />}
-            <span className="user-name">{session.user?.name || userName}</span>
+            <span className="user-name">{session.user?.name}</span>
           </div>
           <button className="btn-logout" onClick={() => signOut()}>Sair</button>
         </div>
       </div>
 
-      {/* TABS */}
       <div className="tabs">
         {tabs.map(t => (
-          <button key={t.id} className={`tab ${activeTab === t.id ? "active" : ""} ${t.highlight ? "highlight" : ""}`}
+          <button key={t.id} className={`tab ${activeTab === t.id ? "active" : ""} ${t.alert > 0 ? "highlight" : ""}`}
             onClick={() => setActiveTab(t.id)}>
             {t.label}
+            {t.alert > 0 && <span className="tab-alert">{t.alert}</span>}
           </button>
         ))}
       </div>
 
       <div className="content">
 
-        {/* ===== MEU FOCO ===== */}
-        {activeTab === "mytasks" && (
-          <div>
-            <div className="my-tasks-hero">
-              <h2>Ola, {userName}!</h2>
-              <p>Voce tem {myMacros.length} objetivo{myMacros.length !== 1 ? "s" : ""} em andamento.</p>
-              {nextMacro && (
-                <div className="my-tasks-next">
-                  <strong>Seu foco principal</strong>
-                  {nextMacro.title}
-                </div>
-              )}
-            </div>
-
-            <div className="section-title">Objetivos Ativos <span className="count">{myMacros.length}</span></div>
-            {myMacros.length === 0 && <div className="card"><p style={{ color: "var(--cinza-500)", fontSize: "0.85rem" }}>Nenhum objetivo pendente. Parabens!</p></div>}
-            {myMacros.map(t => <MacroTaskCard key={t.id} task={t} />)}
-
-            {myDoneMacros.length > 0 && (
-              <>
-                <div className="section-title" style={{ marginTop: "1.5rem" }}>Concluidos <span className="count">{myDoneMacros.length}</span></div>
-                {myDoneMacros.map(t => <MacroTaskCard key={t.id} task={t} />)}
-              </>
-            )}
-
-            {doneTasks.filter(t => t.assignee === userName).length > 0 && (
-              <>
-                <div className="section-title" style={{ marginTop: "1.5rem" }}>Entregas Concluidas <span className="count">{doneTasks.filter(t => t.assignee === userName).length}</span></div>
-                <div className="card">
-                  {doneTasks.filter(t => t.assignee === userName).map(t => (
-                    <div key={t.id} className="subtask-item">
-                      <div className="subtask-check done"></div>
-                      <span className="subtask-title done">{t.title}</span>
-                    </div>
-                  ))}
-                </div>
-              </>
-            )}
-          </div>
-        )}
-
         {/* ===== VISAO GERAL ===== */}
         {activeTab === "overview" && (
           <div>
             <div className="stats">
-              <div className="stat"><div className="stat-value" style={{ color: "var(--laranja)" }}>{data.agents.length}</div><div className="stat-label">Diretores</div></div>
+              <div className="stat"><div className="stat-value" style={{ color: "var(--laranja)" }}>{data.agents.length}</div><div className="stat-label">Diretores IA</div></div>
               <div className="stat"><div className="stat-value" style={{ color: "var(--roxo)" }}>{subAgents.length}</div><div className="stat-label">Sub-Agentes</div></div>
               <div className="stat"><div className="stat-value" style={{ color: "var(--folha)" }}>{data.humans.length}</div><div className="stat-label">Humanos</div></div>
               <div className="stat"><div className="stat-value" style={{ color: "#3b82f6" }}>{data.projects.length}</div><div className="stat-label">Projetos</div></div>
-              <div className="stat"><div className="stat-value" style={{ color: "var(--vermelho)" }}>{allPendingMacros.length}</div><div className="stat-label">Objetivos Ativos</div></div>
+              <div className="stat clickable" onClick={() => setActiveTab("pendencias")} style={{ cursor: "pointer" }}>
+                <div className="stat-value" style={{ color: pendingCount > 0 ? "var(--vermelho)" : "var(--folha)" }}>{pendingCount}</div>
+                <div className="stat-label">{pendingCount > 0 ? "Pendencias Humanas" : "Tudo em dia"}</div>
+              </div>
             </div>
+
+            {pendingCount > 0 && (
+              <div className="alert-banner" onClick={() => setActiveTab("pendencias")} style={{ cursor: "pointer" }}>
+                <strong>{pendingCount} pendencia{pendingCount !== 1 ? "s" : ""}</strong> esperando resposta ou acao dos humanos
+              </div>
+            )}
 
             {phases.length > 0 && (
               <>
-                <div className="section-title">Plano de Execucao</div>
+                <div className="section-title">Plano de Execucao — 4 Fases</div>
                 <div className="grid-2" style={{ marginBottom: "2rem" }}>
                   {phases.map(p => (
                     <div key={p.id} className="card" style={{ borderLeft: `4px solid ${p.status === "active" ? "var(--laranja)" : "var(--cinza-300)"}` }}>
@@ -228,28 +297,43 @@ export default function Dashboard() {
               </div>
 
               <div className="card">
-                <div className="card-header"><div className="card-title">Objetivos por Area</div></div>
-                <table>
-                  <tbody>
-                    <tr><td style={{ fontWeight: 600 }}>Humanos</td><td>{humanMacros.length} objetivos</td></tr>
-                    <tr><td style={{ fontWeight: 600 }}>Agentes</td><td>{agentMacros.length} objetivos</td></tr>
-                  </tbody>
-                </table>
-                <div style={{ marginTop: "1rem" }}>
-                  <div style={{ fontSize: "0.75rem", fontWeight: 700, marginBottom: "0.5rem" }}>Por pessoa:</div>
-                  {[...new Set(allPendingMacros.map(t => t.assignee))].map(name => {
-                    const macro = allPendingMacros.find(t => t.assignee === name);
-                    const subtotalSub = macro?.subtasks?.length || 0;
-                    return (
-                      <div key={name} style={{ fontSize: "0.8rem", display: "flex", justifyContent: "space-between", padding: "0.3rem 0" }}>
-                        <span>{name}</span>
-                        <span style={{ fontWeight: 700 }}>1 obj / {subtotalSub} tarefas</span>
-                      </div>
-                    );
-                  })}
+                <div className="card-header"><div className="card-title">Equipe</div></div>
+                <div style={{ marginTop: "0.3rem" }}>
+                  {[...humanMacros, ...agentMacros].map(t => (
+                    <div key={t.id} style={{ fontSize: "0.8rem", display: "flex", justifyContent: "space-between", padding: "0.35rem 0", borderBottom: "1px solid var(--cinza-100)" }}>
+                      <span><strong>{t.assignee}</strong> <span style={{ color: "var(--cinza-500)", fontSize: "0.7rem" }}>({t.assigneeType === "human" ? data.humans.find(h => h.name === t.assignee)?.role : data.agents.find(a => a.name === t.assignee)?.role})</span></span>
+                      <span style={{ fontSize: "0.7rem", maxWidth: "55%", textAlign: "right", color: "var(--cinza-700)" }}>{t.title.substring(0, 50)}{t.title.length > 50 ? "..." : ""}</span>
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>
+          </div>
+        )}
+
+        {/* ===== PENDENCIAS ===== */}
+        {activeTab === "pendencias" && (
+          <div>
+            {pendingQuestions.length > 0 && (
+              <>
+                <div className="section-title">Perguntas Aguardando Resposta <span className="count alert">{pendingQuestions.length}</span></div>
+                {pendingQuestions.map(q => <QuestionCard key={q.id} q={q} onAnswer={answerQuestion} />)}
+              </>
+            )}
+
+            <div className="section-title" style={{ marginTop: pendingQuestions.length > 0 ? "2rem" : 0 }}>
+              Tarefas dos Humanos <span className="count">{humanMacros.length}</span>
+            </div>
+            {humanMacros.map(t => (
+              <MacroCard key={t.id} task={t} completedTasks={state.completedTasks} onToggle={toggleTask} showAssignee />
+            ))}
+
+            {answeredQuestions.length > 0 && (
+              <>
+                <div className="section-title" style={{ marginTop: "2rem" }}>Perguntas Respondidas <span className="count">{answeredQuestions.length}</span></div>
+                {answeredQuestions.map(q => <QuestionCard key={q.id} q={q} onAnswer={answerQuestion} />)}
+              </>
+            )}
           </div>
         )}
 
@@ -266,18 +350,11 @@ export default function Dashboard() {
                     <div className="agent-name">{a.name}</div>
                     <div className="agent-role">{a.role}</div>
                     <div className="agent-desc">{a.description}</div>
-                    {macro && (
-                      <div className="agent-macro">
-                        <strong>Objetivo:</strong> {macro.title}
-                      </div>
-                    )}
+                    {macro && <div className="agent-macro"><strong>Objetivo:</strong> {macro.title}</div>}
                     <div className="agent-tags">{a.tags.map(t => <span key={t} className="agent-tag">{t}</span>)}</div>
                     <div style={{ marginTop: "0.7rem" }}>
                       <BadgeStatus status={a.status} />
-                      {macro && <>
-                        {" "}
-                        <span className="badge badge-gray">{macro.subtasks?.length || 0} tarefas</span>
-                      </>}
+                      {macro && <>{" "}<span className="badge badge-gray">{macro.subtasks?.length || 0} tarefas</span></>}
                     </div>
                   </div>
                 );
@@ -313,16 +390,9 @@ export default function Dashboard() {
                     <div className="agent-name">{h.name}</div>
                     <div className="agent-role">{h.role}</div>
                     <div className="agent-desc">{h.scope}</div>
-                    {macro && (
-                      <div className="agent-macro">
-                        <strong>Objetivo:</strong> {macro.title}
-                      </div>
-                    )}
+                    {macro && <div className="agent-macro"><strong>Objetivo:</strong> {macro.title}</div>}
                     <span className="badge badge-green">Humano</span>
-                    {macro && <>
-                      {" "}
-                      <span className="badge badge-gray">{macro.subtasks?.length || 0} tarefas</span>
-                    </>}
+                    {macro && <>{" "}<span className="badge badge-gray">{macro.subtasks?.length || 0} tarefas</span></>}
                   </div>
                 );
               })}
@@ -333,7 +403,7 @@ export default function Dashboard() {
         {/* ===== PROJETOS ===== */}
         {activeTab === "projects" && (
           <div>
-            <div className="section-title">Projetos Ativos <span className="count">{data.projects.length}</span></div>
+            <div className="section-title">Projetos <span className="count">{data.projects.length}</span></div>
             <div className="grid-2">
               {data.projects.map(p => (
                 <div key={p.id} className="card" style={{ borderTop: `4px solid ${p.id === "ecommerce-b2c" ? "var(--laranja)" : "var(--roxo)"}` }}>
@@ -367,18 +437,18 @@ export default function Dashboard() {
         {activeTab === "tasks" && (
           <div>
             <div className="section-title">Humanos <span className="count">{humanMacros.length}</span></div>
-            {humanMacros.map(t => <MacroTaskCard key={t.id} task={t} showAssignee />)}
+            {humanMacros.map(t => <MacroCard key={t.id} task={t} completedTasks={state.completedTasks} onToggle={toggleTask} showAssignee />)}
 
             <div className="section-title" style={{ marginTop: "2rem" }}>Agentes <span className="count">{agentMacros.length}</span></div>
-            {agentMacros.map(t => <MacroTaskCard key={t.id} task={t} showAssignee />)}
+            {agentMacros.map(t => <MacroCard key={t.id} task={t} completedTasks={state.completedTasks} onToggle={toggleTask} showAssignee />)}
 
-            {doneTasks.length > 0 && (
+            {doneMicros.length > 0 && (
               <>
-                <div className="section-title" style={{ marginTop: "2rem" }}>Entregas Concluidas <span className="count">{doneTasks.length}</span></div>
+                <div className="section-title" style={{ marginTop: "2rem" }}>Entregas Concluidas <span className="count">{doneMicros.length}</span></div>
                 <div className="card">
-                  {doneTasks.map(t => (
+                  {doneMicros.map(t => (
                     <div key={t.id} className="subtask-item">
-                      <div className="subtask-check done"></div>
+                      <div className="subtask-check done" />
                       <span className="subtask-title done">{t.title}</span>
                       <span style={{ fontSize: "0.7rem", color: "var(--cinza-500)" }}>{t.assignee}</span>
                     </div>

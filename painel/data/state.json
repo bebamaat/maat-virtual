@@ -1,0 +1,65 @@
+{
+  "completedTasks": [],
+  "questions": [
+    {
+      "id": "q1",
+      "from": "Marina (COO)",
+      "to": "Paula",
+      "question": "Qual a capacidade diaria de despacho atual? Quantos pedidos por dia voce consegue processar sozinha?",
+      "answer": null,
+      "status": "pending",
+      "createdAt": "2026-04-13T21:00:00Z",
+      "answeredAt": null
+    },
+    {
+      "id": "q2",
+      "from": "Theo (CTO)",
+      "to": "Cleber",
+      "question": "Ja existe conta no Mercado Pago para a MAAT? Ou preciso criar do zero?",
+      "answer": null,
+      "status": "pending",
+      "createdAt": "2026-04-13T21:00:00Z",
+      "answeredAt": null
+    },
+    {
+      "id": "q3",
+      "from": "Marina (COO)",
+      "to": "Cleber",
+      "question": "Qual o login atual do Conta Azul? Preciso acessar para mapear os dados antes da migracao pro Bling.",
+      "answer": null,
+      "status": "pending",
+      "createdAt": "2026-04-13T21:00:00Z",
+      "answeredAt": null
+    },
+    {
+      "id": "q4",
+      "from": "Dante (CRO)",
+      "to": "Cleber",
+      "question": "Ja tem conta no Google Analytics (GA4) criada para bebamaat.com.br, ou crio uma nova?",
+      "answer": null,
+      "status": "pending",
+      "createdAt": "2026-04-13T21:00:00Z",
+      "answeredAt": null
+    },
+    {
+      "id": "q5",
+      "from": "Helena (CMO)",
+      "to": "Julia",
+      "question": "Existe algum planejamento de conteudo ou calendario editorial ja iniciado para as redes da MAAT?",
+      "answer": null,
+      "status": "pending",
+      "createdAt": "2026-04-13T21:00:00Z",
+      "answeredAt": null
+    },
+    {
+      "id": "q6",
+      "from": "Rafael (CFO)",
+      "to": "Lucas",
+      "question": "Qual o budget disponivel para marketing no lancamento do e-commerce B2C?",
+      "answer": null,
+      "status": "pending",
+      "createdAt": "2026-04-13T21:00:00Z",
+      "answeredAt": null
+    }
+  ]
+}
