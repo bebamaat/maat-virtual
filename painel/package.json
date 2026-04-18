@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "sync-docs": "mkdir -p public/docs && cp ../docs/maat-virtual/*.md public/docs/",
+    "sync-docs": "mkdir -p public/docs && (cp ../docs/maat-virtual/*.md public/docs/ 2>/dev/null || true)",
     "predev": "npm run sync-docs",
     "prebuild": "npm run sync-docs",
     "dev": "next dev",
