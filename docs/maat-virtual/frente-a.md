@@ -1,9 +1,5 @@
 # MAAT Virtual — Frente A (fundação conceitual)
 
-Documento fechado em 17/04/2026. Source-of-truth para Frente B (Job Descriptions dos agentes).
-
----
-
 ## A1 · Manifesto
 
 A MAAT Virtual é a empresa-operadora AI-first da MAAT Agroflorestal. Não vende produtos nem serviços: executa, com agentes de IA supervisionados por humanos, toda a infraestrutura digital que leva erva-mate orgânica regenerativa da floresta ao consumidor. Cada agente tem um dono — humano ou outro agente — mas toda cadeia de responsabilidade termina numa pessoa. A Virtual não substitui humanos: multiplica o alcance deles. Somos uma empresa de produto físico que opera como software.
@@ -62,23 +58,3 @@ A MAAT Virtual é a empresa-operadora AI-first da MAAT Agroflorestal. Não vende
 - Cadeia de donos termina em humano — zero ciclos permitidos.
 - Dono humano responde por: escopo, validação, KPIs, status.
 - Orquestração ≠ posse. Agente-Mestre orquestra workflows cross-área mas não é dono dos agentes de outras áreas.
-
----
-
-## Pendências registradas
-
-- Nomes dos 2 representantes
-- Agente dedicado a Trade (B3) ou decisão de cobertura via Pipedrive
-- Distribuição de carga: Julia aparece em 3 áreas + 4 setores — priorizar JDs que aliviam Julia cedo
-
----
-
-## Próxima sessão — Frente B (JDs)
-
-Sequência sugerida, critério "mais próximo de valor + alivia Julia":
-
-1. **Agente-Mestre** (Cleber · Planejado) — tem que existir antes dos outros virarem Em operação
-2. **Agente Pipedrive** (Julia+Lucas · Em construção) — CRM já roda, JD vira template real
-3. **Agente Shopify** (Julia+Lucas · Em construção) — idem
-4. **Agente Governança** (Julia · Em construção) — meta-agente que documenta os outros, acelera a Frente B inteira
-5. **Agente Insta+TikTok** (Julia+Lucas · Em construção) — tem output Remotion já produzido
