@@ -1,7 +1,31 @@
 "use client";
 import { useSession, signOut } from "next-auth/react";
 import { useState, useEffect, useCallback } from "react";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 import data from "../data/maat-virtual.json";
+
+function DocViewer({ src }) {
+  const [content, setContent] = useState(null);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    let cancelled = false;
+    fetch(src)
+      .then(r => r.ok ? r.text() : Promise.reject(r.status))
+      .then(t => { if (!cancelled) setContent(t); })
+      .catch(e => { if (!cancelled) setError(String(e)); });
+    return () => { cancelled = true; };
+  }, [src]);
+
+  if (error) return <div className="card">Erro ao carregar documento ({error}).</div>;
+  if (content === null) return <div className="card">Carregando...</div>;
+  return (
+    <div className="card markdown-body">
+      <ReactMarkdown remarkPlugins={[remarkGfm]}>{content}</ReactMarkdown>
+    </div>
+  );
+}
 
 function BadgeStatus({ status }) {
   const map = {
@@ -222,6 +246,7 @@ export default function Dashboard() {
     { id: "projects", label: "Projetos" },
     { id: "tasks", label: "Todas Tarefas" },
     { id: "org", label: "Organograma" },
+    { id: "fundacao", label: "Fundacao" },
   ];
 
   return (
@@ -456,6 +481,14 @@ export default function Dashboard() {
                 </div>
               </>
             )}
+          </div>
+        )}
+
+        {/* ===== FUNDACAO ===== */}
+        {activeTab === "fundacao" && (
+          <div>
+            <div className="section-title">Frente A — Fundacao Conceitual</div>
+            <DocViewer src="/docs/frente-a.md" />
           </div>
         )}
 

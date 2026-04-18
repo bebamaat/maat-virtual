@@ -409,6 +409,23 @@ td { padding: 0.7rem 0.8rem; border-bottom: 1px solid var(--cinza-100); vertical
 .btn-answer:hover { background: #1e5349; }
 .btn-answer:disabled { background: var(--cinza-300); cursor: not-allowed; }
 
+.markdown-body { padding: 1.5rem 2rem; line-height: 1.65; font-size: 0.9rem; color: var(--cinza-700); }
+.markdown-body h1 { font-family: 'Syne', sans-serif; font-size: 1.5rem; color: var(--floresta); margin: 0 0 1rem; }
+.markdown-body h2 { font-family: 'Syne', sans-serif; font-size: 1.15rem; color: var(--floresta); margin: 1.8rem 0 0.7rem; padding-top: 0.8rem; border-top: 1px solid var(--cinza-200); }
+.markdown-body h2:first-of-type { border-top: 0; padding-top: 0; }
+.markdown-body h3 { font-family: 'Syne', sans-serif; font-size: 0.95rem; color: var(--laranja); margin: 1.2rem 0 0.5rem; text-transform: uppercase; letter-spacing: 0.5px; }
+.markdown-body p { margin: 0.6rem 0; }
+.markdown-body strong { color: var(--floresta); font-weight: 700; }
+.markdown-body em { color: var(--cinza-500); }
+.markdown-body ul, .markdown-body ol { margin: 0.5rem 0 0.8rem 1.4rem; }
+.markdown-body li { margin: 0.25rem 0; }
+.markdown-body li > ul { margin-top: 0.25rem; }
+.markdown-body hr { border: 0; border-top: 1px solid var(--cinza-200); margin: 1.6rem 0; }
+.markdown-body table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.82rem; }
+.markdown-body th, .markdown-body td { padding: 0.55rem 0.75rem; border-bottom: 1px solid var(--cinza-200); text-align: left; vertical-align: top; }
+.markdown-body th { background: var(--cinza-100); color: var(--floresta); font-weight: 700; }
+.markdown-body code { background: var(--cinza-100); padding: 0.1rem 0.35rem; border-radius: 4px; font-size: 0.82em; }
+
 @media (max-width: 768px) {
   .content { padding: 1rem; }
   .grid-2, .grid-3 { grid-template-columns: 1fr; }
@@ -416,4 +433,5 @@ td { padding: 0.7rem 0.8rem; border-bottom: 1px solid var(--cinza-100); vertical
   .header { flex-direction: column; gap: 0.5rem; text-align: center; }
   .tabs { padding: 0 0.5rem; }
   .tab { padding: 0.7rem 0.8rem; font-size: 0.75rem; }
+  .markdown-body { padding: 1rem; font-size: 0.85rem; }
 }
