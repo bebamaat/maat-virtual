@@ -240,13 +240,13 @@ export default function Dashboard() {
   const pendingCount = humanPendingSubtasks.length + pendingQuestions.length;
 
   const tabs = [
+    { id: "fundacao", label: "Fundacao" },
     { id: "overview", label: "Visao Geral" },
     { id: "pendencias", label: `Pendencias`, alert: pendingCount },
     { id: "agents", label: "Agentes" },
     { id: "projects", label: "Projetos" },
     { id: "tasks", label: "Todas Tarefas" },
     { id: "org", label: "Organograma" },
-    { id: "fundacao", label: "Fundacao" },
   ];
 
   return (
