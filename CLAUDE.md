@@ -63,13 +63,35 @@ virtual/
 - **Login compartilhado:** todos os humanos usam o mesmo email — painel e impessoal
 - **Stack:** Next.js 14 + NextAuth + Vercel
 - **Backend de estado:** GitHub API (state.json no repo)
-- **Funcionalidades:** visao geral, pendencias com alerta, perguntas/respostas, tarefas macro/micro
+- **Funcionalidades:** visao geral, pendencias com alerta, perguntas/respostas, tarefas macro/micro, fundacao (renderiza `docs/maat-virtual/*.md`)
+
+### Dev local do painel
+```bash
+cd painel
+cp .env.local.example .env.local   # preencher credenciais
+npm install
+npm run dev
+```
+
+### Deploy do painel
+Auto-deploy via GitHub esta **desligado** no projeto Vercel `painel`. Sempre subir manual:
+```bash
+cd painel
+vercel link --project painel   # so na primeira vez na maquina
+vercel --prod
+```
+
+### Docs renderizados no painel
+- Fonte canonica: `docs/maat-virtual/*.md`
+- Copia servida: `painel/public/docs/*.md` (commitada)
+- `npm run sync-docs` (roda sozinho em predev/prebuild) copia uma para a outra
+- Ao editar um doc: commitar os **dois** arquivos e rodar `vercel --prod`
 
 ## Repositorio
 
 - **GitHub:** github.com/bebamaat/maat-virtual (privado)
 - **Branch:** main
-- **Deploy:** Vercel (auto via `vercel --prod`)
+- **Deploy:** Vercel manual via `vercel --prod` (ver acima)
 
 ## Contexto da MAAT
 
