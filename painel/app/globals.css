@@ -516,18 +516,18 @@ td { padding: 0.8rem; border-bottom: 1px solid var(--cinza-100); vertical-align:
   align-items: center;
   justify-content: center;
   position: relative;
-  background: var(--off-white);
+  background: var(--preto);
   padding: 2rem;
   overflow: hidden;
 }
 .login-bg {
   position: absolute;
   inset: 0;
-  background-image: url('/logos/maat-vertical-preto.png');
-  background-repeat: repeat-x;
-  background-position: center top;
+  background-image: url('/logos/grafismo-outline-branco.png');
+  background-repeat: repeat;
+  background-position: center center;
   background-size: auto 100vh;
-  opacity: 0.05;
+  opacity: 0.9;
   pointer-events: none;
 }
 .login-card {
