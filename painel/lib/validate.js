@@ -1,4 +1,9 @@
 const STATUS_VALIDOS = new Set(["planejado", "em-construcao", "em-operacao", "autonomo"]);
+const STATUS_FERRAMENTA_VALIDOS = new Set(["implementado", "em-implementacao", "nao-iniciado"]);
+const CATEGORIA_FERRAMENTA_VALIDOS = new Set(["receita", "marketing", "operacoes", "integracoes"]);
+const PRIORIDADE_PENDENCIA_VALIDOS = new Set(["critical", "high", "medium", "low"]);
+const STATUS_PENDENCIA_VALIDOS = new Set(["aberta", "em-andamento", "resolvida"]);
+const TIPO_ITEM_ROADMAP_VALIDOS = new Set(["ferramenta", "agente", "humano"]);
 
 function err(ctx, msg) {
   return `[${ctx}] ${msg}`;
@@ -102,6 +107,89 @@ export function validateMaatVirtual(data) {
     }
   });
 
+  // ───────────────────────────────────────────────────────────────
+  // NOVO em F1: ferramentas, fluxoOperacional, roadmap, pendencias
+  // ───────────────────────────────────────────────────────────────
+  const ferramentas = Array.isArray(data.ferramentas) ? data.ferramentas : [];
+  const fluxo = data.fluxoOperacional || null;
+  const roadmap = data.roadmap || null;
+  const pendenciasHumanas = Array.isArray(data.pendenciasHumanas) ? data.pendenciasHumanas : [];
+  const marcosConcluidos = Array.isArray(data.marcosConcluidos) ? data.marcosConcluidos : [];
+
+  const ferramentaIds = new Set();
+  ferramentas.forEach((f, i) => {
+    const ctx = `ferramentas[${i}${f && f.id ? ` id=${f.id}` : ""}]`;
+    if (!isStr(f.id)) errs.push(err(ctx, "id obrigatorio"));
+    if (!isStr(f.nome)) errs.push(err(ctx, "nome obrigatorio"));
+    if (!CATEGORIA_FERRAMENTA_VALIDOS.has(f.categoria)) errs.push(err(ctx, `categoria invalida: ${f.categoria}`));
+    if (!STATUS_FERRAMENTA_VALIDOS.has(f.statusImplementacao)) errs.push(err(ctx, `statusImplementacao invalido: ${f.statusImplementacao}`));
+    if (f.id && ferramentaIds.has(f.id)) errs.push(err(ctx, `id duplicado: ${f.id}`));
+    if (f.id) ferramentaIds.add(f.id);
+  });
+
+  if (fluxo) {
+    const canais = Array.isArray(fluxo.canais) ? fluxo.canais : [];
+    canais.forEach((c, i) => {
+      const ctx = `fluxoOperacional.canais[${i}${c && c.id ? ` id=${c.id}` : ""}]`;
+      if (!isStr(c.id)) errs.push(err(ctx, "id obrigatorio"));
+      if (!isStr(c.nome)) errs.push(err(ctx, "nome obrigatorio"));
+      const etapas = Array.isArray(c.etapas) ? c.etapas : [];
+      etapas.forEach((e, j) => {
+        const ectx = `${ctx}.etapas[${j}${e && e.id ? ` id=${e.id}` : ""}]`;
+        if (!isStr(e.id)) errs.push(err(ectx, "id obrigatorio"));
+        if (!isStr(e.nome)) errs.push(err(ectx, "nome obrigatorio"));
+      });
+    });
+  }
+
+  if (roadmap) {
+    const prioridades = Array.isArray(roadmap.prioridades) ? roadmap.prioridades : [];
+    const allAgentIdsRoad = new Set([...coordIds, ...espIds, ...govIds, mestre.id]);
+    prioridades.forEach((p, i) => {
+      const ctx = `roadmap.prioridades[${i}]`;
+      if (typeof p.nivel !== "number") errs.push(err(ctx, "nivel obrigatorio (number)"));
+      if (!isStr(p.titulo)) errs.push(err(ctx, "titulo obrigatorio"));
+      const itens = Array.isArray(p.itens) ? p.itens : [];
+      itens.forEach((it, j) => {
+        const ictx = `${ctx}.itens[${j} id=${it.id}]`;
+        if (!isStr(it.id)) errs.push(err(ictx, "id obrigatorio"));
+        if (!isStr(it.titulo)) errs.push(err(ictx, "titulo obrigatorio"));
+        if (!TIPO_ITEM_ROADMAP_VALIDOS.has(it.tipo)) errs.push(err(ictx, `tipo invalido: ${it.tipo}`));
+        if (it.agente && !allAgentIdsRoad.has(it.agente) && !ferramentaIds.has(it.agente)) {
+          errs.push(err(ictx, `agente referencia id inexistente: ${it.agente}`));
+        }
+        (it.destrava || []).forEach(d => {
+          if (!allAgentIdsRoad.has(d) && !ferramentaIds.has(d)) {
+            errs.push(err(ictx, `destrava referencia id inexistente: ${d}`));
+          }
+        });
+      });
+    });
+
+    const projecao = Array.isArray(roadmap.projecao) ? roadmap.projecao : [];
+    projecao.forEach((m, i) => {
+      const ctx = `roadmap.projecao[${i}]`;
+      if (typeof m.progressoPct !== "number" || m.progressoPct < 0 || m.progressoPct > 100) {
+        errs.push(err(ctx, `progressoPct deve ser numero entre 0 e 100: ${m.progressoPct}`));
+      }
+    });
+  }
+
+  pendenciasHumanas.forEach((p, i) => {
+    const ctx = `pendenciasHumanas[${i} id=${p.id}]`;
+    if (!isStr(p.id)) errs.push(err(ctx, "id obrigatorio"));
+    if (!isStr(p.titulo)) errs.push(err(ctx, "titulo obrigatorio"));
+    if (!humanoIds.has(p.responsavel)) errs.push(err(ctx, `responsavel nao e humano valido: ${p.responsavel}`));
+    if (!PRIORIDADE_PENDENCIA_VALIDOS.has(p.prioridade)) errs.push(err(ctx, `prioridade invalida: ${p.prioridade}`));
+    if (!STATUS_PENDENCIA_VALIDOS.has(p.status)) errs.push(err(ctx, `status invalido: ${p.status}`));
+  });
+
+  marcosConcluidos.forEach((m, i) => {
+    const ctx = `marcosConcluidos[${i} id=${m.id}]`;
+    if (!isStr(m.id)) errs.push(err(ctx, "id obrigatorio"));
+    if (!isStr(m.titulo)) errs.push(err(ctx, "titulo obrigatorio"));
+  });
+
   if (errs.length > 0) {
     throw new Error(`maat-virtual.json invalido (${errs.length} erro(s)):\n  - ${errs.join("\n  - ")}`);
   }
@@ -112,6 +200,11 @@ export function validateMaatVirtual(data) {
     coordenadores,
     especialistas,
     governancaTecnica: govTecnica,
+    ferramentas,
+    fluxoOperacional: fluxo,
+    roadmap,
+    pendenciasHumanas,
+    marcosConcluidos,
     counts: {
       humanos: humanos.length,
       humanosReais: humanos.filter(h => !h.placeholder).length,
@@ -120,6 +213,10 @@ export function validateMaatVirtual(data) {
       especialistas: especialistas.length,
       governancaTecnica: govTecnica.length,
       agenteMestre: 1,
+      ferramentas: ferramentas.length,
+      pendenciasAbertas: pendenciasHumanas.filter(p => p.status === "aberta").length,
+      marcosConcluidos: marcosConcluidos.length,
+      itensRoadmap: roadmap ? roadmap.prioridades.reduce((a, p) => a + (p.itens?.length || 0), 0) : 0,
     },
   };
 }

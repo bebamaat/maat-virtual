@@ -1,14 +1,19 @@
 {
-  "lastUpdated": "2026-04-21T00:00:00Z",
+  "lastUpdated": "2026-04-21T16:00:00Z",
   "updatedBy": "Claude",
-
   "humanos": [
     {
       "id": "lucas",
       "nome": "Lucas",
       "papel": "Co-CEO",
       "email": "lucas@bebamaat.com.br",
-      "areas": ["estrategia", "virtual", "producao", "vendas", "marketing"],
+      "areas": [
+        "estrategia",
+        "virtual",
+        "producao",
+        "vendas",
+        "marketing"
+      ],
       "scope": "Co-CEO · Co-Diretor Virtual · Co-Estrategia · Producao · Co-Receita"
     },
     {
@@ -16,7 +21,12 @@
       "nome": "Julia",
       "papel": "Co-CEO",
       "email": "julia@bebamaat.com.br",
-      "areas": ["estrategia", "financeiro", "vendas", "marketing"],
+      "areas": [
+        "estrategia",
+        "financeiro",
+        "vendas",
+        "marketing"
+      ],
       "scope": "Co-CEO · Co-Estrategia · Financeiro · Co-Receita"
     },
     {
@@ -24,7 +34,10 @@
       "nome": "Cleber",
       "papel": "CTIO · Diretor Virtual",
       "email": "cleber@bebamaat.com.br",
-      "areas": ["virtual", "estrategia"],
+      "areas": [
+        "virtual",
+        "estrategia"
+      ],
       "scope": "CTIO transversal · Co-Diretor Virtual · Inteligencia Digital"
     },
     {
@@ -32,7 +45,12 @@
       "nome": "Paula",
       "papel": "Head de Operacoes & Comunidade",
       "email": "paula@bebamaat.com.br",
-      "areas": ["financeiro", "producao", "operacoes", "comunidade"],
+      "areas": [
+        "financeiro",
+        "producao",
+        "operacoes",
+        "comunidade"
+      ],
       "scope": "Operacoes · Comunidade · Tesouraria · Juridico · Supply"
     },
     {
@@ -50,17 +68,17 @@
       "placeholder": true
     }
   ],
-
   "agenteMestre": {
     "id": "sol",
     "nomeMitologico": "Sol",
     "funcao": "Agente-Mestre",
     "descricao": "Orquestra tarefas cross-area, delega entre coordenadores, consolida outputs.",
-    "donoNegocio": ["cleber"],
+    "donoNegocio": [
+      "cleber"
+    ],
     "donoTecnico": "cleber",
     "status": "planejado"
   },
-
   "coordenadores": [
     {
       "id": "mercurio",
@@ -68,7 +86,10 @@
       "area": "vendas",
       "areaLabel": "Vendas",
       "descricao": "Coordena os agentes de vendas — Pipedrive, Shopify, Mercado Livre, Key Accounts.",
-      "donoNegocio": ["julia", "lucas"],
+      "donoNegocio": [
+        "julia",
+        "lucas"
+      ],
       "donoTecnico": "cleber",
       "status": "planejado"
     },
@@ -78,7 +99,10 @@
       "area": "marketing",
       "areaLabel": "Marketing",
       "descricao": "Coordena os agentes de marketing — ads, organico, email, design, trade.",
-      "donoNegocio": ["julia", "lucas"],
+      "donoNegocio": [
+        "julia",
+        "lucas"
+      ],
       "donoTecnico": "cleber",
       "status": "planejado"
     },
@@ -88,7 +112,9 @@
       "area": "operacoes",
       "areaLabel": "Operacoes",
       "descricao": "Coordena os agentes de logistica — insumos, produto, vendas.",
-      "donoNegocio": ["paula"],
+      "donoNegocio": [
+        "paula"
+      ],
       "donoTecnico": "cleber",
       "status": "planejado"
     },
@@ -98,7 +124,10 @@
       "area": "producao",
       "areaLabel": "Producao",
       "descricao": "Coordena os agentes de producao — supply, PCP, P&D.",
-      "donoNegocio": ["lucas", "paula"],
+      "donoNegocio": [
+        "lucas",
+        "paula"
+      ],
       "donoTecnico": "cleber",
       "status": "planejado"
     },
@@ -108,7 +137,11 @@
       "area": "estrategia",
       "areaLabel": "Estrategia",
       "descricao": "Coordena os agentes de estrategia — governanca, BI, analytics, integracoes, mercado externo.",
-      "donoNegocio": ["julia", "lucas", "cleber"],
+      "donoNegocio": [
+        "julia",
+        "lucas",
+        "cleber"
+      ],
       "donoTecnico": "cleber",
       "status": "planejado"
     },
@@ -118,7 +151,10 @@
       "area": "financeiro",
       "areaLabel": "Financeiro",
       "descricao": "Coordena os agentes financeiros — tesouraria, controladoria, BI financeiro, juridico.",
-      "donoNegocio": ["julia", "paula"],
+      "donoNegocio": [
+        "julia",
+        "paula"
+      ],
       "donoTecnico": "cleber",
       "status": "planejado"
     },
@@ -128,383 +164,2582 @@
       "area": "comunidade",
       "areaLabel": "Comunidade",
       "descricao": "Coordena os agentes de comunidade — grupos, embaixadores, UGC, eventos.",
-      "donoNegocio": ["paula"],
+      "donoNegocio": [
+        "paula"
+      ],
       "donoTecnico": "cleber",
       "status": "planejado"
     }
   ],
-
   "especialistas": [
-    { "id": "seshat",     "nomeMitologico": "Seshat",     "funcao": "Pipedrive (CRM)",                  "coordenador": "mercurio", "descricao": "Leads, funil, follow-up, segmentacao.",                "ferramentas": ["Pipedrive API"],         "status": "em-construcao" },
-    { "id": "hathor",     "nomeMitologico": "Hathor",     "funcao": "Shopify (E-commerce)",             "coordenador": "mercurio", "descricao": "Loja, produtos, pedidos, theme.",                      "ferramentas": ["Shopify Admin API"],     "status": "em-construcao" },
-    { "id": "iemanja",    "nomeMitologico": "Iemanja",    "funcao": "Mercado Livre",                    "coordenador": "mercurio", "descricao": "Anuncios, estoque, pedidos ML.",                       "ferramentas": ["ML API"],                "status": "planejado" },
-    { "id": "isis",       "nomeMitologico": "Isis",       "funcao": "Key Accounts (B2B)",               "coordenador": "mercurio", "descricao": "Relacionamento B2B direto, grandes contas.",           "ferramentas": ["Pipedrive", "WhatsApp"], "status": "planejado" },
-
-    { "id": "atena",      "nomeMitologico": "Atena",      "funcao": "Google Ads",                       "coordenador": "venus",    "descricao": "Campanhas search e display.",                          "ferramentas": ["Google Ads API"],        "status": "planejado" },
-    { "id": "afrodite",   "nomeMitologico": "Afrodite",   "funcao": "Meta Ads",                         "coordenador": "venus",    "descricao": "Criativos, audiencias, otimizacao.",                   "ferramentas": ["Meta Ads API"],          "status": "planejado" },
-    { "id": "iansa",      "nomeMitologico": "Iansa",      "funcao": "TikTok Ads",                       "coordenador": "venus",    "descricao": "Spark ads, otimizacao, viralizacao.",                  "ferramentas": ["TikTok Ads API"],        "status": "planejado" },
-    { "id": "nut",        "nomeMitologico": "Nut",        "funcao": "Insta + TikTok Organico",          "coordenador": "venus",    "descricao": "Copy, calendario, legendas, hashtags, DM triage.",     "ferramentas": ["Instagram", "TikTok"],   "status": "em-construcao" },
-    { "id": "demeter",    "nomeMitologico": "Demeter",    "funcao": "Klaviyo (Email/SMS)",              "coordenador": "venus",    "descricao": "Flows, segmentos, email, SMS.",                        "ferramentas": ["Klaviyo API"],           "status": "planejado" },
-    { "id": "neftis",     "nomeMitologico": "Neftis",     "funcao": "Design Digital",                   "coordenador": "venus",    "descricao": "Assets digitais, posts, banners, UI.",                 "ferramentas": ["Figma", "Claude Code"],  "status": "planejado" },
-    { "id": "oxum",       "nomeMitologico": "Oxum",       "funcao": "Design Produto",                   "coordenador": "venus",    "descricao": "Embalagem, rotulo, POS fisico, materiais impressos.",  "ferramentas": ["Figma"],                 "status": "planejado" },
-    { "id": "brigid",     "nomeMitologico": "Brigid",     "funcao": "Trade Marketing",                  "coordenador": "venus",    "descricao": "Trade B2B em PDVs fisicos.",                           "ferramentas": [],                        "status": "planejado", "pendencias": ["Decidir se vira agente dedicado ou e coberto por Seshat (Pipedrive)"] },
-
-    { "id": "tefnut",     "nomeMitologico": "Tefnut",     "funcao": "Logistica de Insumos",             "coordenador": "netuno",   "descricao": "Rotas de insumos, transportadoras de entrada.",        "ferramentas": ["Bling", "Melhor Envio"], "status": "planejado" },
-    { "id": "hina",       "nomeMitologico": "Hina",       "funcao": "Logistica de Produto",             "coordenador": "netuno",   "descricao": "Rotas de produto acabado.",                            "ferramentas": ["Bling", "Melhor Envio"], "status": "planejado" },
-    { "id": "oia",        "nomeMitologico": "Oia",        "funcao": "Logistica de Vendas",              "coordenador": "netuno",   "descricao": "Contato com transportadoras, rastreio, rotas.",        "ferramentas": ["Melhor Envio", "WA"],    "status": "planejado" },
-
-    { "id": "abundantia", "nomeMitologico": "Abundantia", "funcao": "Supply (Fornecedores)",            "coordenador": "marte",    "descricao": "Prospeccao, orcamentos, comparacao.",                  "ferramentas": ["Bling", "Planilha"],     "status": "planejado" },
-    { "id": "uzume",      "nomeMitologico": "Uzume",      "funcao": "PCP (Planejamento Producao)",      "coordenador": "marte",    "descricao": "Planejamento e controle de producao + copacking.",     "ferramentas": ["Bling"],                 "status": "planejado" },
-    { "id": "saraswati",  "nomeMitologico": "Saraswati",  "funcao": "P&D (Pesquisa & Desenvolvimento)", "coordenador": "marte",    "descricao": "Formulacoes, iteracoes, historico de produto.",        "ferramentas": [],                        "status": "planejado" },
-
-    { "id": "temis",      "nomeMitologico": "Temis",      "funcao": "Governanca",                       "coordenador": "jupiter",  "descricao": "Atas, decisoes, roadmap, relatorios pra socios.",      "ferramentas": [],                        "status": "em-construcao" },
-    { "id": "sofia",      "nomeMitologico": "Sofia",      "funcao": "BI Estrategico",                   "coordenador": "jupiter",  "descricao": "KPIs de negocio, queries, alertas estrategicos.",      "ferramentas": ["Looker Studio"],         "status": "planejado" },
-    { "id": "maia",       "nomeMitologico": "Maia",       "funcao": "GA4 / GTM",                        "coordenador": "jupiter",  "descricao": "Eventos, pixels, relatorios de trafego.",              "ferramentas": ["GA4", "GTM"],            "status": "planejado" },
-    { "id": "iris",       "nomeMitologico": "Iris",       "funcao": "Make / n8n",                       "coordenador": "jupiter",  "descricao": "Orquestracao de integracoes entre ferramentas.",       "ferramentas": ["Make", "n8n"],           "status": "planejado" },
-    { "id": "fortuna",    "nomeMitologico": "Fortuna",    "funcao": "Mercado Externo",                  "coordenador": "jupiter",  "descricao": "Inteligencia competitiva, LATAM, tendencias.",         "ferramentas": [],                        "status": "planejado" },
-
-    { "id": "laxmi",      "nomeMitologico": "Laxmi",      "funcao": "Bling — Tesouraria",               "coordenador": "saturno",  "descricao": "Fluxo de caixa, contas a pagar, caixa projetado.",     "ferramentas": ["Bling API"],             "status": "planejado" },
-    { "id": "juno",       "nomeMitologico": "Juno",       "funcao": "Bling — Controladoria",            "coordenador": "saturno",  "descricao": "Reports, DRE, conciliacao.",                           "ferramentas": ["Bling API"],             "status": "planejado" },
-    { "id": "veritas",    "nomeMitologico": "Veritas",    "funcao": "BI Financeiro",                    "coordenador": "saturno",  "descricao": "Paineis de indicadores financeiros.",                  "ferramentas": ["Looker Studio"],         "status": "planejado" },
-    { "id": "nemesis",    "nomeMitologico": "Nemesis",    "funcao": "Juridico",                         "coordenador": "saturno",  "descricao": "Contratos, compliance ANVISA/MAPA.",                   "ferramentas": [],                        "status": "planejado" },
-
-    { "id": "vesta",      "nomeMitologico": "Vesta",      "funcao": "Comunidade",                       "coordenador": "urano",    "descricao": "WhatsApp, Discord, Telegram — gestao de espacos.",     "ferramentas": ["WhatsApp", "Discord"],   "status": "planejado" },
-    { "id": "freya",      "nomeMitologico": "Freya",      "funcao": "Embaixadores",                     "coordenador": "urano",    "descricao": "Programa, tiers, onboarding, squads regionais.",       "ferramentas": ["Social Snowball"],       "status": "planejado" },
-    { "id": "caliope",    "nomeMitologico": "Caliope",    "funcao": "UGC",                              "coordenador": "urano",    "descricao": "Coleta, curadoria, incentivos, pipeline pra mkt.",     "ferramentas": [],                        "status": "planejado" },
-    { "id": "pele",       "nomeMitologico": "Pele",       "funcao": "Eventos & Ativacoes",              "coordenador": "urano",    "descricao": "Eventos, ativacoes, kits de embaixadores.",            "ferramentas": [],                        "status": "planejado" }
+    {
+      "id": "seshat",
+      "nomeMitologico": "Seshat",
+      "funcao": "Pipedrive (CRM)",
+      "coordenador": "mercurio",
+      "descricao": "Leads, funil, follow-up, segmentacao.",
+      "ferramentas": [
+        "Pipedrive API"
+      ],
+      "status": "em-construcao",
+      "descricaoDetalhada": "Agente que opera o Pipedrive: gerencia pipelines de vendas B2B e B2C, automatiza movimentação de deals entre stages, dispara tarefas de follow-up para representantes, monitora deals parados e calcula data estimada de reposição para clientes recorrentes. Cria leads automaticamente a partir de webhooks do Shopify, WhatsApp e formulários, e mantém os contatos enriquecidos com tags de comportamento (origem, canal, produto de interesse, LTV estimado).",
+      "skills": [
+        {
+          "n": "user-persona",
+          "s": "ready"
+        },
+        {
+          "n": "empathy-map",
+          "s": "ready"
+        },
+        {
+          "n": "journey-map",
+          "s": "ready"
+        },
+        {
+          "n": "metrics-definition",
+          "s": "ready"
+        },
+        {
+          "n": "orquestração Pipedrive",
+          "s": "todo"
+        }
+      ],
+      "mcpTools": [
+        {
+          "n": "pipedrive-add-activity",
+          "s": "ready"
+        },
+        {
+          "n": "pipedrive-add-deal",
+          "s": "ready"
+        },
+        {
+          "n": "pipedrive-add-labels",
+          "s": "ready"
+        },
+        {
+          "n": "pipedrive-add-lead",
+          "s": "ready"
+        },
+        {
+          "n": "pipedrive-add-note",
+          "s": "ready"
+        },
+        {
+          "n": "pipedrive-add-organization",
+          "s": "ready"
+        },
+        {
+          "n": "pipedrive-add-person",
+          "s": "ready"
+        },
+        {
+          "n": "pipedrive-get-all-leads",
+          "s": "ready"
+        },
+        {
+          "n": "pipedrive-get-deal",
+          "s": "ready"
+        },
+        {
+          "n": "pipedrive-get-lead-by-id",
+          "s": "ready"
+        },
+        {
+          "n": "pipedrive-get-person-details",
+          "s": "ready"
+        },
+        {
+          "n": "pipedrive-list-deals",
+          "s": "ready"
+        },
+        {
+          "n": "pipedrive-merge-deals",
+          "s": "ready"
+        },
+        {
+          "n": "pipedrive-merge-persons",
+          "s": "ready"
+        },
+        {
+          "n": "pipedrive-remove-duplicate-notes",
+          "s": "ready"
+        },
+        {
+          "n": "pipedrive-search-leads",
+          "s": "ready"
+        },
+        {
+          "n": "pipedrive-search-notes",
+          "s": "ready"
+        },
+        {
+          "n": "pipedrive-search-persons",
+          "s": "ready"
+        },
+        {
+          "n": "pipedrive-update-deal",
+          "s": "ready"
+        },
+        {
+          "n": "pipedrive-update-lead",
+          "s": "ready"
+        },
+        {
+          "n": "pipedrive-update-person",
+          "s": "ready"
+        }
+      ],
+      "origemMapID": "ag_pipedrive"
+    },
+    {
+      "id": "hathor",
+      "nomeMitologico": "Hathor",
+      "funcao": "Shopify (E-commerce)",
+      "coordenador": "mercurio",
+      "descricao": "Loja, produtos, pedidos, theme.",
+      "ferramentas": [
+        "Shopify Admin API"
+      ],
+      "status": "em-construcao",
+      "descricaoDetalhada": "Agente que opera a plataforma Shopify: gerencia catálogo de produtos (preços, descrições, imagens, metafields), monitora taxa de conversão do checkout, acompanha status de pedidos e identifica padrões de abandono. Ajusta automaticamente a visibilidade de produtos conforme disponibilidade de estoque no Bling e sugere otimizações de página de produto baseadas em dados de comportamento do Hotjar/Clarity.",
+      "skills": [
+        {
+          "n": "frontend-design",
+          "s": "ready"
+        },
+        {
+          "n": "ui-ux-pro-max",
+          "s": "ready"
+        },
+        {
+          "n": "responsive-design",
+          "s": "ready"
+        },
+        {
+          "n": "responsive-audit",
+          "s": "ready"
+        },
+        {
+          "n": "heuristic-evaluation",
+          "s": "ready"
+        },
+        {
+          "n": "experience-map",
+          "s": "ready"
+        },
+        {
+          "n": "design-screen",
+          "s": "ready"
+        },
+        {
+          "n": "orquestração Shopify",
+          "s": "todo"
+        }
+      ],
+      "mcpTools": [
+        {
+          "n": "deploy_to_vercel",
+          "s": "ready"
+        },
+        {
+          "n": "get_deployment",
+          "s": "ready"
+        },
+        {
+          "n": "get_deployment_build_logs",
+          "s": "ready"
+        },
+        {
+          "n": "get_runtime_logs",
+          "s": "ready"
+        },
+        {
+          "n": "list_deployments",
+          "s": "ready"
+        },
+        {
+          "n": "check_domain_availability_and_price",
+          "s": "ready"
+        },
+        {
+          "n": "web_fetch_vercel_url",
+          "s": "ready"
+        }
+      ],
+      "origemMapID": "ag_shopify"
+    },
+    {
+      "id": "iemanja",
+      "nomeMitologico": "Iemanja",
+      "funcao": "Mercado Livre",
+      "coordenador": "mercurio",
+      "descricao": "Anuncios, estoque, pedidos ML.",
+      "ferramentas": [
+        "ML API"
+      ],
+      "status": "planejado",
+      "descricaoDetalhada": "Agente que opera a presença da MAAT no Mercado Livre: gerencia anúncios (título, descrição, fotos, preço diferenciado), responde perguntas de compradores com informações precisas sobre o produto, monitora posição nos resultados de busca, acompanha reputação do vendedor em tempo real e ajusta preços conforme competitividade do canal. Aciona o squad imediatamente se uma reclamação é aberta para resolução antes de impactar o ranking. Acompanha taxa de migração ML→Shopify como KPI estratégico.",
+      "skills": [
+        {
+          "n": "competitive-analysis",
+          "s": "ready"
+        },
+        {
+          "n": "ux-writing",
+          "s": "ready"
+        },
+        {
+          "n": "visual-hierarchy",
+          "s": "ready"
+        },
+        {
+          "n": "benchmark",
+          "s": "ready"
+        },
+        {
+          "n": "orquestração Mercado Livre",
+          "s": "todo"
+        }
+      ],
+      "mcpTools": [],
+      "origemMapID": "ag_ml"
+    },
+    {
+      "id": "isis",
+      "nomeMitologico": "Isis",
+      "funcao": "Key Accounts (B2B)",
+      "coordenador": "mercurio",
+      "descricao": "Relacionamento B2B direto, grandes contas.",
+      "ferramentas": [
+        "Pipedrive",
+        "WhatsApp"
+      ],
+      "status": "planejado"
+    },
+    {
+      "id": "atena",
+      "nomeMitologico": "Atena",
+      "funcao": "Google Ads",
+      "coordenador": "venus",
+      "descricao": "Campanhas search e display.",
+      "ferramentas": [
+        "Google Ads API"
+      ],
+      "status": "planejado",
+      "descricaoDetalhada": "Agente que opera as campanhas de Google Ads da MAAT: gerencia estrutura de campanhas (Search, Shopping, Performance Max), ajusta lances e orçamentos com base em ROAS target, monitora qualidade de anúncios e sugere novos termos de busca baseados em queries reais dos usuários. Importa conversões do GA4 para otimizar lances com dados reais de compra. Opera de forma autônoma dentro dos guardrails de orçamento e CPA máximo definidos pela gestão.",
+      "skills": [
+        {
+          "n": "a-b-test-design",
+          "s": "ready"
+        },
+        {
+          "n": "metrics-definition",
+          "s": "ready"
+        },
+        {
+          "n": "ux-writing",
+          "s": "ready"
+        },
+        {
+          "n": "jobs-to-be-done",
+          "s": "ready"
+        },
+        {
+          "n": "competitive-analysis",
+          "s": "ready"
+        },
+        {
+          "n": "orquestração Google Ads",
+          "s": "todo"
+        }
+      ],
+      "mcpTools": [],
+      "origemMapID": "ag_gads"
+    },
+    {
+      "id": "afrodite",
+      "nomeMitologico": "Afrodite",
+      "funcao": "Meta Ads",
+      "coordenador": "venus",
+      "descricao": "Criativos, audiencias, otimizacao.",
+      "ferramentas": [
+        "Meta Ads API"
+      ],
+      "status": "planejado",
+      "descricaoDetalhada": "Agente que gerencia campanhas de anúncios no ecossistema Meta (Instagram + Facebook): cria e testa criativos, constrói audiências (lookalike, remarketing, interesses), otimiza lances por objetivo de campanha (awareness, tráfego, conversão) e monitora fadiga criativa. Trabalha com o Agente Design para solicitar novos criativos quando a performance de uma peça decai, e com o Meta Pixel para construir audiências de remarketing baseadas em comportamento real no site.",
+      "skills": [
+        {
+          "n": "a-b-test-design",
+          "s": "ready"
+        },
+        {
+          "n": "metrics-definition",
+          "s": "ready"
+        },
+        {
+          "n": "ux-writing",
+          "s": "ready"
+        },
+        {
+          "n": "jobs-to-be-done",
+          "s": "ready"
+        },
+        {
+          "n": "competitive-analysis",
+          "s": "ready"
+        },
+        {
+          "n": "design-screen",
+          "s": "ready"
+        },
+        {
+          "n": "illustration-style",
+          "s": "ready"
+        },
+        {
+          "n": "orquestração Meta Ads",
+          "s": "todo"
+        }
+      ],
+      "mcpTools": [],
+      "origemMapID": "ag_meta"
+    },
+    {
+      "id": "iansa",
+      "nomeMitologico": "Iansa",
+      "funcao": "TikTok Ads",
+      "coordenador": "venus",
+      "descricao": "Spark ads, otimizacao, viralizacao.",
+      "ferramentas": [
+        "TikTok Ads API"
+      ],
+      "status": "planejado",
+      "descricaoDetalhada": "Agente que opera campanhas no TikTok Ads: gerencia Spark Ads (impulsionamento de conteúdo orgânico), cria audiências nativas da plataforma, otimiza lances e monitora performance de criativos em formato vídeo curto. Identifica conteúdos orgânicos do perfil da MAAT com potencial de performance paga e sugere impulsionamento via Spark Ads. Trabalha alinhado com o Agente Insta+TikTok para reaproveitar conteúdos de alto engajamento como criativos de mídia paga.",
+      "skills": [
+        {
+          "n": "a-b-test-design",
+          "s": "ready"
+        },
+        {
+          "n": "metrics-definition",
+          "s": "ready"
+        },
+        {
+          "n": "ux-writing",
+          "s": "ready"
+        },
+        {
+          "n": "jobs-to-be-done",
+          "s": "ready"
+        },
+        {
+          "n": "competitive-analysis",
+          "s": "ready"
+        },
+        {
+          "n": "orquestração TikTok Ads",
+          "s": "todo"
+        }
+      ],
+      "mcpTools": [],
+      "origemMapID": "ag_tiktok"
+    },
+    {
+      "id": "nut",
+      "nomeMitologico": "Nut",
+      "funcao": "Insta + TikTok Organico",
+      "coordenador": "venus",
+      "descricao": "Copy, calendario, legendas, hashtags, DM triage.",
+      "ferramentas": [
+        "Instagram",
+        "TikTok"
+      ],
+      "status": "em-construcao",
+      "descricaoDetalhada": "Agente responsável pela criação e gestão de conteúdo para Instagram e TikTok — os dois canais de construção de marca e comunidade da MAAT. Gera copies, legendas, hashtags otimizadas e calendário editorial alinhado com a estratégia de produto e sazonalidade. Faz curadoria de UGC (User Generated Content) a partir de reviews coletados no Judge.me e menções espontâneas, transformando feedback real de clientes em conteúdo autêntico para as redes. Sugere formatos de conteúdo baseados em tendências da plataforma e performance histórica dos posts da marca.",
+      "skills": [
+        {
+          "n": "ux-writing",
+          "s": "ready"
+        },
+        {
+          "n": "color-system",
+          "s": "ready"
+        },
+        {
+          "n": "illustration-style",
+          "s": "ready"
+        },
+        {
+          "n": "frontend-design",
+          "s": "ready"
+        },
+        {
+          "n": "a-b-test-design",
+          "s": "ready"
+        },
+        {
+          "n": "design-screen",
+          "s": "ready"
+        },
+        {
+          "n": "visual-hierarchy",
+          "s": "ready"
+        },
+        {
+          "n": "orquestração Social",
+          "s": "todo"
+        }
+      ],
+      "mcpTools": [],
+      "origemMapID": "social"
+    },
+    {
+      "id": "demeter",
+      "nomeMitologico": "Demeter",
+      "funcao": "Klaviyo (Email/SMS)",
+      "coordenador": "venus",
+      "descricao": "Flows, segmentos, email, SMS.",
+      "ferramentas": [
+        "Klaviyo API"
+      ],
+      "status": "planejado",
+      "descricaoDetalhada": "Agente que opera a plataforma Klaviyo: configura e otimiza fluxos automáticos (boas-vindas LC1, carrinho abandonado LC6, reativação LC7, NPS pós-entrega LC9), gerencia segmentação de listas por comportamento de compra, testa subject lines e horários de envio para maximizar taxas de abertura e clique. Monitora métricas de deliverability (bounce, spam complaints) e sugere ajustes para manter a reputação do domínio saudável.",
+      "skills": [
+        {
+          "n": "ux-writing",
+          "s": "ready"
+        },
+        {
+          "n": "user-persona",
+          "s": "ready"
+        },
+        {
+          "n": "design-screen",
+          "s": "ready"
+        },
+        {
+          "n": "a-b-test-design",
+          "s": "ready"
+        },
+        {
+          "n": "journey-map",
+          "s": "ready"
+        },
+        {
+          "n": "orquestração Klaviyo",
+          "s": "todo"
+        }
+      ],
+      "mcpTools": [],
+      "origemMapID": "ag_klaviyo"
+    },
+    {
+      "id": "neftis",
+      "nomeMitologico": "Neftis",
+      "funcao": "Design Digital",
+      "coordenador": "venus",
+      "descricao": "Assets digitais, posts, banners, UI.",
+      "ferramentas": [
+        "Figma",
+        "Claude Code"
+      ],
+      "status": "planejado",
+      "descricaoDetalhada": "Centraliza os assets digitais da MAAT — posts para redes, banners do Shopify, peças de UI e materiais digitais. Gera briefings padronizados com especificacoes tecnicas, referencias do brand guide e deadline, garantindo consistencia visual em todos os pontos de contato digital.",
+      "skills": [
+        {
+          "n": "design-screen",
+          "s": "ready"
+        },
+        {
+          "n": "color-palette",
+          "s": "ready"
+        },
+        {
+          "n": "color-system",
+          "s": "ready"
+        },
+        {
+          "n": "type-system",
+          "s": "ready"
+        },
+        {
+          "n": "typography-scale",
+          "s": "ready"
+        },
+        {
+          "n": "spacing-system",
+          "s": "ready"
+        },
+        {
+          "n": "layout-grid",
+          "s": "ready"
+        },
+        {
+          "n": "visual-hierarchy",
+          "s": "ready"
+        },
+        {
+          "n": "responsive-design",
+          "s": "ready"
+        },
+        {
+          "n": "responsive-audit",
+          "s": "ready"
+        },
+        {
+          "n": "dark-mode-design",
+          "s": "ready"
+        },
+        {
+          "n": "illustration-style",
+          "s": "ready"
+        },
+        {
+          "n": "data-visualization",
+          "s": "ready"
+        },
+        {
+          "n": "create-component",
+          "s": "ready"
+        },
+        {
+          "n": "component-spec",
+          "s": "ready"
+        },
+        {
+          "n": "design-token",
+          "s": "ready"
+        },
+        {
+          "n": "tokenize",
+          "s": "ready"
+        },
+        {
+          "n": "naming-convention",
+          "s": "ready"
+        },
+        {
+          "n": "theming-system",
+          "s": "ready"
+        },
+        {
+          "n": "icon-system",
+          "s": "ready"
+        },
+        {
+          "n": "pattern-library",
+          "s": "ready"
+        },
+        {
+          "n": "accessibility-audit",
+          "s": "ready"
+        },
+        {
+          "n": "documentation-template",
+          "s": "ready"
+        },
+        {
+          "n": "audit-system",
+          "s": "ready"
+        },
+        {
+          "n": "design-interaction",
+          "s": "ready"
+        },
+        {
+          "n": "animation-principles",
+          "s": "ready"
+        },
+        {
+          "n": "micro-interaction-spec",
+          "s": "ready"
+        },
+        {
+          "n": "gesture-patterns",
+          "s": "ready"
+        },
+        {
+          "n": "loading-states",
+          "s": "ready"
+        },
+        {
+          "n": "feedback-patterns",
+          "s": "ready"
+        },
+        {
+          "n": "state-machine",
+          "s": "ready"
+        },
+        {
+          "n": "map-states",
+          "s": "ready"
+        },
+        {
+          "n": "error-flow",
+          "s": "ready"
+        },
+        {
+          "n": "error-handling-ux",
+          "s": "ready"
+        },
+        {
+          "n": "ux-writing",
+          "s": "ready"
+        },
+        {
+          "n": "design-rationale",
+          "s": "ready"
+        },
+        {
+          "n": "presentation-deck",
+          "s": "ready"
+        },
+        {
+          "n": "case-study",
+          "s": "ready"
+        },
+        {
+          "n": "design-system-adoption",
+          "s": "ready"
+        },
+        {
+          "n": "design-token-audit",
+          "s": "ready"
+        },
+        {
+          "n": "frontend-design",
+          "s": "ready"
+        },
+        {
+          "n": "ui-ux-pro-max",
+          "s": "ready"
+        },
+        {
+          "n": "wireframe-spec",
+          "s": "ready"
+        },
+        {
+          "n": "prototype-strategy",
+          "s": "ready"
+        },
+        {
+          "n": "user-flow-diagram",
+          "s": "ready"
+        },
+        {
+          "n": "heuristic-evaluation",
+          "s": "ready"
+        },
+        {
+          "n": "orquestração Design",
+          "s": "todo"
+        }
+      ],
+      "mcpTools": [],
+      "origemMapID": "design:neftis"
+    },
+    {
+      "id": "oxum",
+      "nomeMitologico": "Oxum",
+      "funcao": "Design Produto",
+      "coordenador": "venus",
+      "descricao": "Embalagem, rotulo, POS fisico, materiais impressos.",
+      "ferramentas": [
+        "Figma"
+      ],
+      "status": "planejado",
+      "descricaoDetalhada": "Centraliza os assets fisicos da MAAT — embalagens, rotulos, mockups de produto, materiais POS para representantes e trade marketing. Guarda o brand guide impresso e gera briefings padronizados para pecas fisicas com especificacoes tecnicas de producao.",
+      "skills": [],
+      "mcpTools": [],
+      "origemMapID": "design:oxum"
+    },
+    {
+      "id": "brigid",
+      "nomeMitologico": "Brigid",
+      "funcao": "Trade Marketing",
+      "coordenador": "venus",
+      "descricao": "Trade B2B em PDVs fisicos.",
+      "ferramentas": [],
+      "status": "planejado",
+      "pendencias": [
+        "Decidir se vira agente dedicado ou e coberto por Seshat (Pipedrive)"
+      ]
+    },
+    {
+      "id": "tefnut",
+      "nomeMitologico": "Tefnut",
+      "funcao": "Logistica de Insumos",
+      "coordenador": "netuno",
+      "descricao": "Rotas de insumos, transportadoras de entrada.",
+      "ferramentas": [
+        "Bling",
+        "Melhor Envio"
+      ],
+      "status": "planejado"
+    },
+    {
+      "id": "hina",
+      "nomeMitologico": "Hina",
+      "funcao": "Logistica de Produto",
+      "coordenador": "netuno",
+      "descricao": "Rotas de produto acabado.",
+      "ferramentas": [
+        "Bling",
+        "Melhor Envio"
+      ],
+      "status": "planejado",
+      "descricaoDetalhada": "Agente que gerencia toda a operação logística da MAAT em duas frentes: logística de insumos (fornecedores → copacker) e logística de produto acabado (copacker → CDs → cliente final). Mantém cadastro completo de transportadoras com filtros por região, tipo de carga, prazo e custo. Realiza cotações automáticas comparando opções de frete, calcula as melhores rotas considerando origem, destino e janelas de entrega, e otimiza fretes combinando cargas de insumos e produto acabado na mesma viagem quando possível — reduzindo custo por kg transportado. Registra o histórico completo de cada envio (transportadora, prazo prometido vs. realizado, ocorrências, custo) para construir um score de confiabilidade por transportadora ao longo do tempo. Gera romaneios de carga, controla NFs de transferência entre CDs e emite alertas quando um pedido está em trânsito há mais tempo que o SLA definido.",
+      "skills": [
+        {
+          "n": "user-flow-diagram",
+          "s": "ready"
+        },
+        {
+          "n": "state-machine",
+          "s": "ready"
+        },
+        {
+          "n": "experience-map",
+          "s": "ready"
+        },
+        {
+          "n": "journey-map",
+          "s": "ready"
+        },
+        {
+          "n": "orquestração Logística",
+          "s": "todo"
+        }
+      ],
+      "mcpTools": [],
+      "origemMapID": "logistica"
+    },
+    {
+      "id": "oia",
+      "nomeMitologico": "Oia",
+      "funcao": "Logistica de Vendas",
+      "coordenador": "netuno",
+      "descricao": "Contato com transportadoras, rastreio, rotas.",
+      "ferramentas": [
+        "Melhor Envio",
+        "WA"
+      ],
+      "status": "planejado"
+    },
+    {
+      "id": "abundantia",
+      "nomeMitologico": "Abundantia",
+      "funcao": "Supply (Fornecedores)",
+      "coordenador": "marte",
+      "descricao": "Prospeccao, orcamentos, comparacao.",
+      "ferramentas": [
+        "Bling",
+        "Planilha"
+      ],
+      "status": "planejado",
+      "descricaoDetalhada": "Agente que apoia a humana de compras com controle completo de inventário, análise de fornecedores e inteligência de reposição. Mantém um cadastro vivo de todos os fornecedores da MAAT com preços, condições de pagamento, prazos de entrega, MOQs e histórico de performance (pontualidade, qualidade, devoluções). Opera com análise farol (verde/amarelo/vermelho) para sinalizar visualmente o que precisa ser reposto com urgência, o que está em nível confortável e o que tem excesso. Quando um insumo atinge o ponto de reposição, o agente automaticamente busca as melhores opções entre os fornecedores cadastrados, compara cotações recentes, sugere a melhor combinação custo-prazo-qualidade e gera o pedido de compra pré-preenchido para aprovação da gestora. Monitora também variações de preço ao longo do tempo para identificar oportunidades de compra antecipada ou renegociação.",
+      "skills": [
+        {
+          "n": "opportunity-framework",
+          "s": "ready"
+        },
+        {
+          "n": "competitive-analysis",
+          "s": "ready"
+        },
+        {
+          "n": "card-sort-analysis",
+          "s": "ready"
+        },
+        {
+          "n": "benchmark",
+          "s": "ready"
+        },
+        {
+          "n": "orquestração Supply",
+          "s": "todo"
+        }
+      ],
+      "mcpTools": [],
+      "origemMapID": "supply"
+    },
+    {
+      "id": "uzume",
+      "nomeMitologico": "Uzume",
+      "funcao": "PCP (Planejamento Producao)",
+      "coordenador": "marte",
+      "descricao": "Planejamento e controle de producao + copacking.",
+      "ferramentas": [
+        "Bling"
+      ],
+      "status": "planejado",
+      "descricaoDetalhada": "Agente responsável por planejar e controlar toda a cadeia produtiva da MAAT — desde a previsão de demanda até a liberação do produto acabado. Opera integrado ao Bling ERP para monitorar níveis de estoque de produto final e insumos, gerar ordens de produção para o copacker com base na velocidade de venda de cada SKU, e garantir que não haja ruptura de estoque em nenhum canal. Calcula lotes mínimos de produção considerando MOQ dos fornecedores, capacidade do copacker e sazonalidade de consumo. Emite alertas automáticos quando o estoque projetado cai abaixo do ponto de reposição e sugere cronograma de produção otimizado para as próximas 4–8 semanas.",
+      "skills": [
+        {
+          "n": "design-qa-checklist",
+          "s": "ready"
+        },
+        {
+          "n": "state-machine",
+          "s": "ready"
+        },
+        {
+          "n": "user-flow-diagram",
+          "s": "ready"
+        },
+        {
+          "n": "documentation-template",
+          "s": "ready"
+        },
+        {
+          "n": "orquestração PCP",
+          "s": "todo"
+        }
+      ],
+      "mcpTools": [],
+      "origemMapID": "pcp"
+    },
+    {
+      "id": "saraswati",
+      "nomeMitologico": "Saraswati",
+      "funcao": "P&D (Pesquisa & Desenvolvimento)",
+      "coordenador": "marte",
+      "descricao": "Formulacoes, iteracoes, historico de produto.",
+      "ferramentas": [],
+      "status": "planejado",
+      "descricaoDetalhada": "Sistema de inteligência para pesquisa e desenvolvimento de novos produtos e iteração das fórmulas existentes. Seu objetivo é criar um método estruturado de P&D que apoie a construção de fórmulas, registre cada teste realizado (ingredientes, proporções, resultados sensoriais, feedback), mantenha o histórico completo de iterações e permita comparar versões de uma mesma receita ao longo do tempo. Funciona como o laboratório digital da MAAT: documenta cada experimento com metadados (data, lote de insumo, copacker, condições), registra avaliações sensoriais padronizadas, calcula custo por unidade de cada formulação e gera relatórios comparativos entre versões. Quando uma nova fórmula é aprovada, o agente gera automaticamente a ficha técnica, a lista de ingredientes para rotulagem e aciona o Agente Supply para cotação dos insumos necessários em escala.",
+      "skills": [
+        {
+          "n": "diary-study-plan",
+          "s": "ready"
+        },
+        {
+          "n": "journey-map",
+          "s": "ready"
+        },
+        {
+          "n": "documentation-template",
+          "s": "ready"
+        },
+        {
+          "n": "design-rationale",
+          "s": "ready"
+        },
+        {
+          "n": "orquestração P&D",
+          "s": "todo"
+        }
+      ],
+      "mcpTools": [],
+      "origemMapID": "pd"
+    },
+    {
+      "id": "temis",
+      "nomeMitologico": "Temis",
+      "funcao": "Governanca",
+      "coordenador": "jupiter",
+      "descricao": "Atas, decisoes, roadmap, relatorios pra socios.",
+      "ferramentas": [],
+      "status": "em-construcao",
+      "descricaoDetalhada": "Agente que organiza e mantém toda a documentação de governança da MAAT: atas de reuniões de sócios, registro de decisões estratégicas, roadmap de produto e tecnologia, relatórios periódicos de performance para os stakeholders. Garante rastreabilidade de cada decisão tomada — quem decidiu, quando, com base em quais dados — e gera automaticamente relatórios consolidados cruzando dados financeiros, comerciais e operacionais para as reuniões de conselho.",
+      "skills": [
+        {
+          "n": "presentation-deck",
+          "s": "ready"
+        },
+        {
+          "n": "build-presentation",
+          "s": "ready"
+        },
+        {
+          "n": "write-rationale",
+          "s": "ready"
+        },
+        {
+          "n": "design-rationale",
+          "s": "ready"
+        },
+        {
+          "n": "team-workflow",
+          "s": "ready"
+        },
+        {
+          "n": "setup-workflow",
+          "s": "ready"
+        },
+        {
+          "n": "design-sprint-plan",
+          "s": "ready"
+        },
+        {
+          "n": "stakeholder-alignment",
+          "s": "ready"
+        },
+        {
+          "n": "north-star-vision",
+          "s": "ready"
+        },
+        {
+          "n": "design-brief",
+          "s": "ready"
+        },
+        {
+          "n": "metrics-definition",
+          "s": "ready"
+        },
+        {
+          "n": "orquestração Governança",
+          "s": "todo"
+        }
+      ],
+      "mcpTools": [],
+      "origemMapID": "governanca"
+    },
+    {
+      "id": "sofia",
+      "nomeMitologico": "Sofia",
+      "funcao": "BI Estrategico",
+      "coordenador": "jupiter",
+      "descricao": "KPIs de negocio, queries, alertas estrategicos.",
+      "ferramentas": [
+        "Looker Studio"
+      ],
+      "status": "planejado",
+      "descricaoDetalhada": "Agente que consolida dados de todas as fontes da operação para gerar dashboards, KPIs e alertas automáticos. Executa queries estruturadas cruzando dados de vendas (Shopify + ML), marketing (Meta + Google + TikTok Ads), CRM (Pipedrive), financeiro (Bling) e comportamento (GA4) para entregar visão unificada de receita, CAC, LTV, MER, margem por canal e velocidade de estoque. Gera relatórios automáticos semanais e mensais, dispara alertas quando KPIs saem do threshold definido (ex: CAC acima do target, taxa de conversão caindo, estoque abaixo do mínimo) e responde a perguntas ad-hoc da gestão com dados em tempo real.",
+      "skills": [
+        {
+          "n": "data-visualization",
+          "s": "ready"
+        },
+        {
+          "n": "metrics-definition",
+          "s": "ready"
+        },
+        {
+          "n": "competitive-analysis",
+          "s": "ready"
+        },
+        {
+          "n": "affinity-diagram",
+          "s": "ready"
+        },
+        {
+          "n": "synthesize",
+          "s": "ready"
+        },
+        {
+          "n": "design-screen",
+          "s": "ready"
+        },
+        {
+          "n": "orquestração BI",
+          "s": "todo"
+        }
+      ],
+      "mcpTools": [],
+      "origemMapID": "biagent"
+    },
+    {
+      "id": "maia",
+      "nomeMitologico": "Maia",
+      "funcao": "GA4 / GTM",
+      "coordenador": "jupiter",
+      "descricao": "Eventos, pixels, relatorios de trafego.",
+      "ferramentas": [
+        "GA4",
+        "GTM"
+      ],
+      "status": "planejado",
+      "descricaoDetalhada": "Agente que monitora a infraestrutura de analytics e tagging do site: verifica se todos os eventos estão disparando corretamente no GA4 (page_view, view_item, add_to_cart, begin_checkout, purchase), detecta anomalias de tráfego (quedas ou picos inesperados, bounce rate anormal), e gera relatórios de comportamento de funil. Mantém o GTM organizado com nomenclatura padronizada de tags, triggers e variáveis, e valida que os pixels do Meta e TikTok estão recebendo os dados corretamente.",
+      "skills": [
+        {
+          "n": "data-visualization",
+          "s": "ready"
+        },
+        {
+          "n": "metrics-definition",
+          "s": "ready"
+        },
+        {
+          "n": "a-b-test-design",
+          "s": "ready"
+        },
+        {
+          "n": "user-flow-diagram",
+          "s": "ready"
+        },
+        {
+          "n": "orquestração GA4/GTM",
+          "s": "todo"
+        }
+      ],
+      "mcpTools": [],
+      "origemMapID": "ag_ga4"
+    },
+    {
+      "id": "iris",
+      "nomeMitologico": "Iris",
+      "funcao": "Make / n8n",
+      "coordenador": "jupiter",
+      "descricao": "Orquestracao de integracoes entre ferramentas.",
+      "ferramentas": [
+        "Make",
+        "n8n"
+      ],
+      "status": "planejado",
+      "descricaoDetalhada": "Agente que gerencia os scenarios de automação no Make e n8n — a camada de orquestração que conecta todas as ferramentas da operação entre si. Monitora execuções de cada scenario (sucesso, falha, timeout), detecta gargalos de processamento, ajusta webhooks e mantém o mapa de integrações documentado. Quando um scenario falha, o agente diagnostica a causa (API rate limit, campo faltante, timeout), tenta auto-correção e escala para o squad se não resolver. É o sistema nervoso que garante que Shopify→Bling→Melhor Envio→WhatsApp funcione sem interrupção.",
+      "skills": [
+        {
+          "n": "state-machine",
+          "s": "ready"
+        },
+        {
+          "n": "user-flow-diagram",
+          "s": "ready"
+        },
+        {
+          "n": "claude-api",
+          "s": "ready"
+        },
+        {
+          "n": "orquestração Make/n8n",
+          "s": "todo"
+        }
+      ],
+      "mcpTools": [],
+      "origemMapID": "ag_make"
+    },
+    {
+      "id": "fortuna",
+      "nomeMitologico": "Fortuna",
+      "funcao": "Mercado Externo",
+      "coordenador": "jupiter",
+      "descricao": "Inteligencia competitiva, LATAM, tendencias.",
+      "ferramentas": [],
+      "status": "planejado"
+    },
+    {
+      "id": "laxmi",
+      "nomeMitologico": "Laxmi",
+      "funcao": "Bling — Tesouraria",
+      "coordenador": "saturno",
+      "descricao": "Fluxo de caixa, contas a pagar, caixa projetado.",
+      "ferramentas": [
+        "Bling API"
+      ],
+      "status": "planejado",
+      "descricaoDetalhada": "Opera o modulo de tesouraria do Bling ERP — fluxo de caixa, contas a pagar e a receber, projecao de caixa. Consolida movimentacao financeira diaria e alerta sobre saldos criticos.",
+      "skills": [],
+      "mcpTools": [],
+      "origemMapID": "ag_bling:laxmi"
+    },
+    {
+      "id": "juno",
+      "nomeMitologico": "Juno",
+      "funcao": "Bling — Controladoria",
+      "coordenador": "saturno",
+      "descricao": "Reports, DRE, conciliacao.",
+      "ferramentas": [
+        "Bling API"
+      ],
+      "status": "planejado",
+      "descricaoDetalhada": "Agente que opera o Bling ERP: monitora emissão automática de NF-e (detecta e alerta erros fiscais), acompanha conciliação financeira de pagamentos recebidos por canal (Shopify, ML, Pix direto), gerencia contas a pagar e receber, e valida que o estoque físico está coerente com o estoque sistêmico. Quando detecta divergência entre vendas registradas e estoque disponível, aciona alerta para investigação imediata.",
+      "skills": [
+        {
+          "n": "state-machine",
+          "s": "ready"
+        },
+        {
+          "n": "user-flow-diagram",
+          "s": "ready"
+        },
+        {
+          "n": "design-qa-checklist",
+          "s": "ready"
+        },
+        {
+          "n": "orquestração Bling ERP",
+          "s": "todo"
+        }
+      ],
+      "mcpTools": [],
+      "origemMapID": "ag_bling:juno"
+    },
+    {
+      "id": "veritas",
+      "nomeMitologico": "Veritas",
+      "funcao": "BI Financeiro",
+      "coordenador": "saturno",
+      "descricao": "Paineis de indicadores financeiros.",
+      "ferramentas": [
+        "Looker Studio"
+      ],
+      "status": "planejado"
+    },
+    {
+      "id": "nemesis",
+      "nomeMitologico": "Nemesis",
+      "funcao": "Juridico",
+      "coordenador": "saturno",
+      "descricao": "Contratos, compliance ANVISA/MAPA.",
+      "ferramentas": [],
+      "status": "planejado",
+      "descricaoDetalhada": "Agente que centraliza toda a documentação jurídica e regulatória da MAAT: contratos com fornecedores, copacker e transportadoras; compliance com ANVISA (registro de bebidas, rotulagem nutricional, claims permitidos); conformidade com MAPA (certificação orgânica, rastreabilidade de origem); e documentação societária. Monitora prazos de renovação de contratos, validade de certificações e mudanças regulatórias que possam impactar a operação. Quando o Agente P&D propõe um novo ingrediente, o Agente Jurídico verifica automaticamente se é permitido pela ANVISA para a categoria de bebidas da MAAT.",
+      "skills": [
+        {
+          "n": "documentation-template",
+          "s": "ready"
+        },
+        {
+          "n": "naming-convention",
+          "s": "ready"
+        },
+        {
+          "n": "design-rationale",
+          "s": "ready"
+        },
+        {
+          "n": "orquestração Jurídico",
+          "s": "todo"
+        }
+      ],
+      "mcpTools": [],
+      "origemMapID": "juridico"
+    },
+    {
+      "id": "vesta",
+      "nomeMitologico": "Vesta",
+      "funcao": "Comunidade",
+      "coordenador": "urano",
+      "descricao": "WhatsApp, Discord, Telegram — gestao de espacos.",
+      "ferramentas": [
+        "WhatsApp",
+        "Discord"
+      ],
+      "status": "planejado"
+    },
+    {
+      "id": "freya",
+      "nomeMitologico": "Freya",
+      "funcao": "Embaixadores",
+      "coordenador": "urano",
+      "descricao": "Programa, tiers, onboarding, squads regionais.",
+      "ferramentas": [
+        "Social Snowball"
+      ],
+      "status": "planejado"
+    },
+    {
+      "id": "caliope",
+      "nomeMitologico": "Caliope",
+      "funcao": "UGC",
+      "coordenador": "urano",
+      "descricao": "Coleta, curadoria, incentivos, pipeline pra mkt.",
+      "ferramentas": [],
+      "status": "planejado"
+    },
+    {
+      "id": "pele",
+      "nomeMitologico": "Pele",
+      "funcao": "Eventos & Ativacoes",
+      "coordenador": "urano",
+      "descricao": "Eventos, ativacoes, kits de embaixadores.",
+      "ferramentas": [],
+      "status": "planejado"
+    }
   ],
-
   "governancaTecnica": [
-    { "id": "dike",   "nomeMitologico": "Dike",   "funcao": "QA",                  "descricao": "Garantia de qualidade dos outputs de todos os agentes.", "donoNegocio": ["cleber"], "donoTecnico": "cleber", "status": "planejado" },
-    { "id": "clio",   "nomeMitologico": "Clio",   "funcao": "Docs",                "descricao": "Documentacao automatica de agentes, fluxos, skills.",    "donoNegocio": ["cleber"], "donoTecnico": "cleber", "status": "planejado" },
-    { "id": "egide",  "nomeMitologico": "Egide",  "funcao": "Security",            "descricao": "Seguranca de integracoes, credenciais, auditoria.",      "donoNegocio": ["cleber"], "donoTecnico": "cleber", "status": "planejado" },
-    { "id": "heket",  "nomeMitologico": "Heket",  "funcao": "Tests",               "descricao": "Testes automatizados de skills e automacoes.",           "donoNegocio": ["cleber"], "donoTecnico": "cleber", "status": "planejado" },
-    { "id": "ananke", "nomeMitologico": "Ananke", "funcao": "Governanca Tecnica",  "descricao": "Arquitetura, code review, padroes transversais.",        "donoNegocio": ["cleber"], "donoTecnico": "cleber", "status": "planejado" }
-  ],
-
-  "projects": [
     {
-      "id": "ecommerce-b2c",
-      "name": "E-commerce B2C (Shopify)",
-      "status": "in_progress",
-      "progress": 85,
-      "description": "Loja bebamaat.com.br — tema Dawn customizado com design system MAAT.",
-      "stagingVersion": "v0.2.0",
-      "productionVersion": "v0.1.1",
-      "components": [
-        { "name": "Homepage", "status": "done" },
-        { "name": "PDP (Produto)", "status": "done" },
-        { "name": "Header + Nav + Mobile", "status": "done" },
-        { "name": "Footer + Newsletter", "status": "done" },
-        { "name": "Contato", "status": "done" },
-        { "name": "Frete", "status": "done" },
-        { "name": "Design System CSS", "status": "done" },
-        { "name": "Interacoes JS", "status": "done" },
-        { "name": "Pagina de Colecao", "status": "missing" },
-        { "name": "Pagina de Busca", "status": "missing" },
-        { "name": "Carrinho Customizado", "status": "missing" },
-        { "name": "Contas de Cliente", "status": "default" },
-        { "name": "Emails Transacionais", "status": "default" },
-        { "name": "Analytics / GA4", "status": "missing" },
-        { "name": "SEO Schema", "status": "partial" }
-      ]
+      "id": "dike",
+      "nomeMitologico": "Dike",
+      "funcao": "QA",
+      "descricao": "Garantia de qualidade dos outputs de todos os agentes.",
+      "donoNegocio": [
+        "cleber"
+      ],
+      "donoTecnico": "cleber",
+      "status": "planejado"
     },
     {
-      "id": "shopify-integracoes",
-      "name": "Shopify — Integracoes e Melhorias",
-      "status": "pending",
-      "progress": 0,
-      "description": "Bling, Melhor Envio, Mercado Pago, Judge.me, WhatsApp widget, Pipedrive.",
-      "components": [
-        { "name": "Integracao Bling (ERP)", "status": "pending" },
-        { "name": "Melhor Envio (frete)", "status": "pending" },
-        { "name": "Mercado Pago (gateway)", "status": "pending" },
-        { "name": "Judge.me (reviews)", "status": "pending" },
-        { "name": "WhatsApp widget", "status": "pending" },
-        { "name": "Pipedrive (CRM)", "status": "pending" }
-      ]
+      "id": "clio",
+      "nomeMitologico": "Clio",
+      "funcao": "Docs",
+      "descricao": "Documentacao automatica de agentes, fluxos, skills.",
+      "donoNegocio": [
+        "cleber"
+      ],
+      "donoTecnico": "cleber",
+      "status": "planejado"
     },
     {
-      "id": "tracking-pixels",
-      "name": "Tracking & Pixels",
-      "status": "pending",
-      "progress": 0,
-      "description": "GA4, Google Search Console, Meta Pixel, TikTok Pixel.",
-      "components": [
-        { "name": "Google Analytics 4", "status": "pending" },
-        { "name": "Google Search Console", "status": "pending" },
-        { "name": "Meta Pixel", "status": "pending" },
-        { "name": "TikTok Pixel", "status": "pending" }
-      ]
+      "id": "egide",
+      "nomeMitologico": "Egide",
+      "funcao": "Security",
+      "descricao": "Seguranca de integracoes, credenciais, auditoria.",
+      "donoNegocio": [
+        "cleber"
+      ],
+      "donoTecnico": "cleber",
+      "status": "planejado"
     },
     {
-      "id": "crm-email",
-      "name": "CRM & Email Marketing",
-      "status": "pending",
-      "progress": 0,
-      "description": "Pipedrive CRM, Klaviyo email marketing, Social Snowball referral.",
-      "components": [
-        { "name": "Pipedrive setup", "status": "pending" },
-        { "name": "Klaviyo setup", "status": "pending" },
-        { "name": "Social Snowball", "status": "pending" }
-      ]
+      "id": "heket",
+      "nomeMitologico": "Heket",
+      "funcao": "Tests",
+      "descricao": "Testes automatizados de skills e automacoes.",
+      "donoNegocio": [
+        "cleber"
+      ],
+      "donoTecnico": "cleber",
+      "status": "planejado"
     },
     {
-      "id": "mercado-livre",
-      "name": "Mercado Livre",
-      "status": "pending",
-      "progress": 0,
-      "description": "Abrir canal de vendas no Mercado Livre com estoque sincronizado via Bling.",
-      "components": [
-        { "name": "Conta seller", "status": "pending" },
-        { "name": "Listings de produto", "status": "pending" },
-        { "name": "Integracao Bling → ML", "status": "pending" },
-        { "name": "Estrategia de preco", "status": "pending" },
-        { "name": "Product Ads ML", "status": "pending" }
-      ]
-    },
-    {
-      "id": "whatsapp-commerce",
-      "name": "WhatsApp Commerce",
-      "status": "pending",
-      "progress": 0,
-      "description": "Automacoes, atendimento e vendas conversacionais via WhatsApp.",
-      "components": [
-        { "name": "Automacoes WhatsApp", "status": "pending" },
-        { "name": "Pedido pelo WhatsApp (POV)", "status": "pending" },
-        { "name": "Atendimento WhatsApp", "status": "pending" }
-      ]
-    },
-    {
-      "id": "bi-analytics",
-      "name": "BI & Analytics",
-      "status": "pending",
-      "progress": 0,
-      "description": "Dashboard central de vendas, trafego, conversao, CAC, LTV. Reportes cross-platform.",
-      "components": [
-        { "name": "Dashboard central", "status": "pending" },
-        { "name": "Relatorio financeiro", "status": "pending" },
-        { "name": "Cross-platform reporting", "status": "pending" }
-      ]
-    },
-    {
-      "id": "bling-erp",
-      "name": "Bling (ERP)",
-      "status": "pending",
-      "progress": 0,
-      "description": "Migracao Conta Azul → Bling. Setup de estoque, NF-e, financeiro, integracoes.",
-      "components": [
-        { "name": "Migracao Conta Azul → Bling", "status": "pending" },
-        { "name": "Setup modulos Bling", "status": "pending" },
-        { "name": "Integracao Bling ↔ Shopify", "status": "pending" },
-        { "name": "Integracao Bling ↔ ML", "status": "pending" }
-      ]
-    },
-    {
-      "id": "maat-virtual",
-      "name": "MAAT Virtual",
-      "status": "in_progress",
-      "progress": 85,
-      "description": "Empresa virtual com agentes IA. Painel central + agentes autonomos.",
-      "components": [
-        { "name": "Documentacao base empresarial", "status": "done" },
-        { "name": "Painel central (Next.js + Auth)", "status": "done" },
-        { "name": "Frente A v2 — fundacao conceitual", "status": "done" },
-        { "name": "Organograma — 44 nos mitologicos", "status": "done" },
-        { "name": "Frente B — JDs dos agentes", "status": "pending" },
-        { "name": "Deploy com Google OAuth", "status": "done" }
-      ]
+      "id": "ananke",
+      "nomeMitologico": "Ananke",
+      "funcao": "Governanca Tecnica",
+      "descricao": "Arquitetura, code review, padroes transversais.",
+      "donoNegocio": [
+        "cleber"
+      ],
+      "donoTecnico": "cleber",
+      "status": "planejado"
     }
   ],
-
-  "phases": [
+  "ferramentas": [
     {
-      "id": "fase-1",
-      "name": "Fase 1 — Fundacao",
-      "timeline": "Semanas 1-2",
-      "status": "active",
-      "description": "Infraestrutura base: ERP, analytics, frete, gateway. Bloqueante para tudo mais."
+      "id": "shopify",
+      "nome": "Shopify Advanced",
+      "categoria": "receita",
+      "descricao": "Hub central de e-commerce da MAAT — concentra toda a operação de venda direta ao consumidor (B2C) e ao lojista (B2B via tags e descontos automáticos). É o ponto de entrada do ciclo de receita digital: gerencia catálogo, checkout, pagamentos, frete e pós-venda em uma única plataforma. Seu objetivo é converter visitantes em compradores com o menor atrito possível e alimentar o CRM com dados de comportamento de compra para nutrição e reativação.",
+      "dependencias": [
+        "Mercado Pago",
+        "Melhor Envio",
+        "Pipedrive",
+        "Klaviyo",
+        "GA4 + GTM",
+        "Meta Pixel",
+        "Bling ERP",
+        "Judge.me"
+      ],
+      "statusImplementacao": "implementado",
+      "notaStatus": "Tema customizado (maat-shopify-theme) + webhook de pedidos (maat-pipedrive/maat-webhooks/api/shopify-order.js) + MCP Vercel (7 tools).",
+      "corAcento": "#27500A"
     },
     {
-      "id": "fase-2",
-      "name": "Fase 2 — CRM & Marketing",
-      "timeline": "Semanas 2-3",
-      "status": "upcoming",
-      "description": "Pipedrive, Klaviyo, Judge.me, Social Snowball."
+      "id": "pipedrive",
+      "nome": "Pipedrive CRM",
+      "categoria": "operacoes",
+      "descricao": "Sistema nervoso do relacionamento comercial da MAAT — centraliza todos os contatos, leads e oportunidades de venda B2B e B2C em pipelines estruturados. Seu objetivo é eliminar vendas perdidas por falta de acompanhamento: automatiza follow-ups, dispara fluxos de nutrição por comportamento (LC1 a LC9) e entrega visibilidade total do funil para a gestão. Sem o Pipedrive configurado, nenhum dado de cliente gerado pelas pré-vendas, Shopify ou WhatsApp é aproveitado.",
+      "dependencias": [
+        "Shopify (webhook de pedido)",
+        "Klaviyo (sincronização de segmentos)",
+        "WhatsApp Business API (leads de atendimento)",
+        "Make/n8n (automações de triggers)",
+        "BI (fonte para dashboards de receita)"
+      ],
+      "statusImplementacao": "implementado",
+      "notaStatus": "Schema completo (pipedrive-setup-maat.mjs) + webhooks pos-venda ativos + MCP Pipedream (21 tools) conectado.",
+      "corAcento": "#0C447C"
     },
     {
-      "id": "fase-3",
-      "name": "Fase 3 — Novos Canais",
-      "timeline": "Semanas 3-4",
-      "status": "upcoming",
-      "description": "Mercado Livre, WhatsApp Commerce."
+      "id": "bling",
+      "nome": "Bling ERP",
+      "categoria": "operacoes",
+      "descricao": "Espinha dorsal operacional e financeira da MAAT — centraliza emissão de NF-e, controle de estoque, contas a pagar e receber, e sincronização multi-canal. Opera como hub de inventário entre Shopify, Mercado Livre e produção: quando uma venda ocorre em qualquer canal, o Bling atualiza o estoque, emite a nota e registra o movimento financeiro. Gerencia também os fretes B2B internos — insumos (produtores→copacker) e produto acabado (copacker→CDs) — via transportadoras parceiras com tabela fechada, NF de transferência e romaneio de carga.",
+      "dependencias": [
+        "Shopify",
+        "Mercado Livre",
+        "Melhor Envio",
+        "Make/n8n",
+        "BI"
+      ],
+      "statusImplementacao": "implementado",
+      "notaStatus": "OAuth2 v3 ativo (maat-prevenda-staging/server/bling.ts) + emissao de NF-e em producao + migracao Conta Azul concluida.",
+      "corAcento": "#633806"
     },
     {
-      "id": "fase-4",
-      "name": "Fase 4 — Inteligencia",
-      "timeline": "Semana 4+",
-      "status": "upcoming",
-      "description": "BI dashboards, POV WhatsApp."
+      "id": "bi",
+      "nome": "BI (a decidir)",
+      "categoria": "integracoes",
+      "descricao": "Camada de inteligência de dados que consolida métricas de todas as fontes da operação em painéis únicos e acionáveis. Seu objetivo é eliminar decisões baseadas em feeling: ao cruzar dados de vendas, marketing, CRM e financeiro, entrega visão integrada de receita, CAC, LTV, estoque e performance de campanhas. A ferramenta ainda não foi decidida — candidatos são Power BI, Looker Studio e uma solução própria via Claude (Agente BI da MAAT Virtual).",
+      "dependencias": [
+        "Todas as fontes: Shopify",
+        "Bling",
+        "Pipedrive",
+        "Klaviyo",
+        "GA4",
+        "Meta Ads",
+        "Google Ads",
+        "Mercado Livre. Requer ETL ou conectores nativos para cada fonte."
+      ],
+      "statusImplementacao": "nao-iniciado",
+      "notaStatus": "Ferramenta ainda nao definida — candidatos: Power BI, Looker Studio, solucao propria via Agente BI.",
+      "corAcento": "#3C3489"
+    },
+    {
+      "id": "whatsapp",
+      "nome": "WhatsApp Business API",
+      "categoria": "receita",
+      "descricao": "Canal de comunicação direta com maior taxa de abertura da operação — utilizado para atendimento comercial (SAC, PF, PJ, parcerias) e notificações logísticas. Seu objetivo central é automatizar todo o processo de venda e entrega a partir do momento em que uma mensagem chega ao número da MAAT, independente da origem: representantes comerciais, clientes PF, clientes PJ ou o próprio squad interno. Um menu estruturado classifica o tipo de contato, aciona o fluxo correto e escala para humano apenas quando necessário — eliminando o atendimento manual fragmentado e aumentando a taxa de conversão de leads inbound sem depender de disponibilidade humana.",
+      "dependencias": [
+        "Pipedrive (leads de conversas → CRM)",
+        "Bling ERP (gatilho de notificação pós-pedido)",
+        "Make/n8n (automações de menu e respostas)",
+        "Klaviyo (handoff para email quando fluxo de WA encerra)"
+      ],
+      "statusImplementacao": "nao-iniciado",
+      "notaStatus": "Bot atual (maat-vendas-bot) opera via Telegram. WhatsApp oficial (Z-API / Meta Cloud) pendente.",
+      "corAcento": "#085041"
+    },
+    {
+      "id": "melhor",
+      "nome": "Melhor Envio",
+      "categoria": "operacoes",
+      "descricao": "Plataforma de gestão de frete last-mile — agrega múltiplas transportadoras (Correios, Jadlog, Total Express etc.) e calcula o melhor custo-prazo em tempo real no checkout do Shopify. Seu escopo é restrito ao fluxo CD→cliente final (B2C e B2B pequeno porte): gera etiquetas automaticamente após pagamento confirmado e dispara código de rastreio sem intervenção manual. Os fretes de insumos (produtores→copacker) e de produto acabado (copacker→CDs) operam fora do Melhor Envio — esses fluxos são gerenciados diretamente pelo Bling ERP com transportadoras parceiras via tabela fechada, NF de transferência e romaneio de carga.",
+      "dependencias": [
+        "Shopify (cálculo de frete no checkout",
+        "etiqueta pós-pagamento)",
+        "Bling ERP (sincronização de pedidos e etiquetas)",
+        "WhatsApp Business API (envio de código de rastreio ao cliente)"
+      ],
+      "statusImplementacao": "nao-iniciado",
+      "notaStatus": "Sem integracao no checkout ou no Bling. Etiquetas geradas manualmente hoje.",
+      "corAcento": "#712B13"
+    },
+    {
+      "id": "klaviyo",
+      "nome": "Klaviyo",
+      "categoria": "marketing",
+      "descricao": "Motor de email marketing e automação de nutrição da MAAT — contratado, ainda não configurado, com custo mensal já ativo. Seu objetivo é transformar cada contato capturado em receita recorrente: fluxos automáticos de boas-vindas (LC1), recuperação de carrinho abandonado (LC6), reativação de clientes inativos (LC7) e NPS pós-entrega (LC9) rodam sem intervenção humana. Escolhido pela integração nativa com Shopify e pela capacidade de segmentação por comportamento de compra.",
+      "dependencias": [
+        "Shopify (comportamento de compra + abandono de carrinho)",
+        "Pipedrive (segmentos de leads)",
+        "GA4 (eventos de conversão)",
+        "Make/n8n (triggers externos)"
+      ],
+      "statusImplementacao": "nao-iniciado",
+      "notaStatus": "Conta contratada (custo ativo). Flows LC1-LC9 e integracao Shopify nao configurados.",
+      "corAcento": "#72243E"
+    },
+    {
+      "id": "ga4",
+      "nome": "GA4 + GTM",
+      "categoria": "marketing",
+      "descricao": "Infraestrutura de analytics do site — GA4 coleta comportamento de visitantes (sessões, origem de tráfego, eventos de conversão) e GTM gerencia a instalação de todos os scripts de rastreamento sem alterar o código da loja. Seu objetivo é construir a base de dados de audiência desde o primeiro dia de operação. Sem GA4 ativo, o histórico de comportamento é perdido para sempre — não há retroatividade.",
+      "dependencias": [
+        "Shopify (instalação via GTM)",
+        "Meta Pixel + TikTok Pixel (instalados pelo mesmo GTM)",
+        "BI (fonte de dados de tráfego)",
+        "Google Ads (conversões importadas para otimização de lances)"
+      ],
+      "statusImplementacao": "nao-iniciado",
+      "notaStatus": "Nenhum tag instalado no tema Shopify. Historico de audiencia ainda nao esta sendo coletado.",
+      "corAcento": "#7A4F00"
+    },
+    {
+      "id": "metapixel",
+      "nome": "Meta + TikTok Pixel",
+      "categoria": "marketing",
+      "descricao": "Scripts de rastreamento que conectam o comportamento no site da MAAT aos algoritmos de anúncios do Meta (Instagram + Facebook) e TikTok. Seu objetivo é criar audiências de remarketing precisas — quem visitou mas não comprou, quem abandonou o carrinho, quem já é cliente e pode receber oferta de recompra — e treinar os algoritmos de otimização com dados reais de conversão. Instalar agora, mesmo sem mídia paga ativa, garante que quando as campanhas começarem na Sprint 7 o Pixel já terá meses de histórico de eventos.",
+      "dependencias": [
+        "GTM (instalação centralizada)",
+        "Shopify (eventos: view_item, add_to_cart, purchase)",
+        "Meta Ads + TikTok Ads (consumo dos dados para segmentação)"
+      ],
+      "statusImplementacao": "nao-iniciado",
+      "notaStatus": "Pixels Meta e TikTok nao injetados no tema. Sem eventos view_item / add_to_cart / purchase.",
+      "corAcento": "#7A4F00"
+    },
+    {
+      "id": "ml",
+      "nome": "Mercado Livre",
+      "categoria": "receita",
+      "descricao": "Canal de marketplace com maior audiência do Brasil — opera com precificação diferenciada (R$ 189,90 vs R$ 172,80 no Shopify) para proteger a margem e o posicionamento da loja direta. Seu objetivo é capturar demanda existente de consumidores que já procuram bebidas funcionais ou naturais no ML sem conhecer a MAAT. A gestão de anúncios, perguntas e estoque será operada pelo Agente ML da MAAT Virtual (Frente 2).",
+      "dependencias": [
+        "Bling ERP (sincronização de estoque e NF)",
+        "Make/n8n (automação de respostas a perguntas)",
+        "BI (consolidação de receita multi-canal)"
+      ],
+      "statusImplementacao": "em-implementacao",
+      "notaStatus": "Pipeline criado em pipedrive-setup-maat.mjs; API seller e sync de estoque ainda nao conectados.",
+      "corAcento": "#444441"
+    },
+    {
+      "id": "mpago",
+      "nome": "Mercado Pago",
+      "categoria": "receita",
+      "descricao": "Gateway de pagamento principal da MAAT no Shopify — processa Pix e cartão de crédito com integração nativa, antifraude robusto e liquidação rápida via Pix. Escolhido porque o Shopify Payments não opera no Brasil. Seu objetivo é garantir aprovação máxima de transações e experiência de checkout fluida, sem redirecionar o cliente para fora da loja.",
+      "dependencias": [
+        "Shopify (integração nativa via app)",
+        "Bling ERP (conciliação financeira de pagamentos recebidos)"
+      ],
+      "statusImplementacao": "nao-iniciado",
+      "notaStatus": "Pagamentos em staging rodam via Asaas (Pix/boleto). MP nativo do Shopify ainda nao instalado.",
+      "corAcento": "#444441"
+    },
+    {
+      "id": "judgeme",
+      "nome": "Judge.me",
+      "categoria": "operacoes",
+      "descricao": "Plataforma de reviews e prova social integrada ao Shopify — coleta, exibe e sintetiza avaliações de clientes automaticamente após cada entrega confirmada. Seu objetivo é construir credibilidade orgânica para uma marca nova: reviews reais reduzem fricção de compra, aumentam taxa de conversão e geram conteúdo indexável para SEO. Cada review coletado é matéria-prima para UGC e para o pipeline de conteúdo da MAAT Virtual.",
+      "dependencias": [
+        "Shopify (disparo automático pós-entrega)",
+        "Melhor Envio / Bling (gatilho de entrega confirmada)",
+        "MAAT Virtual — Insta+TikTok (curadoria de reviews para conteúdo)"
+      ],
+      "statusImplementacao": "em-implementacao",
+      "notaStatus": "Referenciado no stage D+30 do Pipedrive (pipedrive-deal.js). App Shopify nao instalado.",
+      "corAcento": "#444441"
+    },
+    {
+      "id": "snowball",
+      "nome": "Social Snowball",
+      "categoria": "operacoes",
+      "descricao": "Plataforma de programa de indicação e embaixadores integrada ao Shopify — automatiza o recrutamento, rastreio de conversões e pagamento de comissões para clientes que indicam a MAAT. Seu objetivo é transformar a base de clientes satisfeitos em canal de aquisição de baixo custo. É a infraestrutura do programa 'Roda da MAAT' e 'Indica & Vai com Tudo'.",
+      "dependencias": [
+        "Shopify (rastreio de conversões por link)",
+        "Pipedrive (embaixadores como segmento especial no CRM)",
+        "Klaviyo (fluxos de ativação de embaixadores)"
+      ],
+      "statusImplementacao": "nao-iniciado",
+      "notaStatus": "Programa 'Roda da MAAT' de indicacoes ainda nao implementado.",
+      "corAcento": "#444441"
+    },
+    {
+      "id": "hotjar",
+      "nome": "Hotjar / Clarity",
+      "categoria": "marketing",
+      "descricao": "Ferramentas de análise de comportamento qualitativo no site — gravam sessões de usuários reais, geram mapas de calor de cliques e scrolls, e identificam onde os visitantes abandonam o funil. Seu objetivo é complementar o GA4 com contexto qualitativo: por que o visitante saiu sem comprar, onde o design está confuso, quais elementos geram engajamento. Dados essenciais para o trabalho de CRO que começa na Sprint 4.",
+      "dependencias": [
+        "Shopify (instalação via GTM)",
+        "GA4 (correlação entre sessões gravadas e métricas de comportamento)",
+        "BI (insights qualitativos para relatórios de CRO)"
+      ],
+      "statusImplementacao": "nao-iniciado",
+      "notaStatus": "Nenhuma ferramenta de session recording instalada.",
+      "corAcento": "#444441"
     }
   ],
-
-  "tasks": [
+  "fluxoOperacional": {
+    "canais": [
+      {
+        "id": "shopify",
+        "nome": "Shopify B2C/B2B",
+        "descricao": "Loja e-commerce oficial da MAAT (bebamaat.com.br). Canal direto ao consumidor e ao lojista via tags B2B.",
+        "etapas": [
+          {
+            "id": "sh_atr",
+            "nome": "Atração — Shopify",
+            "icone": "📡",
+            "corAcento": "#2C2C2A",
+            "detalheNegocio": "O cliente chega ao site via anúncio pago (Google, Meta, TikTok), busca orgânica, link de indicação (Social Snowball) ou direto. Primeira impressão da marca — o site precisa converter visita em interesse em segundos.",
+            "detalheTecnico": [
+              {
+                "t": "GA4 + GTM",
+                "b": "Registra fonte de tráfego, sessão, páginas visitadas e eventos de comportamento desde o primeiro clique."
+              },
+              {
+                "t": "Meta + TikTok Pixel",
+                "b": "Dispara evento PageView e ViewContent para treinar algoritmos de remarketing."
+              },
+              {
+                "t": "Social Snowball",
+                "b": "Rastreia cliques em links de embaixadores. Atribui comissão se houver conversão."
+              },
+              {
+                "t": "Hotjar / Clarity",
+                "b": "Grava a sessão para análise qualitativa de comportamento no funil."
+              }
+            ],
+            "maatVirtualNota": "Agente GA4 (Frente 2) monitora anomalias de tráfego e dispara alerta se bounce rate anormal. Agente Meta Ads otimiza lances com base nos eventos de conversão recebidos."
+          },
+          {
+            "id": "sh_ped",
+            "nome": "Pedido — Shopify",
+            "icone": "🛒",
+            "corAcento": "#0C447C",
+            "detalheNegocio": "Cliente adiciona ao carrinho e inicia checkout. Shopify calcula frete em tempo real via Melhor Envio, exibe opções de pagamento e coleta endereço. Carrinho abandonado gera trigger automático de recuperação.",
+            "detalheTecnico": [
+              {
+                "t": "Shopify Checkout",
+                "b": "Gerencia sessão de carrinho, coleta de dados e cálculo de frete via Melhor Envio API."
+              },
+              {
+                "t": "Melhor Envio",
+                "b": "Retorna opções de frete por CEP com prazo e preço de cada transportadora em tempo real."
+              },
+              {
+                "t": "Klaviyo",
+                "b": "Se abandono de carrinho detectado após 1h sem conversão, dispara LC6 (sequência de recuperação)."
+              },
+              {
+                "t": "Pipedrive",
+                "b": "Webhook cria ou atualiza contato com tag origem:ecommerce e interesse detectado."
+              }
+            ],
+            "maatVirtualNota": "Agente Shopify (Frente 2) monitora taxa de abandono. Se acima do threshold, notifica squad e sugere ajuste de copy ou frete."
+          },
+          {
+            "id": "sh_pag",
+            "nome": "Pagamento — Shopify",
+            "icone": "💳",
+            "corAcento": "#085041",
+            "detalheNegocio": "Cliente conclui pagamento via Pix ou cartão. Confirmação instantânea para Pix; cartão passa por antifraude do Mercado Pago. Pedido entra em fila de operações.",
+            "detalheTecnico": [
+              {
+                "t": "Mercado Pago",
+                "b": "Processa transação. Webhook payment.approved dispara para Shopify em tempo real."
+              },
+              {
+                "t": "Shopify",
+                "b": "Recebe confirmação e muda status para 'Pagamento aprovado'. Aciona webhook order.paid."
+              },
+              {
+                "t": "Bling ERP",
+                "b": "Recebe order.paid via Make e cria pedido de venda com dados fiscais do cliente."
+              },
+              {
+                "t": "Make / n8n",
+                "b": "Orquestra: Shopify order.paid → Bling criar pedido → Melhor Envio gerar etiqueta."
+              }
+            ],
+            "maatVirtualNota": "Agente-mestre recebe confirmação de pagamento e inicia delegação: aciona agente Bling (NF), agente Melhor Envio (etiqueta) e agente Klaviyo (email de confirmação)."
+          },
+          {
+            "id": "sh_ops",
+            "nome": "Operações — Shopify",
+            "icone": "📦",
+            "corAcento": "#633806",
+            "detalheNegocio": "Pagamento confirmado aciona automaticamente: emissão de NF-e, geração de etiqueta de envio e separação do pedido no CD. Fluxo 100% automatizado via integrações — sem intervenção manual.",
+            "detalheTecnico": [
+              {
+                "t": "Bling ERP",
+                "b": "Emite NF-e automaticamente com dados fiscais do cliente. Baixa o estoque do SKU correspondente."
+              },
+              {
+                "t": "Melhor Envio",
+                "b": "Gera etiqueta da transportadora com melhor custo-prazo para o CEP destino. Retorna código de rastreio."
+              },
+              {
+                "t": "Make / n8n",
+                "b": "Scenario: Bling NF emitida → Melhor Envio etiqueta gerada → WhatsApp notificação ao cliente."
+              },
+              {
+                "t": "WhatsApp Business API",
+                "b": "Envia mensagem automática: 'Seu pedido #X está sendo preparado. Etiqueta gerada.'"
+              }
+            ],
+            "maatVirtualNota": "Agente Bling monitora erros de emissão de NF. Agente Logística registra o pedido no histórico de entregas para rastreabilidade."
+          },
+          {
+            "id": "sh_ent",
+            "nome": "Entrega — Shopify",
+            "icone": "🚚",
+            "corAcento": "#712B13",
+            "detalheNegocio": "Pedido coletado pela transportadora. Cliente recebe atualizações de rastreio via WhatsApp e email. Entrega confirmada aciona solicitação de review automática.",
+            "detalheTecnico": [
+              {
+                "t": "Melhor Envio / Transportadora",
+                "b": "Atualiza status de rastreio em tempo real via webhook para o Bling."
+              },
+              {
+                "t": "Bling ERP",
+                "b": "Recebe atualizações de status: coletado, em trânsito, saiu para entrega, entregue."
+              },
+              {
+                "t": "Make / n8n",
+                "b": "Scenario: Bling status_entregue → WhatsApp 'Pedido entregue!' → Klaviyo trigger LC9."
+              },
+              {
+                "t": "WhatsApp Business API",
+                "b": "Envia notificações de status em cada etapa com código de rastreio."
+              }
+            ],
+            "maatVirtualNota": "Agente Logística monitora pedidos em trânsito há mais de X dias e aciona alerta para o squad operacional."
+          },
+          {
+            "id": "sh_pos1",
+            "nome": "Review + NPS — Shopify",
+            "icone": "⭐",
+            "corAcento": "#3C3489",
+            "detalheNegocio": "7 dias após entrega confirmada, cliente recebe solicitação de review via email e WhatsApp. Review publicado no site aumenta conversão. NPS mede satisfação e identifica promotores para programa de embaixadores.",
+            "detalheTecnico": [
+              {
+                "t": "Klaviyo",
+                "b": "Trigger LC9: 7 dias após entrega → email de NPS com link para avaliação no Judge.me."
+              },
+              {
+                "t": "Judge.me",
+                "b": "Coleta e publica review no produto. Dispara webhook review_created para MAAT Virtual."
+              },
+              {
+                "t": "WhatsApp Business API",
+                "b": "Mensagem complementar de solicitação de review 3 dias após o email."
+              },
+              {
+                "t": "Pipedrive",
+                "b": "Cliente com NPS ≥ 8 recebe tag promotor. Entra em pipeline de convite para embaixadores."
+              }
+            ],
+            "maatVirtualNota": "Agente Insta+TikTok recebe webhook de review_created e avalia para curadoria de UGC. Reviews 5 estrelas com conteúdo rico entram no pipeline de conteúdo."
+          },
+          {
+            "id": "sh_pos2",
+            "nome": "Nutrição + Recompra — Shopify",
+            "icone": "🔄",
+            "corAcento": "#3C3489",
+            "detalheNegocio": "Cliente ativo entra em fluxos de nutrição segmentados por interesses e comportamento de compra. Objetivo: aumentar LTV, reduzir churn e ativar recompra no momento certo — antes de acabar a caixa.",
+            "detalheTecnico": [
+              {
+                "t": "Klaviyo",
+                "b": "LC3 (cliente ativo): sequência de conteúdo sobre agrofloresta, receitas e ritual MAAT. LC7 (reativação): disparo após 90 dias sem nova compra."
+              },
+              {
+                "t": "Pipedrive",
+                "b": "Pipeline de recompra: D+30 pós-entrega → ligação/WA para B2B. D+25 para PF via automação."
+              },
+              {
+                "t": "Social Snowball",
+                "b": "Clientes com alto LTV recebem convite automático para programa de embaixadores."
+              },
+              {
+                "t": "Make / n8n",
+                "b": "Scenario de recompra: Pipedrive deal_lost → Klaviyo reativação → WA mensagem personalizada."
+              }
+            ],
+            "maatVirtualNota": "Agente Pipedrive monitora pipeline de recompra e aciona alertas quando deal está parado. Agente Klaviyo otimiza subject lines com base em dados de abertura."
+          }
+        ]
+      },
+      {
+        "id": "whatsapp",
+        "nome": "WhatsApp Business",
+        "descricao": "Canal conversacional para atendimento e vendas B2B/B2C. Menu classifica o tipo de contato e aciona o fluxo correto.",
+        "etapas": [
+          {
+            "id": "wa_atr",
+            "nome": "Atração — WhatsApp",
+            "icone": "💬",
+            "corAcento": "#085041",
+            "detalheNegocio": "Mensagem inbound chega ao número da MAAT via 4 origens: representante comercial enviando pedido, cliente PF que descobriu a marca, cliente PJ negociando volume, ou membro do squad interno. Ponto de entrada do fluxo de vendas conversacional.",
+            "detalheTecnico": [
+              {
+                "t": "WhatsApp Business API",
+                "b": "Recebe mensagem. Classifica automaticamente por palavra-chave ou seleção de menu: rep / PF / PJ / squad / SAC."
+              },
+              {
+                "t": "Make / n8n",
+                "b": "Trigger: nova mensagem recebida → identifica perfil → inicia fluxo correto no Pipedrive."
+              },
+              {
+                "t": "Pipedrive",
+                "b": "Cria lead automaticamente com origem:whatsapp e perfil identificado pelo menu."
+              }
+            ],
+            "maatVirtualNota": "Agente-mestre recebe contexto da conversa classificada e decide qual agente especializado acionar (ex: proposta PJ → agente Pipedrive; dúvida de produto → Agente Supply)."
+          },
+          {
+            "id": "wa_menu",
+            "nome": "Menu + Classificação — WhatsApp",
+            "icone": "📋",
+            "corAcento": "#0C447C",
+            "detalheNegocio": "Menu estruturado classifica o contato e aciona o fluxo correto sem intervenção humana. Rep SC recebe link de pedido B2B. Cliente PF recebe link do Shopify. Cliente PJ recebe proposta customizada. SAC escala para atendente.",
+            "detalheTecnico": [
+              {
+                "t": "WhatsApp Business API",
+                "b": "Menu interativo com botões: 1-Sou representante / 2-Quero comprar (PF) / 3-Compra empresarial / 4-Suporte."
+              },
+              {
+                "t": "Make / n8n",
+                "b": "Cada opção dispara scenario diferente: PF→link Shopify, PJ→Pipedrive deal, Rep→formulário de pedido."
+              },
+              {
+                "t": "Pipedrive",
+                "b": "Deal criado com pipeline correto (B2C / B2B / Rep SC) e stage inicial definido."
+              }
+            ],
+            "maatVirtualNota": "Agente Pipedrive cria e categoriza o deal automaticamente. Agente Make aciona o scenario correspondente ao perfil identificado."
+          },
+          {
+            "id": "wa_prop",
+            "nome": "Proposta + Link Pix — WhatsApp",
+            "icone": "📄",
+            "corAcento": "#0C447C",
+            "detalheNegocio": "Para clientes PJ e representantes, proposta gerada automaticamente com base no volume solicitado e tabela de preços vigente (R$117,00/caixa PJ). Link de pagamento via Pix enviado diretamente no chat.",
+            "detalheTecnico": [
+              {
+                "t": "Pipedrive",
+                "b": "Gera proposta com produto, quantidade e preço PJ. Deal avança para stage 'Proposta enviada'."
+              },
+              {
+                "t": "Bling ERP",
+                "b": "Gera pedido de venda e link de cobrança Pix para pagamento direto."
+              },
+              {
+                "t": "WhatsApp Business API",
+                "b": "Envia proposta formatada + link de pagamento Pix na conversa. Aguarda confirmação."
+              },
+              {
+                "t": "Make / n8n",
+                "b": "Se link não pago em 24h → lembrete automático. Se 48h → escala para atendente."
+              }
+            ],
+            "maatVirtualNota": "Agente Pipedrive monitora deals em stage 'Proposta enviada' e aciona follow-up automático conforme SLA definido."
+          },
+          {
+            "id": "wa_pag",
+            "nome": "Pagamento — WhatsApp",
+            "icone": "💳",
+            "corAcento": "#085041",
+            "detalheNegocio": "Pagamento via Pix confirmado pelo Bling. Pedido entra automaticamente em fila de operações. Cliente recebe confirmação imediata no WhatsApp.",
+            "detalheTecnico": [
+              {
+                "t": "Bling ERP",
+                "b": "Webhook pix_pago → atualiza pedido para 'Pago'. Inicia emissão de NF-e."
+              },
+              {
+                "t": "Pipedrive",
+                "b": "Deal avança para stage 'Pago'. Tag status:pago adicionada ao contato."
+              },
+              {
+                "t": "WhatsApp Business API",
+                "b": "Mensagem automática: 'Pagamento confirmado! Seu pedido está sendo preparado.'"
+              },
+              {
+                "t": "Make / n8n",
+                "b": "Scenario: Bling pix_pago → Pipedrive atualizar deal → WA confirmação → iniciar ops."
+              }
+            ],
+            "maatVirtualNota": "Agente-mestre recebe sinal de pagamento e inicia delegação para operações: aciona agente Bling (NF) e agente Melhor Envio (etiqueta)."
+          },
+          {
+            "id": "wa_ops",
+            "nome": "Operações — WhatsApp",
+            "icone": "📦",
+            "corAcento": "#633806",
+            "detalheNegocio": "Idêntico ao fluxo Shopify após pagamento confirmado: NF-e emitida, estoque baixado, etiqueta gerada. A diferença é que o pedido tem origem WhatsApp e pode ter volume maior (B2B).",
+            "detalheTecnico": [
+              {
+                "t": "Bling ERP",
+                "b": "Emite NF-e com CNPJ ou CPF coletado na conversa. Baixa estoque do CD correspondente."
+              },
+              {
+                "t": "Melhor Envio",
+                "b": "Gera etiqueta para o endereço do cliente. Ou aciona frete direto via transportadora parceira para volumes maiores."
+              },
+              {
+                "t": "Make / n8n",
+                "b": "Scenario: NF emitida → etiqueta gerada → WA notificação ao cliente com dados do pedido."
+              }
+            ],
+            "maatVirtualNota": "Agente Logística avalia se o volume justifica transportadora parceira direta ou Melhor Envio, e roteia automaticamente."
+          },
+          {
+            "id": "wa_ent",
+            "nome": "Entrega — WhatsApp",
+            "icone": "🚚",
+            "corAcento": "#712B13",
+            "detalheNegocio": "Entrega comunicada via WhatsApp em cada etapa. Para pedidos B2B maiores, atualização direta com o comprador sobre coleta e prazo de entrega.",
+            "detalheTecnico": [
+              {
+                "t": "Bling ERP / Transportadora",
+                "b": "Atualizações de status chegam via webhook ou integração nativa."
+              },
+              {
+                "t": "WhatsApp Business API",
+                "b": "Notificações automáticas a cada mudança de status: coletado, em trânsito, entregue."
+              },
+              {
+                "t": "Make / n8n",
+                "b": "Scenario: status_entregue → WA confirmação → Pipedrive atualizar deal para 'Entregue'."
+              }
+            ],
+            "maatVirtualNota": "Agente Logística registra entrega e atualiza histórico do cliente. Agente Pipedrive fecha o deal e inicia contagem para trigger de recompra."
+          },
+          {
+            "id": "wa_pos",
+            "nome": "Follow-up + Recompra — WhatsApp",
+            "icone": "🔄",
+            "corAcento": "#3C3489",
+            "detalheNegocio": "Para B2B e representantes, o follow-up de recompra é mais próximo: o squad entra em contato quando o estoque do cliente está próximo de zerar, baseado no histórico de compra.",
+            "detalheTecnico": [
+              {
+                "t": "Pipedrive",
+                "b": "Pipeline de recompra B2B: D+25 após última entrega → tarefa automática para rep com dados do cliente."
+              },
+              {
+                "t": "WhatsApp Business API",
+                "b": "Mensagem personalizada: 'Olá [nome], sua última caixa foi em [data]. Quer renovar o estoque?'"
+              },
+              {
+                "t": "Klaviyo",
+                "b": "Clientes PF que compraram via WA entram nos fluxos de email LC3 e LC7."
+              },
+              {
+                "t": "Make / n8n",
+                "b": "Scenario: Pipedrive D+25 → WA mensagem → se sim, reinicia fluxo de pedido."
+              }
+            ],
+            "maatVirtualNota": "Agente Pipedrive calcula data estimada de reposição com base no histórico e dispara follow-up no timing certo. Agente WA gerencia a conversa de recompra de forma autônoma até o ponto de decisão."
+          }
+        ]
+      },
+      {
+        "id": "mercado-livre",
+        "nome": "Mercado Livre",
+        "descricao": "Marketplace com maior audiencia do Brasil. Operado pelo Agente ML da MAAT Virtual com precificacao diferenciada.",
+        "etapas": [
+          {
+            "id": "ml_atr",
+            "nome": "Atração — Mercado Livre",
+            "icone": "🔍",
+            "corAcento": "#0C447C",
+            "detalheNegocio": "Cliente descobre a MAAT buscando 'erva-mate orgânica' ou 'bebida natural energética' no ML. O anúncio precisa converter por preço, reputação do vendedor e qualidade do conteúdo — sem o relacionamento que Shopify ou WA permitem.",
+            "detalheTecnico": [
+              {
+                "t": "ML Ads",
+                "b": "Agente ML (MAAT Virtual Frente 2) gerencia lances, palavras-chave e criativos dos anúncios patrocinados."
+              },
+              {
+                "t": "ML API",
+                "b": "Dados de impressões, cliques e conversões alimentam o BI para análise de performance do canal."
+              },
+              {
+                "t": "Bling ERP",
+                "b": "Estoque sincronizado em tempo real via integração nativa ML↔Bling para evitar venda sem estoque."
+              }
+            ],
+            "maatVirtualNota": "Agente Mercado Livre monitora posição dos anúncios, responde perguntas de compradores e ajusta preços conforme competitividade do canal."
+          },
+          {
+            "id": "ml_ped",
+            "nome": "Pedido — Mercado Livre",
+            "icone": "🛒",
+            "corAcento": "#0C447C",
+            "detalheNegocio": "Comprador finaliza pedido dentro do ecossistema ML. MAAT recebe notificação de novo pedido via API. O processo de fulfillment é idêntico ao Shopify a partir daí.",
+            "detalheTecnico": [
+              {
+                "t": "ML API",
+                "b": "Webhook orders.payment_confirmed → Bling recebe pedido com dados fiscais e endereço."
+              },
+              {
+                "t": "Bling ERP",
+                "b": "Cria pedido de venda com origem:mercadolivre. Inicia emissão de NF-e e separação."
+              },
+              {
+                "t": "Make / n8n",
+                "b": "Scenario: ML pedido_confirmado → Bling criar pedido → Melhor Envio gerar etiqueta."
+              }
+            ],
+            "maatVirtualNota": "Agente Bling processa o pedido ML com as mesmas regras do Shopify. Agente ML atualiza status do pedido na plataforma em cada etapa."
+          },
+          {
+            "id": "ml_pag",
+            "nome": "Pagamento — Mercado Livre",
+            "icone": "💳",
+            "corAcento": "#085041",
+            "detalheNegocio": "Pagamento processado pelo Mercado Pago dentro do ML. A MAAT recebe o valor líquido após tarifas do marketplace. Liquidação em D+14 ou D+30 dependendo do plano.",
+            "detalheTecnico": [
+              {
+                "t": "Mercado Pago",
+                "b": "Processa o pagamento dentro do ecossistema ML. Libera saldo conforme calendário do marketplace."
+              },
+              {
+                "t": "Bling ERP",
+                "b": "Registra recebimento com prazo de liquidação correto para conciliação financeira."
+              },
+              {
+                "t": "BI",
+                "b": "Consolida receita ML com a receita Shopify para cálculo de MER (Marketing Efficiency Ratio) por canal."
+              }
+            ],
+            "maatVirtualNota": "Agente BI monitora liquidação de pagamentos ML e alerta se houver divergência entre pedidos entregues e valores liberados."
+          },
+          {
+            "id": "ml_ops",
+            "nome": "Operações — Mercado Livre",
+            "icone": "📦",
+            "corAcento": "#633806",
+            "detalheNegocio": "Fulfillment idêntico ao Shopify: NF-e emitida, estoque baixado, etiqueta gerada. O ML exige etiqueta própria para envios pela plataforma (ML Envios) ou aceita frete próprio se configurado.",
+            "detalheTecnico": [
+              {
+                "t": "Bling ERP",
+                "b": "Emite NF-e com dados do comprador ML. Baixa estoque sincronizado com o canal."
+              },
+              {
+                "t": "Melhor Envio",
+                "b": "Gera etiqueta compatível com ML Envios ou etiqueta própria conforme modalidade de frete."
+              },
+              {
+                "t": "ML API",
+                "b": "MAAT atualiza status do pedido no ML com código de rastreio após postagem."
+              }
+            ],
+            "maatVirtualNota": "Agente Mercado Livre atualiza automaticamente o status do pedido na plataforma e insere o código de rastreio assim que disponível."
+          },
+          {
+            "id": "ml_ent",
+            "nome": "Entrega — Mercado Livre",
+            "icone": "🚚",
+            "corAcento": "#712B13",
+            "detalheNegocio": "Entrega gerenciada pela infraestrutura do ML Envios. O comprador acompanha pelo app do ML. A MAAT tem obrigação de resolver pendências dentro do prazo do ML para manter reputação e ranking.",
+            "detalheTecnico": [
+              {
+                "t": "ML Envios / Transportadora",
+                "b": "Rastreio nativo dentro do app ML. Comprador notificado automaticamente pelo ML."
+              },
+              {
+                "t": "Bling ERP",
+                "b": "Recebe atualizações de entrega. Atualiza histórico do pedido."
+              },
+              {
+                "t": "ML API",
+                "b": "Agente ML monitora prazo de entrega e aciona ação preventiva se pedido estiver próximo do limite."
+              }
+            ],
+            "maatVirtualNota": "Agente Mercado Livre monitora reputação do vendedor em tempo real. Se reclamação aberta, aciona squad para resolução imediata antes de impactar o ranking."
+          },
+          {
+            "id": "ml_pos",
+            "nome": "Review + Migração — Mercado Livre",
+            "icone": "🔄",
+            "corAcento": "#3C3489",
+            "detalheNegocio": "Após entrega, objetivo duplo: conseguir avaliação 5 estrelas no ML para manter reputação, e migrar o cliente para o canal próprio (Shopify) onde a margem é maior e o relacionamento é controlado pela MAAT.",
+            "detalheTecnico": [
+              {
+                "t": "ML API",
+                "b": "Solicita avaliação ao comprador via mensagem nativa do ML após confirmação de entrega."
+              },
+              {
+                "t": "Klaviyo",
+                "b": "Inserto físico na caixa com QR Code leva o cliente a landing page de cadastro com cupom de desconto."
+              },
+              {
+                "t": "Pipedrive",
+                "b": "Cliente que se cadastra via QR Code entra no CRM com origem:mercadolivre e tag canal:proprio."
+              },
+              {
+                "t": "Make / n8n",
+                "b": "Scenario: cliente cadastrado via QR → Klaviyo LC1 boas-vindas → Pipedrive criar contato → Shopify gerar cupom."
+              }
+            ],
+            "maatVirtualNota": "Agente Insta+TikTok usa reviews 5 estrelas do ML como prova social. Agente Pipedrive acompanha taxa de migração ML→Shopify como KPI estratégico do canal."
+          }
+        ]
+      }
+    ],
+    "convergenciaCritica": "Operacoes (NF + etiqueta) e o unico ponto onde os tres canais convergem — Bling + Melhor Envio + Make. Qualquer falha aqui paralisa todos os canais simultaneamente."
+  },
+  "mapaEstrategico": {
+    "areas": [
+      {
+        "id": "estrategia",
+        "nome": "Estrategia",
+        "setores": [
+          {
+            "nome": "Governanca",
+            "ferramentas": [
+              "bi"
+            ]
+          },
+          {
+            "nome": "Planejamento",
+            "ferramentas": [
+              "pipedrive",
+              "bi"
+            ]
+          },
+          {
+            "nome": "Inteligencia Digital",
+            "ferramentas": [
+              "ga4",
+              "bi"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "adm-financeiro",
+        "nome": "Adm Financeiro",
+        "setores": [
+          {
+            "nome": "Tesouraria",
+            "ferramentas": [
+              "bling",
+              "mpago"
+            ]
+          },
+          {
+            "nome": "Controladoria",
+            "ferramentas": [
+              "bling",
+              "bi"
+            ]
+          },
+          {
+            "nome": "Juridico",
+            "ferramentas": [
+              "bling"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "producao",
+        "nome": "Producao",
+        "setores": [
+          {
+            "nome": "Operacoes",
+            "subsetores": [
+              {
+                "nome": "Supply",
+                "ferramentas": [
+                  "bling"
+                ]
+              },
+              {
+                "nome": "P&D",
+                "ferramentas": [
+                  "bling"
+                ]
+              },
+              {
+                "nome": "Copacking",
+                "ferramentas": [
+                  "bling"
+                ]
+              }
+            ]
+          },
+          {
+            "nome": "Logistica",
+            "subsetores": [
+              {
+                "nome": "Logistica Produto",
+                "ferramentas": [
+                  "bling",
+                  "melhor"
+                ]
+              },
+              {
+                "nome": "Logistica Vendas",
+                "ferramentas": [
+                  "melhor",
+                  "whatsapp"
+                ]
+              },
+              {
+                "nome": "Logistica Insumos",
+                "ferramentas": [
+                  "bling"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "receita",
+        "nome": "Receita",
+        "setores": [
+          {
+            "nome": "Vendas",
+            "subsetores": [
+              {
+                "nome": "Key Accounts",
+                "ferramentas": [
+                  "pipedrive",
+                  "whatsapp",
+                  "bling"
+                ]
+              },
+              {
+                "nome": "Rep SC",
+                "ferramentas": [
+                  "pipedrive",
+                  "whatsapp",
+                  "bling"
+                ]
+              },
+              {
+                "nome": "E-commerce",
+                "ferramentas": [
+                  "shopify",
+                  "ml",
+                  "mpago",
+                  "melhor",
+                  "judgeme"
+                ]
+              }
+            ]
+          },
+          {
+            "nome": "Marketing",
+            "subsetores": [
+              {
+                "nome": "Digital",
+                "ferramentas": [
+                  "ga4",
+                  "metapixel",
+                  "hotjar"
+                ]
+              },
+              {
+                "nome": "Produto",
+                "ferramentas": [
+                  "klaviyo",
+                  "snowball"
+                ]
+              },
+              {
+                "nome": "Trade",
+                "ferramentas": [
+                  "pipedrive",
+                  "bi"
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "conector": "MAAT Virtual opera esta infraestrutura via Claude Code · APIs · Make/n8n"
+  },
+  "roadmap": {
+    "prioridades": [
+      {
+        "nivel": 1,
+        "titulo": "Destrava maior cadeia",
+        "sprint": "Sprint imediato",
+        "itens": [
+          {
+            "id": "1.1",
+            "titulo": "Instalar GA4 + GTM no Shopify",
+            "tipo": "ferramenta",
+            "agente": "maia",
+            "impactoDireto": 2.6,
+            "impactoCadeia": 12,
+            "destrava": [
+              "metapixel",
+              "hotjar",
+              "atena",
+              "maia"
+            ],
+            "prerequisitos": [],
+            "nota": "Sem GA4 rodando agora, o historico de audiencia esta sendo perdido — nao ha retroatividade. Dependencia unica: acesso admin ao Shopify."
+          },
+          {
+            "id": "1.2",
+            "titulo": "Instalar Meta Pixel + TikTok Pixel via GTM",
+            "tipo": "ferramenta",
+            "agente": "maia",
+            "impactoDireto": 5.2,
+            "impactoCadeia": 7.8,
+            "destrava": [
+              "afrodite",
+              "iansa"
+            ],
+            "prerequisitos": [
+              "1.1"
+            ],
+            "nota": "Scripts simples instalados via GTM. Cada dia sem pixel ativo e um dia sem dados de remarketing sendo coletados."
+          },
+          {
+            "id": "1.3",
+            "titulo": "Instalar Hotjar ou Clarity via GTM",
+            "tipo": "ferramenta",
+            "agente": "maia",
+            "impactoDireto": 2.6,
+            "impactoCadeia": 0,
+            "destrava": [],
+            "prerequisitos": [
+              "1.1"
+            ],
+            "nota": "Clarity e gratuito e cobre o uso inicial. Hotjar so se precisar de funis avancados e heatmaps detalhados."
+          }
+        ]
+      },
+      {
+        "nivel": 2,
+        "titulo": "Motores de receita recorrente",
+        "sprint": "Sprint 2",
+        "itens": [
+          {
+            "id": "2.4",
+            "titulo": "Configurar Klaviyo (flows LC1 / LC6 / LC7 / LC9 + sync Shopify)",
+            "tipo": "ferramenta",
+            "agente": "demeter",
+            "impactoDireto": 2.6,
+            "impactoCadeia": 3.9,
+            "destrava": [
+              "demeter"
+            ],
+            "prerequisitos": [],
+            "nota": "Conta ja contratada com custo ativo e sem retorno. Cada dia sem fluxo e dinheiro perdido direto no caixa."
+          },
+          {
+            "id": "2.5",
+            "titulo": "Instalar Melhor Envio no checkout do Shopify",
+            "tipo": "ferramenta",
+            "agente": "hina",
+            "impactoDireto": 2.6,
+            "impactoCadeia": 0,
+            "destrava": [],
+            "prerequisitos": [],
+            "nota": "Elimina a geracao manual de etiqueta que existe hoje. Integracao nativa via app Shopify, baixa complexidade."
+          },
+          {
+            "id": "2.6",
+            "titulo": "Decidir ferramenta de BI + iniciar ETL minimo",
+            "tipo": "ferramenta",
+            "agente": "sofia",
+            "impactoDireto": 2,
+            "impactoCadeia": 3.9,
+            "destrava": [
+              "sofia"
+            ],
+            "prerequisitos": [],
+            "nota": "Candidatos: Power BI · Looker Studio · Agente BI proprio via Claude. A decisao destrava o agente de Frente 1 correspondente."
+          }
+        ]
+      },
+      {
+        "nivel": 3,
+        "titulo": "Canais e conversao",
+        "sprint": "Medio prazo",
+        "itens": [
+          {
+            "id": "3.7",
+            "titulo": "Conectar API do Mercado Livre",
+            "tipo": "ferramenta",
+            "agente": "iemanja",
+            "impactoDireto": 1.3,
+            "impactoCadeia": 0,
+            "destrava": [],
+            "prerequisitos": [],
+            "nota": "Pipeline ja existe em pipedrive-setup-maat.mjs. Falta o cliente seller e o sync de estoque via Bling (ja esta em implementacao)."
+          },
+          {
+            "id": "3.8",
+            "titulo": "Instalar Judge.me + trigger pos-entrega",
+            "tipo": "ferramenta",
+            "agente": "seshat",
+            "impactoDireto": 1.3,
+            "impactoCadeia": 0,
+            "destrava": [],
+            "prerequisitos": [],
+            "nota": "App Shopify simples, ja referenciado no stage D+30 do Pipedrive (ja esta em implementacao)."
+          },
+          {
+            "id": "3.9",
+            "titulo": "Substituir Asaas por Mercado Pago no Shopify",
+            "tipo": "ferramenta",
+            "agente": "hathor",
+            "impactoDireto": 2.6,
+            "impactoCadeia": 0,
+            "destrava": [],
+            "prerequisitos": [],
+            "nota": "Asaas opera em staging. Mercado Pago e o gateway planejado para producao. Nao afeta Bling nem Pipedrive (webhooks continuam)."
+          },
+          {
+            "id": "3.10",
+            "titulo": "Contratar WhatsApp Business API oficial",
+            "tipo": "ferramenta",
+            "agente": "vesta",
+            "impactoDireto": 2.6,
+            "impactoCadeia": 0,
+            "destrava": [],
+            "prerequisitos": [],
+            "nota": "Hoje o maat-vendas-bot roda Telegram — o fluxo do mapa assume WA oficial. Z-API e caminho mais rapido; Meta Cloud API e o 'certo' de longo prazo."
+          }
+        ]
+      },
+      {
+        "nivel": 4,
+        "titulo": "Amplificacao",
+        "sprint": "Ultimos pontos",
+        "itens": [
+          {
+            "id": "4.11",
+            "titulo": "Social Snowball (programa de embaixadores)",
+            "tipo": "ferramenta",
+            "agente": "freya",
+            "impactoDireto": 2.6,
+            "impactoCadeia": 0,
+            "destrava": [],
+            "prerequisitos": [],
+            "nota": "Depende de ter base de clientes ativos no Shopify primeiro. Implantar so quando o programa 'Roda da MAAT' tiver regras definidas."
+          },
+          {
+            "id": "4.12",
+            "titulo": "Make / n8n para orquestracao extra",
+            "tipo": "ferramenta",
+            "agente": "iris",
+            "impactoDireto": 2.6,
+            "impactoCadeia": 0,
+            "destrava": [],
+            "prerequisitos": [],
+            "nota": "Opcional — os webhooks Vercel diretos ja resolvem 80% dos casos. So vale quando surgir cenario com muitos passos condicionais."
+          }
+        ]
+      },
+      {
+        "nivel": 5,
+        "titulo": "Desenvolvimento dos agentes Frente 1",
+        "sprint": "Paralelo — trabalho de Claude Code",
+        "itens": [
+          {
+            "id": "5.1",
+            "titulo": "Desenvolver Agente BI (Sofia)",
+            "tipo": "agente",
+            "agente": "sofia",
+            "impactoDireto": 1.3,
+            "impactoCadeia": 0,
+            "destrava": [],
+            "prerequisitos": [
+              "2.6"
+            ],
+            "nota": "Apos passo 2.6 (ferramenta BI definida)."
+          },
+          {
+            "id": "5.2",
+            "titulo": "Desenvolver Agente PCP (Uzume)",
+            "tipo": "agente",
+            "agente": "uzume",
+            "impactoDireto": 1.3,
+            "impactoCadeia": 0,
+            "destrava": [],
+            "prerequisitos": [],
+            "nota": "Bling ja esta implementado, tem dados de estoque."
+          },
+          {
+            "id": "5.3",
+            "titulo": "Desenvolver Agente Supply (Abundantia)",
+            "tipo": "agente",
+            "agente": "abundantia",
+            "impactoDireto": 1.3,
+            "impactoCadeia": 0,
+            "destrava": [],
+            "prerequisitos": [
+              "5.2"
+            ],
+            "nota": "Complementa PCP."
+          },
+          {
+            "id": "5.4",
+            "titulo": "Desenvolver Agente Logistica (Hina)",
+            "tipo": "agente",
+            "agente": "hina",
+            "impactoDireto": 1.3,
+            "impactoCadeia": 0,
+            "destrava": [],
+            "prerequisitos": [
+              "2.5"
+            ],
+            "nota": "Complementa Bling + Melhor Envio (apos 2.5)."
+          },
+          {
+            "id": "5.5",
+            "titulo": "Desenvolver Agente P&D (Saraswati)",
+            "tipo": "agente",
+            "agente": "saraswati",
+            "impactoDireto": 1.3,
+            "impactoCadeia": 0,
+            "destrava": [],
+            "prerequisitos": [],
+            "nota": ""
+          },
+          {
+            "id": "5.6",
+            "titulo": "Desenvolver Agente Design Digital (Neftis)",
+            "tipo": "agente",
+            "agente": "neftis",
+            "impactoDireto": 1.3,
+            "impactoCadeia": 0,
+            "destrava": [],
+            "prerequisitos": [],
+            "nota": ""
+          },
+          {
+            "id": "5.7",
+            "titulo": "Desenvolver Agente Insta+TikTok (Nut)",
+            "tipo": "agente",
+            "agente": "nut",
+            "impactoDireto": 1.3,
+            "impactoCadeia": 0,
+            "destrava": [],
+            "prerequisitos": [
+              "3.8"
+            ],
+            "nota": "Apos 3.8 (Judge.me para UGC)."
+          },
+          {
+            "id": "5.8",
+            "titulo": "Desenvolver Agente Governanca (Temis)",
+            "tipo": "agente",
+            "agente": "temis",
+            "impactoDireto": 1.3,
+            "impactoCadeia": 0,
+            "destrava": [],
+            "prerequisitos": [],
+            "nota": ""
+          },
+          {
+            "id": "5.9",
+            "titulo": "Desenvolver Agente Juridico (Nemesis)",
+            "tipo": "agente",
+            "agente": "nemesis",
+            "impactoDireto": 1.3,
+            "impactoCadeia": 0,
+            "destrava": [],
+            "prerequisitos": [],
+            "nota": ""
+          }
+        ]
+      }
+    ],
+    "projecao": [
+      {
+        "milestone": "Hoje (2026-04-21)",
+        "progressoPct": 43,
+        "atual": true
+      },
+      {
+        "milestone": "Apos Prioridade 1",
+        "progressoPct": 63
+      },
+      {
+        "milestone": "Apos P1 + P2",
+        "progressoPct": 75
+      },
+      {
+        "milestone": "Todas ferramentas implementadas",
+        "progressoPct": 79
+      },
+      {
+        "milestone": "Ferramentas + 9 agentes Frente 1",
+        "progressoPct": 100
+      }
+    ],
+    "formulaImpacto": "Pontuacao: implementado = 1 · em andamento = 0,5 · nao iniciado = 0. Cada transicao vermelho→amarelo ou amarelo→verde vale 1,32pp (100% ÷ 38 itens ÷ 2 estagios)."
+  },
+  "pendenciasHumanas": [
     {
-      "id": "macro-cleber",
-      "title": "Lancar e-commerce MAAT 1.0 — Shopify vendendo com integracoes",
-      "assignee": "Cleber",
-      "assigneeType": "human",
-      "type": "macro",
-      "project": "E-commerce B2C",
-      "priority": "critical",
-      "status": "in_progress",
-      "description": "Objetivo: loja bebamaat.com.br 100% operacional, vendendo, com gateway, frete, analytics e ERP integrados.",
-      "createdAt": "2026-04-13",
-      "subtasks": [
-        { "id": "mc-01", "title": "Revisar redesign v0.2.0 no staging Shopify", "status": "pending", "priority": "critical" },
-        { "id": "mc-02", "title": "Definir data alvo de lancamento com Lucas e Julia", "status": "pending", "priority": "high" },
-        { "id": "mc-03", "title": "Validar gateway de pagamento (Mercado Pago)", "status": "pending", "priority": "high" },
-        { "id": "mc-04", "title": "Aprovar regras de frete escalonado (Melhor Envio)", "status": "pending", "priority": "high" },
-        { "id": "mc-05", "title": "Testar fluxo completo: compra → pagamento → NF-e → envio", "status": "pending", "priority": "critical" },
-        { "id": "mc-06", "title": "Go-live: publicar tema 1.0 em producao", "status": "pending", "priority": "critical" }
-      ]
+      "id": "ph-lucas-01",
+      "titulo": "Alinhar estrategia de lancamento e go-live B2C",
+      "responsavel": "lucas",
+      "prioridade": "high",
+      "bloqueia": [
+        "3.9",
+        "Go-live e-commerce B2C"
+      ],
+      "dataAbertura": "2026-04-13",
+      "descricao": "Definir data de go-live com Cleber e Julia, validar posicionamento de produto e pricing B2C, aprovar go-live final.",
+      "status": "aberta"
     },
     {
-      "id": "macro-lucas",
-      "title": "Alinhar estrategia de lancamento e go-live B2C",
-      "assignee": "Lucas",
-      "assigneeType": "human",
-      "type": "macro",
-      "project": "E-commerce B2C",
-      "priority": "high",
-      "status": "pending",
-      "description": "Definir data, validar posicionamento, aprovar lancamento publico da loja.",
-      "createdAt": "2026-04-13",
-      "subtasks": [
-        { "id": "ml-01", "title": "Definir data de go-live com Cleber e Julia", "status": "pending", "priority": "high" },
-        { "id": "ml-02", "title": "Validar posicionamento de produto e pricing B2C", "status": "pending", "priority": "high" },
-        { "id": "ml-03", "title": "Aprovar go-live final", "status": "pending", "priority": "high" }
-      ]
+      "id": "ph-julia-01",
+      "titulo": "Aprovar conteudo, marca e comunicacao para lancamento",
+      "responsavel": "julia",
+      "prioridade": "high",
+      "bloqueia": [
+        "2.4"
+      ],
+      "dataAbertura": "2026-04-13",
+      "descricao": "Revisar copy da homepage, validar tom de voz nos emails transacionais, aprovar plano de comunicacao de lancamento.",
+      "status": "aberta"
     },
     {
-      "id": "macro-julia",
-      "title": "Aprovar conteudo, marca e comunicacao para lancamento",
-      "assignee": "Julia",
-      "assigneeType": "human",
-      "type": "macro",
-      "project": "E-commerce B2C",
-      "priority": "high",
-      "status": "pending",
-      "description": "Garantir que todo conteudo da loja e comunicacao de lancamento refletem a essencia MAAT.",
-      "createdAt": "2026-04-13",
-      "subtasks": [
-        { "id": "mj-01", "title": "Revisar e aprovar copy da homepage", "status": "pending", "priority": "high" },
-        { "id": "mj-02", "title": "Validar tom de voz nos emails transacionais", "status": "pending", "priority": "medium" },
-        { "id": "mj-03", "title": "Aprovar plano de comunicacao de lancamento", "status": "pending", "priority": "high" }
-      ]
+      "id": "ph-paula-01",
+      "titulo": "Validar estoque e capacidade de despacho pro lancamento",
+      "responsavel": "paula",
+      "prioridade": "high",
+      "bloqueia": [
+        "Go-live e-commerce B2C"
+      ],
+      "dataAbertura": "2026-04-13",
+      "descricao": "Confirmar estoque disponivel, capacidade diaria de despacho, testar fluxo Bling → separacao → embalagem → Melhor Envio.",
+      "status": "aberta"
     },
     {
-      "id": "macro-paula",
-      "title": "Preparar operacao de fulfillment B2C para vender",
-      "assignee": "Paula",
-      "assigneeType": "human",
-      "type": "macro",
-      "project": "E-commerce B2C",
-      "priority": "high",
-      "status": "pending",
-      "description": "Estoque validado, processo de despacho definido, SLA de entrega claro. Pronta para receber pedidos.",
-      "createdAt": "2026-04-13",
-      "subtasks": [
-        { "id": "mp-01", "title": "Validar estoque disponivel para lancamento", "status": "pending", "priority": "high" },
-        { "id": "mp-02", "title": "Definir capacidade diaria de despacho", "status": "pending", "priority": "high" },
-        { "id": "mp-03", "title": "Testar fluxo Bling → separacao → embalagem → Melhor Envio", "status": "pending", "priority": "high" },
-        { "id": "mp-04", "title": "Confirmar SLA de entrega por regiao", "status": "pending", "priority": "medium" }
-      ]
+      "id": "ph-paula-02",
+      "titulo": "Definir SLA de entrega por regiao",
+      "responsavel": "paula",
+      "prioridade": "medium",
+      "bloqueia": [],
+      "dataAbertura": "2026-04-13",
+      "descricao": "Mapear prazo prometido por regiao a partir dos CDs ativos; alinhar com tabela de transportadoras.",
+      "status": "aberta"
     },
-
+    {
+      "id": "ph-cleber-01",
+      "titulo": "Executar Prioridade 1 do Roadmap",
+      "responsavel": "cleber",
+      "prioridade": "critical",
+      "bloqueia": [
+        "1.1",
+        "1.2",
+        "1.3"
+      ],
+      "dataAbertura": "2026-04-21",
+      "descricao": "Instalar GA4+GTM, Meta/TikTok Pixel e Hotjar/Clarity no Shopify — destrava maior cadeia do roadmap.",
+      "status": "aberta"
+    }
+  ],
+  "marcosConcluidos": [
     {
       "id": "d1",
-      "title": "Aprovar diretoria virtual",
-      "assignee": "Cleber",
-      "assigneeType": "human",
-      "type": "micro",
-      "project": "MAAT Virtual",
-      "priority": "high",
-      "status": "done",
-      "createdAt": "2026-04-13",
-      "completedAt": "2026-04-13"
+      "titulo": "Aprovar diretoria virtual",
+      "responsavel": "Cleber",
+      "data": "2026-04-13",
+      "contexto": "MAAT Virtual"
     },
     {
       "id": "d2",
-      "title": "Fornecer materiais de identidade visual",
-      "assignee": "Cleber",
-      "assigneeType": "human",
-      "type": "micro",
-      "project": "MAAT Virtual",
-      "priority": "high",
-      "status": "done",
-      "createdAt": "2026-04-13",
-      "completedAt": "2026-04-13"
+      "titulo": "Fornecer materiais de identidade visual",
+      "responsavel": "Cleber",
+      "data": "2026-04-13",
+      "contexto": "MAAT Virtual"
     },
     {
       "id": "d3",
-      "title": "Informar equipe atual e papeis",
-      "assignee": "Cleber",
-      "assigneeType": "human",
-      "type": "micro",
-      "project": "MAAT Virtual",
-      "priority": "high",
-      "status": "done",
-      "createdAt": "2026-04-13",
-      "completedAt": "2026-04-13"
+      "titulo": "Informar equipe atual e papeis",
+      "responsavel": "Cleber",
+      "data": "2026-04-13",
+      "contexto": "MAAT Virtual"
     },
     {
       "id": "d4",
-      "title": "Definir prioridade #1",
-      "assignee": "Cleber",
-      "assigneeType": "human",
-      "type": "micro",
-      "project": "MAAT Virtual",
-      "priority": "high",
-      "status": "done",
-      "createdAt": "2026-04-13",
-      "completedAt": "2026-04-13"
+      "titulo": "Definir prioridade #1",
+      "responsavel": "Cleber",
+      "data": "2026-04-13",
+      "contexto": "MAAT Virtual"
     },
     {
       "id": "d5",
-      "title": "Criar OAuth e deploy do painel",
-      "assignee": "Cleber",
-      "assigneeType": "human",
-      "type": "micro",
-      "project": "MAAT Virtual",
-      "priority": "critical",
-      "status": "done",
-      "createdAt": "2026-04-13",
-      "completedAt": "2026-04-13"
+      "titulo": "Criar OAuth e deploy do painel",
+      "responsavel": "Cleber",
+      "data": "2026-04-13",
+      "contexto": "MAAT Virtual"
     },
     {
       "id": "d7",
-      "title": "Frente A v2 — fundacao conceitual fechada",
-      "assignee": "Julia",
-      "assigneeType": "human",
-      "type": "micro",
-      "project": "MAAT Virtual",
-      "priority": "high",
-      "status": "done",
-      "createdAt": "2026-04-20",
-      "completedAt": "2026-04-20"
+      "titulo": "Frente A v2 — fundacao conceitual fechada",
+      "responsavel": "Julia",
+      "data": "2026-04-20",
+      "contexto": "MAAT Virtual"
     },
     {
       "id": "d8",
-      "title": "Organograma — 44 nos mitologicos publicado",
-      "assignee": "Cleber",
-      "assigneeType": "human",
-      "type": "micro",
-      "project": "MAAT Virtual",
-      "priority": "high",
-      "status": "done",
-      "createdAt": "2026-04-21",
-      "completedAt": "2026-04-21"
+      "titulo": "Organograma — 44 nos mitologicos publicado",
+      "responsavel": "Cleber",
+      "data": "2026-04-21",
+      "contexto": "MAAT Virtual"
     }
-  ]
+  ],
+  "projects": [],
+  "phases": [],
+  "tasks": []
 }
