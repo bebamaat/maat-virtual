@@ -308,8 +308,13 @@ function HierarquiaView() {
   );
 }
 
+const DEV_SESSION = process.env.NODE_ENV === "development"
+  ? { user: { name: "Dev Local", email: "dev@bebamaat.com.br", image: null } }
+  : null;
+
 export default function Dashboard() {
-  const { data: session } = useSession();
+  const { data: realSession } = useSession();
+  const session = realSession || DEV_SESSION;
   const [activeTab, setActiveTab] = useState("overview");
   const [state, setState] = useState({ completedTasks: [], questions: [] });
   const [loading, setLoading] = useState(true);
