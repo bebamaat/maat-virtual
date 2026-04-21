@@ -383,10 +383,10 @@ export default function Dashboard() {
     { id: "fundacao", label: "Fundacao" },
     { id: "overview", label: "Visao Geral" },
     { id: "org", label: "Organograma" },
-    { id: "pendencias", label: "Pendencias", alert: pendingCount },
     { id: "agents", label: "Time Virtual" },
     { id: "projects", label: "Projetos" },
     { id: "tasks", label: "Todas Tarefas" },
+    { id: "pendencias", label: "Pendencias", alert: pendingCount },
   ];
 
   return (
