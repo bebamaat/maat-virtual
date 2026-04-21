@@ -17,40 +17,7 @@ A MAAT Virtual é a empresa-operadora AI-first da MAAT Agroflorestal. Não vende
 
 ## A2 · Organograma
 
-**Núcleo humano**: 4 sócios + 2 representantes (supervisores gerais ao lado do núcleo — JDs dos representantes pendentes, não bloqueiam Frente B).
-
-**Agente-Mestre** (dono: Cleber · transversal) — orquestração **operacional**: delega tarefas para agentes, consolida outputs, reporta ao núcleo.
-
-### (1) Estratégia — dono: Julia
-
-- A. Governança (Julia) → Agente Governança
-- B. Planejamento (Julia) → Agente BI (estratégico)
-- C. Inteligência Digital (Cleber)
-  - **C1. Int. Digital Operacional** → GA4/GTM · Make/n8n
-  - **C2. Engenharia & Governança Técnica** → Agente QA · Agente Docs · Agente Security · Agente Tests · Agente Governança Técnica
-    *(transversais — operam sobre todos os outros agentes garantindo qualidade, docs, segurança, testes)*
-
-### (2) Adm Financeiro — dono: Julia
-
-- A. Tesouraria (Paula) → Agente Bling (fluxo)
-- B. Controladoria (Julia) → Agente Bling (reports) · BI financeiro
-- C. Jurídico (Paula) → Agente Jurídico
-
-### (3) Produção — dono: Lucas
-
-- A. Operações (Paula)
-  - A1. Supply (Paula + Lucas) → Agente Supply
-  - A2. Copacking (Paula + Lucas) → Agente PCP
-  - A3. P&D (Lucas) → Agente P&D
-- B. Logística (Paula) → Agente Logística
-  - B1. Insumos · B2. Produto · B3. Vendas
-
-### (4) Receita — donos: Julia + Lucas
-
-- A. Vendas (Julia + Lucas) → Pipedrive · Shopify · Mercado Livre
-  - A1 Key Accounts · A2 Rep SC · A3 E-commerce
-- B. Marketing (Julia + Lucas) → Google Ads · Meta Ads · TikTok Ads · Insta+TikTok · Klaviyo · Design
-  - B1 Digital · B2 Produto · B3 Trade *(sem agente dedicado — pendência)*
+A estrutura completa (Núcleo Humano → Agente-Mestre → Coordenadores → Especialistas → Governança Técnica) vive na aba **Organograma** do painel, que é a fonte única e sempre reflete o estado atual. Aqui na Fundação ficam só os princípios conceituais.
 
 ---
 

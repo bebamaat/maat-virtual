@@ -1,103 +1,185 @@
 {
-  "lastUpdated": "2026-04-13T21:00:00Z",
-  "updatedBy": "Claudio",
+  "lastUpdated": "2026-04-21T00:00:00Z",
+  "updatedBy": "Claude",
 
-  "humans": [
-    { "name": "Lucas", "role": "Co-CEO / Socio Fundador", "email": "lucas@bebamaat.com.br", "scope": "Estrategia, produto, agrofloresta, parcerias" },
-    { "name": "Julia", "role": "Co-CEO / Socia Fundadora", "email": "julia@bebamaat.com.br", "scope": "Estrategia, impacto, negocios regenerativos" },
-    { "name": "Cleber", "role": "Head de Tecnologia", "email": "cleber@bebamaat.com.br", "scope": "Tech, digital, sistemas, automacao, lider MAAT Virtual" },
-    { "name": "Paula", "role": "Logistica", "email": "paula@bebamaat.com.br", "scope": "Supply chain, despacho, fulfillment, entregas" }
-  ],
-
-  "agents": [
+  "humanos": [
     {
-      "name": "Claudio", "role": "Chief of Staff", "color": "#E07434", "initials": "CL",
-      "status": "active",
-      "description": "Braco direito do Cleber. Coordena toda a diretoria virtual, garante alinhamento entre agentes e humanos.",
-      "tags": ["Coordenacao", "Estrategia", "Comunicacao", "Projetos"],
-      "focus": "Coordenar lancamento B2C, manter painel atualizado, alinhar diretoria"
+      "id": "lucas",
+      "nome": "Lucas",
+      "papel": "Co-CEO",
+      "email": "lucas@bebamaat.com.br",
+      "areas": ["estrategia", "virtual", "producao", "vendas", "marketing"],
+      "scope": "Co-CEO · Co-Diretor Virtual · Co-Estrategia · Producao · Co-Receita"
     },
     {
-      "name": "Theo", "role": "CTO", "color": "#00b894", "initials": "TH",
-      "status": "active",
-      "description": "Braco direito tecnico do Cleber. Arquitetura, infra, qualidade de codigo, performance, SEO tecnico.",
-      "tags": ["Arquitetura", "Shopify", "Performance", "SEO", "Integracoes"],
-      "focus": "Integracoes Shopify (Bling, Melhor Envio, Mercado Pago, Judge.me), WhatsApp API, pixels"
+      "id": "julia",
+      "nome": "Julia",
+      "papel": "Co-CEO",
+      "email": "julia@bebamaat.com.br",
+      "areas": ["estrategia", "financeiro", "vendas", "marketing"],
+      "scope": "Co-CEO · Co-Estrategia · Financeiro · Co-Receita"
     },
     {
-      "name": "Helena", "role": "CMO", "color": "#e84393", "initials": "HE",
-      "status": "active",
-      "description": "Dona do crescimento. Branding, social media, campanhas, influenciadores, comunidade.",
-      "tags": ["Growth", "Social Media", "Branding", "Comunidade", "Conteudo"],
-      "focus": "Klaviyo setup, Social Snowball, calendario de conteudo, plano de lancamento"
+      "id": "cleber",
+      "nome": "Cleber",
+      "papel": "CTIO · Diretor Virtual",
+      "email": "cleber@bebamaat.com.br",
+      "areas": ["virtual", "estrategia"],
+      "scope": "CTIO transversal · Co-Diretor Virtual · Inteligencia Digital"
     },
     {
-      "name": "Dante", "role": "CRO", "color": "#7c5cbf", "initials": "DA",
-      "status": "active",
-      "description": "Dono da receita. Funil de vendas, conversao, CRM, retencao, analytics.",
-      "tags": ["Conversao", "E-commerce", "CRM", "Analytics", "Retencao"],
-      "focus": "GA4/Pixels, Pipedrive CRM, Mercado Livre, BI & Analytics"
+      "id": "paula",
+      "nome": "Paula",
+      "papel": "Head de Operacoes & Comunidade",
+      "email": "paula@bebamaat.com.br",
+      "areas": ["financeiro", "producao", "operacoes", "comunidade"],
+      "scope": "Operacoes · Comunidade · Tesouraria · Juridico · Supply"
     },
     {
-      "name": "Rafael", "role": "CFO", "color": "#3b82f6", "initials": "RA",
-      "status": "active",
-      "description": "Guardiao financeiro. Unit economics, margens, fluxo de caixa, projecoes.",
-      "tags": ["Financas", "Unit Economics", "Margens", "Fluxo de Caixa"],
-      "focus": "Estrategia de preco ML, relatorio financeiro, migracao Conta Azul → Bling"
+      "id": "representante-1",
+      "nome": "A definir",
+      "papel": "Representante",
+      "areas": [],
+      "placeholder": true
     },
     {
-      "name": "Marina", "role": "COO", "color": "#58AA43", "initials": "MA",
-      "status": "active",
-      "description": "Dona dos processos. Fulfillment, supply chain, automacao operacional. Complementa Paula.",
-      "tags": ["Operacoes", "Supply Chain", "Fulfillment", "Processos"],
-      "focus": "Migracao Bling, setup modulos ERP, integracao logistica, fulfillment B2C"
-    },
-    {
-      "name": "Sofia", "role": "CSO", "color": "#f39c12", "initials": "SO",
-      "status": "active",
-      "description": "Dona da experiencia do cliente. WhatsApp commerce, atendimento, pos-compra, fidelizacao.",
-      "tags": ["Customer Success", "WhatsApp", "Atendimento", "Pos-venda", "NPS"],
-      "focus": "Automacoes WhatsApp, atendimento, pedido conversacional, pos-compra"
+      "id": "representante-2",
+      "nome": "A definir",
+      "papel": "Representante",
+      "areas": [],
+      "placeholder": true
     }
   ],
 
-  "subAgents": [
+  "agenteMestre": {
+    "id": "sol",
+    "nomeMitologico": "Sol",
+    "funcao": "Agente-Mestre",
+    "descricao": "Orquestra tarefas cross-area, delega entre coordenadores, consolida outputs.",
+    "donoNegocio": ["cleber"],
+    "donoTecnico": "cleber",
+    "status": "planejado"
+  },
+
+  "coordenadores": [
     {
-      "name": "Nexus", "role": "Especialista em Integracoes", "color": "#00b894", "initials": "NX",
-      "createdBy": "Theo",
-      "description": "Conecta todos os sistemas: Bling, Pipedrive, Klaviyo, Melhor Envio, Mercado Pago, Judge.me, pixels, WhatsApp API.",
-      "tags": ["API", "Bling", "Shopify", "Mercado Pago", "Melhor Envio"]
+      "id": "mercurio",
+      "nomeMitologico": "Mercurio",
+      "area": "vendas",
+      "areaLabel": "Vendas",
+      "descricao": "Coordena os agentes de vendas — Pipedrive, Shopify, Mercado Livre, Key Accounts.",
+      "donoNegocio": ["julia", "lucas"],
+      "donoTecnico": "cleber",
+      "status": "planejado"
     },
     {
-      "name": "Luna", "role": "Social Media & Content", "color": "#e84393", "initials": "LU",
-      "createdBy": "Helena",
-      "description": "Calendario de conteudo, posts, reels, stories. Voz da MAAT nas redes.",
-      "tags": ["Instagram", "TikTok", "Conteudo", "Calendario Editorial"]
+      "id": "venus",
+      "nomeMitologico": "Venus",
+      "area": "marketing",
+      "areaLabel": "Marketing",
+      "descricao": "Coordena os agentes de marketing — ads, organico, email, design, trade.",
+      "donoNegocio": ["julia", "lucas"],
+      "donoTecnico": "cleber",
+      "status": "planejado"
     },
     {
-      "name": "Vitor", "role": "Referral & Affiliates", "color": "#e84393", "initials": "VI",
-      "createdBy": "Helena",
-      "description": "Programa de indicacao e afiliados via Social Snowball.",
-      "tags": ["Social Snowball", "Referral", "Afiliados", "Embaixadores"]
+      "id": "netuno",
+      "nomeMitologico": "Netuno",
+      "area": "operacoes",
+      "areaLabel": "Operacoes",
+      "descricao": "Coordena os agentes de logistica — insumos, produto, vendas.",
+      "donoNegocio": ["paula"],
+      "donoTecnico": "cleber",
+      "status": "planejado"
     },
     {
-      "name": "Atlas", "role": "Marketplace Specialist", "color": "#7c5cbf", "initials": "AT",
-      "createdBy": "Dante",
-      "description": "Mercado Livre, futuros marketplaces (Amazon, Magalu). Listings, ads, reputacao.",
-      "tags": ["Mercado Livre", "Marketplace", "Listings", "Product Ads"]
+      "id": "marte",
+      "nomeMitologico": "Marte",
+      "area": "producao",
+      "areaLabel": "Producao",
+      "descricao": "Coordena os agentes de producao — supply, PCP, P&D.",
+      "donoNegocio": ["lucas", "paula"],
+      "donoTecnico": "cleber",
+      "status": "planejado"
     },
     {
-      "name": "Iris", "role": "Analytics & BI", "color": "#7c5cbf", "initials": "IR",
-      "createdBy": "Dante",
-      "description": "Dashboards, GA4, reportes cross-platform. Dados para decisao.",
-      "tags": ["GA4", "BI", "Dashboards", "Metricas", "Reportes"]
+      "id": "jupiter",
+      "nomeMitologico": "Jupiter",
+      "area": "estrategia",
+      "areaLabel": "Estrategia",
+      "descricao": "Coordena os agentes de estrategia — governanca, BI, analytics, integracoes, mercado externo.",
+      "donoNegocio": ["julia", "lucas", "cleber"],
+      "donoTecnico": "cleber",
+      "status": "planejado"
     },
     {
-      "name": "Otto", "role": "Logistics & ERP", "color": "#58AA43", "initials": "OT",
-      "createdBy": "Marina",
-      "description": "Bling, Melhor Envio, estoque, NF-e, fulfillment. Complementa Paula.",
-      "tags": ["Bling", "NF-e", "Estoque", "Melhor Envio", "Fulfillment"]
+      "id": "saturno",
+      "nomeMitologico": "Saturno",
+      "area": "financeiro",
+      "areaLabel": "Financeiro",
+      "descricao": "Coordena os agentes financeiros — tesouraria, controladoria, BI financeiro, juridico.",
+      "donoNegocio": ["julia", "paula"],
+      "donoTecnico": "cleber",
+      "status": "planejado"
+    },
+    {
+      "id": "urano",
+      "nomeMitologico": "Urano",
+      "area": "comunidade",
+      "areaLabel": "Comunidade",
+      "descricao": "Coordena os agentes de comunidade — grupos, embaixadores, UGC, eventos.",
+      "donoNegocio": ["paula"],
+      "donoTecnico": "cleber",
+      "status": "planejado"
     }
+  ],
+
+  "especialistas": [
+    { "id": "seshat",     "nomeMitologico": "Seshat",     "funcao": "Pipedrive (CRM)",                  "coordenador": "mercurio", "descricao": "Leads, funil, follow-up, segmentacao.",                "ferramentas": ["Pipedrive API"],         "status": "em-construcao" },
+    { "id": "hathor",     "nomeMitologico": "Hathor",     "funcao": "Shopify (E-commerce)",             "coordenador": "mercurio", "descricao": "Loja, produtos, pedidos, theme.",                      "ferramentas": ["Shopify Admin API"],     "status": "em-construcao" },
+    { "id": "iemanja",    "nomeMitologico": "Iemanja",    "funcao": "Mercado Livre",                    "coordenador": "mercurio", "descricao": "Anuncios, estoque, pedidos ML.",                       "ferramentas": ["ML API"],                "status": "planejado" },
+    { "id": "isis",       "nomeMitologico": "Isis",       "funcao": "Key Accounts (B2B)",               "coordenador": "mercurio", "descricao": "Relacionamento B2B direto, grandes contas.",           "ferramentas": ["Pipedrive", "WhatsApp"], "status": "planejado" },
+
+    { "id": "atena",      "nomeMitologico": "Atena",      "funcao": "Google Ads",                       "coordenador": "venus",    "descricao": "Campanhas search e display.",                          "ferramentas": ["Google Ads API"],        "status": "planejado" },
+    { "id": "afrodite",   "nomeMitologico": "Afrodite",   "funcao": "Meta Ads",                         "coordenador": "venus",    "descricao": "Criativos, audiencias, otimizacao.",                   "ferramentas": ["Meta Ads API"],          "status": "planejado" },
+    { "id": "iansa",      "nomeMitologico": "Iansa",      "funcao": "TikTok Ads",                       "coordenador": "venus",    "descricao": "Spark ads, otimizacao, viralizacao.",                  "ferramentas": ["TikTok Ads API"],        "status": "planejado" },
+    { "id": "nut",        "nomeMitologico": "Nut",        "funcao": "Insta + TikTok Organico",          "coordenador": "venus",    "descricao": "Copy, calendario, legendas, hashtags, DM triage.",     "ferramentas": ["Instagram", "TikTok"],   "status": "em-construcao" },
+    { "id": "demeter",    "nomeMitologico": "Demeter",    "funcao": "Klaviyo (Email/SMS)",              "coordenador": "venus",    "descricao": "Flows, segmentos, email, SMS.",                        "ferramentas": ["Klaviyo API"],           "status": "planejado" },
+    { "id": "neftis",     "nomeMitologico": "Neftis",     "funcao": "Design Digital",                   "coordenador": "venus",    "descricao": "Assets digitais, posts, banners, UI.",                 "ferramentas": ["Figma", "Claude Code"],  "status": "planejado" },
+    { "id": "oxum",       "nomeMitologico": "Oxum",       "funcao": "Design Produto",                   "coordenador": "venus",    "descricao": "Embalagem, rotulo, POS fisico, materiais impressos.",  "ferramentas": ["Figma"],                 "status": "planejado" },
+    { "id": "brigid",     "nomeMitologico": "Brigid",     "funcao": "Trade Marketing",                  "coordenador": "venus",    "descricao": "Trade B2B em PDVs fisicos.",                           "ferramentas": [],                        "status": "planejado", "pendencias": ["Decidir se vira agente dedicado ou e coberto por Seshat (Pipedrive)"] },
+
+    { "id": "tefnut",     "nomeMitologico": "Tefnut",     "funcao": "Logistica de Insumos",             "coordenador": "netuno",   "descricao": "Rotas de insumos, transportadoras de entrada.",        "ferramentas": ["Bling", "Melhor Envio"], "status": "planejado" },
+    { "id": "hina",       "nomeMitologico": "Hina",       "funcao": "Logistica de Produto",             "coordenador": "netuno",   "descricao": "Rotas de produto acabado.",                            "ferramentas": ["Bling", "Melhor Envio"], "status": "planejado" },
+    { "id": "oia",        "nomeMitologico": "Oia",        "funcao": "Logistica de Vendas",              "coordenador": "netuno",   "descricao": "Contato com transportadoras, rastreio, rotas.",        "ferramentas": ["Melhor Envio", "WA"],    "status": "planejado" },
+
+    { "id": "abundantia", "nomeMitologico": "Abundantia", "funcao": "Supply (Fornecedores)",            "coordenador": "marte",    "descricao": "Prospeccao, orcamentos, comparacao.",                  "ferramentas": ["Bling", "Planilha"],     "status": "planejado" },
+    { "id": "uzume",      "nomeMitologico": "Uzume",      "funcao": "PCP (Planejamento Producao)",      "coordenador": "marte",    "descricao": "Planejamento e controle de producao + copacking.",     "ferramentas": ["Bling"],                 "status": "planejado" },
+    { "id": "saraswati",  "nomeMitologico": "Saraswati",  "funcao": "P&D (Pesquisa & Desenvolvimento)", "coordenador": "marte",    "descricao": "Formulacoes, iteracoes, historico de produto.",        "ferramentas": [],                        "status": "planejado" },
+
+    { "id": "temis",      "nomeMitologico": "Temis",      "funcao": "Governanca",                       "coordenador": "jupiter",  "descricao": "Atas, decisoes, roadmap, relatorios pra socios.",      "ferramentas": [],                        "status": "em-construcao" },
+    { "id": "sofia",      "nomeMitologico": "Sofia",      "funcao": "BI Estrategico",                   "coordenador": "jupiter",  "descricao": "KPIs de negocio, queries, alertas estrategicos.",      "ferramentas": ["Looker Studio"],         "status": "planejado" },
+    { "id": "maia",       "nomeMitologico": "Maia",       "funcao": "GA4 / GTM",                        "coordenador": "jupiter",  "descricao": "Eventos, pixels, relatorios de trafego.",              "ferramentas": ["GA4", "GTM"],            "status": "planejado" },
+    { "id": "iris",       "nomeMitologico": "Iris",       "funcao": "Make / n8n",                       "coordenador": "jupiter",  "descricao": "Orquestracao de integracoes entre ferramentas.",       "ferramentas": ["Make", "n8n"],           "status": "planejado" },
+    { "id": "fortuna",    "nomeMitologico": "Fortuna",    "funcao": "Mercado Externo",                  "coordenador": "jupiter",  "descricao": "Inteligencia competitiva, LATAM, tendencias.",         "ferramentas": [],                        "status": "planejado" },
+
+    { "id": "laxmi",      "nomeMitologico": "Laxmi",      "funcao": "Bling — Tesouraria",               "coordenador": "saturno",  "descricao": "Fluxo de caixa, contas a pagar, caixa projetado.",     "ferramentas": ["Bling API"],             "status": "planejado" },
+    { "id": "juno",       "nomeMitologico": "Juno",       "funcao": "Bling — Controladoria",            "coordenador": "saturno",  "descricao": "Reports, DRE, conciliacao.",                           "ferramentas": ["Bling API"],             "status": "planejado" },
+    { "id": "veritas",    "nomeMitologico": "Veritas",    "funcao": "BI Financeiro",                    "coordenador": "saturno",  "descricao": "Paineis de indicadores financeiros.",                  "ferramentas": ["Looker Studio"],         "status": "planejado" },
+    { "id": "nemesis",    "nomeMitologico": "Nemesis",    "funcao": "Juridico",                         "coordenador": "saturno",  "descricao": "Contratos, compliance ANVISA/MAPA.",                   "ferramentas": [],                        "status": "planejado" },
+
+    { "id": "vesta",      "nomeMitologico": "Vesta",      "funcao": "Comunidade",                       "coordenador": "urano",    "descricao": "WhatsApp, Discord, Telegram — gestao de espacos.",     "ferramentas": ["WhatsApp", "Discord"],   "status": "planejado" },
+    { "id": "freya",      "nomeMitologico": "Freya",      "funcao": "Embaixadores",                     "coordenador": "urano",    "descricao": "Programa, tiers, onboarding, squads regionais.",       "ferramentas": ["Social Snowball"],       "status": "planejado" },
+    { "id": "caliope",    "nomeMitologico": "Caliope",    "funcao": "UGC",                              "coordenador": "urano",    "descricao": "Coleta, curadoria, incentivos, pipeline pra mkt.",     "ferramentas": [],                        "status": "planejado" },
+    { "id": "pele",       "nomeMitologico": "Pele",       "funcao": "Eventos & Ativacoes",              "coordenador": "urano",    "descricao": "Eventos, ativacoes, kits de embaixadores.",            "ferramentas": [],                        "status": "planejado" }
+  ],
+
+  "governancaTecnica": [
+    { "id": "dike",   "nomeMitologico": "Dike",   "funcao": "QA",                  "descricao": "Garantia de qualidade dos outputs de todos os agentes.", "donoNegocio": ["cleber"], "donoTecnico": "cleber", "status": "planejado" },
+    { "id": "clio",   "nomeMitologico": "Clio",   "funcao": "Docs",                "descricao": "Documentacao automatica de agentes, fluxos, skills.",    "donoNegocio": ["cleber"], "donoTecnico": "cleber", "status": "planejado" },
+    { "id": "egide",  "nomeMitologico": "Egide",  "funcao": "Security",            "descricao": "Seguranca de integracoes, credenciais, auditoria.",      "donoNegocio": ["cleber"], "donoTecnico": "cleber", "status": "planejado" },
+    { "id": "heket",  "nomeMitologico": "Heket",  "funcao": "Tests",               "descricao": "Testes automatizados de skills e automacoes.",           "donoNegocio": ["cleber"], "donoTecnico": "cleber", "status": "planejado" },
+    { "id": "ananke", "nomeMitologico": "Ananke", "funcao": "Governanca Tecnica",  "descricao": "Arquitetura, code review, padroes transversais.",        "donoNegocio": ["cleber"], "donoTecnico": "cleber", "status": "planejado" }
   ],
 
   "projects": [
@@ -227,12 +309,10 @@
       "components": [
         { "name": "Documentacao base empresarial", "status": "done" },
         { "name": "Painel central (Next.js + Auth)", "status": "done" },
-        { "name": "Claudio (coordenador)", "status": "done" },
-        { "name": "Diretoria (6 agentes + CSO)", "status": "done" },
-        { "name": "Sub-agentes operacionais (6)", "status": "done" },
-        { "name": "System prompts", "status": "done" },
-        { "name": "Deploy com Google OAuth", "status": "done" },
-        { "name": "Reuniao de diretoria", "status": "done" }
+        { "name": "Frente A v2 — fundacao conceitual", "status": "done" },
+        { "name": "Organograma — 44 nos mitologicos", "status": "done" },
+        { "name": "Frente B — JDs dos agentes", "status": "pending" },
+        { "name": "Deploy com Google OAuth", "status": "done" }
       ]
     }
   ],
@@ -320,7 +400,7 @@
       "subtasks": [
         { "id": "mj-01", "title": "Revisar e aprovar copy da homepage", "status": "pending", "priority": "high" },
         { "id": "mj-02", "title": "Validar tom de voz nos emails transacionais", "status": "pending", "priority": "medium" },
-        { "id": "mj-03", "title": "Aprovar plano de comunicacao de lancamento (com Helena)", "status": "pending", "priority": "high" }
+        { "id": "mj-03", "title": "Aprovar plano de comunicacao de lancamento", "status": "pending", "priority": "high" }
       ]
     },
     {
@@ -339,145 +419,6 @@
         { "id": "mp-02", "title": "Definir capacidade diaria de despacho", "status": "pending", "priority": "high" },
         { "id": "mp-03", "title": "Testar fluxo Bling → separacao → embalagem → Melhor Envio", "status": "pending", "priority": "high" },
         { "id": "mp-04", "title": "Confirmar SLA de entrega por regiao", "status": "pending", "priority": "medium" }
-      ]
-    },
-
-    {
-      "id": "macro-claudio",
-      "title": "Coordenar lancamento B2C e manter diretoria alinhada",
-      "assignee": "Claudio",
-      "assigneeType": "agent",
-      "type": "macro",
-      "project": "MAAT Virtual",
-      "priority": "critical",
-      "status": "in_progress",
-      "description": "Garantir que todos os diretores e humanos estejam sincronizados rumo ao lancamento. Painel atualizado, decisoes documentadas.",
-      "createdAt": "2026-04-13",
-      "subtasks": [
-        { "id": "mcl-01", "title": "Manter painel virtual.bebamaat.com.br atualizado", "status": "in_progress", "priority": "high" },
-        { "id": "mcl-02", "title": "Documentar todas as decisoes da diretoria", "status": "in_progress", "priority": "high" },
-        { "id": "mcl-03", "title": "Acompanhar execucao das 4 fases e reportar bloqueios", "status": "pending", "priority": "high" },
-        { "id": "mcl-04", "title": "Fazer ponte entre humanos e agentes nas entregas", "status": "in_progress", "priority": "high" }
-      ]
-    },
-    {
-      "id": "macro-theo",
-      "title": "Completar Shopify + integrar todas as plataformas",
-      "assignee": "Theo",
-      "assigneeType": "agent",
-      "type": "macro",
-      "project": "Shopify Integracoes",
-      "priority": "critical",
-      "status": "in_progress",
-      "description": "Shopify 100% customizado (colecao, carrinho, busca) e conectado a Bling, Melhor Envio, Mercado Pago, Judge.me, Pipedrive, WhatsApp, Mercado Livre.",
-      "createdAt": "2026-04-13",
-      "subtasks": [
-        { "id": "mt-01", "title": "Completar pagina de colecao customizada", "status": "pending", "priority": "high", "phase": "fase-1" },
-        { "id": "mt-02", "title": "Customizar pagina do carrinho (upsell, frete gratis bar)", "status": "pending", "priority": "high", "phase": "fase-1" },
-        { "id": "mt-03", "title": "Otimizar performance (hero 6.3MB, Core Web Vitals)", "status": "pending", "priority": "high", "phase": "fase-1" },
-        { "id": "mt-04", "title": "Integrar Melhor Envio com regras de frete escalonado", "status": "pending", "priority": "critical", "phase": "fase-1" },
-        { "id": "mt-05", "title": "Configurar Mercado Pago (Pix + cartao)", "status": "pending", "priority": "critical", "phase": "fase-1" },
-        { "id": "mt-06", "title": "Integrar Bling ↔ Shopify (pedidos + estoque)", "status": "pending", "priority": "high", "phase": "fase-1" },
-        { "id": "mt-07", "title": "Instalar Judge.me (reviews no PDP)", "status": "pending", "priority": "high", "phase": "fase-2" },
-        { "id": "mt-08", "title": "Conectar Pipedrive ao checkout", "status": "pending", "priority": "medium", "phase": "fase-2" },
-        { "id": "mt-09", "title": "WhatsApp widget na loja", "status": "pending", "priority": "high", "phase": "fase-3" },
-        { "id": "mt-10", "title": "Integrar Bling ↔ Mercado Livre", "status": "pending", "priority": "high", "phase": "fase-3" }
-      ]
-    },
-    {
-      "id": "macro-helena",
-      "title": "Lancar marca MAAT no digital — marketing e conteudo",
-      "assignee": "Helena",
-      "assigneeType": "agent",
-      "type": "macro",
-      "project": "CRM & Email Marketing",
-      "priority": "high",
-      "status": "pending",
-      "description": "Plano de lancamento completo, email marketing automatizado, programa de indicacao ativo, calendario de conteudo rodando.",
-      "createdAt": "2026-04-13",
-      "subtasks": [
-        { "id": "mh-01", "title": "Criar plano de lancamento (pre/durante/pos)", "status": "pending", "priority": "high", "phase": "fase-1" },
-        { "id": "mh-02", "title": "Setup Klaviyo (welcome, carrinho abandonado, pos-compra)", "status": "pending", "priority": "high", "phase": "fase-2" },
-        { "id": "mh-03", "title": "Configurar Social Snowball (indicacao/afiliados)", "status": "pending", "priority": "medium", "phase": "fase-2" },
-        { "id": "mh-04", "title": "Montar calendario editorial de lancamento", "status": "pending", "priority": "high", "phase": "fase-2" }
-      ]
-    },
-    {
-      "id": "macro-dante",
-      "title": "Setup completo de analytics, CRM e novos canais de venda",
-      "assignee": "Dante",
-      "assigneeType": "agent",
-      "type": "macro",
-      "project": "Tracking & Pixels",
-      "priority": "critical",
-      "status": "pending",
-      "description": "Todos os pixels rodando, CRM ativo, Mercado Livre vendendo, BI unificado para decisao.",
-      "createdAt": "2026-04-13",
-      "subtasks": [
-        { "id": "md-01", "title": "GA4 com e-commerce enhanced (view_item, add_to_cart, purchase)", "status": "pending", "priority": "critical", "phase": "fase-1" },
-        { "id": "md-02", "title": "Google Search Console (SEO tracking)", "status": "pending", "priority": "high", "phase": "fase-1" },
-        { "id": "md-03", "title": "Meta Pixel (Facebook/Instagram)", "status": "pending", "priority": "high", "phase": "fase-1" },
-        { "id": "md-04", "title": "TikTok Pixel", "status": "pending", "priority": "high", "phase": "fase-1" },
-        { "id": "md-05", "title": "Pipedrive CRM — pipeline de vendas, leads, deals", "status": "pending", "priority": "high", "phase": "fase-2" },
-        { "id": "md-06", "title": "Mercado Livre — setup completo (conta, listings, ads)", "status": "pending", "priority": "high", "phase": "fase-3" },
-        { "id": "md-07", "title": "Estrategia de preco ML (margem vs competitividade)", "status": "pending", "priority": "medium", "phase": "fase-3" },
-        { "id": "md-08", "title": "Dashboard central de BI (vendas, CAC, LTV, conversao)", "status": "pending", "priority": "high", "phase": "fase-4" },
-        { "id": "md-09", "title": "Cross-platform reporting (Shopify + ML unificado)", "status": "pending", "priority": "medium", "phase": "fase-4" }
-      ]
-    },
-    {
-      "id": "macro-rafael",
-      "title": "Garantir saude financeira e viabilidade do B2C",
-      "assignee": "Rafael",
-      "assigneeType": "agent",
-      "type": "macro",
-      "project": "BI & Analytics",
-      "priority": "high",
-      "status": "pending",
-      "description": "Unit economics claro, margens saudaveis, fluxo de caixa projetado, pricing inteligente por canal.",
-      "createdAt": "2026-04-13",
-      "subtasks": [
-        { "id": "mr-01", "title": "Calcular unit economics completo (custo/lata, margem B2C vs B2B)", "status": "pending", "priority": "high", "phase": "fase-1" },
-        { "id": "mr-02", "title": "Projecao de fluxo de caixa pos-lancamento", "status": "pending", "priority": "high", "phase": "fase-1" },
-        { "id": "mr-03", "title": "Apoiar migracao financeira Conta Azul → Bling", "status": "pending", "priority": "critical", "phase": "fase-1" },
-        { "id": "mr-04", "title": "Definir estrategia de preco Mercado Livre", "status": "pending", "priority": "medium", "phase": "fase-3" },
-        { "id": "mr-05", "title": "Relatorio financeiro periodico (margens, unit economics)", "status": "pending", "priority": "medium", "phase": "fase-4" }
-      ]
-    },
-    {
-      "id": "macro-marina",
-      "title": "Migrar para Bling e estruturar toda operacao",
-      "assignee": "Marina",
-      "assigneeType": "agent",
-      "type": "macro",
-      "project": "Bling (ERP)",
-      "priority": "critical",
-      "status": "pending",
-      "description": "Bling 100% operacional: estoque, NF-e, financeiro, pedidos. Integrado com Shopify e Mercado Livre. Conta Azul desligada.",
-      "createdAt": "2026-04-13",
-      "subtasks": [
-        { "id": "mm-01", "title": "Migracao completa Conta Azul → Bling", "status": "pending", "priority": "critical", "phase": "fase-1" },
-        { "id": "mm-02", "title": "Setup modulos Bling (estoque, NF-e, financeiro, pedidos)", "status": "pending", "priority": "critical", "phase": "fase-1" },
-        { "id": "mm-03", "title": "Mapear fluxo fulfillment B2C (pedido → despacho → rastreio)", "status": "pending", "priority": "high", "phase": "fase-1" },
-        { "id": "mm-04", "title": "Treinar Paula no novo fluxo Bling", "status": "pending", "priority": "high", "phase": "fase-1" }
-      ]
-    },
-    {
-      "id": "macro-sofia",
-      "title": "Estruturar atendimento e vendas via WhatsApp",
-      "assignee": "Sofia",
-      "assigneeType": "agent",
-      "type": "macro",
-      "project": "WhatsApp Commerce",
-      "priority": "high",
-      "status": "pending",
-      "description": "WhatsApp como canal de atendimento, vendas e fidelizacao. Automacoes rodando, FAQ pronto, fluxo de venda conversacional.",
-      "createdAt": "2026-04-13",
-      "subtasks": [
-        { "id": "ms-01", "title": "Automacoes WhatsApp (boas-vindas, pos-compra, reativacao)", "status": "pending", "priority": "high", "phase": "fase-3" },
-        { "id": "ms-02", "title": "Fluxos de atendimento e FAQ automatico", "status": "pending", "priority": "high", "phase": "fase-3" },
-        { "id": "ms-03", "title": "POV — Pedido conversacional pelo WhatsApp", "status": "pending", "priority": "high", "phase": "fase-4" },
-        { "id": "ms-04", "title": "Programa de fidelizacao e recompra", "status": "pending", "priority": "medium", "phase": "fase-4" }
       ]
     },
 
@@ -542,16 +483,28 @@
       "completedAt": "2026-04-13"
     },
     {
-      "id": "d6",
-      "title": "Reuniao de diretoria — organizar proximos passos",
-      "assignee": "Claudio",
-      "assigneeType": "agent",
+      "id": "d7",
+      "title": "Frente A v2 — fundacao conceitual fechada",
+      "assignee": "Julia",
+      "assigneeType": "human",
       "type": "micro",
       "project": "MAAT Virtual",
-      "priority": "critical",
+      "priority": "high",
       "status": "done",
-      "createdAt": "2026-04-13",
-      "completedAt": "2026-04-13"
+      "createdAt": "2026-04-20",
+      "completedAt": "2026-04-20"
+    },
+    {
+      "id": "d8",
+      "title": "Organograma — 44 nos mitologicos publicado",
+      "assignee": "Cleber",
+      "assigneeType": "human",
+      "type": "micro",
+      "project": "MAAT Virtual",
+      "priority": "high",
+      "status": "done",
+      "createdAt": "2026-04-21",
+      "completedAt": "2026-04-21"
     }
   ]
 }
