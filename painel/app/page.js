@@ -252,7 +252,10 @@ export default function Dashboard() {
   return (
     <>
       <div className="header">
-        <h1>MAAT <span>VIRTUAL</span></h1>
+        <div className="header-brand">
+          <img src="/logos/maat-horizontal-branco.png" alt="MAAT" className="header-logo" />
+          <span className="header-sub">VIRTUAL</span>
+        </div>
         <div className="header-right">
           <span className="header-badge">CRESCIMENTO</span>
           <div className="user-info">
