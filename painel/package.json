@@ -4,8 +4,9 @@
   "private": true,
   "scripts": {
     "sync-docs": "mkdir -p public/docs && (cp ../docs/maat-virtual/*.md public/docs/ 2>/dev/null || true)",
+    "validate:organograma": "node scripts/validate-organograma.mjs",
     "predev": "npm run sync-docs",
-    "prebuild": "npm run sync-docs",
+    "prebuild": "npm run sync-docs && npm run validate:organograma",
     "dev": "next dev",
     "build": "next build",
     "start": "next start"

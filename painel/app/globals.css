@@ -585,3 +585,223 @@ td { padding: 0.8rem; border-bottom: 1px solid var(--cinza-100); vertical-align:
   .tab { padding: 0.7rem 0.8rem; font-size: 0.75rem; }
   .markdown-body { padding: 1rem; font-size: 0.85rem; }
 }
+
+/* ORGANOGRAMA — 100% DM Sans, P&B, hierarquia por tamanho/peso/espaco */
+.organograma,
+.organograma * {
+  font-family: 'DM Sans', sans-serif;
+}
+
+.organograma-layer {
+  margin-bottom: 2.5rem;
+}
+.organograma-layer-title {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--cinza-500);
+  margin-bottom: 1rem;
+  padding-bottom: 0.6rem;
+  border-bottom: 1px solid var(--cinza-200);
+}
+.organograma-layer-hint {
+  display: none;
+  font-size: 0.72rem;
+  color: var(--cinza-500);
+  margin-top: -0.5rem;
+  margin-bottom: 1rem;
+}
+
+/* Nucleo humano */
+.organograma-humanos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 0.8rem;
+}
+.organograma-humano {
+  background: var(--preto);
+  color: var(--branco);
+  border-radius: var(--radius);
+  padding: 1.1rem 1.2rem;
+  border: 1px solid var(--preto);
+}
+.organograma-humano.pending {
+  background: var(--branco);
+  color: var(--cinza-500);
+  border: 1px dashed var(--cinza-300);
+}
+.organograma-humano-name {
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: -0.1px;
+  margin-bottom: 0.15rem;
+}
+.organograma-humano-role {
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  opacity: 0.65;
+  margin-bottom: 0.5rem;
+}
+.organograma-humano-areas {
+  font-size: 0.72rem;
+  opacity: 0.5;
+  font-weight: 500;
+}
+
+/* Agente-Mestre */
+.organograma-mestre-wrap {
+  display: flex;
+  justify-content: center;
+}
+.organograma-mestre {
+  max-width: 520px;
+  width: 100%;
+  background: var(--branco);
+  border: 2px solid var(--preto);
+  border-radius: var(--radius);
+  padding: 1.3rem 1.5rem;
+  box-shadow: var(--shadow);
+}
+.organograma-mestre .organograma-card-name {
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: -0.2px;
+}
+
+/* Card base (coordenadores, especialistas, gov) */
+.organograma-card {
+  background: var(--branco);
+  border: 1px solid var(--cinza-200);
+  border-radius: var(--radius);
+  padding: 1rem 1.15rem;
+  transition: border-color 0.15s;
+}
+.organograma-card:hover { border-color: var(--preto); }
+.organograma-card-name {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--preto);
+  margin-bottom: 0.25rem;
+  letter-spacing: -0.1px;
+}
+.organograma-card-desc {
+  font-size: 0.78rem;
+  color: var(--cinza-700);
+  line-height: 1.5;
+  margin-bottom: 0.6rem;
+}
+.organograma-card-meta {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.organograma-card-dono {
+  font-size: 0.7rem;
+  color: var(--cinza-500);
+  font-weight: 500;
+}
+.organograma-card-pend {
+  margin-top: 0.5rem;
+  font-size: 0.7rem;
+  color: var(--atencao);
+  font-weight: 500;
+  padding: 0.35rem 0.55rem;
+  background: var(--cinza-50);
+  border-left: 2px solid var(--atencao);
+  border-radius: 4px;
+}
+
+/* Coordenadores + Especialistas */
+.organograma-coords {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.3rem;
+}
+.organograma-coord-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+.organograma-coord {
+  text-align: left;
+  background: var(--cinza-50);
+  border: 1px solid var(--cinza-200);
+  border-left: 3px solid var(--preto);
+  border-radius: var(--radius);
+  padding: 1rem 1.15rem;
+  cursor: pointer;
+  transition: background 0.15s;
+  font: inherit;
+  color: inherit;
+  width: 100%;
+}
+.organograma-coord:hover { background: var(--cinza-100); }
+.organograma-coord .organograma-card-name {
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+.organograma-coord-counter {
+  margin-top: 0.55rem;
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: var(--cinza-500);
+  font-weight: 600;
+}
+
+.organograma-esps {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding-left: 1rem;
+  border-left: 1px dashed var(--cinza-200);
+  margin-left: 0.8rem;
+}
+.organograma-esp {
+  padding: 0.75rem 0.9rem;
+}
+.organograma-esp .organograma-card-name { font-size: 0.82rem; }
+.organograma-esp .organograma-card-desc { font-size: 0.74rem; margin-bottom: 0.45rem; }
+
+/* Governanca tecnica transversal */
+.organograma-gov-layer {
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--cinza-200);
+}
+.organograma-gov-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 0.8rem;
+}
+.organograma-gov-card {
+  background: var(--cinza-50);
+  border: 1px solid var(--cinza-200);
+}
+.organograma-gov-card .organograma-card-name { font-size: 0.82rem; }
+.organograma-gov-card .organograma-card-desc { font-size: 0.74rem; }
+
+/* Mobile: colapsa especialistas por default; desktop mantem aberto */
+@media (max-width: 1023px) {
+  .organograma-layer-hint { display: block; }
+  .organograma-coords { grid-template-columns: 1fr; }
+  .organograma-coord-group .organograma-esps {
+    display: none;
+  }
+  .organograma-coord-group.open .organograma-esps {
+    display: flex;
+  }
+  .organograma-coord::after {
+    content: '+';
+    float: right;
+    font-size: 1.2rem;
+    font-weight: 400;
+    line-height: 1;
+    color: var(--cinza-500);
+  }
+  .organograma-coord-group.open .organograma-coord::after {
+    content: '−';
+  }
+}

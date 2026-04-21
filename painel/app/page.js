@@ -4,6 +4,8 @@ import { useState, useEffect, useCallback } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import data from "../data/maat-virtual.json";
+import organograma from "../data/organograma.json";
+import { agruparEspecialistasPorCoordenador, STATUS_LABEL, STATUS_BADGE } from "../lib/organograma.mjs";
 
 function DocViewer({ src }) {
   const [content, setContent] = useState(null);
@@ -165,6 +167,103 @@ function QuestionCard({ q, onAnswer }) {
           {sending ? "Enviando..." : "Responder"}
         </button>
       </form>
+    </div>
+  );
+}
+
+function OrganogramaView() {
+  const { humanos, agentes } = organograma;
+  const mestre = agentes.find(a => a.camada === "agente-mestre");
+  const coordenadores = agentes.filter(a => a.camada === "coordenador");
+  const govTecnica = agentes.filter(a => a.camada === "governanca-tecnica");
+  const especialistasPorCoord = agruparEspecialistasPorCoordenador(agentes);
+  const humanosMap = Object.fromEntries(humanos.map(h => [h.id, h]));
+  const agentesMap = Object.fromEntries(agentes.map(a => [a.id, a]));
+
+  const [openCoords, setOpenCoords] = useState({});
+  const toggle = (id) => setOpenCoords(s => ({ ...s, [id]: !s[id] }));
+
+  function labelDono(id) {
+    return humanosMap[id]?.nome || agentesMap[id]?.nome || id;
+  }
+
+  function AgenteCard({ a, className }) {
+    return (
+      <div className={`organograma-card ${className || ""}`}>
+        <div className="organograma-card-name">{a.nome}</div>
+        <div className="organograma-card-desc">{a.descricaoCurta}</div>
+        <div className="organograma-card-meta">
+          <span className={`badge ${STATUS_BADGE[a.status]}`}>{STATUS_LABEL[a.status]}</span>
+          <span className="organograma-card-dono">{a.donoNegocio.map(labelDono).join(" · ")}</span>
+        </div>
+        {a.pendencias && a.pendencias.length > 0 && (
+          <div className="organograma-card-pend">Pendente: {a.pendencias.join(" / ")}</div>
+        )}
+      </div>
+    );
+  }
+
+  const totalEsp = agentes.filter(a => a.camada === "especialista").length;
+
+  return (
+    <div className="organograma">
+
+      <div className="organograma-layer">
+        <div className="organograma-layer-title">Nucleo Humano</div>
+        <div className="organograma-humanos">
+          {humanos.map(h => (
+            <div key={h.id} className={`organograma-humano ${h.nome === "A definir" ? "pending" : ""}`}>
+              <div className="organograma-humano-name">{h.nome}</div>
+              <div className="organograma-humano-role">{h.papel}</div>
+              {h.areas.length > 0 && (
+                <div className="organograma-humano-areas">{h.areas.join(" · ")}</div>
+              )}
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div className="organograma-layer">
+        <div className="organograma-layer-title">Agente-Mestre · Orquestracao</div>
+        <div className="organograma-mestre-wrap">
+          <AgenteCard a={mestre} className="organograma-mestre" />
+        </div>
+      </div>
+
+      <div className="organograma-layer">
+        <div className="organograma-layer-title">Coordenadores ({coordenadores.length}) · Especialistas ({totalEsp})</div>
+        <div className="organograma-layer-hint">No mobile, toque no coordenador pra expandir os especialistas</div>
+        <div className="organograma-coords">
+          {coordenadores.map(c => {
+            const esps = especialistasPorCoord[c.id] || [];
+            const isOpen = !!openCoords[c.id];
+            return (
+              <div key={c.id} className={`organograma-coord-group ${isOpen ? "open" : ""}`}>
+                <button className="organograma-coord" onClick={() => toggle(c.id)} type="button">
+                  <div className="organograma-card-name">{c.nome}</div>
+                  <div className="organograma-card-desc">{c.descricaoCurta}</div>
+                  <div className="organograma-card-meta">
+                    <span className={`badge ${STATUS_BADGE[c.status]}`}>{STATUS_LABEL[c.status]}</span>
+                    <span className="organograma-card-dono">{c.donoNegocio.map(labelDono).join(" · ")}</span>
+                  </div>
+                  <div className="organograma-coord-counter">{esps.length} especialista{esps.length !== 1 ? "s" : ""}</div>
+                </button>
+                <div className="organograma-esps">
+                  {esps.map(e => <AgenteCard key={e.id} a={e} className="organograma-esp" />)}
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+
+      <div className="organograma-layer organograma-gov-layer">
+        <div className="organograma-layer-title">Governanca Tecnica · Transversal (Cleber)</div>
+        <div className="organograma-gov-row">
+          {govTecnica.map(g => <AgenteCard key={g.id} a={g} className="organograma-gov-card" />)}
+        </div>
+      </div>
+
     </div>
   );
 }
@@ -498,51 +597,8 @@ export default function Dashboard() {
         {/* ===== ORGANOGRAMA ===== */}
         {activeTab === "org" && (
           <div>
-            <div className="section-title">Organograma MAAT (Humanos + Virtual)</div>
-            <div className="card">
-              <div className="org-chart">
-                <div className="org-label">Lideranca Estrategica (Humanos)</div>
-                <div className="org-level">
-                  <div className="org-node"><div className="org-node-name">Lucas</div><div className="org-node-role">Co-CEO</div></div>
-                  <div className="org-node"><div className="org-node-name">Julia</div><div className="org-node-role">Co-CEO</div></div>
-                </div>
-                <div className="org-divider">|</div>
-                <div className="org-label">Tecnologia + Coordenacao</div>
-                <div className="org-level">
-                  <div className="org-node"><div className="org-node-name">Cleber</div><div className="org-node-role">Head de Tecnologia</div></div>
-                  <div className="org-node ai"><div className="org-node-name">Claudio</div><div className="org-node-role">Chief of Staff</div></div>
-                </div>
-                <div className="org-divider">|</div>
-                <div className="org-label">Diretoria Virtual</div>
-                <div className="org-level">
-                  {data.agents.filter(a => a.name !== "Claudio").map(a => (
-                    <div key={a.name} className="org-node ai" style={{ borderColor: a.color }}>
-                      <div className="org-node-name">{a.name}</div>
-                      <div className="org-node-role">{a.role}</div>
-                    </div>
-                  ))}
-                </div>
-                {subAgents.length > 0 && (
-                  <>
-                    <div className="org-divider">|</div>
-                    <div className="org-label">Sub-Agentes Operacionais</div>
-                    <div className="org-level">
-                      {subAgents.map(s => (
-                        <div key={s.name} className="org-node ai" style={{ borderColor: s.color }}>
-                          <div className="org-node-name">{s.name}</div>
-                          <div className="org-node-role">{s.role}</div>
-                        </div>
-                      ))}
-                    </div>
-                  </>
-                )}
-                <div className="org-divider">|</div>
-                <div className="org-label">Operacoes</div>
-                <div className="org-level">
-                  <div className="org-node"><div className="org-node-name">Paula</div><div className="org-node-role">Logistica</div></div>
-                </div>
-              </div>
-            </div>
+            <div className="section-title">Organograma MAAT Virtual</div>
+            <OrganogramaView />
           </div>
         )}
 
