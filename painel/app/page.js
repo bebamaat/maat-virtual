@@ -530,7 +530,7 @@ export default function Dashboard() {
   const representantes = data.humanos.filter(h => h.placeholder);
 
   const tabs = [
-    { id: "fundacao", label: "Fundacao" },
+    { id: "fundacao", label: "Fundação" },
     { id: "overview", label: "Visao Geral" },
     { id: "org", label: "Organograma" },
     { id: "agents", label: "Time Virtual" },
@@ -571,7 +571,7 @@ export default function Dashboard() {
 
         {activeTab === "fundacao" && (
           <div>
-            <div className="section-title">Frente A v2 — Fundacao Conceitual</div>
+            <div className="section-title">Frente A v2 — Fundação Conceitual</div>
             <DocViewer src="/docs/frente-a-v2.md" />
           </div>
         )}
