@@ -221,6 +221,8 @@ body {
 .card { background: var(--bg-card); border: 1px solid var(--border-strong); border-radius: var(--radius); padding: 1.5rem; margin-bottom: 1.5rem; }
 .card-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1rem; flex-wrap: wrap; gap: 0.5rem; }
 .card-title { font-size: 1.1rem; font-weight: 600; color: var(--text-primary); letter-spacing: -0.2px; }
+.roadmap-card { cursor: pointer; transition: transform 0.2s, border-color 0.2s; }
+.roadmap-card:hover { transform: translateY(-2px); border-color: var(--border-accent); }
 
 .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); gap: 1.5rem; }
 .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }

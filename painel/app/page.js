@@ -530,6 +530,13 @@ export default function Dashboard() {
 
   const humanosReais = data.humanos.filter(h => !h.placeholder);
   const representantes = data.humanos.filter(h => h.placeholder);
+  const totalAgentes = 1 + data.coordenadores.length + data.especialistas.length + data.governancaTecnica.length;
+  const totalItensRoadmap = data.roadmap.prioridades.reduce((acc, p) => acc + p.itens.length, 0);
+  const ferramentasImplementadas = data.ferramentas.filter(f => f.statusImplementacao === "implementado").length;
+  const ferramentasEmImplementacao = data.ferramentas.filter(f => f.statusImplementacao === "em-implementacao").length;
+  const progressoPct = data.ferramentas.length > 0
+    ? Math.round(((ferramentasImplementadas * 1.0 + ferramentasEmImplementacao * 0.5) / data.ferramentas.length) * 100)
+    : 0;
 
   const tabs = [
     { id: "fundacao", label: "Fundação" },
@@ -582,32 +589,28 @@ export default function Dashboard() {
           <div>
             <div className="stats">
               <div className="stat">
-                <div className="stat-value">1</div>
-                <div className="stat-label">Agente-Mestre</div>
-              </div>
-              <div className="stat">
-                <div className="stat-value">{data.coordenadores.length}</div>
-                <div className="stat-label">Coordenadores</div>
-              </div>
-              <div className="stat">
-                <div className="stat-value">{data.especialistas.length}</div>
-                <div className="stat-label">Especialistas</div>
-              </div>
-              <div className="stat">
-                <div className="stat-value">{data.governancaTecnica.length}</div>
-                <div className="stat-label">Governanca Tecnica</div>
-              </div>
-              <div className="stat">
                 <div className="stat-value">{humanosReais.length}<span style={{ opacity: 0.35 }}> + {representantes.length}</span></div>
-                <div className="stat-label">Humanos + Representantes</div>
+                <div className="stat-label">Humanos</div>
               </div>
               <div className="stat">
-                <div className="stat-value">{data.projects.length}</div>
-                <div className="stat-label">Projetos</div>
+                <div className="stat-value">{totalAgentes}</div>
+                <div className="stat-label">Agentes</div>
+              </div>
+              <div className="stat">
+                <div className="stat-value">{data.ferramentas.length}</div>
+                <div className="stat-label">Ferramentas</div>
+              </div>
+              <div className="stat">
+                <div className="stat-value">{totalItensRoadmap}</div>
+                <div className="stat-label">Itens no Roadmap</div>
               </div>
               <div className="stat clickable" onClick={() => setActiveTab("pendencias")}>
                 <div className="stat-value" style={{ color: pendingCount > 0 ? "var(--accent-alerta)" : "var(--accent-sucesso)" }}>{pendingCount}</div>
-                <div className="stat-label">{pendingCount > 0 ? "Pendencias Humanas" : "Tudo em dia"}</div>
+                <div className="stat-label">Pendências Humanas</div>
+              </div>
+              <div className="stat">
+                <div className="stat-value">{progressoPct}%</div>
+                <div className="stat-label">Progresso</div>
               </div>
             </div>
 
@@ -617,23 +620,19 @@ export default function Dashboard() {
               </div>
             )}
 
-            {phases.length > 0 && (
-              <>
-                <div className="section-title">Plano de Execucao — 4 Fases</div>
-                <div className="grid-2" style={{ marginBottom: "2rem" }}>
-                  {phases.map(p => (
-                    <div key={p.id} className="card" style={{ borderLeft: `4px solid ${p.status === "active" ? "var(--accent-atencao)" : "var(--border-strong)"}` }}>
-                      <div className="card-header">
-                        <div className="card-title">{p.name}</div>
-                        <span className={`badge ${p.status === "active" ? "badge-orange" : "badge-gray"}`}>{p.status === "active" ? "Ativa" : "Proxima"}</span>
-                      </div>
-                      <p style={{ fontSize: "0.82rem", color: "var(--text-secondary)", marginBottom: "0.5rem" }}>{p.description}</p>
-                      <div style={{ fontSize: "0.7rem", color: "var(--text-muted)" }}>{p.timeline}</div>
-                    </div>
-                  ))}
-                </div>
-              </>
-            )}
+            <div className="section-title">Roadmap — {data.roadmap.prioridades.length} Prioridades</div>
+            <a href="/roadmap" className="card roadmap-card" style={{ display: "block", marginBottom: "2rem", textDecoration: "none", color: "inherit" }}>
+              <div className="card-header">
+                <div className="card-title">Roadmap estratégico</div>
+                <span className="badge badge-gray">Em construção</span>
+              </div>
+              <p style={{ fontSize: "0.82rem", color: "var(--text-secondary)", marginBottom: "0.5rem" }}>
+                {data.roadmap.prioridades.length} prioridades · {totalItensRoadmap} itens. Detalhamento completo em /roadmap (em breve).
+              </p>
+              <div style={{ fontSize: "0.7rem", color: "var(--text-muted)" }}>
+                {data.roadmap.prioridades.map(p => `${p.nivel}. ${p.titulo}`).join(" · ")}
+              </div>
+            </a>
 
             <div className="grid-2">
               <div className="card">
