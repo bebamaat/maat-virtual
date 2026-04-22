@@ -859,3 +859,169 @@ td { padding: 0.8rem; border-bottom: 1px solid var(--border); vertical-align: to
 @media (max-width: 768px) {
   .me-areas { grid-template-columns: 1fr; }
 }
+
+/* FLUXO OPERACIONAL */
+.fluxo-root { display: flex; flex-direction: column; gap: 1.25rem; }
+
+.fluxo-grid {
+  display: grid;
+  grid-template-columns: 200px repeat(6, 1fr);
+  gap: 0.5rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius);
+  padding: 1.1rem;
+}
+
+.fluxo-head-cell {
+  border-bottom: 1px solid var(--border);
+}
+
+.fluxo-fase-head {
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--text-muted);
+  padding: 0 0 0.55rem 0;
+  border-bottom: 1px solid var(--border);
+  text-align: center;
+  align-self: end;
+}
+
+.fluxo-canal-head {
+  padding: 0.7rem 0.8rem 0.7rem 0;
+  border-right: 2px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.fluxo-canal-nome { font-size: 0.85rem; font-weight: 700; color: var(--text-primary); letter-spacing: -0.1px; }
+.fluxo-canal-desc { font-size: 0.65rem; color: var(--text-muted); margin-top: 0.25rem; line-height: 1.4; }
+
+.fluxo-cell {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  padding: 0.35rem 0.2rem;
+  min-height: 76px;
+  justify-content: center;
+}
+
+.fluxo-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.55rem 0.4rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border-strong);
+  border-radius: 8px;
+  cursor: pointer;
+  font-family: inherit;
+  text-align: center;
+  color: var(--text-primary);
+  transition: transform 0.15s, border-color 0.15s, background 0.15s;
+  width: 100%;
+}
+.fluxo-step:hover {
+  transform: translateY(-1px);
+  border-color: var(--border-accent);
+  background: var(--bg-secondary);
+}
+.fluxo-step-icon { font-size: 1.05rem; line-height: 1; }
+.fluxo-step-name { font-size: 0.68rem; font-weight: 600; line-height: 1.25; }
+
+.fluxo-tech-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 0.55rem;
+}
+.fluxo-tech-card {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0.7rem 0.9rem;
+}
+.fluxo-tech-title {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 0.3rem;
+}
+.fluxo-tech-body {
+  font-size: 0.72rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.fluxo-virtual-note {
+  padding: 0.8rem 1rem;
+  background: var(--bg-secondary);
+  border-left: 3px solid var(--text-primary);
+  border-radius: 0 8px 8px 0;
+  font-size: 0.78rem;
+  color: var(--text-primary);
+  line-height: 1.55;
+  font-style: italic;
+}
+
+.fluxo-convergencia {
+  background: var(--bg-card);
+  border: 1px solid var(--border-strong);
+  border-left: 4px solid var(--accent-alerta);
+  border-radius: var(--radius);
+  padding: 1rem 1.25rem;
+}
+.fluxo-convergencia-label {
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--accent-alerta);
+  margin-bottom: 0.4rem;
+}
+.fluxo-convergencia-text {
+  font-size: 0.85rem;
+  color: var(--text-primary);
+  line-height: 1.5;
+}
+
+@media (max-width: 900px) {
+  .fluxo-grid {
+    grid-template-columns: 1fr;
+    gap: 0.4rem;
+    padding: 0.9rem;
+  }
+  .fluxo-head-cell,
+  .fluxo-fase-head { display: none; }
+  .fluxo-canal-head {
+    border-right: none;
+    border-bottom: 2px solid var(--border);
+    padding: 0.7rem 0 0.7rem 0;
+    margin-top: 0.6rem;
+  }
+  .fluxo-canal-head:first-of-type { margin-top: 0; }
+  .fluxo-cell {
+    min-height: 0;
+    padding: 0.3rem 0;
+  }
+  .fluxo-cell:empty { display: none; }
+  .fluxo-cell::before {
+    content: attr(data-fase);
+    display: block;
+    font-size: 0.6rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: var(--text-muted);
+    margin-bottom: 0.35rem;
+  }
+  .fluxo-step {
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: 0.6rem;
+    padding: 0.6rem 0.85rem;
+  }
+  .fluxo-step-name { font-size: 0.8rem; text-align: left; }
+}

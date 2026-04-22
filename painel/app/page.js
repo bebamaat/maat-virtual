@@ -1,6 +1,6 @@
 "use client";
 import { useSession, signOut } from "next-auth/react";
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, Fragment } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import data from "../data/maat-virtual.json";
@@ -571,6 +571,143 @@ function MapaEstrategicoView({ setActiveTab }) {
   );
 }
 
+const FLUXO_FASES = [
+  { id: "atr", label: "Atração" },
+  { id: "ped", label: "Pedido" },
+  { id: "pag", label: "Pagamento" },
+  { id: "ops", label: "Operações" },
+  { id: "ent", label: "Entrega" },
+  { id: "pos", label: "Pós-venda" },
+];
+
+function faseDeEtapa(etapaId) {
+  const sufixo = (etapaId.split("_")[1] || "");
+  if (sufixo === "atr") return "atr";
+  if (sufixo === "ped" || sufixo === "menu" || sufixo === "prop") return "ped";
+  if (sufixo === "pag") return "pag";
+  if (sufixo === "ops") return "ops";
+  if (sufixo === "ent") return "ent";
+  if (sufixo.startsWith("pos")) return "pos";
+  return null;
+}
+
+function StepModal({ etapa, canalNome, onClose }) {
+  useEffect(() => {
+    if (!etapa) return;
+    const original = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    function onKey(e) { if (e.key === "Escape") onClose(); }
+    window.addEventListener("keydown", onKey);
+    return () => {
+      document.body.style.overflow = original;
+      window.removeEventListener("keydown", onKey);
+    };
+  }, [etapa, onClose]);
+
+  if (!etapa) return null;
+
+  const tech = etapa.detalheTecnico || [];
+
+  return (
+    <div className="tv-overlay" onClick={(e) => e.target === e.currentTarget && onClose()}>
+      <div className="tv-modal" role="dialog" aria-modal="true" aria-label={etapa.nome}>
+        <button className="tv-modal-close" onClick={onClose} aria-label="Fechar">×</button>
+
+        <div className="tv-modal-head">
+          <div className="tv-modal-name">
+            <span style={{ marginRight: "0.5rem" }}>{etapa.icone}</span>
+            {etapa.nome}
+          </div>
+          <div className="tv-modal-funcao">Canal: {canalNome}</div>
+        </div>
+
+        <section className="tv-modal-sec">
+          <div className="tv-modal-label">Detalhe de negócio</div>
+          <div className="tv-modal-desc">{etapa.detalheNegocio}</div>
+        </section>
+
+        {tech.length > 0 && (
+          <section className="tv-modal-sec">
+            <div className="tv-modal-label">
+              Stack técnico
+              <span className="tv-modal-count">{tech.length}</span>
+            </div>
+            <div className="fluxo-tech-grid">
+              {tech.map((t, i) => (
+                <div key={i} className="fluxo-tech-card">
+                  <div className="fluxo-tech-title">{t.t}</div>
+                  <div className="fluxo-tech-body">{t.b}</div>
+                </div>
+              ))}
+            </div>
+          </section>
+        )}
+
+        {etapa.maatVirtualNota && (
+          <section className="tv-modal-sec">
+            <div className="tv-modal-label">MAAT Virtual</div>
+            <div className="fluxo-virtual-note">{etapa.maatVirtualNota}</div>
+          </section>
+        )}
+      </div>
+    </div>
+  );
+}
+
+function FluxoOperacionalView() {
+  const { fluxoOperacional } = data;
+  const [open, setOpen] = useState(null);
+
+  return (
+    <div className="fluxo-root">
+      <div className="fluxo-grid">
+        <div className="fluxo-head-cell" aria-hidden="true" />
+        {FLUXO_FASES.map(f => (
+          <div key={f.id} className="fluxo-fase-head">{f.label}</div>
+        ))}
+        {fluxoOperacional.canais.map(canal => (
+          <Fragment key={canal.id}>
+            <div className="fluxo-canal-head">
+              <div className="fluxo-canal-nome">{canal.nome}</div>
+              <div className="fluxo-canal-desc">{canal.descricao}</div>
+            </div>
+            {FLUXO_FASES.map(f => {
+              const etapas = canal.etapas.filter(e => faseDeEtapa(e.id) === f.id);
+              return (
+                <div key={f.id} className="fluxo-cell" data-fase={f.label}>
+                  {etapas.map(e => (
+                    <button
+                      key={e.id}
+                      type="button"
+                      className="fluxo-step"
+                      onClick={() => setOpen({ etapa: e, canalNome: canal.nome })}
+                      title={e.nome}
+                    >
+                      <span className="fluxo-step-icon" aria-hidden="true">{e.icone}</span>
+                      <span className="fluxo-step-name">{e.nome.split(" — ")[0]}</span>
+                    </button>
+                  ))}
+                </div>
+              );
+            })}
+          </Fragment>
+        ))}
+      </div>
+
+      <div className="fluxo-convergencia">
+        <div className="fluxo-convergencia-label">Convergência crítica</div>
+        <div className="fluxo-convergencia-text">{fluxoOperacional.convergenciaCritica}</div>
+      </div>
+
+      <StepModal
+        etapa={open?.etapa}
+        canalNome={open?.canalNome}
+        onClose={() => setOpen(null)}
+      />
+    </div>
+  );
+}
+
 function HierarquiaView() {
   const { humanos, agenteMestre: mestre, coordenadores, especialistas, governancaTecnica } = data;
   const porCoord = agruparPorCoordenador(especialistas);
@@ -727,6 +864,7 @@ export default function Dashboard() {
     { id: "org", label: "Organograma" },
     { id: "agents", label: "Time Virtual" },
     { id: "mapa", label: "Mapa Estratégico" },
+    { id: "fluxo", label: "Fluxo Operacional" },
     { id: "projects", label: "Projetos" },
     { id: "pendencias", label: "Pendencias", alert: pendingCount },
     { id: "tasks", label: "Todas Tarefas" },
@@ -887,6 +1025,13 @@ export default function Dashboard() {
           <div>
             <div className="section-title">Mapa Estratégico</div>
             <MapaEstrategicoView setActiveTab={setActiveTab} />
+          </div>
+        )}
+
+        {activeTab === "fluxo" && (
+          <div>
+            <div className="section-title">Fluxo Operacional</div>
+            <FluxoOperacionalView />
           </div>
         )}
 
