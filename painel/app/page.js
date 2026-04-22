@@ -245,14 +245,16 @@ function frenteDoAgente(a) {
 
 function AgenteModal({ agente, onClose }) {
   useEffect(() => {
+    if (!agente) return;
+    const original = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
     function onKey(e) { if (e.key === "Escape") onClose(); }
     window.addEventListener("keydown", onKey);
-    document.body.style.overflow = "hidden";
     return () => {
+      document.body.style.overflow = original;
       window.removeEventListener("keydown", onKey);
-      document.body.style.overflow = "";
     };
-  }, [onClose]);
+  }, [agente, onClose]);
 
   if (!agente) return null;
 
