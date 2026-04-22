@@ -2618,33 +2618,34 @@
             "prerequisitos": [],
             "nota": ""
           }
-        ]
+        ],
+        "notaFrenteB": "Este bloco depende da Frente B (JDs dos agentes): cada agente precisa da JD escrita antes de entrar na fila do Claude Code. Sequência sugerida pra próxima sessão: Nut (Insta+TikTok Orgânico) → Laxmi+Juno (Bling) → Abundantia (Supply) → Sol (Agente-Mestre) → Ananke/Têmis (Governança). Os demais (Sofia, Uzume, Hina, Saraswati, Neftis, Nêmesis) seguem depois. Note que a Frente B inclui agentes fora da Frente 1 (Laxmi+Juno são Frente 2, Sol é Agente-Mestre) — ela reflete prioridade de escrita de JD, não de desenvolvimento."
       }
     ],
     "projecao": [
       {
-        "milestone": "Hoje (2026-04-21)",
-        "progressoPct": 43,
+        "milestone": "Hoje (2026-04-22)",
+        "progressoPct": 29,
         "atual": true
       },
       {
-        "milestone": "Apos Prioridade 1",
-        "progressoPct": 63
+        "milestone": "Após Prioridade 1 (+3 ferramentas)",
+        "progressoPct": 50
       },
       {
-        "milestone": "Apos P1 + P2",
-        "progressoPct": 75
+        "milestone": "Após P1 + P2 (+3 ferramentas)",
+        "progressoPct": 71
       },
       {
         "milestone": "Todas ferramentas implementadas",
-        "progressoPct": 79
+        "progressoPct": 86
       },
       {
         "milestone": "Ferramentas + 9 agentes Frente 1",
         "progressoPct": 100
       }
     ],
-    "formulaImpacto": "Pontuacao: implementado = 1 · em andamento = 0,5 · nao iniciado = 0. Cada transicao vermelho→amarelo ou amarelo→verde vale 1,32pp (100% ÷ 38 itens ÷ 2 estagios)."
+    "formulaImpacto": "Pontuação: implementado = 1 · em andamento = 0,5 · não iniciado = 0. 14 ferramentas no universo atual; cada transição vermelho→amarelo ou amarelo→verde vale 3,57pp (100% ÷ 14 itens ÷ 2 estágios). Projeção inclui os 9 agentes Frente 1 nos últimos 14pp."
   },
   "pendenciasHumanas": [
     {
@@ -2706,6 +2707,54 @@
       ],
       "dataAbertura": "2026-04-21",
       "descricao": "Instalar GA4+GTM, Meta/TikTok Pixel e Hotjar/Clarity no Shopify — destrava maior cadeia do roadmap.",
+      "status": "aberta"
+    },
+    {
+      "id": "ph-julia-02",
+      "titulo": "Indicar 2 representantes do núcleo humano (Operações + Comercial B2B)",
+      "responsavel": "julia",
+      "prioridade": "high",
+      "bloqueia": [
+        "Frente A — fundação completa"
+      ],
+      "dataAbertura": "2026-04-22",
+      "descricao": "Fundação prevê 2 representantes humanos além dos 4 atuais (Cleber/Lucas/Julia/Paula). Definir quem cobre Operações e quem cobre Comercial B2B.",
+      "status": "aberta"
+    },
+    {
+      "id": "ph-lucas-02",
+      "titulo": "Decidir Agente Trade (B3) ou cobertura via Pipedrive",
+      "responsavel": "lucas",
+      "prioridade": "medium",
+      "bloqueia": [
+        "Roadmap B2B"
+      ],
+      "dataAbertura": "2026-04-22",
+      "descricao": "Avaliar se o canal B2B/trade demanda agente próprio (B3 — posição nova) ou se a cobertura via Pipedrive + Seshat é suficiente no curto prazo.",
+      "status": "aberta"
+    },
+    {
+      "id": "ph-julia-03",
+      "titulo": "Redistribuir carga operacional da Julia",
+      "responsavel": "julia",
+      "prioridade": "medium",
+      "bloqueia": [
+        "Escalabilidade da diretoria"
+      ],
+      "dataAbertura": "2026-04-22",
+      "descricao": "Julia acumula estratégia + financeiro + vendas + marketing. Mapear o que pode transferir pra novos representantes humanos ou pra agentes Frente 1 quando prontos.",
+      "status": "aberta"
+    },
+    {
+      "id": "ph-lucas-03",
+      "titulo": "Definir supervisor direto da Paula (Logística)",
+      "responsavel": "lucas",
+      "prioridade": "medium",
+      "bloqueia": [
+        "Clareza de reporte operacional"
+      ],
+      "dataAbertura": "2026-04-22",
+      "descricao": "Paula hoje reporta diretamente pros co-CEOs. Definir supervisor operacional intermediário conforme a equipe cresce (representante de Operações ou COO virtual).",
       "status": "aberta"
     }
   ],
