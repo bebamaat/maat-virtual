@@ -10,6 +10,7 @@ const humanosMap = Object.fromEntries(data.humanos.map(h => [h.id, h]));
 const coordenadoresMap = Object.fromEntries(data.coordenadores.map(c => [c.id, c]));
 const especialistasMap = Object.fromEntries(data.especialistas.map(e => [e.id, e]));
 const govMap = Object.fromEntries(data.governancaTecnica.map(g => [g.id, g]));
+const ferramentasMap = Object.fromEntries(data.ferramentas.map(f => [f.id, f]));
 const agentesMap = {
   ...coordenadoresMap,
   ...especialistasMap,
@@ -388,6 +389,188 @@ function TimeVirtualView() {
   );
 }
 
+const STATUS_IMPL_LABEL = {
+  "implementado": "Implementado",
+  "em-implementacao": "Em implementação",
+  "nao-iniciado": "Não iniciado",
+};
+const STATUS_IMPL_CLASS = {
+  "implementado": "me-status-ok",
+  "em-implementacao": "me-status-wip",
+  "nao-iniciado": "me-status-idle",
+};
+
+function ToolModal({ ferramenta, onClose }) {
+  useEffect(() => {
+    if (!ferramenta) return;
+    const original = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    function onKey(e) { if (e.key === "Escape") onClose(); }
+    window.addEventListener("keydown", onKey);
+    return () => {
+      document.body.style.overflow = original;
+      window.removeEventListener("keydown", onKey);
+    };
+  }, [ferramenta, onClose]);
+
+  if (!ferramenta) return null;
+
+  const deps = ferramenta.dependencias || [];
+
+  return (
+    <div className="tv-overlay" onClick={(e) => e.target === e.currentTarget && onClose()}>
+      <div className="tv-modal" role="dialog" aria-modal="true" aria-label={ferramenta.nome}>
+        <button className="tv-modal-close" onClick={onClose} aria-label="Fechar">×</button>
+
+        <div className="tv-modal-head">
+          <div className="tv-modal-name">{ferramenta.nome}</div>
+          <div className="tv-modal-funcao">Categoria: {ferramenta.categoria}</div>
+          <div className="tv-modal-meta">
+            <span className={`me-pill ${STATUS_IMPL_CLASS[ferramenta.statusImplementacao] || ""}`}>
+              <span className="me-tool-dot" />
+              {STATUS_IMPL_LABEL[ferramenta.statusImplementacao] || ferramenta.statusImplementacao}
+            </span>
+          </div>
+        </div>
+
+        <section className="tv-modal-sec">
+          <div className="tv-modal-label">Descrição</div>
+          <div className="tv-modal-desc">
+            {ferramenta.descricao || <span className="tv-tbd">A definir</span>}
+          </div>
+        </section>
+
+        <section className="tv-modal-sec">
+          <div className="tv-modal-label">
+            Dependências
+            {deps.length > 0 && <span className="tv-modal-count">{deps.length}</span>}
+          </div>
+          <div className="tv-tag-wrap">
+            {deps.length > 0
+              ? deps.map(d => (
+                  <span key={d} className="tv-tag">
+                    <span className="tv-tag-dot" />
+                    {d}
+                  </span>
+                ))
+              : <span className="tv-tbd">Nenhuma</span>
+            }
+          </div>
+        </section>
+
+        {ferramenta.notaStatus && (
+          <section className="tv-modal-sec">
+            <div className="tv-modal-label">Nota de implementação</div>
+            <div className="tv-modal-desc">{ferramenta.notaStatus}</div>
+          </section>
+        )}
+      </div>
+    </div>
+  );
+}
+
+function MapaEstrategicoView({ setActiveTab }) {
+  const { mapaEstrategico, ferramentas } = data;
+  const [toolOpen, setToolOpen] = useState(null);
+  const [statusFilter, setStatusFilter] = useState(["implementado", "em-implementacao", "nao-iniciado"]);
+
+  function toggleStatus(s) {
+    setStatusFilter(prev => prev.includes(s) ? prev.filter(x => x !== s) : [...prev, s]);
+  }
+
+  function renderTool(toolId) {
+    const f = ferramentasMap[toolId];
+    if (!f) return null;
+    const active = statusFilter.includes(f.statusImplementacao);
+    return (
+      <button
+        key={toolId}
+        type="button"
+        className={`me-tool ${STATUS_IMPL_CLASS[f.statusImplementacao] || ""} ${active ? "" : "me-tool-dim"}`}
+        onClick={() => setToolOpen(f)}
+        title={f.nome}
+      >
+        <span className="me-tool-dot" />
+        {f.nome}
+      </button>
+    );
+  }
+
+  function renderSetor(s) {
+    return (
+      <div key={s.nome} className="me-setor">
+        <div className="me-setor-nome">{s.nome}</div>
+        {s.subsetores ? (
+          <div className="me-subsetores">
+            {s.subsetores.map(ss => (
+              <div key={ss.nome} className="me-subsetor">
+                <div className="me-subsetor-nome">{ss.nome}</div>
+                <div className="me-tool-list">
+                  {ss.ferramentas.map(renderTool)}
+                </div>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <div className="me-tool-list">
+            {(s.ferramentas || []).map(renderTool)}
+          </div>
+        )}
+      </div>
+    );
+  }
+
+  return (
+    <div className="me-root">
+      <div className="me-org-head">
+        <div className="me-org-nome">MAAT Agroflorestal LTDA</div>
+        <div className="me-org-sub">{mapaEstrategico.areas.length} áreas · {ferramentas.length} ferramentas</div>
+      </div>
+
+      <div className="me-areas">
+        {mapaEstrategico.areas.map(a => (
+          <div key={a.id} className="me-area">
+            <div className="me-area-head">{a.nome}</div>
+            <div className="me-setores">
+              {a.setores.map(renderSetor)}
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div className="me-legenda">
+        <span className="me-legenda-title">Legenda · clique para filtrar</span>
+        {["implementado", "em-implementacao", "nao-iniciado"].map(s => (
+          <button
+            key={s}
+            type="button"
+            className={`me-legenda-item ${STATUS_IMPL_CLASS[s]} ${statusFilter.includes(s) ? "" : "me-legenda-off"}`}
+            onClick={() => toggleStatus(s)}
+          >
+            <span className="me-tool-dot" />
+            {STATUS_IMPL_LABEL[s]}
+          </button>
+        ))}
+      </div>
+
+      <div className="me-conector">{mapaEstrategico.conector}</div>
+
+      <div className="me-virtual-links">
+        <button type="button" className="card me-virtual-link" onClick={() => setActiveTab("org")}>
+          <div className="me-virtual-title">Ver organograma completo</div>
+          <div className="me-virtual-sub">→ aba Organograma</div>
+        </button>
+        <button type="button" className="card me-virtual-link" onClick={() => setActiveTab("agents")}>
+          <div className="me-virtual-title">Ver os 44 agentes</div>
+          <div className="me-virtual-sub">→ aba Time Virtual</div>
+        </button>
+      </div>
+
+      <ToolModal ferramenta={toolOpen} onClose={() => setToolOpen(null)} />
+    </div>
+  );
+}
+
 function HierarquiaView() {
   const { humanos, agenteMestre: mestre, coordenadores, especialistas, governancaTecnica } = data;
   const porCoord = agruparPorCoordenador(especialistas);
@@ -543,9 +726,10 @@ export default function Dashboard() {
     { id: "overview", label: "Visao Geral" },
     { id: "org", label: "Organograma" },
     { id: "agents", label: "Time Virtual" },
+    { id: "mapa", label: "Mapa Estratégico" },
     { id: "projects", label: "Projetos" },
-    { id: "tasks", label: "Todas Tarefas" },
     { id: "pendencias", label: "Pendencias", alert: pendingCount },
+    { id: "tasks", label: "Todas Tarefas" },
   ];
 
   return (
@@ -696,6 +880,13 @@ export default function Dashboard() {
           <div>
             <div className="section-title">Time Virtual <span className="count">{data.especialistas.length}</span></div>
             <TimeVirtualView />
+          </div>
+        )}
+
+        {activeTab === "mapa" && (
+          <div>
+            <div className="section-title">Mapa Estratégico</div>
+            <MapaEstrategicoView setActiveTab={setActiveTab} />
           </div>
         )}
 
