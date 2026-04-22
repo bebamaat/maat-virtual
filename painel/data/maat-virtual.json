@@ -1674,7 +1674,7 @@
                 "b": "Grava a sessão para análise qualitativa de comportamento no funil."
               }
             ],
-            "maatVirtualNota": "Agente GA4 (Frente 2) monitora anomalias de tráfego e dispara alerta se bounce rate anormal. Agente Meta Ads otimiza lances com base nos eventos de conversão recebidos."
+            "maatVirtualNota": "Maia (GA4/GTM) monitora anomalias de tráfego e dispara alerta se bounce rate anormal. Afrodite (Meta Ads) otimiza lances com base nos eventos de conversão recebidos."
           },
           {
             "id": "sh_ped",
@@ -1700,7 +1700,7 @@
                 "b": "Webhook cria ou atualiza contato com tag origem:ecommerce e interesse detectado."
               }
             ],
-            "maatVirtualNota": "Agente Shopify (Frente 2) monitora taxa de abandono. Se acima do threshold, notifica squad e sugere ajuste de copy ou frete."
+            "maatVirtualNota": "Hathor (Shopify) monitora taxa de abandono. Se acima do threshold, notifica squad e sugere ajuste de copy ou frete."
           },
           {
             "id": "sh_pag",
@@ -1726,7 +1726,7 @@
                 "b": "Orquestra: Shopify order.paid → Bling criar pedido → Melhor Envio gerar etiqueta."
               }
             ],
-            "maatVirtualNota": "Agente-mestre recebe confirmação de pagamento e inicia delegação: aciona agente Bling (NF), agente Melhor Envio (etiqueta) e agente Klaviyo (email de confirmação)."
+            "maatVirtualNota": "Sol (Agente-Mestre) recebe confirmação de pagamento e inicia delegação: aciona Laxmi (Bling-Tesouraria/NF), Melhor Envio (etiqueta) e Deméter (Klaviyo — email de confirmação)."
           },
           {
             "id": "sh_ops",
@@ -1752,7 +1752,7 @@
                 "b": "Envia mensagem automática: 'Seu pedido #X está sendo preparado. Etiqueta gerada.'"
               }
             ],
-            "maatVirtualNota": "Agente Bling monitora erros de emissão de NF. Agente Logística registra o pedido no histórico de entregas para rastreabilidade."
+            "maatVirtualNota": "Laxmi (Bling-Tesouraria) monitora erros de emissão de NF. Hina (Logística de Produto) registra o pedido no histórico de entregas para rastreabilidade."
           },
           {
             "id": "sh_ent",
@@ -1778,7 +1778,7 @@
                 "b": "Envia notificações de status em cada etapa com código de rastreio."
               }
             ],
-            "maatVirtualNota": "Agente Logística monitora pedidos em trânsito há mais de X dias e aciona alerta para o squad operacional."
+            "maatVirtualNota": "Hina (Logística de Produto) monitora pedidos em trânsito há mais de X dias e aciona alerta para o squad operacional."
           },
           {
             "id": "sh_pos1",
@@ -1804,7 +1804,7 @@
                 "b": "Cliente com NPS ≥ 8 recebe tag promotor. Entra em pipeline de convite para embaixadores."
               }
             ],
-            "maatVirtualNota": "Agente Insta+TikTok recebe webhook de review_created e avalia para curadoria de UGC. Reviews 5 estrelas com conteúdo rico entram no pipeline de conteúdo."
+            "maatVirtualNota": "Nut (Insta + TikTok Orgânico) recebe webhook de review_created e avalia para curadoria de UGC. Reviews 5 estrelas com conteúdo rico entram no pipeline de conteúdo."
           },
           {
             "id": "sh_pos2",
@@ -1830,7 +1830,7 @@
                 "b": "Scenario de recompra: Pipedrive deal_lost → Klaviyo reativação → WA mensagem personalizada."
               }
             ],
-            "maatVirtualNota": "Agente Pipedrive monitora pipeline de recompra e aciona alertas quando deal está parado. Agente Klaviyo otimiza subject lines com base em dados de abertura."
+            "maatVirtualNota": "Seshat (Pipedrive CRM) monitora pipeline de recompra e aciona alertas quando deal está parado. Deméter (Klaviyo) otimiza subject lines com base em dados de abertura."
           }
         ]
       },
@@ -1859,7 +1859,7 @@
                 "b": "Cria lead automaticamente com origem:whatsapp e perfil identificado pelo menu."
               }
             ],
-            "maatVirtualNota": "Agente-mestre recebe contexto da conversa classificada e decide qual agente especializado acionar (ex: proposta PJ → agente Pipedrive; dúvida de produto → Agente Supply)."
+            "maatVirtualNota": "Sol (Agente-Mestre) recebe contexto da conversa classificada e decide qual agente especializado acionar (ex: proposta PJ → Seshat/Pipedrive; dúvida de produto → Abundantia/Supply)."
           },
           {
             "id": "wa_menu",
@@ -1881,7 +1881,7 @@
                 "b": "Deal criado com pipeline correto (B2C / B2B / Rep SC) e stage inicial definido."
               }
             ],
-            "maatVirtualNota": "Agente Pipedrive cria e categoriza o deal automaticamente. Agente Make aciona o scenario correspondente ao perfil identificado."
+            "maatVirtualNota": "Seshat (Pipedrive CRM) cria e categoriza o deal automaticamente. Iris (Make/n8n) aciona o scenario correspondente ao perfil identificado."
           },
           {
             "id": "wa_prop",
@@ -1907,7 +1907,7 @@
                 "b": "Se link não pago em 24h → lembrete automático. Se 48h → escala para atendente."
               }
             ],
-            "maatVirtualNota": "Agente Pipedrive monitora deals em stage 'Proposta enviada' e aciona follow-up automático conforme SLA definido."
+            "maatVirtualNota": "Seshat (Pipedrive CRM) monitora deals em stage 'Proposta enviada' e aciona follow-up automático conforme SLA definido."
           },
           {
             "id": "wa_pag",
@@ -1933,7 +1933,7 @@
                 "b": "Scenario: Bling pix_pago → Pipedrive atualizar deal → WA confirmação → iniciar ops."
               }
             ],
-            "maatVirtualNota": "Agente-mestre recebe sinal de pagamento e inicia delegação para operações: aciona agente Bling (NF) e agente Melhor Envio (etiqueta)."
+            "maatVirtualNota": "Sol (Agente-Mestre) recebe sinal de pagamento e inicia delegação para operações: aciona Laxmi (Bling-Tesouraria/NF) e Melhor Envio (etiqueta)."
           },
           {
             "id": "wa_ops",
@@ -1955,7 +1955,7 @@
                 "b": "Scenario: NF emitida → etiqueta gerada → WA notificação ao cliente com dados do pedido."
               }
             ],
-            "maatVirtualNota": "Agente Logística avalia se o volume justifica transportadora parceira direta ou Melhor Envio, e roteia automaticamente."
+            "maatVirtualNota": "Hina (Logística de Produto) avalia se o volume justifica transportadora parceira direta ou Melhor Envio, e roteia automaticamente."
           },
           {
             "id": "wa_ent",
@@ -1977,7 +1977,7 @@
                 "b": "Scenario: status_entregue → WA confirmação → Pipedrive atualizar deal para 'Entregue'."
               }
             ],
-            "maatVirtualNota": "Agente Logística registra entrega e atualiza histórico do cliente. Agente Pipedrive fecha o deal e inicia contagem para trigger de recompra."
+            "maatVirtualNota": "Hina (Logística de Produto) registra entrega e atualiza histórico do cliente. Seshat (Pipedrive CRM) fecha o deal e inicia contagem para trigger de recompra."
           },
           {
             "id": "wa_pos",
@@ -2003,7 +2003,7 @@
                 "b": "Scenario: Pipedrive D+25 → WA mensagem → se sim, reinicia fluxo de pedido."
               }
             ],
-            "maatVirtualNota": "Agente Pipedrive calcula data estimada de reposição com base no histórico e dispara follow-up no timing certo. Agente WA gerencia a conversa de recompra de forma autônoma até o ponto de decisão."
+            "maatVirtualNota": "Seshat (Pipedrive CRM) calcula data estimada de reposição com base no histórico e dispara follow-up no timing certo. O squad WhatsApp gerencia a conversa de recompra de forma autônoma até o ponto de decisão."
           }
         ]
       },
@@ -2032,7 +2032,7 @@
                 "b": "Estoque sincronizado em tempo real via integração nativa ML↔Bling para evitar venda sem estoque."
               }
             ],
-            "maatVirtualNota": "Agente Mercado Livre monitora posição dos anúncios, responde perguntas de compradores e ajusta preços conforme competitividade do canal."
+            "maatVirtualNota": "Iemanjá (Mercado Livre) monitora posição dos anúncios, responde perguntas de compradores e ajusta preços conforme competitividade do canal."
           },
           {
             "id": "ml_ped",
@@ -2054,7 +2054,7 @@
                 "b": "Scenario: ML pedido_confirmado → Bling criar pedido → Melhor Envio gerar etiqueta."
               }
             ],
-            "maatVirtualNota": "Agente Bling processa o pedido ML com as mesmas regras do Shopify. Agente ML atualiza status do pedido na plataforma em cada etapa."
+            "maatVirtualNota": "Laxmi (Bling-Tesouraria) processa o pedido ML com as mesmas regras do Shopify. Iemanjá (Mercado Livre) atualiza status do pedido na plataforma em cada etapa."
           },
           {
             "id": "ml_pag",
@@ -2076,7 +2076,7 @@
                 "b": "Consolida receita ML com a receita Shopify para cálculo de MER (Marketing Efficiency Ratio) por canal."
               }
             ],
-            "maatVirtualNota": "Agente BI monitora liquidação de pagamentos ML e alerta se houver divergência entre pedidos entregues e valores liberados."
+            "maatVirtualNota": "Sofia (BI Estratégico) monitora liquidação de pagamentos ML e alerta se houver divergência entre pedidos entregues e valores liberados."
           },
           {
             "id": "ml_ops",
@@ -2098,7 +2098,7 @@
                 "b": "MAAT atualiza status do pedido no ML com código de rastreio após postagem."
               }
             ],
-            "maatVirtualNota": "Agente Mercado Livre atualiza automaticamente o status do pedido na plataforma e insere o código de rastreio assim que disponível."
+            "maatVirtualNota": "Iemanjá (Mercado Livre) atualiza automaticamente o status do pedido na plataforma e insere o código de rastreio assim que disponível."
           },
           {
             "id": "ml_ent",
@@ -2120,7 +2120,7 @@
                 "b": "Agente ML monitora prazo de entrega e aciona ação preventiva se pedido estiver próximo do limite."
               }
             ],
-            "maatVirtualNota": "Agente Mercado Livre monitora reputação do vendedor em tempo real. Se reclamação aberta, aciona squad para resolução imediata antes de impactar o ranking."
+            "maatVirtualNota": "Iemanjá (Mercado Livre) monitora reputação do vendedor em tempo real. Se reclamação aberta, aciona squad para resolução imediata antes de impactar o ranking."
           },
           {
             "id": "ml_pos",
@@ -2146,7 +2146,7 @@
                 "b": "Scenario: cliente cadastrado via QR → Klaviyo LC1 boas-vindas → Pipedrive criar contato → Shopify gerar cupom."
               }
             ],
-            "maatVirtualNota": "Agente Insta+TikTok usa reviews 5 estrelas do ML como prova social. Agente Pipedrive acompanha taxa de migração ML→Shopify como KPI estratégico do canal."
+            "maatVirtualNota": "Nut (Insta + TikTok Orgânico) usa reviews 5 estrelas do ML como prova social. Seshat (Pipedrive CRM) acompanha taxa de migração ML→Shopify como KPI estratégico do canal."
           }
         ]
       }
