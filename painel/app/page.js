@@ -367,7 +367,7 @@ function TimeVirtualView() {
               {esps.map(e => {
                 const tools = (e.ferramentas || []).slice(0, 3);
                 return (
-                  <button key={e.id} type="button" className="tv-card" onClick={() => setAgenteAberto(e)}>
+                  <button key={e.id} id={`agente-${e.id}`} type="button" className="tv-card" onClick={() => setAgenteAberto(e)}>
                     <div className="tv-card-name">{e.nomeMitologico}</div>
                     <div className="tv-card-funcao">{e.funcao}</div>
                     <div className="tv-card-desc">{e.descricao}</div>
@@ -708,6 +708,222 @@ function FluxoOperacionalView() {
   );
 }
 
+const TIER_LABEL = { alto: "Alto", medio: "Médio", baixo: "Baixo" };
+
+function ImpactoPill({ tier, eixo }) {
+  if (!tier) return null;
+  return (
+    <span className={`pill-tier pill-tier-${tier}`}>
+      {TIER_LABEL[tier]} impacto {eixo}
+    </span>
+  );
+}
+
+function RoadmapItem({ item }) {
+  const hasPre = (item.prerequisitos || []).length > 0;
+  const hasDestrava = (item.destrava || []).length > 0;
+  return (
+    <div className="roadmap-item">
+      <div className="roadmap-item-head">
+        <span className="roadmap-item-id">{item.id}</span>
+        <span className="roadmap-item-titulo">{item.titulo}</span>
+      </div>
+      <div className="roadmap-item-pills">
+        <ImpactoPill tier={item.impactoDireto} eixo="direto" />
+        <ImpactoPill tier={item.impactoCadeia} eixo="cadeia" />
+      </div>
+      {hasPre && (
+        <div className="roadmap-item-meta">
+          <span className="roadmap-item-meta-label">Pré-requisitos:</span>
+          <span className="roadmap-item-meta-val">{item.prerequisitos.join(" · ")}</span>
+        </div>
+      )}
+      {hasDestrava && (
+        <div className="roadmap-item-meta">
+          <span className="roadmap-item-meta-label">Destrava:</span>
+          <span className="roadmap-item-meta-val">{item.destrava.join(" · ")}</span>
+        </div>
+      )}
+      {item.nota && <div className="roadmap-item-nota">{item.nota}</div>}
+    </div>
+  );
+}
+
+function RoadmapBloco({ p }) {
+  return (
+    <div className={`roadmap-bloco roadmap-bloco-n${p.nivel}`}>
+      <div className="roadmap-bloco-head">
+        <div className="roadmap-bloco-num">P{p.nivel}</div>
+        <div>
+          <div className="roadmap-bloco-titulo">{p.titulo}</div>
+          <div className="roadmap-bloco-sprint">{p.sprint}</div>
+        </div>
+      </div>
+      <div className="roadmap-itens">
+        {p.itens.map(i => <RoadmapItem key={i.id} item={i} />)}
+      </div>
+    </div>
+  );
+}
+
+function RoadmapP5Bloco({ p, navigateToAgent }) {
+  return (
+    <div className={`roadmap-bloco roadmap-bloco-n${p.nivel}`}>
+      <div className="roadmap-bloco-head">
+        <div className="roadmap-bloco-num">P{p.nivel}</div>
+        <div>
+          <div className="roadmap-bloco-titulo">{p.titulo}</div>
+          <div className="roadmap-bloco-sprint">{p.sprint}</div>
+        </div>
+      </div>
+      {p.notaFrenteB && (
+        <div className="roadmap-frenteb-nota">
+          <div className="roadmap-frenteb-label">Frente B</div>
+          <div className="roadmap-frenteb-text">{p.notaFrenteB}</div>
+        </div>
+      )}
+      <ol className="roadmap-p5-list">
+        {p.itens.map(i => {
+          const hasPre = (i.prerequisitos || []).length > 0;
+          return (
+            <li key={i.id} className="roadmap-p5-item">
+              <button
+                type="button"
+                className="roadmap-p5-btn"
+                onClick={() => navigateToAgent(i.agente)}
+                title="Abrir no Time Virtual"
+              >
+                <span className="roadmap-item-id">{i.id}</span>
+                <span className="roadmap-p5-titulo">{i.titulo}</span>
+                <span className="roadmap-pill roadmap-pill-dev">dev</span>
+                {hasPre && (
+                  <span className="roadmap-p5-pre">após {i.prerequisitos.join(" · ")}</span>
+                )}
+                {i.nota && <span className="roadmap-p5-nota">{i.nota}</span>}
+              </button>
+            </li>
+          );
+        })}
+      </ol>
+    </div>
+  );
+}
+
+function TimelineProjecao({ projecao }) {
+  const [animated, setAnimated] = useState(false);
+  useEffect(() => {
+    const id = requestAnimationFrame(() => setAnimated(true));
+    return () => cancelAnimationFrame(id);
+  }, []);
+  return (
+    <div className="roadmap-timeline">
+      <div className="roadmap-timeline-head">Projeção</div>
+      {projecao.map((m, i) => (
+        <div key={i} className={`roadmap-timeline-row ${m.atual ? "roadmap-timeline-row-atual" : ""}`}>
+          <div className="roadmap-timeline-dot" aria-hidden="true" />
+          <div className="roadmap-timeline-label">{m.milestone}</div>
+          <div className="roadmap-timeline-bar">
+            <div
+              className="roadmap-timeline-fill"
+              style={{ width: animated ? `${m.progressoPct}%` : "0%" }}
+            />
+          </div>
+          <div className="roadmap-timeline-pct">{m.progressoPct}%</div>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function FrentesGlossario({ b2 }) {
+  return (
+    <section className="roadmap-header-bloco">
+      <h3 className="roadmap-header-h3">{b2.titulo}</h3>
+      <div className="roadmap-glossario-grid">
+        <div className="roadmap-glossario-col">
+          <div className="roadmap-glossario-col-titulo">{b2.colunaAgentes.titulo}</div>
+          {b2.colunaAgentes.itens.map(i => (
+            <div key={i.rotulo} className="roadmap-glossario-item">
+              <span className="roadmap-glossario-rotulo">{i.rotulo}</span> — {i.texto}
+            </div>
+          ))}
+        </div>
+        <div className="roadmap-glossario-col">
+          <div className="roadmap-glossario-col-titulo">{b2.colunaTrabalho.titulo}</div>
+          {b2.colunaTrabalho.itens.map(i => (
+            <div key={i.rotulo} className="roadmap-glossario-item">
+              <span className="roadmap-glossario-rotulo">{i.rotulo}</span> — {i.texto}
+            </div>
+          ))}
+        </div>
+      </div>
+      <div className="roadmap-glossario-nota">{b2.nota}</div>
+    </section>
+  );
+}
+
+function TimelineHorizontal({ b3 }) {
+  return (
+    <section className="roadmap-header-bloco">
+      <h3 className="roadmap-header-h3">{b3.titulo}</h3>
+      <div className="roadmap-timeline-h">
+        {b3.marcos.map((m, i) => (
+          <div key={i} className={`roadmap-timeline-h-marco ${m.atual ? "roadmap-timeline-h-marco-atual" : ""}`}>
+            <div className="roadmap-timeline-h-periodo">{m.periodo}</div>
+            <div className="roadmap-timeline-h-dot" aria-hidden="true" />
+            <div className="roadmap-timeline-h-titulo">{m.titulo}</div>
+            <div className="roadmap-timeline-h-sub">{m.subtitulo}</div>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function RoadmapHeader({ header }) {
+  return (
+    <div className="roadmap-header">
+      <section className="roadmap-header-bloco">
+        <h2 className="roadmap-header-h2">{header.bloco1.titulo}</h2>
+        <p className="roadmap-header-prose">{header.bloco1.paragrafo}</p>
+      </section>
+      <FrentesGlossario b2={header.bloco2} />
+      <TimelineHorizontal b3={header.bloco3} />
+      <section className="roadmap-header-bloco">
+        <h3 className="roadmap-header-h3">{header.bloco4.titulo}</h3>
+        <p className="roadmap-header-prose">{header.bloco4.paragrafo}</p>
+      </section>
+    </div>
+  );
+}
+
+function RoadmapView({ navigateToAgent }) {
+  const { prioridades, projecao, formulaImpacto, header } = data.roadmap;
+  return (
+    <div className="roadmap-root">
+      {header && <RoadmapHeader header={header} />}
+
+      <div className="roadmap-legenda">
+        <span className="roadmap-legenda-title">Legenda</span>
+        <span className="pill-tier pill-tier-alto">Alto impacto</span>
+        <span className="pill-tier pill-tier-medio">Médio impacto</span>
+        <span className="pill-tier pill-tier-baixo">Baixo impacto</span>
+        <span className="roadmap-legenda-formula">{formulaImpacto}</span>
+      </div>
+
+      <div className="roadmap-blocos">
+        {prioridades.map(p => (
+          p.nivel === 5
+            ? <RoadmapP5Bloco key={p.nivel} p={p} navigateToAgent={navigateToAgent} />
+            : <RoadmapBloco key={p.nivel} p={p} />
+        ))}
+      </div>
+
+      <TimelineProjecao projecao={projecao} />
+    </div>
+  );
+}
+
 function HierarquiaView() {
   const { humanos, agenteMestre: mestre, coordenadores, especialistas, governancaTecnica } = data;
   const porCoord = agruparPorCoordenador(especialistas);
@@ -790,6 +1006,26 @@ export default function Dashboard() {
   const [activeTab, setActiveTab] = useState("overview");
   const [state, setState] = useState({ completedTasks: [], questions: [] });
   const [loading, setLoading] = useState(true);
+  const [scrollToAgentId, setScrollToAgentId] = useState(null);
+
+  useEffect(() => {
+    if (activeTab !== "agents" || !scrollToAgentId) return;
+    const timer = setTimeout(() => {
+      const el = document.getElementById(`agente-${scrollToAgentId}`);
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth", block: "center" });
+        el.classList.add("agente-highlight");
+        setTimeout(() => el.classList.remove("agente-highlight"), 2000);
+      }
+      setScrollToAgentId(null);
+    }, 120);
+    return () => clearTimeout(timer);
+  }, [activeTab, scrollToAgentId]);
+
+  const navigateToAgent = useCallback((agenteId) => {
+    setActiveTab("agents");
+    setScrollToAgentId(agenteId);
+  }, []);
 
   const fetchState = useCallback(async () => {
     try {
@@ -865,6 +1101,7 @@ export default function Dashboard() {
     { id: "agents", label: "Time Virtual" },
     { id: "mapa", label: "Mapa Estratégico" },
     { id: "fluxo", label: "Fluxo Operacional" },
+    { id: "roadmap", label: "Roadmap" },
     { id: "projects", label: "Projetos" },
     { id: "pendencias", label: "Pendencias", alert: pendingCount },
     { id: "tasks", label: "Todas Tarefas" },
@@ -1032,6 +1269,13 @@ export default function Dashboard() {
           <div>
             <div className="section-title">Fluxo Operacional</div>
             <FluxoOperacionalView />
+          </div>
+        )}
+
+        {activeTab === "roadmap" && (
+          <div>
+            <div className="section-title">Roadmap</div>
+            <RoadmapView navigateToAgent={navigateToAgent} />
           </div>
         )}
 
