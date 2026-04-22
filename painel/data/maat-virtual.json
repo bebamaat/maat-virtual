@@ -2340,8 +2340,8 @@
             "titulo": "Instalar GA4 + GTM no Shopify",
             "tipo": "ferramenta",
             "agente": "maia",
-            "impactoDireto": 2.6,
-            "impactoCadeia": 12,
+            "impactoDireto": "medio",
+            "impactoCadeia": "alto",
             "destrava": [
               "metapixel",
               "hotjar",
@@ -2356,8 +2356,8 @@
             "titulo": "Instalar Meta Pixel + TikTok Pixel via GTM",
             "tipo": "ferramenta",
             "agente": "maia",
-            "impactoDireto": 5.2,
-            "impactoCadeia": 7.8,
+            "impactoDireto": "alto",
+            "impactoCadeia": "medio",
             "destrava": [
               "afrodite",
               "iansa"
@@ -2372,8 +2372,8 @@
             "titulo": "Instalar Hotjar ou Clarity via GTM",
             "tipo": "ferramenta",
             "agente": "maia",
-            "impactoDireto": 2.6,
-            "impactoCadeia": 0,
+            "impactoDireto": "medio",
+            "impactoCadeia": null,
             "destrava": [],
             "prerequisitos": [
               "1.1"
@@ -2392,8 +2392,8 @@
             "titulo": "Configurar Klaviyo (flows LC1 / LC6 / LC7 / LC9 + sync Shopify)",
             "tipo": "ferramenta",
             "agente": "demeter",
-            "impactoDireto": 2.6,
-            "impactoCadeia": 3.9,
+            "impactoDireto": "medio",
+            "impactoCadeia": "baixo",
             "destrava": [
               "demeter"
             ],
@@ -2405,8 +2405,8 @@
             "titulo": "Instalar Melhor Envio no checkout do Shopify",
             "tipo": "ferramenta",
             "agente": "hina",
-            "impactoDireto": 2.6,
-            "impactoCadeia": 0,
+            "impactoDireto": "medio",
+            "impactoCadeia": null,
             "destrava": [],
             "prerequisitos": [],
             "nota": "Elimina a geracao manual de etiqueta que existe hoje. Integracao nativa via app Shopify, baixa complexidade."
@@ -2416,8 +2416,8 @@
             "titulo": "Decidir ferramenta de BI + iniciar ETL minimo",
             "tipo": "ferramenta",
             "agente": "sofia",
-            "impactoDireto": 2,
-            "impactoCadeia": 3.9,
+            "impactoDireto": "medio",
+            "impactoCadeia": "baixo",
             "destrava": [
               "sofia"
             ],
@@ -2436,8 +2436,8 @@
             "titulo": "Conectar API do Mercado Livre",
             "tipo": "ferramenta",
             "agente": "iemanja",
-            "impactoDireto": 1.3,
-            "impactoCadeia": 0,
+            "impactoDireto": "baixo",
+            "impactoCadeia": null,
             "destrava": [],
             "prerequisitos": [],
             "nota": "Pipeline ja existe em pipedrive-setup-maat.mjs. Falta o cliente seller e o sync de estoque via Bling (ja esta em implementacao)."
@@ -2447,8 +2447,8 @@
             "titulo": "Instalar Judge.me + trigger pos-entrega",
             "tipo": "ferramenta",
             "agente": "seshat",
-            "impactoDireto": 1.3,
-            "impactoCadeia": 0,
+            "impactoDireto": "baixo",
+            "impactoCadeia": null,
             "destrava": [],
             "prerequisitos": [],
             "nota": "App Shopify simples, ja referenciado no stage D+30 do Pipedrive (ja esta em implementacao)."
@@ -2458,8 +2458,8 @@
             "titulo": "Substituir Asaas por Mercado Pago no Shopify",
             "tipo": "ferramenta",
             "agente": "hathor",
-            "impactoDireto": 2.6,
-            "impactoCadeia": 0,
+            "impactoDireto": "medio",
+            "impactoCadeia": null,
             "destrava": [],
             "prerequisitos": [],
             "nota": "Asaas opera em staging. Mercado Pago e o gateway planejado para producao. Nao afeta Bling nem Pipedrive (webhooks continuam)."
@@ -2469,8 +2469,8 @@
             "titulo": "Contratar WhatsApp Business API oficial",
             "tipo": "ferramenta",
             "agente": "vesta",
-            "impactoDireto": 2.6,
-            "impactoCadeia": 0,
+            "impactoDireto": "medio",
+            "impactoCadeia": null,
             "destrava": [],
             "prerequisitos": [],
             "nota": "Hoje o maat-vendas-bot roda Telegram — o fluxo do mapa assume WA oficial. Z-API e caminho mais rapido; Meta Cloud API e o 'certo' de longo prazo."
@@ -2487,8 +2487,8 @@
             "titulo": "Social Snowball (programa de embaixadores)",
             "tipo": "ferramenta",
             "agente": "freya",
-            "impactoDireto": 2.6,
-            "impactoCadeia": 0,
+            "impactoDireto": "medio",
+            "impactoCadeia": null,
             "destrava": [],
             "prerequisitos": [],
             "nota": "Depende de ter base de clientes ativos no Shopify primeiro. Implantar so quando o programa 'Roda da MAAT' tiver regras definidas."
@@ -2498,8 +2498,8 @@
             "titulo": "Make / n8n para orquestracao extra",
             "tipo": "ferramenta",
             "agente": "iris",
-            "impactoDireto": 2.6,
-            "impactoCadeia": 0,
+            "impactoDireto": "medio",
+            "impactoCadeia": null,
             "destrava": [],
             "prerequisitos": [],
             "nota": "Opcional — os webhooks Vercel diretos ja resolvem 80% dos casos. So vale quando surgir cenario com muitos passos condicionais."
@@ -2516,8 +2516,8 @@
             "titulo": "Desenvolver Agente BI (Sofia)",
             "tipo": "agente",
             "agente": "sofia",
-            "impactoDireto": 1.3,
-            "impactoCadeia": 0,
+            "impactoDireto": "baixo",
+            "impactoCadeia": null,
             "destrava": [],
             "prerequisitos": [
               "2.6"
@@ -2529,8 +2529,8 @@
             "titulo": "Desenvolver Agente PCP (Uzume)",
             "tipo": "agente",
             "agente": "uzume",
-            "impactoDireto": 1.3,
-            "impactoCadeia": 0,
+            "impactoDireto": "baixo",
+            "impactoCadeia": null,
             "destrava": [],
             "prerequisitos": [],
             "nota": "Bling ja esta implementado, tem dados de estoque."
@@ -2540,8 +2540,8 @@
             "titulo": "Desenvolver Agente Supply (Abundantia)",
             "tipo": "agente",
             "agente": "abundantia",
-            "impactoDireto": 1.3,
-            "impactoCadeia": 0,
+            "impactoDireto": "baixo",
+            "impactoCadeia": null,
             "destrava": [],
             "prerequisitos": [
               "5.2"
@@ -2553,8 +2553,8 @@
             "titulo": "Desenvolver Agente Logistica (Hina)",
             "tipo": "agente",
             "agente": "hina",
-            "impactoDireto": 1.3,
-            "impactoCadeia": 0,
+            "impactoDireto": "baixo",
+            "impactoCadeia": null,
             "destrava": [],
             "prerequisitos": [
               "2.5"
@@ -2566,8 +2566,8 @@
             "titulo": "Desenvolver Agente P&D (Saraswati)",
             "tipo": "agente",
             "agente": "saraswati",
-            "impactoDireto": 1.3,
-            "impactoCadeia": 0,
+            "impactoDireto": "baixo",
+            "impactoCadeia": null,
             "destrava": [],
             "prerequisitos": [],
             "nota": ""
@@ -2577,8 +2577,8 @@
             "titulo": "Desenvolver Agente Design Digital (Neftis)",
             "tipo": "agente",
             "agente": "neftis",
-            "impactoDireto": 1.3,
-            "impactoCadeia": 0,
+            "impactoDireto": "baixo",
+            "impactoCadeia": null,
             "destrava": [],
             "prerequisitos": [],
             "nota": ""
@@ -2588,8 +2588,8 @@
             "titulo": "Desenvolver Agente Insta+TikTok (Nut)",
             "tipo": "agente",
             "agente": "nut",
-            "impactoDireto": 1.3,
-            "impactoCadeia": 0,
+            "impactoDireto": "baixo",
+            "impactoCadeia": null,
             "destrava": [],
             "prerequisitos": [
               "3.8"
@@ -2601,8 +2601,8 @@
             "titulo": "Desenvolver Agente Governanca (Temis)",
             "tipo": "agente",
             "agente": "temis",
-            "impactoDireto": 1.3,
-            "impactoCadeia": 0,
+            "impactoDireto": "baixo",
+            "impactoCadeia": null,
             "destrava": [],
             "prerequisitos": [],
             "nota": ""
@@ -2612,8 +2612,8 @@
             "titulo": "Desenvolver Agente Juridico (Nemesis)",
             "tipo": "agente",
             "agente": "nemesis",
-            "impactoDireto": 1.3,
-            "impactoCadeia": 0,
+            "impactoDireto": "baixo",
+            "impactoCadeia": null,
             "destrava": [],
             "prerequisitos": [],
             "nota": ""
@@ -2645,7 +2645,73 @@
         "progressoPct": 100
       }
     ],
-    "formulaImpacto": "Pontuação: implementado = 1 · em andamento = 0,5 · não iniciado = 0. 14 ferramentas no universo atual; cada transição vermelho→amarelo ou amarelo→verde vale 3,57pp (100% ÷ 14 itens ÷ 2 estágios). Projeção inclui os 9 agentes Frente 1 nos últimos 14pp."
+    "formulaImpacto": "Cada item do roadmap é classificado em dois eixos: impacto direto (quanto a implementação contribui pro progresso geral) e impacto cadeia (quantas outras ferramentas ou agentes ela destrava). Três níveis: Alto, Médio, Baixo. Itens sem impacto cadeia (não destravam nada) aparecem só com o pill de direto.",
+    "header": {
+      "bloco1": {
+        "titulo": "Construindo a operação AI-first da MAAT",
+        "paragrafo": "A MAAT está sendo construída como uma operação onde agentes Claude executam funções que normalmente exigiriam um time humano. Este roadmap cobre duas camadas que precisam andar juntas: a camada de ferramentas operacionais (14 no total — Shopify, Bling, Pipedrive, GA4, Klaviyo, e outras que compõem o cérebro digital) e a camada de agentes (39 no total: 1 Agente-Mestre + 7 Coordenadores + 31 Especialistas que operam essas ferramentas). Hoje estamos em 29% da construção. Destino: 100% em setembro de 2026."
+      },
+      "bloco2": {
+        "titulo": "As 4 Frentes",
+        "colunaAgentes": {
+          "titulo": "Frentes de AGENTES (o quê)",
+          "itens": [
+            {
+              "rotulo": "Frente 1",
+              "texto": "31 agentes proprietários MAAT, criados especificamente pra operação (Sofia BI, Uzume PCP, Seshat CRM, etc.). Não existem como app pronto; cada um precisa ter JD escrita e ser implementado."
+            },
+            {
+              "rotulo": "Frente 2",
+              "texto": "10 agentes que operam aplicações já prontas (Hathor opera Shopify, Iemanjá opera Mercado Livre, Atena opera Google Ads, etc.). A complexidade aqui está na integração, não na construção do agente em si."
+            }
+          ]
+        },
+        "colunaTrabalho": {
+          "titulo": "Frentes de TRABALHO (como)",
+          "itens": [
+            {
+              "rotulo": "Frente A",
+              "texto": "fundação conceitual: organograma, papéis mitológicos, estrutura de coordenação. Está praticamente concluída; restam 4 pendências humanas (ver aba Status)."
+            },
+            {
+              "rotulo": "Frente B",
+              "texto": "escrita das JDs dos agentes priorizados. 21 JDs já escritas, 10 pendentes. Próxima sessão segue a sequência: Nut → Laxmi+Juno → Abundantia → Sol → Ananke/Têmis."
+            }
+          ]
+        },
+        "nota": "Atenção ao vocabulário: Frente 1 e Frente 2 classificam AGENTES (output). Frente A e Frente B classificam trabalho HUMANO (processo). Os termos se parecem mas se referem a eixos diferentes."
+      },
+      "bloco3": {
+        "titulo": "Do zero ao destino",
+        "marcos": [
+          {
+            "periodo": "Outubro 2025",
+            "titulo": "Conceito nasce",
+            "subtitulo": "Ideia do MAAT Virtual como operação AI-first"
+          },
+          {
+            "periodo": "Março-Abril 2026",
+            "titulo": "Fundação construída",
+            "subtitulo": "Organograma mitológico, painel Virtual funcional, 21 JDs escritas, 7 marcos entregues"
+          },
+          {
+            "periodo": "Abril 2026",
+            "titulo": "HOJE — 29%",
+            "subtitulo": "3 ferramentas implementadas (Shopify, Pipedrive, Bling) + 2 em implementação (Mercado Livre, Judge.me)",
+            "atual": true
+          },
+          {
+            "periodo": "Setembro 2026",
+            "titulo": "Destino: 100%",
+            "subtitulo": "14 ferramentas implementadas + 9 agentes Frente 1 operacionais"
+          }
+        ]
+      },
+      "bloco4": {
+        "titulo": "As 5 Prioridades",
+        "paragrafo": "P1 a P4 são sobre ferramentas — 12 itens distribuídos em ordem de urgência e impacto. P5 é sobre agentes Frente 1 — 9 agentes que só existem quando suas JDs estão escritas e eles são deployados. Ferramentas sem agentes = automação sem orquestração. Agentes sem ferramentas = inteligência sem alavanca. Os dois precisam andar juntos — por isso estão no mesmo roadmap, não em caminhos separados."
+      }
+    }
   },
   "pendenciasHumanas": [
     {
