@@ -291,6 +291,7 @@
           "s": "ready"
         }
       ],
+      "dependencias": "Shopify (webhooks de pedido) · WhatsApp Business API (leads de conversa) · Klaviyo (sincronização de segmentos) · Agente BI (métricas de funil)",
       "origemMapID": "ag_pipedrive"
     },
     {
@@ -368,6 +369,7 @@
           "s": "ready"
         }
       ],
+      "dependencias": "Bling ERP (sincronização de estoque) · Melhor Envio (cálculo de frete) · Mercado Pago (status de pagamento) · Hotjar/Clarity (comportamento qualitativo)",
       "origemMapID": "ag_shopify"
     },
     {
@@ -404,6 +406,7 @@
         }
       ],
       "mcpTools": [],
+      "dependencias": "Bling ERP (estoque sincronizado e NF) · Agente BI (receita e performance do canal) · Agente Pipedrive (migração de clientes ML→canal próprio)",
       "origemMapID": "ag_ml"
     },
     {
@@ -456,6 +459,7 @@
         }
       ],
       "mcpTools": [],
+      "dependencias": "GA4 + GTM (conversões) · Shopify (dados de produto para Shopping) · Agente BI (ROAS e MER consolidados)",
       "origemMapID": "ag_gads"
     },
     {
@@ -504,6 +508,7 @@
         }
       ],
       "mcpTools": [],
+      "dependencias": "Meta Pixel (audiências e conversões) · Agente Design (criativos) · Agente BI (CAC e ROAS por campanha)",
       "origemMapID": "ag_meta"
     },
     {
@@ -544,6 +549,7 @@
         }
       ],
       "mcpTools": [],
+      "dependencias": "TikTok Pixel (conversões) · Agente Insta+TikTok (conteúdo orgânico para Spark Ads) · Agente BI (performance consolidada)",
       "origemMapID": "ag_tiktok"
     },
     {
@@ -593,6 +599,7 @@
         }
       ],
       "mcpTools": [],
+      "dependencias": "Judge.me (reviews para curadoria de UGC) · Agente Design (assets visuais) · Klaviyo (alinhamento de campanhas email + social) · GA4 (dados de tráfego vindo de redes sociais)",
       "origemMapID": "social"
     },
     {
@@ -633,6 +640,7 @@
         }
       ],
       "mcpTools": [],
+      "dependencias": "Shopify (eventos de compra e abandono) · Pipedrive (segmentos de CRM) · Judge.me (trigger de review pós-entrega)",
       "origemMapID": "ag_klaviyo"
     },
     {
@@ -838,6 +846,7 @@
         }
       ],
       "mcpTools": [],
+      "dependencias": "Agente Insta+TikTok (assets para conteudo) · Shopify (banners e imagens de produto) · Agente Governanca (apresentacoes)",
       "origemMapID": "design:neftis"
     },
     {
@@ -853,6 +862,7 @@
       "descricaoDetalhada": "Centraliza os assets fisicos da MAAT — embalagens, rotulos, mockups de produto, materiais POS para representantes e trade marketing. Guarda o brand guide impresso e gera briefings padronizados para pecas fisicas com especificacoes tecnicas de producao.",
       "skills": [],
       "mcpTools": [],
+      "dependencias": "Agente Supply (especificacoes de insumos) · Agente P&D (fichas tecnicas) · Agente Governanca (aprovacao de campanhas)",
       "origemMapID": "design:oxum"
     },
     {
@@ -914,6 +924,7 @@
         }
       ],
       "mcpTools": [],
+      "dependencias": "Bling ERP (NFs de transferência e romaneios) · Melhor Envio (frete last-mile B2C) · Agente Supply (agenda de recebimento de insumos) · Agente PCP (volumes de produção para planejamento de transporte)",
       "origemMapID": "logistica"
     },
     {
@@ -963,6 +974,7 @@
         }
       ],
       "mcpTools": [],
+      "dependencias": "Bling ERP (níveis de estoque e movimentações) · Agente PCP (demanda projetada e ordens de produção) · Agente Logística (prazos de entrega dos fornecedores)",
       "origemMapID": "supply"
     },
     {
@@ -999,6 +1011,7 @@
         }
       ],
       "mcpTools": [],
+      "dependencias": "Bling ERP (estoque e ordens) · Agente Supply (disponibilidade de insumos) · Agente Logística (prazos de entrega de insumos e produto acabado)",
       "origemMapID": "pcp"
     },
     {
@@ -1033,6 +1046,7 @@
         }
       ],
       "mcpTools": [],
+      "dependencias": "Agente Supply (cotação de insumos para novas fórmulas) · Agente PCP (viabilidade produtiva) · Agente Jurídico (conformidade ANVISA para novos ingredientes)",
       "origemMapID": "pd"
     },
     {
@@ -1095,6 +1109,7 @@
         }
       ],
       "mcpTools": [],
+      "dependencias": "Agente BI (dados consolidados para relatórios) · Agente Jurídico (decisões com implicação legal) · Bling ERP (dados financeiros)",
       "origemMapID": "governanca"
     },
     {
@@ -1139,6 +1154,7 @@
         }
       ],
       "mcpTools": [],
+      "dependencias": "Todas as fontes: Shopify · Bling · Pipedrive · Klaviyo · GA4 · Meta Ads · Google Ads · Mercado Livre",
       "origemMapID": "biagent"
     },
     {
@@ -1176,6 +1192,7 @@
         }
       ],
       "mcpTools": [],
+      "dependencias": "Shopify (eventos de e-commerce) · Meta + TikTok Pixel (validação de disparo) · Agente BI (fonte de dados de tráfego)",
       "origemMapID": "ag_ga4"
     },
     {
@@ -1209,6 +1226,7 @@
         }
       ],
       "mcpTools": [],
+      "dependencias": "Todas as ferramentas conectadas: Shopify · Bling · Pipedrive · Klaviyo · WhatsApp · Melhor Envio · ML API",
       "origemMapID": "ag_make"
     },
     {
@@ -1233,6 +1251,7 @@
       "descricaoDetalhada": "Opera o modulo de tesouraria do Bling ERP — fluxo de caixa, contas a pagar e a receber, projecao de caixa. Consolida movimentacao financeira diaria e alerta sobre saldos criticos.",
       "skills": [],
       "mcpTools": [],
+      "dependencias": "Bling ERP API · Shopify (receita) · Mercado Pago (conciliacao de pagamentos)",
       "origemMapID": "ag_bling:laxmi"
     },
     {
@@ -1265,6 +1284,7 @@
         }
       ],
       "mcpTools": [],
+      "dependencias": "Shopify (pedidos) · Mercado Livre (pedidos) · Melhor Envio (etiquetas) · Agente BI (dados financeiros consolidados)",
       "origemMapID": "ag_bling:juno"
     },
     {
@@ -1306,6 +1326,7 @@
         }
       ],
       "mcpTools": [],
+      "dependencias": "Agente P&D (conformidade de novos ingredientes) · Agente Governança (decisões com implicação legal) · Agente Supply (contratos com fornecedores)",
       "origemMapID": "juridico"
     },
     {

@@ -236,6 +236,156 @@ function AgenteCard({ a, className, showFuncao = true }) {
   );
 }
 
+function frenteDoAgente(a) {
+  if (!a || !a.origemMapID) return "Frente 1 · MAAT Virtual (a desenvolver)";
+  return a.origemMapID.startsWith("ag_")
+    ? "Frente 2 · Squad operacional"
+    : "Frente 1 · Ferramenta proprietaria";
+}
+
+function AgenteModal({ agente, onClose }) {
+  useEffect(() => {
+    function onKey(e) { if (e.key === "Escape") onClose(); }
+    window.addEventListener("keydown", onKey);
+    document.body.style.overflow = "hidden";
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      document.body.style.overflow = "";
+    };
+  }, [onClose]);
+
+  if (!agente) return null;
+
+  const skills = agente.skills || [];
+  const mcpTools = agente.mcpTools || [];
+  const skillsReady = skills.filter(s => s.s === "ready").length;
+  const skillsTodo = skills.filter(s => s.s !== "ready").length;
+  const temDesc = !!agente.descricaoDetalhada;
+  const temDeps = !!agente.dependencias;
+
+  return (
+    <div className="tv-overlay" onClick={(e) => e.target === e.currentTarget && onClose()}>
+      <div className="tv-modal" role="dialog" aria-modal="true" aria-label={agente.nomeMitologico}>
+        <button className="tv-modal-close" onClick={onClose} aria-label="Fechar">×</button>
+
+        <div className="tv-modal-head">
+          <div className="tv-modal-name">{agente.nomeMitologico}</div>
+          <div className="tv-modal-funcao">{agente.funcao}</div>
+          <div className="tv-modal-meta">
+            <span className="tv-modal-frente">{frenteDoAgente(agente)}</span>
+            <span className={`badge ${STATUS_BADGE[agente.status]}`}>{STATUS_LABEL[agente.status]}</span>
+          </div>
+        </div>
+
+        <section className="tv-modal-sec">
+          <div className="tv-modal-label">Descricao detalhada</div>
+          <div className="tv-modal-desc">
+            {temDesc ? agente.descricaoDetalhada : <span className="tv-tbd">A definir</span>}
+          </div>
+        </section>
+
+        <section className="tv-modal-sec">
+          <div className="tv-modal-label">
+            Skills
+            {skills.length > 0 && (
+              <span className="tv-modal-count">{skillsReady} pronta{skillsReady !== 1 ? "s" : ""} · {skillsTodo} a desenvolver</span>
+            )}
+          </div>
+          <div className="tv-tag-wrap">
+            {skills.length > 0
+              ? skills.map(s => (
+                  <span key={s.n} className={`tv-tag ${s.s === "ready" ? "tv-tag-ready" : "tv-tag-todo"}`}>
+                    <span className="tv-tag-dot" />
+                    {s.n}
+                  </span>
+                ))
+              : <span className="tv-tbd">A definir</span>
+            }
+          </div>
+        </section>
+
+        <section className="tv-modal-sec">
+          <div className="tv-modal-label">
+            MCP Tools
+            {mcpTools.length > 0 && (
+              <span className="tv-modal-count">{mcpTools.length} conectada{mcpTools.length !== 1 ? "s" : ""}</span>
+            )}
+          </div>
+          <div className="tv-tag-wrap">
+            {mcpTools.length > 0
+              ? mcpTools.map(m => (
+                  <span key={m.n} className="tv-tag tv-tag-mcp">
+                    <span className="tv-tag-dot" />
+                    {m.n}
+                  </span>
+                ))
+              : <span className="tv-tbd">A definir</span>
+            }
+          </div>
+        </section>
+
+        <section className="tv-modal-sec">
+          <div className="tv-modal-label">Depende de</div>
+          <div className="tv-modal-desc">
+            {temDeps ? agente.dependencias : <span className="tv-tbd">A definir</span>}
+          </div>
+        </section>
+
+        {agente.pendencias && agente.pendencias.length > 0 && (
+          <section className="tv-modal-sec">
+            <div className="tv-modal-label">Pendencias</div>
+            <div className="tv-modal-desc tv-modal-pend">
+              {agente.pendencias.join(" · ")}
+            </div>
+          </section>
+        )}
+      </div>
+    </div>
+  );
+}
+
+function TimeVirtualView() {
+  const { coordenadores, especialistas } = data;
+  const porCoord = agruparPorCoordenador(especialistas);
+  const [agenteAberto, setAgenteAberto] = useState(null);
+
+  return (
+    <div className="tv-catalogo">
+      {coordenadores.map(c => {
+        const esps = porCoord[c.id] || [];
+        return (
+          <div key={c.id} className="tv-grupo">
+            <div className="tv-grupo-head">
+              <div className="tv-grupo-area">{c.areaLabel}</div>
+              <div className="tv-grupo-coord">{c.nomeMitologico}</div>
+              <div className="tv-grupo-count">{esps.length} especialista{esps.length !== 1 ? "s" : ""}</div>
+            </div>
+            <div className="tv-cards">
+              {esps.map(e => {
+                const tools = (e.ferramentas || []).slice(0, 3);
+                return (
+                  <button key={e.id} type="button" className="tv-card" onClick={() => setAgenteAberto(e)}>
+                    <div className="tv-card-name">{e.nomeMitologico}</div>
+                    <div className="tv-card-funcao">{e.funcao}</div>
+                    <div className="tv-card-desc">{e.descricao}</div>
+                    {tools.length > 0 && (
+                      <div className="tv-card-tools">
+                        {tools.map(t => <span key={t} className="tv-card-tool">{t}</span>)}
+                      </div>
+                    )}
+                    <span className={`badge ${STATUS_BADGE[e.status]} tv-card-status`}>{STATUS_LABEL[e.status]}</span>
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+        );
+      })}
+      <AgenteModal agente={agenteAberto} onClose={() => setAgenteAberto(null)} />
+    </div>
+  );
+}
+
 function HierarquiaView() {
   const { humanos, agenteMestre: mestre, coordenadores, especialistas, governancaTecnica } = data;
   const porCoord = agruparPorCoordenador(especialistas);
@@ -543,8 +693,8 @@ export default function Dashboard() {
 
         {activeTab === "agents" && (
           <div>
-            <div className="section-title">Time Virtual</div>
-            <HierarquiaView />
+            <div className="section-title">Time Virtual <span className="count">{data.especialistas.length}</span></div>
+            <TimeVirtualView />
           </div>
         )}
 
