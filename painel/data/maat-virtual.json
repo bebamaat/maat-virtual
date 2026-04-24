@@ -1444,8 +1444,8 @@
         "Bling ERP",
         "Judge.me"
       ],
-      "statusImplementacao": "implementado",
-      "notaStatus": "Tema customizado (maat-shopify-theme) + webhook de pedidos (maat-pipedrive/maat-webhooks/api/shopify-order.js) + MCP Vercel (7 tools).",
+      "statusImplementacao": "em-implementacao",
+      "notaStatus": "Staging em bebamaat.com.br com tema MAAT Staging (base Dawn) em preview mode. Horizon não publicado. Público só acessa com senha.",
       "corAcento": "#27500A"
     },
     {
@@ -1460,8 +1460,8 @@
         "Make/n8n (automações de triggers)",
         "BI (fonte para dashboards de receita)"
       ],
-      "statusImplementacao": "implementado",
-      "notaStatus": "Schema completo (pipedrive-setup-maat.mjs) + webhooks pos-venda ativos + MCP Pipedream (21 tools) conectado.",
+      "statusImplementacao": "em-implementacao",
+      "notaStatus": "Arquitetura iniciada por Lucas (5 stages Vendas + Pós-Venda + 14 custom fields). Deploy via API pendente.",
       "corAcento": "#0C447C"
     },
     {
@@ -1476,8 +1476,8 @@
         "Make/n8n",
         "BI"
       ],
-      "statusImplementacao": "implementado",
-      "notaStatus": "OAuth2 v3 ativo (maat-prevenda-staging/server/bling.ts) + emissao de NF-e em producao + migracao Conta Azul concluida.",
+      "statusImplementacao": "em-implementacao",
+      "notaStatus": "Integrado ao Shopify, em refinamento por Cleber. NF-e, boleto e emissão operacionais.",
       "corAcento": "#633806"
     },
     {
@@ -1496,7 +1496,7 @@
         "Mercado Livre. Requer ETL ou conectores nativos para cada fonte."
       ],
       "statusImplementacao": "nao-iniciado",
-      "notaStatus": "Ferramenta ainda nao definida — candidatos: Power BI, Looker Studio, solucao propria via Agente BI.",
+      "notaStatus": "Decisão pendente entre Looker Studio / Metabase / Power BI.",
       "corAcento": "#3C3489"
     },
     {
@@ -1510,8 +1510,8 @@
         "Make/n8n (automações de menu e respostas)",
         "Klaviyo (handoff para email quando fluxo de WA encerra)"
       ],
-      "statusImplementacao": "nao-iniciado",
-      "notaStatus": "Bot atual (maat-vendas-bot) opera via Telegram. WhatsApp oficial (Z-API / Meta Cloud) pendente.",
+      "statusImplementacao": "em-implementacao",
+      "notaStatus": "Bot B2B em desenvolvimento por Cleber. Não é API oficial Meta; canal PF/SAC/Parcerias ainda não iniciado.",
       "corAcento": "#085041"
     },
     {
@@ -1525,8 +1525,8 @@
         "Bling ERP (sincronização de pedidos e etiquetas)",
         "WhatsApp Business API (envio de código de rastreio ao cliente)"
       ],
-      "statusImplementacao": "nao-iniciado",
-      "notaStatus": "Sem integracao no checkout ou no Bling. Etiquetas geradas manualmente hoje.",
+      "statusImplementacao": "implementado",
+      "notaStatus": "Ativo no checkout do Shopify.",
       "corAcento": "#712B13"
     },
     {
@@ -1541,7 +1541,7 @@
         "Make/n8n (triggers externos)"
       ],
       "statusImplementacao": "nao-iniciado",
-      "notaStatus": "Conta contratada (custo ativo). Flows LC1-LC9 e integracao Shopify nao configurados.",
+      "notaStatus": "Newsletter usa form nativo do Shopify. Conta Klaviyo contratada mas não conectada.",
       "corAcento": "#72243E"
     },
     {
@@ -1556,7 +1556,7 @@
         "Google Ads (conversões importadas para otimização de lances)"
       ],
       "statusImplementacao": "nao-iniciado",
-      "notaStatus": "Nenhum tag instalado no tema Shopify. Historico de audiencia ainda nao esta sendo coletado.",
+      "notaStatus": "Nenhuma tag detectada no HTML da loja (varredura 23/04).",
       "corAcento": "#7A4F00"
     },
     {
@@ -1570,7 +1570,7 @@
         "Meta Ads + TikTok Ads (consumo dos dados para segmentação)"
       ],
       "statusImplementacao": "nao-iniciado",
-      "notaStatus": "Pixels Meta e TikTok nao injetados no tema. Sem eventos view_item / add_to_cart / purchase.",
+      "notaStatus": "Nenhum fbq detectado. Pixel Meta e TikTok ambos ausentes.",
       "corAcento": "#7A4F00"
     },
     {
@@ -1583,8 +1583,8 @@
         "Make/n8n (automação de respostas a perguntas)",
         "BI (consolidação de receita multi-canal)"
       ],
-      "statusImplementacao": "em-implementacao",
-      "notaStatus": "Pipeline criado em pipedrive-setup-maat.mjs; API seller e sync de estoque ainda nao conectados.",
+      "statusImplementacao": "nao-iniciado",
+      "notaStatus": "Loja Mercado Livre não iniciada.",
       "corAcento": "#444441"
     },
     {
@@ -1597,7 +1597,7 @@
         "Bling ERP (conciliação financeira de pagamentos recebidos)"
       ],
       "statusImplementacao": "nao-iniciado",
-      "notaStatus": "Pagamentos em staging rodam via Asaas (Pix/boleto). MP nativo do Shopify ainda nao instalado.",
+      "notaStatus": "Checkout usa portable-wallets padrão Shopify. Mercado Pago não configurado como gateway.",
       "corAcento": "#444441"
     },
     {
@@ -1610,8 +1610,8 @@
         "Melhor Envio / Bling (gatilho de entrega confirmada)",
         "MAAT Virtual — Insta+TikTok (curadoria de reviews para conteúdo)"
       ],
-      "statusImplementacao": "em-implementacao",
-      "notaStatus": "Referenciado no stage D+30 do Pipedrive (pipedrive-deal.js). App Shopify nao instalado.",
+      "statusImplementacao": "nao-iniciado",
+      "notaStatus": "Testimonials na home são hardcoded em HTML. App Judge.me não instalado.",
       "corAcento": "#444441"
     },
     {
@@ -1625,7 +1625,7 @@
         "Klaviyo (fluxos de ativação de embaixadores)"
       ],
       "statusImplementacao": "nao-iniciado",
-      "notaStatus": "Programa 'Roda da MAAT' de indicacoes ainda nao implementado.",
+      "notaStatus": "Programa de indicação ainda não começou.",
       "corAcento": "#444441"
     },
     {
@@ -1639,7 +1639,7 @@
         "BI (insights qualitativos para relatórios de CRO)"
       ],
       "statusImplementacao": "nao-iniciado",
-      "notaStatus": "Nenhuma ferramenta de session recording instalada.",
+      "notaStatus": "Nenhum _hjSettings nem clarity.ms no HTML.",
       "corAcento": "#444441"
     }
   ],
@@ -2625,7 +2625,7 @@
     "projecao": [
       {
         "milestone": "Hoje (2026-04-22)",
-        "progressoPct": 29,
+        "progressoPct": 21,
         "atual": true
       },
       {
@@ -2645,11 +2645,11 @@
         "progressoPct": 100
       }
     ],
-    "formulaImpacto": "Cada item do roadmap é classificado em dois eixos: impacto direto (quanto a implementação contribui pro progresso geral) e impacto cadeia (quantas outras ferramentas ou agentes ela destrava). Três níveis: Alto, Médio, Baixo. Itens sem impacto cadeia (não destravam nada) aparecem só com o pill de direto.",
+    "formulaImpacto": "Cada item do roadmap é classificado em dois eixos: impacto direto (quanto a implementação contribui pro progresso geral) e impacto cadeia (quantas outras ferramentas ou agentes ela destrava). Três níveis: Alto, Médio, Baixo. Itens sem impacto cadeia (não destravam nada) aparecem só com o pill de direto. Pontuação ponderada: implementado = 1, em-implementação = 0,5, não iniciado = 0; universo de 14 ferramentas.",
     "header": {
       "bloco1": {
         "titulo": "Construindo a operação AI-first da MAAT",
-        "paragrafo": "A MAAT está sendo construída como uma operação onde agentes Claude executam funções que normalmente exigiriam um time humano. Este roadmap cobre duas camadas que precisam andar juntas: a camada de ferramentas operacionais (14 no total — Shopify, Bling, Pipedrive, GA4, Klaviyo, e outras que compõem o cérebro digital) e a camada de agentes (39 no total: 1 Agente-Mestre + 7 Coordenadores + 31 Especialistas que operam essas ferramentas). Hoje estamos em 29% da construção. Destino: 100% em setembro de 2026."
+        "paragrafo": "A MAAT está sendo construída como uma operação onde agentes Claude executam funções que normalmente exigiriam um time humano. Este roadmap cobre duas camadas que precisam andar juntas: a camada de ferramentas operacionais (14 no total — Shopify, Bling, Pipedrive, GA4, Klaviyo, e outras que compõem o cérebro digital) e a camada de agentes (39 no total: 1 Agente-Mestre + 7 Coordenadores + 31 Especialistas que operam essas ferramentas). Hoje estamos em 21% da construção. Destino: 100% em setembro de 2026."
       },
       "bloco2": {
         "titulo": "As 4 Frentes",
@@ -2696,8 +2696,8 @@
           },
           {
             "periodo": "Abril 2026",
-            "titulo": "HOJE — 29%",
-            "subtitulo": "3 ferramentas implementadas (Shopify, Pipedrive, Bling) + 2 em implementação (Mercado Livre, Judge.me)",
+            "titulo": "HOJE — 21%",
+            "subtitulo": "1 ferramenta operacional (Melhor Envio) + 4 em implementação (Shopify, Bling, Pipedrive, WhatsApp)",
             "atual": true
           },
           {
