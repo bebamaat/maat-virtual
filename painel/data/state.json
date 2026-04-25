@@ -16,10 +16,10 @@
       "from": "Hathor (Shopify)",
       "to": "Cleber",
       "question": "Ja existe conta no Mercado Pago para a MAAT? Ou preciso criar do zero?",
-      "answer": null,
-      "status": "pending",
+      "answer": "Sim",
+      "status": "answered",
       "createdAt": "2026-04-13T21:00:00Z",
-      "answeredAt": null
+      "answeredAt": "2026-04-25T22:03:39.767Z"
     },
     {
       "id": "q3",
