@@ -36,10 +36,10 @@
       "from": "Maia (GA4)",
       "to": "Cleber",
       "question": "Ja tem conta no Google Analytics (GA4) criada para bebamaat.com.br, ou crio uma nova?",
-      "answer": null,
-      "status": "pending",
+      "answer": "já temos conta",
+      "status": "answered",
       "createdAt": "2026-04-13T21:00:00Z",
-      "answeredAt": null
+      "answeredAt": "2026-04-25T22:04:20.651Z"
     },
     {
       "id": "q5",
