@@ -6,10 +6,10 @@
       "from": "Netuno (Operacoes)",
       "to": "Paula",
       "question": "Qual a capacidade diaria de despacho atual? Quantos pedidos por dia voce consegue processar sozinha?",
-      "answer": null,
-      "status": "pending",
+      "answer": "máximo 3",
+      "status": "answered",
       "createdAt": "2026-04-13T21:00:00Z",
-      "answeredAt": null
+      "answeredAt": "2026-04-25T22:03:58.001Z"
     },
     {
       "id": "q2",
