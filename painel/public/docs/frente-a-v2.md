@@ -1,4 +1,4 @@
-# MAAT Virtual — Frente A v2 (fundação conceitual)
+# MAAT Virtual — Frente A (fundação conceitual)
 
 Documento fechado em 20/04/2026. Source-of-truth para Frente B (Job Descriptions dos agentes).
 
@@ -64,28 +64,3 @@ Quando `dono de transição = dono de estado-alvo`, omitir o campo. A diferença
 - Dono técnico responde por: qualidade de código, integrações, segurança, docs, testes.
 - Orquestração ≠ posse. Agente-Mestre orquestra workflows cross-área mas não é dono dos agentes.
 - Estado da posse evolui: de transição → estado-alvo conforme agentes estabilizam.
-
----
-
-## Pendências registradas
-
-- Nomes e JDs dos 2 representantes (não bloqueia Frente B)
-- Agente dedicado a Trade (B3) ou decisão de cobertura via Pipedrive
-- Distribuição de carga: Julia aparece em 3 áreas + 4 setores — priorizar JDs que aliviam Julia cedo
-- Paula ainda em onboarding: seus agentes precisam de supervisor de escalação claro (Lucas ou Julia) para decisões que ultrapassem a autonomia dela
-
----
-
-## Próxima sessão — Frente B (JDs dos agentes)
-
-Sequência atualizada pós-leitura das 4 JDs humanas, critério "maior alívio compartilhado + viabilidade técnica":
-
-1. **Agente Insta+TikTok** (Em construção · dono de negócio: Julia+Lucas · dono técnico: Cleber) — alívio crítico de Lucas (edição/postagem/DM) + insumo de growth da Julia. Subiu de #5 pra #1.
-2. **Agente Bling-Tesouraria + Fluxo de Caixa Projetado** (Planejado · dono: Julia+Paula · dono técnico: Cleber) — alívio da Paula (fluxo de caixa projetado), Julia (tesouraria), Lucas (P&L).
-3. **Agente Supply** (Planejado · dono: Paula+Lucas · dono técnico: Cleber) — escopo bem definido por Paula (orçamentos, prospecção, comparação).
-4. **Agente-Mestre** (Planejado · dono: Cleber) — tem que existir antes dos outros virarem *Em operação*, pra orquestrar workflows.
-5. **Agente Governança Técnica** (Planejado · dono: Cleber) — meta-agente que garante qualidade dos demais; acelera toda a Frente B.
-
-Notas sobre a nova sequência:
-- Pipedrive e Shopify saem da posição priorizada — já estão em construção com tração, JDs podem ser escritas em paralelo sem urgência
-- C2 (Engenharia & Governança Técnica) entra cedo porque é investimento em infra que acelera todo o resto

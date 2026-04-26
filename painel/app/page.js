@@ -144,7 +144,14 @@ function MacroCard({ task, completedTasks, onToggle, showAssignee }) {
         <div className="macro-header-left">
           <div className={`macro-title ${allDone ? "done" : ""}`}>{task.title}</div>
           <div className="macro-meta">
-            {showAssignee && <span className="macro-assignee">{task.assignee}</span>}
+            {showAssignee && (
+              <span className="macro-assignee">
+                {(Array.isArray(task.assignee) ? task.assignee : [task.assignee])
+                  .map(a => a ? a.charAt(0).toUpperCase() + a.slice(1) : "")
+                  .filter(Boolean)
+                  .join(", ")}
+              </span>
+            )}
             <BadgePriority priority={task.priority} />
             {allDone ? <span className="badge badge-green">Concluido</span> : <BadgeStatus status={task.status} />}
             <span className="macro-project">{task.project}</span>
@@ -283,7 +290,10 @@ function AgenteModal({ agente, onClose }) {
         <section className="tv-modal-sec">
           <div className="tv-modal-label">Descricao detalhada</div>
           <div className="tv-modal-desc">
-            {temDesc ? agente.descricaoDetalhada : <span className="tv-tbd">A definir</span>}
+            {temDesc
+              ? agente.descricaoDetalhada
+              : <span className="tv-tbd">Descrição ainda não escrita. Tarefa atribuída à Julia (ph-julia-04 no Status).</span>
+            }
           </div>
         </section>
 
@@ -347,14 +357,22 @@ function AgenteModal({ agente, onClose }) {
   );
 }
 
+const COORD_AREA_ORDEM = ["estrategia", "financeiro", "producao", "operacoes", "vendas", "marketing", "comunidade"];
+
 function TimeVirtualView() {
   const { coordenadores, especialistas } = data;
   const porCoord = agruparPorCoordenador(especialistas);
   const [agenteAberto, setAgenteAberto] = useState(null);
 
+  const coordenadoresOrdenados = [...coordenadores].sort((a, b) => {
+    const ia = COORD_AREA_ORDEM.indexOf(a.area);
+    const ib = COORD_AREA_ORDEM.indexOf(b.area);
+    return (ia === -1 ? 99 : ia) - (ib === -1 ? 99 : ib);
+  });
+
   return (
     <div className="tv-catalogo">
-      {coordenadores.map(c => {
+      {coordenadoresOrdenados.map(c => {
         const esps = porCoord[c.id] || [];
         return (
           <div key={c.id} className="tv-grupo">
@@ -366,8 +384,10 @@ function TimeVirtualView() {
             <div className="tv-cards">
               {esps.map(e => {
                 const tools = (e.ferramentas || []).slice(0, 3);
+                const semJD = !e.descricaoDetalhada;
                 return (
-                  <button key={e.id} id={`agente-${e.id}`} type="button" className="tv-card" onClick={() => setAgenteAberto(e)}>
+                  <button key={e.id} id={`agente-${e.id}`} type="button" className={`tv-card${semJD ? " tv-card-jd-pendente" : ""}`} onClick={() => setAgenteAberto(e)}>
+                    {semJD && <span className="tv-card-jd-badge">JD pendente</span>}
                     <div className="tv-card-name">{e.nomeMitologico}</div>
                     <div className="tv-card-funcao">{e.funcao}</div>
                     <div className="tv-card-desc">{e.descricao}</div>
@@ -400,7 +420,31 @@ const STATUS_IMPL_CLASS = {
   "nao-iniciado": "me-status-idle",
 };
 
-function ToolModal({ ferramenta, onClose }) {
+const FERRAMENTA_PRIORIDADE = {
+  ga4: "1.1", metapixel: "1.2", hotjar: "1.3",
+  klaviyo: "2.4", melhor: "2.5", bi: "2.6",
+  ml: "3.7", judgeme: "3.8", mpago: "3.9", whatsapp: "3.10",
+  snowball: "4.11",
+};
+
+const PRIORIDADE_LABEL = {
+  critical: "Crítica", high: "Alta", medium: "Média", low: "Baixa",
+};
+const PRIORIDADE_ORDEM = { critical: 0, high: 1, medium: 2, low: 3 };
+
+const MES_PT = ["jan","fev","mar","abr","mai","jun","jul","ago","set","out","nov","dez"];
+function formatDataBR(iso) {
+  if (!iso) return "";
+  const [y, m, d] = iso.split("-");
+  return `${d}/${m}/${y}`;
+}
+function formatMarcoData(iso) {
+  if (!iso) return "";
+  const [y, m, d] = iso.split("-");
+  return `${d} ${MES_PT[parseInt(m, 10) - 1]} ${y}`;
+}
+
+function ToolModal({ ferramenta, onClose, onNavigateToRoadmap, prioridadeId }) {
   useEffect(() => {
     if (!ferramenta) return;
     const original = document.body.style.overflow;
@@ -464,6 +508,14 @@ function ToolModal({ ferramenta, onClose }) {
             <div className="tv-modal-desc">{ferramenta.notaStatus}</div>
           </section>
         )}
+
+        {prioridadeId && onNavigateToRoadmap && (
+          <section className="tv-modal-sec">
+            <button type="button" className="tv-status-roadmap-link" onClick={onNavigateToRoadmap}>
+              Ver em P{prioridadeId} do Roadmap →
+            </button>
+          </section>
+        )}
       </div>
     </div>
   );
@@ -522,6 +574,10 @@ function MapaEstrategicoView({ setActiveTab }) {
 
   return (
     <div className="me-root">
+      {mapaEstrategico.descricaoTopo && (
+        <p className="me-descricao-topo">{mapaEstrategico.descricaoTopo}</p>
+      )}
+
       <div className="me-org-head">
         <div className="me-org-nome">MAAT Agroflorestal LTDA</div>
         <div className="me-org-sub">{mapaEstrategico.areas.length} áreas · {ferramentas.length} ferramentas</div>
@@ -887,12 +943,168 @@ function RoadmapHeader({ header }) {
         <h2 className="roadmap-header-h2">{header.bloco1.titulo}</h2>
         <p className="roadmap-header-prose">{header.bloco1.paragrafo}</p>
       </section>
-      <FrentesGlossario b2={header.bloco2} />
       <TimelineHorizontal b3={header.bloco3} />
+      <FrentesGlossario b2={header.bloco2} />
       <section className="roadmap-header-bloco">
         <h3 className="roadmap-header-h3">{header.bloco4.titulo}</h3>
         <p className="roadmap-header-prose">{header.bloco4.paragrafo}</p>
       </section>
+    </div>
+  );
+}
+
+const CATEGORIA_FERRAMENTA_LABEL = {
+  receita: "Receita",
+  marketing: "Marketing & Analytics",
+  operacoes: "Operações",
+  integracoes: "Integrações",
+};
+const CATEGORIA_FERRAMENTA_ORDEM = ["receita", "marketing", "operacoes", "integracoes"];
+
+function FerramentasView() {
+  const grupos = data.ferramentas.reduce((acc, f) => {
+    (acc[f.categoria] = acc[f.categoria] || []).push(f);
+    return acc;
+  }, {});
+
+  return (
+    <div>
+      <p className="tv-ferramentas-intro">
+        {data.ferramentas.length} ferramentas digitais compõem a operação MAAT. Para acompanhamento de status de implementação, ver aba Status.
+      </p>
+      {CATEGORIA_FERRAMENTA_ORDEM.map(cat => {
+        const items = grupos[cat];
+        if (!items || items.length === 0) return null;
+        return (
+          <div key={cat} className="tv-ferramentas-grupo">
+            <div className="tv-ferramentas-cat">{CATEGORIA_FERRAMENTA_LABEL[cat] || cat}</div>
+            <div className="tv-ferramentas-list">
+              {items.map(f => (
+                <div key={f.id} className="tv-ferramentas-item">
+                  <div className="tv-ferramentas-nome">{f.nome}</div>
+                  <div className="tv-ferramentas-desc">{f.descricao || f.notaStatus || ""}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
+function StatusView({ setActiveTab }) {
+  const [toolOpen, setToolOpen] = useState(null);
+  const ferramentas = data.ferramentas;
+  const impl = ferramentas.filter(f => f.statusImplementacao === "implementado");
+  const wip = ferramentas.filter(f => f.statusImplementacao === "em-implementacao");
+  const idle = ferramentas.filter(f => f.statusImplementacao === "nao-iniciado");
+
+  const total = ferramentas.length;
+  const score = impl.length * 1.0 + wip.length * 0.5;
+  const pct = Math.round((score / total) * 100);
+  const pctExato = ((score / total) * 100).toFixed(1).replace(".", ",");
+
+  const pendOrdenadas = [...data.pendenciasHumanas].sort((a, b) =>
+    (PRIORIDADE_ORDEM[a.prioridade] ?? 99) - (PRIORIDADE_ORDEM[b.prioridade] ?? 99)
+  );
+
+  const marcosCron = [...data.marcosConcluidos].sort((a, b) => (a.data || "").localeCompare(b.data || ""));
+
+  const colunas = [
+    { items: impl, key: "impl", titulo: `Implementadas (${impl.length})` },
+    { items: wip, key: "wip", titulo: `Em implementação (${wip.length})` },
+    { items: idle, key: "idle", titulo: `Não iniciadas (${idle.length})` },
+  ];
+
+  return (
+    <div>
+      <div className="tv-status-hero">
+        <div className="tv-status-pct">{pct}%</div>
+        <div className="tv-status-pct-sub">
+          {impl.length} {impl.length === 1 ? "ferramenta operacional" : "ferramentas operacionais"} · {wip.length} em implementação · {idle.length} {idle.length === 1 ? "não iniciada" : "não iniciadas"}
+        </div>
+        <div className="tv-status-bar" role="img" aria-label={`${impl.length} de ${total} implementadas, ${wip.length} em implementação, ${idle.length} não iniciadas`}>
+          {impl.map(f => <div key={f.id} className="tv-status-bar-cell tv-bar-impl" title={`${f.nome} — implementada`} />)}
+          {wip.map(f => <div key={f.id} className="tv-status-bar-cell tv-bar-wip" title={`${f.nome} — em implementação`} />)}
+          {idle.map(f => <div key={f.id} className="tv-status-bar-cell tv-bar-idle" title={`${f.nome} — não iniciada`} />)}
+        </div>
+        <div className="tv-status-pct-formula">
+          Pontuação: ({impl.length} × 1 + {wip.length} × 0,5) ÷ {total} = {pctExato}%. Hoje reflete ferramentas operacionais, não volume de trabalho.
+        </div>
+      </div>
+
+      <div className="section-title" style={{ marginTop: "2.5rem" }}>As {total} ferramentas</div>
+      <div className="tv-status-grid">
+        {colunas.map(col => (
+          <div key={col.key} className={`tv-status-col tv-status-col-${col.key}`}>
+            <div className="tv-status-col-titulo">{col.titulo}</div>
+            <div className="tv-status-col-list">
+              {col.items.length === 0 && <div className="tv-status-col-empty">Nenhuma</div>}
+              {col.items.map(f => (
+                <button
+                  key={f.id}
+                  type="button"
+                  className="tv-status-tool"
+                  onClick={() => setToolOpen(f)}
+                >
+                  <div className="tv-status-tool-head">
+                    <span className={`tv-status-dot tv-status-dot-${col.key}`} />
+                    <span className="tv-status-tool-nome">{f.nome}</span>
+                  </div>
+                  {f.notaStatus && <div className="tv-status-tool-nota">{f.notaStatus}</div>}
+                </button>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div className="section-title" style={{ marginTop: "2.5rem" }}>
+        Decisões pendentes <span className="count">{pendOrdenadas.length}</span>
+      </div>
+      <div className="tv-status-pend-grid">
+        {pendOrdenadas.map(p => {
+          const respIds = Array.isArray(p.responsavel) ? p.responsavel : [p.responsavel];
+          const nomeResp = respIds.map(rid => {
+            const h = humanosMap[rid] || data.humanos.find(x => x.nome.toLowerCase() === String(rid || "").toLowerCase());
+            return h ? h.nome : (rid ? rid.charAt(0).toUpperCase() + rid.slice(1) : "");
+          }).filter(Boolean).join(", ");
+          return (
+            <div key={p.id} className="tv-status-pend-card">
+              <div className={`tv-status-pend-pill tv-prio-${p.prioridade}`}>
+                {PRIORIDADE_LABEL[p.prioridade] || p.prioridade}
+              </div>
+              <div className="tv-status-pend-titulo">{p.titulo}</div>
+              <div className="tv-status-pend-desc">{p.descricao}</div>
+              <div className="tv-status-pend-meta">
+                <span className="tv-status-pend-resp">{nomeResp}</span>
+                <span className="tv-status-pend-data">aberta em {formatDataBR(p.dataAbertura)}</span>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+
+      <div className="section-title" style={{ marginTop: "2.5rem" }}>
+        Conquistas <span className="count">{marcosCron.length}</span>
+      </div>
+      <div className="tv-status-timeline">
+        {marcosCron.map(m => (
+          <div key={m.id} className="tv-status-marco">
+            <div className="tv-status-marco-dot" />
+            <div className="tv-status-marco-data">{formatMarcoData(m.data)}</div>
+            <div className="tv-status-marco-titulo">{m.titulo}</div>
+          </div>
+        ))}
+      </div>
+
+      <ToolModal
+        ferramenta={toolOpen}
+        onClose={() => setToolOpen(null)}
+        prioridadeId={toolOpen ? FERRAMENTA_PRIORIDADE[toolOpen.id] : null}
+        onNavigateToRoadmap={setActiveTab ? () => { setActiveTab("roadmap"); setToolOpen(null); } : null}
+      />
     </div>
   );
 }
@@ -1004,7 +1216,7 @@ export default function Dashboard() {
   const { data: realSession } = useSession();
   const session = realSession || DEV_SESSION;
   const [activeTab, setActiveTab] = useState("overview");
-  const [state, setState] = useState({ completedTasks: [], questions: [] });
+  const [state, setState] = useState({ completedTasks: [], questions: [], humanTasks: [] });
   const [loading, setLoading] = useState(true);
   const [scrollToAgentId, setScrollToAgentId] = useState(null);
 
@@ -1076,13 +1288,13 @@ export default function Dashboard() {
 
   const macroTasks = data.tasks.filter(t => t.type === "macro");
   const humanMacros = macroTasks.filter(t => t.assigneeType === "human");
-  const doneMicros = data.tasks.filter(t => t.type !== "macro" && t.status === "done");
   const phases = data.phases || [];
 
   const pendingQuestions = state.questions.filter(q => q.status === "pending");
   const answeredQuestions = state.questions.filter(q => q.status === "answered");
   const humanPendingSubtasks = humanMacros.flatMap(t => (t.subtasks || []).filter(s => !state.completedTasks.includes(s.id)));
-  const pendingCount = humanPendingSubtasks.length + pendingQuestions.length;
+  const pendingHumanTasks = humanMacros.filter(t => !state.completedTasks.includes(t.id));
+  const pendingCount = humanPendingSubtasks.length + pendingQuestions.length + pendingHumanTasks.length;
 
   const humanosReais = data.humanos.filter(h => !h.placeholder);
   const representantes = data.humanos.filter(h => h.placeholder);
@@ -1096,15 +1308,15 @@ export default function Dashboard() {
 
   const tabs = [
     { id: "fundacao", label: "Fundação" },
-    { id: "overview", label: "Visao Geral" },
+    { id: "overview", label: "Visão Geral" },
+    { id: "roadmap", label: "Roadmap" },
+    { id: "ferramentas", label: "Ferramentas" },
+    { id: "mapa", label: "Mapa Estratégico" },
     { id: "org", label: "Organograma" },
     { id: "agents", label: "Time Virtual" },
-    { id: "mapa", label: "Mapa Estratégico" },
     { id: "fluxo", label: "Fluxo Operacional" },
-    { id: "roadmap", label: "Roadmap" },
-    { id: "projects", label: "Projetos" },
-    { id: "pendencias", label: "Pendencias", alert: pendingCount },
-    { id: "tasks", label: "Todas Tarefas" },
+    { id: "status", label: "Status" },
+    { id: "pendencias", label: "Tarefas", alert: pendingCount },
   ];
 
   return (
@@ -1139,8 +1351,10 @@ export default function Dashboard() {
 
         {activeTab === "fundacao" && (
           <div>
-            <div className="section-title">Frente A v2 — Fundação Conceitual</div>
+            <div className="section-title">Frente A — Fundação Conceitual</div>
             <DocViewer src="/docs/frente-a-v2.md" />
+            <div className="section-title" style={{ marginTop: "2.5rem" }}>Frente B — JDs dos agentes</div>
+            <DocViewer src="/docs/frente-b.md" />
           </div>
         )}
 
@@ -1163,9 +1377,13 @@ export default function Dashboard() {
                 <div className="stat-value">{totalItensRoadmap}</div>
                 <div className="stat-label">Itens no Roadmap</div>
               </div>
+              <div className="stat clickable" onClick={() => setActiveTab("status")}>
+                <div className="stat-value" style={{ color: data.pendenciasHumanas.length > 0 ? "var(--accent-alerta)" : "var(--accent-sucesso)" }}>{data.pendenciasHumanas.length}</div>
+                <div className="stat-label">Decisões Pendentes</div>
+              </div>
               <div className="stat clickable" onClick={() => setActiveTab("pendencias")}>
                 <div className="stat-value" style={{ color: pendingCount > 0 ? "var(--accent-alerta)" : "var(--accent-sucesso)" }}>{pendingCount}</div>
-                <div className="stat-label">Pendências Humanas</div>
+                <div className="stat-label">Tarefas Humanas</div>
               </div>
               <div className="stat">
                 <div className="stat-value">{progressoPct}%</div>
@@ -1175,7 +1393,7 @@ export default function Dashboard() {
 
             {pendingCount > 0 && (
               <div className="alert-banner" onClick={() => setActiveTab("pendencias")}>
-                <strong>{pendingCount} pendencia{pendingCount !== 1 ? "s" : ""}</strong> esperando resposta ou acao dos humanos
+                <strong>{pendingCount} tarefa{pendingCount !== 1 ? "s" : ""} human{pendingCount !== 1 ? "as" : "a"}</strong> esperando resposta ou ação
               </div>
             )}
 
@@ -1228,25 +1446,36 @@ export default function Dashboard() {
 
         {activeTab === "pendencias" && (
           <div>
-            {pendingQuestions.length > 0 && (
-              <>
-                <div className="section-title">Perguntas Aguardando Resposta <span className="count alert">{pendingQuestions.length}</span></div>
-                {pendingQuestions.map(q => <QuestionCard key={q.id} q={q} onAnswer={answerQuestion} />)}
-              </>
-            )}
-
-            <div className="section-title" style={{ marginTop: pendingQuestions.length > 0 ? "2rem" : 0 }}>
+            <div className="section-title">
               Tarefas dos Humanos <span className="count">{humanMacros.length}</span>
             </div>
-            {humanMacros.map(t => (
-              <MacroCard key={t.id} task={t} completedTasks={state.completedTasks} onToggle={toggleTask} showAssignee />
-            ))}
+            {humanMacros.length === 0 ? (
+              <div className="tv-pend-empty">Nenhuma tarefa em aberto.</div>
+            ) : (
+              <div className="tv-pend-list">
+                {humanMacros.map(t => {
+                  const respIds = Array.isArray(t.assignee) ? t.assignee : [t.assignee];
+                  const nomeResp = respIds.map(rid => {
+                    const h = humanosMap[rid] || data.humanos.find(x => x.nome.toLowerCase() === String(rid || "").toLowerCase());
+                    return h ? h.nome : (rid ? rid.charAt(0).toUpperCase() + rid.slice(1) : "");
+                  }).filter(Boolean).join(", ");
+                  return (
+                    <div key={t.id} className="tv-pend-card">
+                      <div className="tv-pend-resp">{nomeResp}</div>
+                      <div className="tv-pend-text">{t.title}</div>
+                    </div>
+                  );
+                })}
+              </div>
+            )}
 
-            {answeredQuestions.length > 0 && (
-              <>
-                <div className="section-title" style={{ marginTop: "2rem" }}>Perguntas Respondidas <span className="count">{answeredQuestions.length}</span></div>
-                {answeredQuestions.map(q => <QuestionCard key={q.id} q={q} onAnswer={answerQuestion} />)}
-              </>
+            <div className="section-title" style={{ marginTop: "2.5rem" }}>
+              Perguntas dos Agentes <span className="count">{pendingQuestions.length}</span>
+            </div>
+            {pendingQuestions.length === 0 ? (
+              <div className="tv-pend-empty">Nenhuma pergunta em aberto. Quando agentes precisarem de info de humanos, aparecem aqui.</div>
+            ) : (
+              pendingQuestions.map(q => <QuestionCard key={q.id} q={q} onAnswer={answerQuestion} />)
             )}
           </div>
         )}
@@ -1279,57 +1508,17 @@ export default function Dashboard() {
           </div>
         )}
 
-        {activeTab === "projects" && (
+        {activeTab === "status" && (
           <div>
-            <div className="section-title">Projetos <span className="count">{data.projects.length}</span></div>
-            <div className="grid-2">
-              {data.projects.map(p => (
-                <div key={p.id} className="card" style={{ borderTop: `4px solid ${p.id === "ecommerce-b2c" ? "var(--accent-atencao)" : "var(--text-secondary)"}` }}>
-                  <div className="card-header"><div className="card-title">{p.name}</div><BadgeStatus status={p.status} /></div>
-                  <p style={{ fontSize: "0.82rem", color: "var(--text-secondary)", marginBottom: "1rem" }}>{p.description}</p>
-                  {p.stagingVersion && (
-                    <div style={{ fontSize: "0.78rem", marginBottom: "0.5rem" }}>
-                      <span className="badge badge-purple">Staging {p.stagingVersion}</span>{" "}
-                      <span className="badge badge-blue">Producao {p.productionVersion}</span>
-                    </div>
-                  )}
-                  <table>
-                    <thead><tr><th>Componente</th><th>Status</th></tr></thead>
-                    <tbody>
-                      {p.components.map(c => (
-                        <tr key={c.name}><td>{c.name}</td><td><BadgeStatus status={c.status} /></td></tr>
-                      ))}
-                    </tbody>
-                  </table>
-                  <div style={{ marginTop: "1rem" }}>
-                    <div className="progress-bar"><div className="progress-fill" style={{ width: `${p.progress}%`, background: p.id === "ecommerce-b2c" ? "var(--accent-atencao)" : "var(--text-primary)" }} /></div>
-                    <div className="progress-label"><span>Progresso</span><span>{p.progress}%</span></div>
-                  </div>
-                </div>
-              ))}
-            </div>
+            <div className="section-title">Status</div>
+            <StatusView setActiveTab={setActiveTab} />
           </div>
         )}
 
-        {activeTab === "tasks" && (
+        {activeTab === "ferramentas" && (
           <div>
-            <div className="section-title">Humanos <span className="count">{humanMacros.length}</span></div>
-            {humanMacros.map(t => <MacroCard key={t.id} task={t} completedTasks={state.completedTasks} onToggle={toggleTask} showAssignee />)}
-
-            {doneMicros.length > 0 && (
-              <>
-                <div className="section-title" style={{ marginTop: "2rem" }}>Entregas Concluidas <span className="count">{doneMicros.length}</span></div>
-                <div className="card">
-                  {doneMicros.map(t => (
-                    <div key={t.id} className="subtask-item">
-                      <div className="subtask-check done" />
-                      <span className="subtask-title done">{t.title}</span>
-                      <span style={{ fontSize: "0.7rem", color: "var(--text-muted)" }}>{t.assignee}</span>
-                    </div>
-                  ))}
-                </div>
-              </>
-            )}
+            <div className="section-title">Ferramentas <span className="count">{data.ferramentas.length}</span></div>
+            <FerramentasView />
           </div>
         )}
 

@@ -463,8 +463,8 @@
       "origemMapID": "ag_gads"
     },
     {
-      "id": "afrodite",
-      "nomeMitologico": "Afrodite",
+      "id": "odoya",
+      "nomeMitologico": "Odoyá",
       "funcao": "Meta Ads",
       "coordenador": "venus",
       "descricao": "Criativos, audiencias, otimizacao.",
@@ -1501,7 +1501,7 @@
     },
     {
       "id": "whatsapp",
-      "nome": "WhatsApp Business API",
+      "nome": "WhatsApp Business + Bot",
       "categoria": "receita",
       "descricao": "Canal de comunicação direta com maior taxa de abertura da operação — utilizado para atendimento comercial (SAC, PF, PJ, parcerias) e notificações logísticas. Seu objetivo central é automatizar todo o processo de venda e entrega a partir do momento em que uma mensagem chega ao número da MAAT, independente da origem: representantes comerciais, clientes PF, clientes PJ ou o próprio squad interno. Um menu estruturado classifica o tipo de contato, aciona o fluxo correto e escala para humano apenas quando necessário — eliminando o atendimento manual fragmentado e aumentando a taxa de conversão de leads inbound sem depender de disponibilidade humana.",
       "dependencias": [
@@ -1641,6 +1641,19 @@
       "statusImplementacao": "nao-iniciado",
       "notaStatus": "Nenhum _hjSettings nem clarity.ms no HTML.",
       "corAcento": "#444441"
+    },
+    {
+      "id": "asaas",
+      "nome": "Asaas",
+      "categoria": "receita",
+      "descricao": "Gateway de pagamento usado pelo canal B2B/Bot — gera boletos e Pix programaticamente via API e integra ao fluxo Bling para conciliação. Escolhido como gateway alternativo ao Mercado Pago (que serve o B2C no Shopify) por suportar emissão sob medida no fluxo conversacional do Bot de Vendas.",
+      "dependencias": [
+        "Bling ERP (conciliação de recebimentos)",
+        "WhatsApp Business + Bot (geração de boleto/Pix dentro da conversa)"
+      ],
+      "statusImplementacao": "implementado",
+      "notaStatus": "Gateway de pagamento usado pelo bot de vendas B2B. Geração de boletos e Pix integrada ao fluxo Bling.",
+      "corAcento": "#444441"
     }
   ],
   "fluxoOperacional": {
@@ -1674,7 +1687,7 @@
                 "b": "Grava a sessão para análise qualitativa de comportamento no funil."
               }
             ],
-            "maatVirtualNota": "Maia (GA4/GTM) monitora anomalias de tráfego e dispara alerta se bounce rate anormal. Afrodite (Meta Ads) otimiza lances com base nos eventos de conversão recebidos."
+            "maatVirtualNota": "Maia (GA4/GTM) monitora anomalias de tráfego e dispara alerta se bounce rate anormal. Odoyá (Meta Ads) otimiza lances com base nos eventos de conversão recebidos."
           },
           {
             "id": "sh_ped",
@@ -2154,6 +2167,7 @@
     "convergenciaCritica": "Operacoes (NF + etiqueta) e o unico ponto onde os tres canais convergem — Bling + Melhor Envio + Make. Qualquer falha aqui paralisa todos os canais simultaneamente."
   },
   "mapaEstrategico": {
+    "descricaoTopo": "Esse é o mapa de implementação de ferramentas para operação MAAT Agroflorestal Ltda. Ferramentas que apoiam as operações físicas.",
     "areas": [
       {
         "id": "estrategia",
@@ -2359,7 +2373,7 @@
             "impactoDireto": "alto",
             "impactoCadeia": "medio",
             "destrava": [
-              "afrodite",
+              "odoya",
               "iansa"
             ],
             "prerequisitos": [
@@ -2625,7 +2639,7 @@
     "projecao": [
       {
         "milestone": "Hoje (2026-04-22)",
-        "progressoPct": 21,
+        "progressoPct": 27,
         "atual": true
       },
       {
@@ -2645,11 +2659,11 @@
         "progressoPct": 100
       }
     ],
-    "formulaImpacto": "Cada item do roadmap é classificado em dois eixos: impacto direto (quanto a implementação contribui pro progresso geral) e impacto cadeia (quantas outras ferramentas ou agentes ela destrava). Três níveis: Alto, Médio, Baixo. Itens sem impacto cadeia (não destravam nada) aparecem só com o pill de direto. Pontuação ponderada: implementado = 1, em-implementação = 0,5, não iniciado = 0; universo de 14 ferramentas.",
+    "formulaImpacto": "Cada item do roadmap é classificado em dois eixos: impacto direto (quanto a implementação contribui pro progresso geral) e impacto cadeia (quantas outras ferramentas ou agentes ela destrava). Três níveis: Alto, Médio, Baixo. Itens sem impacto cadeia (não destravam nada) aparecem só com o pill de direto. Pontuação ponderada: implementado = 1, em-implementação = 0,5, não iniciado = 0; universo de 15 ferramentas.",
     "header": {
       "bloco1": {
         "titulo": "Construindo a operação AI-first da MAAT",
-        "paragrafo": "A MAAT está sendo construída como uma operação onde agentes Claude executam funções que normalmente exigiriam um time humano. Este roadmap cobre duas camadas que precisam andar juntas: a camada de ferramentas operacionais (14 no total — Shopify, Bling, Pipedrive, GA4, Klaviyo, e outras que compõem o cérebro digital) e a camada de agentes (39 no total: 1 Agente-Mestre + 7 Coordenadores + 31 Especialistas que operam essas ferramentas). Hoje estamos em 21% da construção. Destino: 100% em setembro de 2026."
+        "paragrafo": "A MAAT está sendo construída como uma operação onde agentes Claude executam funções que normalmente exigiriam um time humano. Este roadmap cobre duas camadas que precisam andar juntas: a camada de ferramentas operacionais (15 no total — Shopify, Bling, Pipedrive, GA4, Klaviyo, Asaas e outras que compõem o cérebro digital) e a camada de agentes (44 no total: 1 Agente-Mestre + 7 Coordenadores + 31 Especialistas + 5 de Governança Técnica que operam essas ferramentas). Hoje estamos em 27% da construção. Destino: 100% em setembro de 2026."
       },
       "bloco2": {
         "titulo": "As 4 Frentes",
@@ -2685,7 +2699,7 @@
         "titulo": "Do zero ao destino",
         "marcos": [
           {
-            "periodo": "Outubro 2025",
+            "periodo": "Março 2026",
             "titulo": "Conceito nasce",
             "subtitulo": "Ideia do MAAT Virtual como operação AI-first"
           },
@@ -2696,8 +2710,8 @@
           },
           {
             "periodo": "Abril 2026",
-            "titulo": "HOJE — 21%",
-            "subtitulo": "1 ferramenta operacional (Melhor Envio) + 4 em implementação (Shopify, Bling, Pipedrive, WhatsApp)",
+            "titulo": "HOJE — 27%",
+            "subtitulo": "2 ferramentas operacionais (Melhor Envio + Asaas) + 4 em implementação (Shopify, Bling, Pipedrive, WhatsApp Business + Bot)",
             "atual": true
           },
           {
@@ -2717,7 +2731,7 @@
     {
       "id": "ph-lucas-01",
       "titulo": "Alinhar estrategia de lancamento e go-live B2C",
-      "responsavel": "lucas",
+      "responsavel": ["lucas", "julia", "cleber"],
       "prioridade": "high",
       "bloqueia": [
         "3.9",
@@ -2730,7 +2744,7 @@
     {
       "id": "ph-julia-01",
       "titulo": "Aprovar conteudo, marca e comunicacao para lancamento",
-      "responsavel": "julia",
+      "responsavel": ["julia", "lucas"],
       "prioridade": "high",
       "bloqueia": [
         "2.4"
@@ -2753,7 +2767,7 @@
     },
     {
       "id": "ph-paula-02",
-      "titulo": "Definir SLA de entrega por regiao",
+      "titulo": "Definir SLA (Service Level Agreement) de entrega por regiao",
       "responsavel": "paula",
       "prioridade": "medium",
       "bloqueia": [],
@@ -2800,27 +2814,35 @@
       "status": "aberta"
     },
     {
-      "id": "ph-julia-03",
-      "titulo": "Redistribuir carga operacional da Julia",
+      "id": "ph-julia-04",
+      "titulo": "Escrever JDs dos 10 especialistas pendentes",
       "responsavel": "julia",
       "prioridade": "medium",
       "bloqueia": [
-        "Escalabilidade da diretoria"
+        "Frente B do P5"
       ],
-      "dataAbertura": "2026-04-22",
-      "descricao": "Julia acumula estratégia + financeiro + vendas + marketing. Mapear o que pode transferir pra novos representantes humanos ou pra agentes Frente 1 quando prontos.",
+      "dataAbertura": "2026-04-25",
+      "descricao": "10 especialistas estão sem descricaoDetalhada: Isis (Key Accounts B2B), Brigid (Trade Marketing), Tefnut (Logística de Insumos), Oia (Logística de Vendas), Fortuna (Mercado Externo), Veritas (BI Financeiro), Vesta (Comunidade), Freya (Embaixadores), Calíope (UGC), Pelé (Eventos & Ativações). Sequência sugerida: seguir prioridade da Frente B do P5 do Roadmap.",
       "status": "aberta"
     },
     {
-      "id": "ph-lucas-03",
-      "titulo": "Definir supervisor direto da Paula (Logística)",
-      "responsavel": "lucas",
-      "prioridade": "medium",
-      "bloqueia": [
-        "Clareza de reporte operacional"
-      ],
-      "dataAbertura": "2026-04-22",
-      "descricao": "Paula hoje reporta diretamente pros co-CEOs. Definir supervisor operacional intermediário conforme a equipe cresce (representante de Operações ou COO virtual).",
+      "id": "ph-julia-05",
+      "titulo": "Unificar nomenclatura de áreas entre Time Virtual e Mapa Estratégico",
+      "responsavel": "julia",
+      "prioridade": "low",
+      "bloqueia": [],
+      "dataAbertura": "2026-04-25",
+      "descricao": "Time Virtual usa labels do JSON (estrategia, financeiro, producao, operacoes, vendas, marketing, comunidade). Mapa Estratégico usa nomes mais descritivos (ex: Adm Financeiro, Logística, Inteligência Digital). Definir nomenclatura canônica e atualizar JSON.",
+      "status": "aberta"
+    },
+    {
+      "id": "ph-julia-06",
+      "titulo": "Inbox de pendências auto-serviço (F8)",
+      "responsavel": "julia",
+      "prioridade": "low",
+      "bloqueia": [],
+      "dataAbertura": "2026-04-25",
+      "descricao": "Hoje a aba Pendências precisa ser editada via JSON (state.json) pra adicionar tarefas humanas ou perguntas de agentes. F8: botão '+ Nova Pendência' no painel com form modal (de, para, pergunta), botão 'Marcar como respondida' nos cards, persistência via API local. Permite atualização diária sem dev. Discutir estrutura atual com Cleber antes de implementar.",
       "status": "aberta"
     }
   ],
@@ -2862,14 +2884,14 @@
     },
     {
       "id": "d7",
-      "titulo": "Frente A v2 — fundação conceitual fechada",
+      "titulo": "Frente A — fundação conceitual fechada",
       "responsavel": "Julia",
       "data": "2026-04-20",
       "contexto": "MAAT Virtual"
     },
     {
       "id": "d8",
-      "titulo": "Organograma — 44 nos mitologicos publicado",
+      "titulo": "Organograma — 44 nós mitológicos publicado",
       "responsavel": "Cleber",
       "data": "2026-04-21",
       "contexto": "MAAT Virtual"
@@ -2877,5 +2899,56 @@
   ],
   "projects": [],
   "phases": [],
-  "tasks": []
+  "tasks": [
+    {
+      "id": "ht-julia-home",
+      "type": "macro",
+      "assigneeType": "human",
+      "assignee": "julia",
+      "title": "Terminar home do site, inclusão de imagens",
+      "priority": "high",
+      "status": "in_progress",
+      "subtasks": []
+    },
+    {
+      "id": "ht-julia-teste",
+      "type": "macro",
+      "assigneeType": "human",
+      "assignee": "julia",
+      "title": "Testar funcionamento do site",
+      "priority": "high",
+      "status": "in_progress",
+      "subtasks": []
+    },
+    {
+      "id": "ht-julia-frenteA",
+      "type": "macro",
+      "assigneeType": "human",
+      "assignee": "julia",
+      "title": "Apresentar Frente A MAAT Virtual",
+      "priority": "medium",
+      "status": "in_progress",
+      "subtasks": []
+    },
+    {
+      "id": "ht-bot-vendas",
+      "type": "macro",
+      "assigneeType": "human",
+      "assignee": ["cleber", "lucas"],
+      "title": "Terminar bot de vendas",
+      "priority": "high",
+      "status": "in_progress",
+      "subtasks": []
+    },
+    {
+      "id": "ht-bot-estoques",
+      "type": "macro",
+      "assigneeType": "human",
+      "assignee": "cleber",
+      "title": "Incluir lógica dos estoques no bot de vendas",
+      "priority": "medium",
+      "status": "in_progress",
+      "subtasks": []
+    }
+  ]
 }

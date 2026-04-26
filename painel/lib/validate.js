@@ -179,7 +179,10 @@ export function validateMaatVirtual(data) {
     const ctx = `pendenciasHumanas[${i} id=${p.id}]`;
     if (!isStr(p.id)) errs.push(err(ctx, "id obrigatorio"));
     if (!isStr(p.titulo)) errs.push(err(ctx, "titulo obrigatorio"));
-    if (!humanoIds.has(p.responsavel)) errs.push(err(ctx, `responsavel nao e humano valido: ${p.responsavel}`));
+    const respList = Array.isArray(p.responsavel) ? p.responsavel : [p.responsavel];
+    respList.forEach(r => {
+      if (!humanoIds.has(r)) errs.push(err(ctx, `responsavel nao e humano valido: ${r}`));
+    });
     if (!PRIORIDADE_PENDENCIA_VALIDOS.has(p.prioridade)) errs.push(err(ctx, `prioridade invalida: ${p.prioridade}`));
     if (!STATUS_PENDENCIA_VALIDOS.has(p.status)) errs.push(err(ctx, `status invalido: ${p.status}`));
   });

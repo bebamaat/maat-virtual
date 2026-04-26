@@ -21,7 +21,7 @@ Mapeamento dos agentes antigos do maat-inteligencia-digital (dicionário AGENTS 
 | ID antigo | Mitológico atual | Função |
 |---|---|---|
 | ag_gads | Atena | Google Ads |
-| ag_meta | Afrodite | Meta Ads |
+| ag_meta | Odoyá | Meta Ads |
 | ag_tiktok | Iansã | TikTok Ads |
 | ag_ga4 | Maia | GA4 / GTM |
 | ag_klaviyo | Deméter | Klaviyo |
