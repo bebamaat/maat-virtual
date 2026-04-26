@@ -1308,6 +1308,7 @@ export default function Dashboard() {
 
   const tabs = [
     { id: "fundacao", label: "Fundação" },
+    { id: "constituicao", label: "Constituição" },
     { id: "overview", label: "Visão Geral" },
     { id: "roadmap", label: "Roadmap" },
     { id: "ferramentas", label: "Ferramentas" },
@@ -1355,6 +1356,16 @@ export default function Dashboard() {
             <DocViewer src="/docs/frente-a-v2.md" />
             <div className="section-title" style={{ marginTop: "2.5rem" }}>Frente B — JDs dos agentes</div>
             <DocViewer src="/docs/frente-b.md" />
+          </div>
+        )}
+
+        {activeTab === "constituicao" && (
+          <div>
+            <div className="tv-const-hero">
+              <div className="tv-const-titulo">Constituição da MAAT Virtual</div>
+              <div className="tv-const-sub">Princípios jurídicos e Hard Limits operacionais</div>
+            </div>
+            <DocViewer src="/docs/constituicao.md" />
           </div>
         )}
 

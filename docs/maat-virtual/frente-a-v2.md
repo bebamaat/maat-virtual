@@ -64,3 +64,7 @@ Quando `dono de transição = dono de estado-alvo`, omitir o campo. A diferença
 - Dono técnico responde por: qualidade de código, integrações, segurança, docs, testes.
 - Orquestração ≠ posse. Agente-Mestre orquestra workflows cross-área mas não é dono dos agentes.
 - Estado da posse evolui: de transição → estado-alvo conforme agentes estabilizam.
+
+---
+
+A camada jurídica da MAAT Virtual está definida na Constituição (aba Constituição). Toda skill operacional carrega `maat-legal-compliance` como dependência.

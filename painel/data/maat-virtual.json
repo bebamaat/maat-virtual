@@ -2844,6 +2844,16 @@
       "dataAbertura": "2026-04-25",
       "descricao": "Hoje a aba Pendências precisa ser editada via JSON (state.json) pra adicionar tarefas humanas ou perguntas de agentes. F8: botão '+ Nova Pendência' no painel com form modal (de, para, pergunta), botão 'Marcar como respondida' nos cards, persistência via API local. Permite atualização diária sem dev. Discutir estrutura atual com Cleber antes de implementar.",
       "status": "aberta"
+    },
+    {
+      "id": "ph-lucas-03",
+      "titulo": "Revisar Constituição MAAT Virtual com advogado",
+      "responsavel": "lucas",
+      "prioridade": "high",
+      "bloqueia": [],
+      "dataAbertura": "2026-04-25",
+      "descricao": "Constituição cobre 14 Hard Limits derivados de CF, CC, CP, LGPD e Marco Civil. Antes de operacionalizar 100%, validar com advogado especializado em direito digital pra confirmar coverage e adicionar gaps específicos do setor de bebidas/e-commerce. Próximo passo: agendar revisão com escritório.",
+      "status": "aberta"
     }
   ],
   "marcosConcluidos": [
@@ -2894,6 +2904,13 @@
       "titulo": "Organograma — 44 nós mitológicos publicado",
       "responsavel": "Cleber",
       "data": "2026-04-21",
+      "contexto": "MAAT Virtual"
+    },
+    {
+      "id": "d9",
+      "titulo": "Constituição MAAT Virtual — base jurídica publicada",
+      "responsavel": "Lucas + Julia",
+      "data": "2026-04-25",
       "contexto": "MAAT Virtual"
     }
   ],

@@ -1496,6 +1496,25 @@ td { padding: 0.8rem; border-bottom: 1px solid var(--border); vertical-align: to
   .roadmap-timeline-h-marco:not(:last-child)::after { display: none; }
 }
 
+/* ===== Aba Constituição — hero ===== */
+.tv-const-hero {
+  margin-bottom: 1.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.tv-const-titulo {
+  font-size: 1.6rem;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  color: var(--text-primary);
+  margin-bottom: 0.4rem;
+}
+.tv-const-sub {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  font-style: italic;
+}
+
 /* ===== Aba Pendências — Tarefas dos Humanos ===== */
 .tv-pend-list {
   display: flex;
