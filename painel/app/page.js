@@ -639,11 +639,11 @@ const FLUXO_FASES = [
 function faseDeEtapa(etapaId) {
   const sufixo = (etapaId.split("_")[1] || "");
   if (sufixo === "atr") return "atr";
-  if (sufixo === "ped" || sufixo === "menu" || sufixo === "prop") return "ped";
+  if (sufixo === "ped" || sufixo === "menu" || sufixo === "prop" || sufixo === "red" || sufixo === "acomp" || sufixo === "neg") return "ped";
   if (sufixo === "pag") return "pag";
   if (sufixo === "ops") return "ops";
   if (sufixo === "ent") return "ent";
-  if (sufixo.startsWith("pos")) return "pos";
+  if (sufixo.startsWith("pos") || sufixo === "fup") return "pos";
   return null;
 }
 
@@ -714,6 +714,19 @@ function FluxoOperacionalView() {
   const { fluxoOperacional } = data;
   const [open, setOpen] = useState(null);
 
+  const canaisExpandidos = fluxoOperacional.canais.flatMap(canal => {
+    if (canal.trilhas) {
+      return canal.trilhas.map(trilha => ({
+        id: `${canal.id}-${trilha.id}`,
+        nome: `${canal.nome} · ${trilha.nome}`,
+        descricao: trilha.subtitulo || canal.descricao,
+        corPrincipal: trilha.corPrincipal,
+        etapas: trilha.etapas,
+      }));
+    }
+    return [canal];
+  });
+
   return (
     <div className="fluxo-root">
       <div className="fluxo-grid">
@@ -721,9 +734,12 @@ function FluxoOperacionalView() {
         {FLUXO_FASES.map(f => (
           <div key={f.id} className="fluxo-fase-head">{f.label}</div>
         ))}
-        {fluxoOperacional.canais.map(canal => (
+        {canaisExpandidos.map(canal => (
           <Fragment key={canal.id}>
-            <div className="fluxo-canal-head">
+            <div
+              className="fluxo-canal-head"
+              style={canal.corPrincipal ? { borderLeft: `4px solid ${canal.corPrincipal}`, paddingLeft: "0.7rem" } : undefined}
+            >
               <div className="fluxo-canal-nome">{canal.nome}</div>
               <div className="fluxo-canal-desc">{canal.descricao}</div>
             </div>

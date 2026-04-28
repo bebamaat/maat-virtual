@@ -1848,179 +1848,6 @@
         ]
       },
       {
-        "id": "whatsapp",
-        "nome": "WhatsApp Business",
-        "descricao": "Canal conversacional para atendimento e vendas B2B/B2C. Menu classifica o tipo de contato e aciona o fluxo correto.",
-        "etapas": [
-          {
-            "id": "wa_atr",
-            "nome": "Atração — WhatsApp",
-            "icone": "💬",
-            "corAcento": "#085041",
-            "detalheNegocio": "Mensagem inbound chega ao número da MAAT via 4 origens: representante comercial enviando pedido, cliente PF que descobriu a marca, cliente PJ negociando volume, ou membro do squad interno. Ponto de entrada do fluxo de vendas conversacional.",
-            "detalheTecnico": [
-              {
-                "t": "WhatsApp Business API",
-                "b": "Recebe mensagem. Classifica automaticamente por palavra-chave ou seleção de menu: rep / PF / PJ / squad / SAC."
-              },
-              {
-                "t": "Make / n8n",
-                "b": "Trigger: nova mensagem recebida → identifica perfil → inicia fluxo correto no Pipedrive."
-              },
-              {
-                "t": "Pipedrive",
-                "b": "Cria lead automaticamente com origem:whatsapp e perfil identificado pelo menu."
-              }
-            ],
-            "maatVirtualNota": "Sol (Agente-Mestre) recebe contexto da conversa classificada e decide qual agente especializado acionar (ex: proposta PJ → Seshat/Pipedrive; dúvida de produto → Abundantia/Supply)."
-          },
-          {
-            "id": "wa_menu",
-            "nome": "Menu + Classificação — WhatsApp",
-            "icone": "📋",
-            "corAcento": "#0C447C",
-            "detalheNegocio": "Menu estruturado classifica o contato e aciona o fluxo correto sem intervenção humana. Rep SC recebe link de pedido B2B. Cliente PF recebe link do Shopify. Cliente PJ recebe proposta customizada. SAC escala para atendente.",
-            "detalheTecnico": [
-              {
-                "t": "WhatsApp Business API",
-                "b": "Menu interativo com botões: 1-Sou representante / 2-Quero comprar (PF) / 3-Compra empresarial / 4-Suporte."
-              },
-              {
-                "t": "Make / n8n",
-                "b": "Cada opção dispara scenario diferente: PF→link Shopify, PJ→Pipedrive deal, Rep→formulário de pedido."
-              },
-              {
-                "t": "Pipedrive",
-                "b": "Deal criado com pipeline correto (B2C / B2B / Rep SC) e stage inicial definido."
-              }
-            ],
-            "maatVirtualNota": "Seshat (Pipedrive CRM) cria e categoriza o deal automaticamente. Iris (Make/n8n) aciona o scenario correspondente ao perfil identificado."
-          },
-          {
-            "id": "wa_prop",
-            "nome": "Proposta + Link Pix — WhatsApp",
-            "icone": "📄",
-            "corAcento": "#0C447C",
-            "detalheNegocio": "Para clientes PJ e representantes, proposta gerada automaticamente com base no volume solicitado e tabela de preços vigente (R$117,00/caixa PJ). Link de pagamento via Pix enviado diretamente no chat.",
-            "detalheTecnico": [
-              {
-                "t": "Pipedrive",
-                "b": "Gera proposta com produto, quantidade e preço PJ. Deal avança para stage 'Proposta enviada'."
-              },
-              {
-                "t": "Bling ERP",
-                "b": "Gera pedido de venda e link de cobrança Pix para pagamento direto."
-              },
-              {
-                "t": "WhatsApp Business API",
-                "b": "Envia proposta formatada + link de pagamento Pix na conversa. Aguarda confirmação."
-              },
-              {
-                "t": "Make / n8n",
-                "b": "Se link não pago em 24h → lembrete automático. Se 48h → escala para atendente."
-              }
-            ],
-            "maatVirtualNota": "Seshat (Pipedrive CRM) monitora deals em stage 'Proposta enviada' e aciona follow-up automático conforme SLA definido."
-          },
-          {
-            "id": "wa_pag",
-            "nome": "Pagamento — WhatsApp",
-            "icone": "💳",
-            "corAcento": "#085041",
-            "detalheNegocio": "Pagamento via Pix confirmado pelo Bling. Pedido entra automaticamente em fila de operações. Cliente recebe confirmação imediata no WhatsApp.",
-            "detalheTecnico": [
-              {
-                "t": "Bling ERP",
-                "b": "Webhook pix_pago → atualiza pedido para 'Pago'. Inicia emissão de NF-e."
-              },
-              {
-                "t": "Pipedrive",
-                "b": "Deal avança para stage 'Pago'. Tag status:pago adicionada ao contato."
-              },
-              {
-                "t": "WhatsApp Business API",
-                "b": "Mensagem automática: 'Pagamento confirmado! Seu pedido está sendo preparado.'"
-              },
-              {
-                "t": "Make / n8n",
-                "b": "Scenario: Bling pix_pago → Pipedrive atualizar deal → WA confirmação → iniciar ops."
-              }
-            ],
-            "maatVirtualNota": "Sol (Agente-Mestre) recebe sinal de pagamento e inicia delegação para operações: aciona Laxmi (Bling-Tesouraria/NF) e Melhor Envio (etiqueta)."
-          },
-          {
-            "id": "wa_ops",
-            "nome": "Operações — WhatsApp",
-            "icone": "📦",
-            "corAcento": "#633806",
-            "detalheNegocio": "Idêntico ao fluxo Shopify após pagamento confirmado: NF-e emitida, estoque baixado, etiqueta gerada. A diferença é que o pedido tem origem WhatsApp e pode ter volume maior (B2B).",
-            "detalheTecnico": [
-              {
-                "t": "Bling ERP",
-                "b": "Emite NF-e com CNPJ ou CPF coletado na conversa. Baixa estoque do CD correspondente."
-              },
-              {
-                "t": "Melhor Envio",
-                "b": "Gera etiqueta para o endereço do cliente. Ou aciona frete direto via transportadora parceira para volumes maiores."
-              },
-              {
-                "t": "Make / n8n",
-                "b": "Scenario: NF emitida → etiqueta gerada → WA notificação ao cliente com dados do pedido."
-              }
-            ],
-            "maatVirtualNota": "Hina (Logística de Produto) avalia se o volume justifica transportadora parceira direta ou Melhor Envio, e roteia automaticamente."
-          },
-          {
-            "id": "wa_ent",
-            "nome": "Entrega — WhatsApp",
-            "icone": "🚚",
-            "corAcento": "#712B13",
-            "detalheNegocio": "Entrega comunicada via WhatsApp em cada etapa. Para pedidos B2B maiores, atualização direta com o comprador sobre coleta e prazo de entrega.",
-            "detalheTecnico": [
-              {
-                "t": "Bling ERP / Transportadora",
-                "b": "Atualizações de status chegam via webhook ou integração nativa."
-              },
-              {
-                "t": "WhatsApp Business API",
-                "b": "Notificações automáticas a cada mudança de status: coletado, em trânsito, entregue."
-              },
-              {
-                "t": "Make / n8n",
-                "b": "Scenario: status_entregue → WA confirmação → Pipedrive atualizar deal para 'Entregue'."
-              }
-            ],
-            "maatVirtualNota": "Hina (Logística de Produto) registra entrega e atualiza histórico do cliente. Seshat (Pipedrive CRM) fecha o deal e inicia contagem para trigger de recompra."
-          },
-          {
-            "id": "wa_pos",
-            "nome": "Follow-up + Recompra — WhatsApp",
-            "icone": "🔄",
-            "corAcento": "#3C3489",
-            "detalheNegocio": "Para B2B e representantes, o follow-up de recompra é mais próximo: o squad entra em contato quando o estoque do cliente está próximo de zerar, baseado no histórico de compra.",
-            "detalheTecnico": [
-              {
-                "t": "Pipedrive",
-                "b": "Pipeline de recompra B2B: D+25 após última entrega → tarefa automática para rep com dados do cliente."
-              },
-              {
-                "t": "WhatsApp Business API",
-                "b": "Mensagem personalizada: 'Olá [nome], sua última caixa foi em [data]. Quer renovar o estoque?'"
-              },
-              {
-                "t": "Klaviyo",
-                "b": "Clientes PF que compraram via WA entram nos fluxos de email LC3 e LC7."
-              },
-              {
-                "t": "Make / n8n",
-                "b": "Scenario: Pipedrive D+25 → WA mensagem → se sim, reinicia fluxo de pedido."
-              }
-            ],
-            "maatVirtualNota": "Seshat (Pipedrive CRM) calcula data estimada de reposição com base no histórico e dispara follow-up no timing certo. O squad WhatsApp gerencia a conversa de recompra de forma autônoma até o ponto de decisão."
-          }
-        ]
-      },
-      {
         "id": "mercado-livre",
         "nome": "Mercado Livre",
         "descricao": "Marketplace com maior audiencia do Brasil. Operado pelo Agente ML da MAAT Virtual com precificacao diferenciada.",
@@ -2160,6 +1987,423 @@
               }
             ],
             "maatVirtualNota": "Nut (Insta + TikTok Orgânico) usa reviews 5 estrelas do ML como prova social. Seshat (Pipedrive CRM) acompanha taxa de migração ML→Shopify como KPI estratégico do canal."
+          }
+        ]
+      },
+      {
+        "id": "whatsapp",
+        "nome": "WhatsApp Business",
+        "descricao": "Canal conversacional para vendas B2B/B2C e relacionamento com representantes. Menu inicial classifica o tipo de contato e direciona pra trilha correta sem intervenção humana. Cada perfil (Rep / PF / PJ) tem ritmo, ferramentas e ciclo próprios.",
+        "trilhas": [
+          {
+            "id": "wa-rep",
+            "nome": "Representantes",
+            "subtitulo": "Bot-Rep — alto giro, tabela fixa de transferência",
+            "corPrincipal": "#085041",
+            "etapas": [
+              {
+                "id": "rep_atr",
+                "nome": "Atração — Rep",
+                "icone": "📡",
+                "corAcento": "#085041",
+                "detalheNegocio": "Representante autorizado abre conversa no número da MAAT. Pelo cadastro prévio (telefone whitelistado), o sistema identifica que é rep e dispara fluxo direto sem passar pelo menu padrão.",
+                "detalheTecnico": [
+                  {
+                    "t": "WhatsApp Business API",
+                    "b": "Recebe mensagem, identifica perfil rep pelo telefone cadastrado em whitelist."
+                  },
+                  {
+                    "t": "Pipedrive",
+                    "b": "Verifica cadastro do rep, carrega histórico e tabela de preços de transferência (a definir — Pipedrive já tem pipelines separados B2C/B2B; tabela específica pra rep precisa ser configurada ou usar a tabela PJ atual)."
+                  },
+                  {
+                    "t": "Make / n8n",
+                    "b": "Trigger: rep autenticado → dispara envio do formulário de pedido com tabela atualizada."
+                  }
+                ],
+                "maatVirtualNota": "Sol identifica perfil rep e delega pra Seshat que prepara contexto comercial."
+              },
+              {
+                "id": "rep_ped",
+                "nome": "Pedido — Formulário",
+                "icone": "📋",
+                "corAcento": "#085041",
+                "detalheNegocio": "Rep recebe link de formulário com produtos, quantidades e tabela de transferência fixa. Preenche pedido e submete. Sistema valida estoque e cria pedido de venda no Bling.",
+                "detalheTecnico": [
+                  {
+                    "t": "Formulário web (Tally ou similar)",
+                    "b": "Captura SKU, quantidades, endereço de entrega e dados do rep. Valida campos obrigatórios."
+                  },
+                  {
+                    "t": "Bling ERP",
+                    "b": "Cria pedido com tabela de preços do canal Rep (a definir — Bling já tem produtos PJ vs PF separados; produto Rep precisa ser configurado ou reusar produto PJ)."
+                  },
+                  {
+                    "t": "Pipedrive",
+                    "b": "Cria deal no pipeline Rep com stage 'Pedido recebido'."
+                  },
+                  {
+                    "t": "Make / n8n",
+                    "b": "Scenario: form submit → Bling pedido → Pipedrive deal → WA confirmação ao rep."
+                  }
+                ],
+                "maatVirtualNota": "Seshat registra deal no pipeline Rep. Laxmi prepara cobrança."
+              },
+              {
+                "id": "rep_pag",
+                "nome": "Pagamento — Rep",
+                "icone": "💳",
+                "corAcento": "#085041",
+                "detalheNegocio": "Pagamento via Pix ou boleto, conforme termo do rep. Confirmação automática integra ao Bling e libera operações.",
+                "detalheTecnico": [
+                  {
+                    "t": "Bling ERP",
+                    "b": "Webhook pix_pago ou boleto_pago atualiza pedido pra 'Pago'. Inicia emissão de NF-e."
+                  },
+                  {
+                    "t": "WhatsApp Business API",
+                    "b": "Mensagem automática de confirmação ao rep com dados da NF-e."
+                  },
+                  {
+                    "t": "Make / n8n",
+                    "b": "Scenario: pagamento confirmado → atualiza Pipedrive → notifica rep → libera ops."
+                  }
+                ],
+                "maatVirtualNota": "Sol recebe sinal e delega pra ops (Hina + Laxmi)."
+              },
+              {
+                "id": "rep_ops",
+                "nome": "Operações — Rep",
+                "icone": "📦",
+                "corAcento": "#085041",
+                "detalheNegocio": "NF-e emitida com dados do rep (PJ ou MEI). Estoque baixado. Etiqueta gerada conforme volume — pequenos volumes via Melhor Envio, grandes via transportadora parceira.",
+                "detalheTecnico": [
+                  {
+                    "t": "Bling ERP",
+                    "b": "Emite NF-e do rep. Baixa estoque do CD correspondente."
+                  },
+                  {
+                    "t": "Melhor Envio / Transportadora",
+                    "b": "Roteamento por volume: até X caixas via Melhor Envio, acima via transportadora parceira."
+                  },
+                  {
+                    "t": "Make / n8n",
+                    "b": "Scenario: NF emitida → etiqueta → notificação WA com rastreio."
+                  }
+                ],
+                "maatVirtualNota": "Hina decide roteamento de frete por volume."
+              },
+              {
+                "id": "rep_ent",
+                "nome": "Entrega — Rep",
+                "icone": "🚚",
+                "corAcento": "#085041",
+                "detalheNegocio": "Notificações de entrega no WhatsApp do rep a cada mudança de status. Volumes maiores: contato direto sobre coleta e prazo.",
+                "detalheTecnico": [
+                  {
+                    "t": "Bling ERP / Transportadora",
+                    "b": "Status de entrega via webhook ou integração nativa."
+                  },
+                  {
+                    "t": "WhatsApp Business API",
+                    "b": "Notificações: coletado, em trânsito, entregue."
+                  },
+                  {
+                    "t": "Make / n8n",
+                    "b": "Scenario: status_entregue → WA confirmação → Pipedrive fecha deal."
+                  }
+                ],
+                "maatVirtualNota": "Hina registra entrega. Seshat fecha deal e arma trigger de recompra."
+              },
+              {
+                "id": "rep_fup",
+                "nome": "Follow-up + Recompra — Rep",
+                "icone": "🔄",
+                "corAcento": "#085041",
+                "detalheNegocio": "Recompra é cíclica e previsível. Sistema dispara follow-up calculado pelo histórico de compra (D+25/D+30 conforme rep). Rep recebe lembrete com sugestão de pedido baseada no padrão anterior.",
+                "detalheTecnico": [
+                  {
+                    "t": "Pipedrive",
+                    "b": "Pipeline Rep: tarefa automática D+25 com sugestão de pedido baseada em histórico."
+                  },
+                  {
+                    "t": "WhatsApp Business API",
+                    "b": "Mensagem personalizada: 'Olá [rep], baseado no teu giro, sugerimos novo pedido de [X caixas]. Confirma?'"
+                  },
+                  {
+                    "t": "Make / n8n",
+                    "b": "Scenario: D+25 → WA mensagem → se sim, dispara form de pedido pré-preenchido."
+                  }
+                ],
+                "maatVirtualNota": "Seshat calcula timing ideal de recompra por rep com base no padrão histórico."
+              }
+            ]
+          },
+          {
+            "id": "wa-pf",
+            "nome": "Pessoa Física",
+            "subtitulo": "Cliente final descobre via WA, redireciona pro Shopify",
+            "corPrincipal": "#0C447C",
+            "etapas": [
+              {
+                "id": "pf_atr",
+                "nome": "Atração — PF",
+                "icone": "📡",
+                "corAcento": "#0C447C",
+                "detalheNegocio": "Cliente PF entra em contato via WhatsApp por interesse na marca (anúncio, indicação, busca). Sistema identifica perfil PF (sem cadastro prévio nem intenção de volume) e prepara redirecionamento.",
+                "detalheTecnico": [
+                  {
+                    "t": "WhatsApp Business API",
+                    "b": "Recebe mensagem de número não cadastrado. Classifica como PF baseado em heurística (linguagem, contexto)."
+                  },
+                  {
+                    "t": "Pipedrive",
+                    "b": "Cria contato no pipeline B2C com tag origem:whatsapp."
+                  },
+                  {
+                    "t": "Make / n8n",
+                    "b": "Trigger: novo PF identificado → dispara mensagem de boas-vindas com link Shopify."
+                  }
+                ],
+                "maatVirtualNota": "Sol identifica PF e delega pra Hathor que assume a conversão via Shopify."
+              },
+              {
+                "id": "pf_red",
+                "nome": "Redirect — Shopify",
+                "icone": "🔗",
+                "corAcento": "#0C447C",
+                "detalheNegocio": "Cliente PF recebe link direto do Shopify (bebamaat.com.br) com mensagem de boas-vindas e cupom de primeira compra (opcional). A partir desse ponto, segue o fluxo do canal Shopify B2C/B2B.",
+                "detalheTecnico": [
+                  {
+                    "t": "WhatsApp Business API",
+                    "b": "Mensagem com link Shopify + cupom (se aplicável). Continua disponível pra dúvidas."
+                  },
+                  {
+                    "t": "Klaviyo",
+                    "b": "PF entra na lista de leads WA→Shopify pra remarketing se não converter em 24h."
+                  },
+                  {
+                    "t": "Pipedrive",
+                    "b": "Tag rastreio:wa-pf no contato. Se converter no Shopify, deal é atualizado com origem WA."
+                  }
+                ],
+                "maatVirtualNota": "Hathor monitora conversão. Se cliente não fechou em 24h, Maia entra com remarketing dedicado."
+              },
+              {
+                "id": "pf_acomp",
+                "nome": "Acompanhamento — PF",
+                "icone": "💬",
+                "corAcento": "#0C447C",
+                "detalheNegocio": "Durante a jornada no Shopify, cliente pode voltar ao WhatsApp pra tirar dúvidas (frete, sabor, cupom, prazo). Atendimento conversacional dá suporte sem tirar o cliente do Shopify.",
+                "detalheTecnico": [
+                  {
+                    "t": "WhatsApp Business API",
+                    "b": "Conversa contínua. Bot responde dúvidas frequentes ou escala pra atendente."
+                  },
+                  {
+                    "t": "Pipedrive",
+                    "b": "Histórico de interações registrado no contato pra contexto futuro."
+                  }
+                ],
+                "maatVirtualNota": "Hathor acompanha. Se cliente fica >48h sem converter, dispara remarketing."
+              },
+              {
+                "id": "pf_pos",
+                "nome": "Pós-venda — PF",
+                "icone": "✅",
+                "corAcento": "#0C447C",
+                "detalheNegocio": "Após compra no Shopify, cliente PF recebe notificações de status pelo WhatsApp (pago, enviado, entregue) e fluxo de pós-venda padrão Shopify (review, NPS, recompra).",
+                "detalheTecnico": [
+                  {
+                    "t": "WhatsApp Business API",
+                    "b": "Notificações de status do pedido. Mensagem de NPS após entrega."
+                  },
+                  {
+                    "t": "Klaviyo",
+                    "b": "Cliente entra nos fluxos LC3 e LC7 (recompra)."
+                  },
+                  {
+                    "t": "Judge.me",
+                    "b": "Convite pra avaliação 7 dias após entrega."
+                  }
+                ],
+                "maatVirtualNota": "Hathor + Maia gerenciam pós-venda integrado entre WA e Shopify."
+              }
+            ]
+          },
+          {
+            "id": "wa-pj",
+            "nome": "Pessoa Jurídica",
+            "subtitulo": "Cliente empresarial — alta margem, alto volume, ciclo lento",
+            "corPrincipal": "#5B297D",
+            "etapas": [
+              {
+                "id": "pj_atr",
+                "nome": "Atração — PJ",
+                "icone": "📡",
+                "corAcento": "#5B297D",
+                "detalheNegocio": "Cliente PJ (lojista, distribuidor, evento, rede) abre conversa interessado em volume. Pode vir de outbound (lista do squad), indicação de rep, ou inbound qualificado. Perfil identificado por menu ou pelo conteúdo da primeira mensagem.",
+                "detalheTecnico": [
+                  {
+                    "t": "WhatsApp Business API",
+                    "b": "Recebe mensagem. Classifica como PJ por palavra-chave (volume, atacado, revenda, evento) ou seleção de menu."
+                  },
+                  {
+                    "t": "Pipedrive",
+                    "b": "Cria deal no pipeline B2B com stage 'Lead'. Tag origem:whatsapp."
+                  },
+                  {
+                    "t": "Make / n8n",
+                    "b": "Trigger: PJ identificado → cria deal → notifica squad comercial."
+                  }
+                ],
+                "maatVirtualNota": "Sol delega pra Seshat que conduz negociação B2B. Lucas é notificado pra leads quentes."
+              },
+              {
+                "id": "pj_neg",
+                "nome": "Negociação — PJ",
+                "icone": "🤝",
+                "corAcento": "#5B297D",
+                "detalheNegocio": "Squad B2B (Lucas + Seshat) qualifica o cliente PJ via conversa: tipo de negócio, volume estimado, frequência, perfil tributário. Ajusta a proposta dentro da política comercial PJ.",
+                "detalheTecnico": [
+                  {
+                    "t": "WhatsApp Business API",
+                    "b": "Conversa de qualificação. Coleta CNPJ, volume, prazo."
+                  },
+                  {
+                    "t": "Pipedrive",
+                    "b": "Deal avança pra stage 'Qualificado'. Campos custom preenchidos: volume, cnpj, segmento."
+                  },
+                  {
+                    "t": "Make / n8n",
+                    "b": "Scenario: deal qualificado → notifica Lucas → prepara dados pra geração de proposta."
+                  }
+                ],
+                "maatVirtualNota": "Seshat estrutura proposta com base nos dados. Decisões sobre desconto e prazo passam por Lucas."
+              },
+              {
+                "id": "pj_prop",
+                "nome": "Proposta + Pix — PJ",
+                "icone": "📋",
+                "corAcento": "#5B297D",
+                "detalheNegocio": "Proposta gerada com produto PJ (R$117/caixa), volume negociado e condições. Link Pix enviado direto no chat. Aguarda confirmação do cliente.",
+                "detalheTecnico": [
+                  {
+                    "t": "Pipedrive",
+                    "b": "Gera proposta com produto PJ, quantidade e preço acordado. Deal avança pra 'Proposta enviada'."
+                  },
+                  {
+                    "t": "Bling ERP",
+                    "b": "Pedido criado com tabela PJ. Gera link de cobrança Pix."
+                  },
+                  {
+                    "t": "WhatsApp Business API",
+                    "b": "Envia proposta formatada + link de pagamento Pix. Mantém conversa aberta."
+                  },
+                  {
+                    "t": "Make / n8n",
+                    "b": "Scenario: 24h sem pagamento → lembrete; 48h → escalation pro squad."
+                  }
+                ],
+                "maatVirtualNota": "Seshat monitora SLA. Lucas é notificado se cliente PJ alto valor demora pra confirmar."
+              },
+              {
+                "id": "pj_pag",
+                "nome": "Pagamento — PJ",
+                "icone": "💳",
+                "corAcento": "#5B297D",
+                "detalheNegocio": "Pix confirmado pelo Bling. Pedido entra em ops com prioridade B2B. Cliente recebe confirmação imediata + dados da NF-e.",
+                "detalheTecnico": [
+                  {
+                    "t": "Bling ERP",
+                    "b": "Webhook pix_pago atualiza pedido pra 'Pago'. Emite NF-e PJ."
+                  },
+                  {
+                    "t": "Pipedrive",
+                    "b": "Deal avança pra 'Pago'. Tag status:pago."
+                  },
+                  {
+                    "t": "WhatsApp Business API",
+                    "b": "Mensagem de confirmação + link da NF-e em PDF."
+                  },
+                  {
+                    "t": "Make / n8n",
+                    "b": "Scenario: pago → atualiza Pipedrive → WA confirma → libera ops B2B."
+                  }
+                ],
+                "maatVirtualNota": "Sol recebe sinal e delega pra ops B2B (Hina avalia logística de volume)."
+              },
+              {
+                "id": "pj_ops",
+                "nome": "Operações — PJ",
+                "icone": "📦",
+                "corAcento": "#5B297D",
+                "detalheNegocio": "Volume PJ tipicamente exige logística diferenciada. NF-e emitida com CNPJ. Roteamento de frete via transportadora parceira pra volumes grandes (>X caixas), Melhor Envio pra menores. Estoque debitado do CD correto.",
+                "detalheTecnico": [
+                  {
+                    "t": "Bling ERP",
+                    "b": "Emite NF-e PJ. Baixa estoque do CD correspondente. Gera ordem de coleta se aplicável."
+                  },
+                  {
+                    "t": "Transportadora parceira",
+                    "b": "Aciona coleta direta pra volumes acima do threshold."
+                  },
+                  {
+                    "t": "Melhor Envio",
+                    "b": "Etiqueta padrão pra volumes menores PJ."
+                  },
+                  {
+                    "t": "Make / n8n",
+                    "b": "Scenario: volume_calculado → roteia frete → WA notifica cliente."
+                  }
+                ],
+                "maatVirtualNota": "Hina decide roteamento por volume. Cliente PJ é notificado proativamente sobre logística."
+              },
+              {
+                "id": "pj_ent",
+                "nome": "Entrega — PJ",
+                "icone": "🚚",
+                "corAcento": "#5B297D",
+                "detalheNegocio": "Comunicação proativa em cada etapa: coleta agendada, em trânsito, entregue. Squad B2B disponível pra resolver intercorrências de volume (avaria, atraso, divergência).",
+                "detalheTecnico": [
+                  {
+                    "t": "Bling ERP / Transportadora",
+                    "b": "Status via webhook ou integração nativa."
+                  },
+                  {
+                    "t": "WhatsApp Business API",
+                    "b": "Notificações: coleta agendada, coletado, em trânsito, entregue. Squad disponível 24h em horário comercial pra PJ."
+                  },
+                  {
+                    "t": "Make / n8n",
+                    "b": "Scenario: status_entregue → WA confirmação → Pipedrive fecha deal → arma trigger de recompra B2B."
+                  }
+                ],
+                "maatVirtualNota": "Hina registra entrega B2B. Seshat fecha deal."
+              },
+              {
+                "id": "pj_fup",
+                "nome": "Follow-up + Recompra — PJ",
+                "icone": "🔄",
+                "corAcento": "#5B297D",
+                "detalheNegocio": "Recompra B2B é gerenciada pelo squad. Pipedrive calcula data estimada de reposição com base no giro do cliente PJ. Squad entra antes do estoque zerar pra renovar pedido — relacionamento mais próximo que B2C.",
+                "detalheTecnico": [
+                  {
+                    "t": "Pipedrive",
+                    "b": "Pipeline B2B: tarefa pro squad D+25 com dados do cliente, último pedido e sugestão de volume."
+                  },
+                  {
+                    "t": "WhatsApp Business API",
+                    "b": "Mensagem do squad: 'Olá [empresa], faz [X dias] do último pedido. Estamos prontos pra preparar o próximo. Vamos conversar?'"
+                  },
+                  {
+                    "t": "Make / n8n",
+                    "b": "Scenario: D+25 → tarefa Pipedrive → WA squad → se cliente confirma, reabre fluxo de proposta."
+                  }
+                ],
+                "maatVirtualNota": "Seshat aciona squad no timing certo. Squad B2B conduz negociação de recompra autônoma até nova proposta."
+              }
+            ]
           }
         ]
       }
@@ -2731,7 +2975,11 @@
     {
       "id": "ph-lucas-01",
       "titulo": "Alinhar estrategia de lancamento e go-live B2C",
-      "responsavel": ["lucas", "julia", "cleber"],
+      "responsavel": [
+        "lucas",
+        "julia",
+        "cleber"
+      ],
       "prioridade": "high",
       "bloqueia": [
         "3.9",
@@ -2744,7 +2992,10 @@
     {
       "id": "ph-julia-01",
       "titulo": "Aprovar conteudo, marca e comunicacao para lancamento",
-      "responsavel": ["julia", "lucas"],
+      "responsavel": [
+        "julia",
+        "lucas"
+      ],
       "prioridade": "high",
       "bloqueia": [
         "2.4"
@@ -2854,6 +3105,21 @@
       "dataAbertura": "2026-04-25",
       "descricao": "Constituição cobre 14 Hard Limits derivados de CF, CC, CP, LGPD e Marco Civil. Antes de operacionalizar 100%, validar com advogado especializado em direito digital pra confirmar coverage e adicionar gaps específicos do setor de bebidas/e-commerce. Próximo passo: agendar revisão com escritório.",
       "status": "aberta"
+    },
+    {
+      "id": "ph-lucas-04",
+      "titulo": "Validar fluxos WhatsApp Rep/PF/PJ + escolher form Rep",
+      "responsavel": [
+        "lucas",
+        "cleber"
+      ],
+      "prioridade": "high",
+      "bloqueia": [
+        "Implementação fluxo WhatsApp Rep/PF/PJ"
+      ],
+      "dataAbertura": "2026-04-27",
+      "descricao": "Fluxos WhatsApp foram desmembrados em 3 trilhas (Rep, PF, PJ) com ferramentas adaptadas. Antes de implementar: (1) revisar com Cleber as 3 trilhas pra checar se faltou etapa; (2) escolher ferramenta de formulário pro pedido do rep (Tally, Typeform, Google Forms ou form custom no Shopify); (3) confirmar pipelines Pipedrive separados (B2C/B2B/Rep) e tabelas Bling correspondentes — memórias indicam que Pipedrive já tem pipelines separados e Bling já tem produtos PJ vs PF. Decisão pendente: criar tabela/produto específico pra Rep no Bling/Pipedrive, ou usar tabela PJ pra rep também?",
+      "status": "aberta"
     }
   ],
   "marcosConcluidos": [
@@ -2951,7 +3217,10 @@
       "id": "ht-bot-vendas",
       "type": "macro",
       "assigneeType": "human",
-      "assignee": ["cleber", "lucas"],
+      "assignee": [
+        "cleber",
+        "lucas"
+      ],
       "title": "Terminar bot de vendas",
       "priority": "high",
       "status": "in_progress",

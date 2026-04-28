@@ -912,7 +912,7 @@ td { padding: 0.8rem; border-bottom: 1px solid var(--border); vertical-align: to
 .fluxo-cell {
   display: flex;
   flex-direction: column;
-  gap: 0.4rem;
+  gap: 0.5rem;
   padding: 0.35rem 0.2rem;
   min-height: 76px;
   justify-content: center;
