@@ -1,5 +1,16 @@
 # Changelog — MAAT Virtual
 
+## 2026-05-12
+
+### Limpeza pos-refator + lapidacao da base
+- Removidos 13 arquivos legacy da diretoria antiga em `agentes/diretoria/*.md` e `agentes/operacionais/*.md` — substituidos no refator mitologico de 2026-04-21 mas nunca deletados. Pastas `agentes/diretoria/`, `agentes/operacionais/` e `agentes/` removidas.
+- Removidos perfis humanos curtos duplicados em `humanos/*.md`. Fonte unica agora e `docs/maat-virtual/pessoas/<nome>.md`. Pasta `humanos/` removida.
+- `MAAT Virtual — Frente A (fundação conceitual) .pages` movido pra `materiais/` (gitignored) — versao markdown viva em `docs/maat-virtual/frente-a*.md` e a fonte.
+- `painel/index-static-backup.html` removido (backup orfao sem referencias).
+- Sincronizado `sessao-2026-04-27.md` em `painel/public/docs/` (estava dessync).
+- `CLAUDE.md` reescrito: regra do `.eu` ganhou clausula de "confirmacao por contexto" (memoria/email) ao inves de sempre mostrar as 4 opcoes; path do perfil corrigido pra `docs/maat-virtual/pessoas/<nome>.md`; arvore de pastas atualizada; nova secao "Time Virtual" com lista completa dos 44 agentes mitologicos (1 Sol + 7 coordenadores + 31 especialistas + 5 governanca); novo bloco "Modelo de posse" (Frente A v2); nota sobre `validate.js` no boot do layout; nova secao "Skills" com regra constitucional de `maat-legal-compliance` como dependencia; equipe humana atualizada (Lucas Co-CEO+Diretor Virtual+Producao+Co-Receita; Julia Co-CEO Estrategia+Financeiro+Co-Receita; Cleber CTIO·Diretor Virtual; Paula Head Ops & Comunidade); visibilidade do repo corrigida pra **public**.
+- Registrada ata em `docs/maat-virtual/sessao-2026-05-12.md` + copia em `painel/public/docs/`.
+
 ## 2026-04-21
 
 ### Refator completo — 41 agentes mitologicos + DM Sans + dark toggle + Time Virtual
