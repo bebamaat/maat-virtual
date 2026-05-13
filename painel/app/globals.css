@@ -472,6 +472,29 @@ td { padding: 0.8rem; border-bottom: 1px solid var(--border); vertical-align: to
   color: var(--text-muted);
   font-weight: 500;
 }
+.tv-grupo-head-clickable {
+  cursor: pointer;
+  position: relative;
+  transition: border-color 120ms ease, background 120ms ease;
+  margin: -0.2rem -0.4rem 0;
+  padding: 0.2rem 0.4rem 0.6rem;
+  border-radius: 6px;
+}
+.tv-grupo-head-clickable:hover {
+  background: var(--bg-hover, rgba(0, 0, 0, 0.03));
+  border-bottom-color: var(--accent-atencao);
+}
+.tv-grupo-head-clickable:focus-visible {
+  outline: 2px solid var(--accent-atencao);
+  outline-offset: 2px;
+}
+.tv-grupo-jd-badge {
+  margin-left: 0.5rem;
+  position: static;
+}
+.tv-grupo-gov .tv-grupo-area {
+  color: var(--accent-tec, var(--accent-atencao));
+}
 
 .tv-cards {
   display: grid;

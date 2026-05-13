@@ -245,7 +245,10 @@ function AgenteCard({ a, className, showFuncao = true }) {
 }
 
 function frenteDoAgente(a) {
-  if (!a || !a.origemMapID) return "Frente 1 · MAAT Virtual (a desenvolver)";
+  if (!a) return "Frente 1 · MAAT Virtual (a desenvolver)";
+  if (a._tipo === "coordenador") return `Coordenador · ${a.areaLabel || a.area || "—"}`;
+  if (a._tipo === "governanca") return "Governança Técnica · Transversal";
+  if (!a.origemMapID) return "Frente 1 · MAAT Virtual (a desenvolver)";
   return a.origemMapID.startsWith("ag_")
     ? "Frente 2 · Squad operacional"
     : "Frente 1 · Ferramenta proprietaria";
@@ -360,7 +363,7 @@ function AgenteModal({ agente, onClose }) {
 const COORD_AREA_ORDEM = ["estrategia", "financeiro", "producao", "operacoes", "vendas", "marketing", "comunidade"];
 
 function TimeVirtualView() {
-  const { coordenadores, especialistas } = data;
+  const { coordenadores, especialistas, governancaTecnica } = data;
   const porCoord = agruparPorCoordenador(especialistas);
   const [agenteAberto, setAgenteAberto] = useState(null);
 
@@ -370,23 +373,44 @@ function TimeVirtualView() {
     return (ia === -1 ? 99 : ia) - (ib === -1 ? 99 : ib);
   });
 
+  // Sintetiza campos faltantes (coordenador nao tem `funcao`; governanca/coord
+  // ganham marcador _tipo pra que frenteDoAgente exiba o label correto)
+  function abrirCoordenador(c) {
+    setAgenteAberto({ ...c, funcao: c.areaLabel || c.area, _tipo: "coordenador" });
+  }
+  function abrirEspecialista(e) {
+    setAgenteAberto(e);
+  }
+  function abrirGovernanca(g) {
+    setAgenteAberto({ ...g, _tipo: "governanca" });
+  }
+
   return (
     <div className="tv-catalogo">
       {coordenadoresOrdenados.map(c => {
         const esps = porCoord[c.id] || [];
+        const coordSemJD = !c.descricaoDetalhada;
         return (
           <div key={c.id} className="tv-grupo">
-            <div className="tv-grupo-head">
+            <div
+              className={`tv-grupo-head tv-grupo-head-clickable${coordSemJD ? " tv-grupo-head-jd-pendente" : ""}`}
+              role="button"
+              tabIndex={0}
+              onClick={() => abrirCoordenador(c)}
+              onKeyDown={e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); abrirCoordenador(c); } }}
+              aria-label={`Ver JD do coordenador ${c.nomeMitologico}`}
+            >
               <div className="tv-grupo-area">{c.areaLabel}</div>
               <div className="tv-grupo-coord">{c.nomeMitologico}</div>
               <div className="tv-grupo-count">{esps.length} especialista{esps.length !== 1 ? "s" : ""}</div>
+              {coordSemJD && <span className="tv-card-jd-badge tv-grupo-jd-badge">JD pendente</span>}
             </div>
             <div className="tv-cards">
               {esps.map(e => {
                 const tools = (e.ferramentas || []).slice(0, 3);
                 const semJD = !e.descricaoDetalhada;
                 return (
-                  <button key={e.id} id={`agente-${e.id}`} type="button" className={`tv-card${semJD ? " tv-card-jd-pendente" : ""}`} onClick={() => setAgenteAberto(e)}>
+                  <button key={e.id} id={`agente-${e.id}`} type="button" className={`tv-card${semJD ? " tv-card-jd-pendente" : ""}`} onClick={() => abrirEspecialista(e)}>
                     {semJD && <span className="tv-card-jd-badge">JD pendente</span>}
                     <div className="tv-card-name">{e.nomeMitologico}</div>
                     <div className="tv-card-funcao">{e.funcao}</div>
@@ -404,6 +428,37 @@ function TimeVirtualView() {
           </div>
         );
       })}
+
+      {governancaTecnica && governancaTecnica.length > 0 && (
+        <div className="tv-grupo tv-grupo-gov">
+          <div className="tv-grupo-head">
+            <div className="tv-grupo-area">Governança Técnica</div>
+            <div className="tv-grupo-coord">Transversal · donoTécnico = Cleber</div>
+            <div className="tv-grupo-count">{governancaTecnica.length} agentes</div>
+          </div>
+          <div className="tv-cards">
+            {governancaTecnica.map(g => {
+              const tools = (g.ferramentas || []).slice(0, 3);
+              const semJD = !g.descricaoDetalhada;
+              return (
+                <button key={g.id} id={`agente-${g.id}`} type="button" className={`tv-card${semJD ? " tv-card-jd-pendente" : ""}`} onClick={() => abrirGovernanca(g)}>
+                  {semJD && <span className="tv-card-jd-badge">JD pendente</span>}
+                  <div className="tv-card-name">{g.nomeMitologico}</div>
+                  <div className="tv-card-funcao">{g.funcao}</div>
+                  <div className="tv-card-desc">{g.descricao}</div>
+                  {tools.length > 0 && (
+                    <div className="tv-card-tools">
+                      {tools.map(t => <span key={t} className="tv-card-tool">{t}</span>)}
+                    </div>
+                  )}
+                  <span className={`badge ${STATUS_BADGE[g.status]} tv-card-status`}>{STATUS_LABEL[g.status]}</span>
+                </button>
+              );
+            })}
+          </div>
+        </div>
+      )}
+
       <AgenteModal agente={agenteAberto} onClose={() => setAgenteAberto(null)} />
     </div>
   );
