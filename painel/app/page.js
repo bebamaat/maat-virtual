@@ -718,7 +718,7 @@ function FluxoOperacionalView() {
     if (canal.trilhas) {
       return canal.trilhas.map(trilha => ({
         id: `${canal.id}-${trilha.id}`,
-        nome: `${canal.nome} · ${trilha.nome}`,
+        nome: `${trilha.canalNomeOverride || canal.nome} · ${trilha.nome}`,
         descricao: trilha.subtitulo || canal.descricao,
         corPrincipal: trilha.corPrincipal,
         etapas: trilha.etapas,

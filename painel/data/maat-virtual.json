@@ -55,17 +55,23 @@
     },
     {
       "id": "representante-1",
-      "nome": "A definir",
+      "nome": "LO Representações",
       "papel": "Representante",
-      "areas": [],
-      "placeholder": true
+      "areas": [
+        "vendas"
+      ],
+      "placeholder": true,
+      "scope": "Representante comercial PJ — vendas regionais"
     },
     {
       "id": "representante-2",
-      "nome": "A definir",
+      "nome": "Raphael Anunciação",
       "papel": "Representante",
-      "areas": [],
-      "placeholder": true
+      "areas": [
+        "vendas"
+      ],
+      "placeholder": true,
+      "scope": "Representante comercial PF — vendas regionais"
     }
   ],
   "agenteMestre": {
@@ -91,7 +97,60 @@
         "lucas"
       ],
       "donoTecnico": "cleber",
-      "status": "planejado"
+      "status": "planejado",
+      "descricaoDetalhada": "Coordena toda a frente comercial da MAAT — orquestra os agentes que tocam Pipedrive (Seshat), Shopify (Hathor), Mercado Livre (Iemanja) e Key Accounts B2B (Isis). Sua função central é garantir que o funil de aquisição/conversão flua sem fricção entre canais: leads gerados em qualquer touchpoint chegam ao CRM, oportunidades não morrem por falta de follow-up, e métricas de receita por canal sobem ao Júpiter (BI estratégico). Quando um especialista identifica gargalo (ex.: taxa de conversão baixa no Shopify), Mercurio decide se o ajuste é local (Hathor resolve) ou cross-canal (precisa Pipedrive + Klaviyo + Shopify falando juntos).",
+      "skills": [
+        {
+          "n": "ux-strategy",
+          "s": "todo"
+        },
+        {
+          "n": "opportunity-framework",
+          "s": "todo"
+        },
+        {
+          "n": "metrics-definition",
+          "s": "todo"
+        },
+        {
+          "n": "journey-map",
+          "s": "todo"
+        },
+        {
+          "n": "competitive-analysis",
+          "s": "todo"
+        },
+        {
+          "n": "experience-map",
+          "s": "todo"
+        },
+        {
+          "n": "orquestração de funil comercial",
+          "s": "todo"
+        }
+      ],
+      "mcpTools": [
+        {
+          "n": "get_deployment",
+          "s": "ready"
+        },
+        {
+          "n": "list_deployments",
+          "s": "ready"
+        },
+        {
+          "n": "get_runtime_logs",
+          "s": "ready"
+        }
+      ],
+      "ferramentas": [
+        "Pipedrive CRM",
+        "Shopify",
+        "Mercado Livre",
+        "WhatsApp Business + APP de Vendas",
+        "Klaviyo"
+      ],
+      "dependencias": "Seshat (Pipedrive) · Hathor (Shopify) · Iemanja (Mercado Livre) · Isis (Key Accounts) · Júpiter (BI consolidado de receita)"
     },
     {
       "id": "venus",
@@ -104,7 +163,62 @@
         "lucas"
       ],
       "donoTecnico": "cleber",
-      "status": "planejado"
+      "status": "planejado",
+      "descricaoDetalhada": "Coordena a frente de marketing — orquestra 8 especialistas em ads (Atena/Google, Odoya/Meta, Iansa/TikTok), orgânico (Nut), CRM (Demeter/Klaviyo), design (Neftis/digital, Oxum/produto) e trade (Brigid). Garante coerência de mensagem e identidade visual entre canais pagos, orgânicos e ponto de venda físico. Aloca verba entre canais baseada em CAC/LTV por canal (vindo do Júpiter), define brand briefs que cascateiam pros especialistas de design, e coordena lançamentos (ex.: campanha de Páscoa precisa Atena+Odoya+Nut+Demeter+Neftis tocando coordenado).",
+      "skills": [
+        {
+          "n": "ux-writing",
+          "s": "todo"
+        },
+        {
+          "n": "design-rationale",
+          "s": "todo"
+        },
+        {
+          "n": "color-palette",
+          "s": "todo"
+        },
+        {
+          "n": "type-system",
+          "s": "todo"
+        },
+        {
+          "n": "design-brief",
+          "s": "todo"
+        },
+        {
+          "n": "metrics-definition",
+          "s": "todo"
+        },
+        {
+          "n": "competitive-analysis",
+          "s": "todo"
+        },
+        {
+          "n": "orquestração de campanhas multi-canal",
+          "s": "todo"
+        }
+      ],
+      "mcpTools": [
+        {
+          "n": "get_runtime_logs",
+          "s": "ready"
+        },
+        {
+          "n": "list_deployments",
+          "s": "ready"
+        }
+      ],
+      "ferramentas": [
+        "Klaviyo",
+        "Meta Ads Manager",
+        "Google Ads",
+        "TikTok Ads Manager",
+        "Instagram",
+        "TikTok",
+        "Canva/Figma"
+      ],
+      "dependencias": "Atena/Odoya/Iansa (Ads) · Nut (Orgânico) · Demeter (Email/SMS) · Neftis (Design Digital) · Oxum (Design Produto) · Brigid (Trade) · Júpiter (atribuição/CAC)"
     },
     {
       "id": "netuno",
@@ -116,7 +230,47 @@
         "paula"
       ],
       "donoTecnico": "cleber",
-      "status": "planejado"
+      "status": "planejado",
+      "descricaoDetalhada": "Coordena toda a malha logística da MAAT — orquestra Tefnut (logística de insumos: produtores → copacker), Hina (logística de produto: copacker → CDs) e Oia (logística de vendas: CD → cliente final via Melhor Envio). Garante que o produto certo chegue ao lugar certo no prazo sem ruptura de estoque. Sua função crítica é resolver conflitos cross-trecho (ex.: atraso na entrada de insumo afeta produção que afeta entrega final) e manter visibilidade end-to-end de estoque entre as 3 pontas. Sobe alertas pra Marina (operações humanas) quando há risco de ruptura.",
+      "skills": [
+        {
+          "n": "state-machine",
+          "s": "todo"
+        },
+        {
+          "n": "journey-map",
+          "s": "todo"
+        },
+        {
+          "n": "error-handling-ux",
+          "s": "todo"
+        },
+        {
+          "n": "metrics-definition",
+          "s": "todo"
+        },
+        {
+          "n": "design-brief",
+          "s": "todo"
+        },
+        {
+          "n": "orquestração de cadeia logística",
+          "s": "todo"
+        }
+      ],
+      "mcpTools": [
+        {
+          "n": "get_runtime_logs",
+          "s": "ready"
+        }
+      ],
+      "ferramentas": [
+        "Bling ERP",
+        "Melhor Envio",
+        "Planilhas de transportadora",
+        "Sistemas dos copackers"
+      ],
+      "dependencias": "Tefnut (logística insumos) · Hina (logística produto) · Oia (logística vendas) · Marte (produção/PCP) · Saturno (custos de frete)"
     },
     {
       "id": "marte",
@@ -129,7 +283,38 @@
         "paula"
       ],
       "donoTecnico": "cleber",
-      "status": "planejado"
+      "status": "planejado",
+      "descricaoDetalhada": "Coordena a produção física do produto — orquestra Abundantia (supply/fornecedores), Uzume (PCP — planejamento de produção e copacking) e Saraswati (P&D — formulação e iterações). Sua função central é traduzir demanda projetada (vinda do Mercurio/vendas) em plano de produção viável: orçamento de insumos com Abundantia, calendário de fabricação com Uzume no copacker, e ajustes de formulação com Saraswati quando há restrição de insumo ou mudança regulatória. Mantém histórico de produção pra rastreabilidade fiscal/sanitária (linka com Nemesis/Jurídico).",
+      "skills": [
+        {
+          "n": "design-brief",
+          "s": "todo"
+        },
+        {
+          "n": "opportunity-framework",
+          "s": "todo"
+        },
+        {
+          "n": "metrics-definition",
+          "s": "todo"
+        },
+        {
+          "n": "state-machine",
+          "s": "todo"
+        },
+        {
+          "n": "orquestração de plano de produção",
+          "s": "todo"
+        }
+      ],
+      "mcpTools": [],
+      "ferramentas": [
+        "Bling ERP (PCP)",
+        "Planilhas de fórmula",
+        "Documentos técnicos do copacker",
+        "Sistema regulatório MAPA/ANVISA"
+      ],
+      "dependencias": "Abundantia (supply) · Uzume (PCP) · Saraswati (P&D) · Netuno (logística de insumos) · Nemesis (compliance regulatório) · Mercurio (demanda projetada)"
     },
     {
       "id": "jupiter",
@@ -143,7 +328,65 @@
         "cleber"
       ],
       "donoTecnico": "cleber",
-      "status": "planejado"
+      "status": "planejado",
+      "descricaoDetalhada": "Coordena a frente estratégica e a inteligência transversal da empresa — orquestra Temis (governança/atas), Sofia (BI estratégico/KPIs), Maia (GA4 e tracking), Iris (Make/n8n para integrações entre ferramentas) e Fortuna (inteligência competitiva/mercado externo). É o agente que consolida sinal de toda a empresa em painéis pra os Co-CEOs decidirem. Sua função crítica: traduzir dados crus (Pipedrive, Shopify, Bling, GA4) em narrativa decisória mensal, manter o roadmap atualizado com Temis, e disparar alertas estratégicos quando KPIs desviam do plano.",
+      "skills": [
+        {
+          "n": "north-star-vision",
+          "s": "todo"
+        },
+        {
+          "n": "opportunity-framework",
+          "s": "todo"
+        },
+        {
+          "n": "metrics-definition",
+          "s": "todo"
+        },
+        {
+          "n": "competitive-analysis",
+          "s": "todo"
+        },
+        {
+          "n": "design-brief",
+          "s": "todo"
+        },
+        {
+          "n": "experience-map",
+          "s": "todo"
+        },
+        {
+          "n": "stakeholder-alignment",
+          "s": "todo"
+        },
+        {
+          "n": "orquestração estratégica cross-área",
+          "s": "todo"
+        }
+      ],
+      "mcpTools": [
+        {
+          "n": "get_deployment",
+          "s": "ready"
+        },
+        {
+          "n": "get_runtime_logs",
+          "s": "ready"
+        },
+        {
+          "n": "list_deployments",
+          "s": "ready"
+        }
+      ],
+      "ferramentas": [
+        "GA4",
+        "Google Tag Manager",
+        "Make/n8n",
+        "BI Dashboards",
+        "Notion (atas)",
+        "Looker Studio"
+      ],
+      "dependencias": "Temis (governança) · Sofia (BI) · Maia (analytics) · Iris (integrações) · Fortuna (mercado) · Todos os outros coordenadores (alimenta com dados)"
     },
     {
       "id": "saturno",
@@ -156,7 +399,39 @@
         "paula"
       ],
       "donoTecnico": "cleber",
-      "status": "planejado"
+      "status": "planejado",
+      "descricaoDetalhada": "Coordena a frente financeira da MAAT — orquestra Laxmi (Bling/tesouraria, fluxo de caixa, contas a pagar), Juno (Bling/controladoria, DRE, conciliação), Veritas (BI financeiro) e Nemesis (jurídico/compliance ANVISA/MAPA, contratos). Sua função central é manter saúde financeira visível e atuar antes da crise: caixa projetado a 30/60/90 dias, alertas de inadimplência, validação de margens reais vs. precificação. Faz handshake com Júpiter (BI estratégico) pra alinhar números de gestão com narrativa pros sócios.",
+      "skills": [
+        {
+          "n": "metrics-definition",
+          "s": "todo"
+        },
+        {
+          "n": "opportunity-framework",
+          "s": "todo"
+        },
+        {
+          "n": "error-handling-ux",
+          "s": "todo"
+        },
+        {
+          "n": "stakeholder-alignment",
+          "s": "todo"
+        },
+        {
+          "n": "orquestração financeira",
+          "s": "todo"
+        }
+      ],
+      "mcpTools": [],
+      "ferramentas": [
+        "Bling ERP",
+        "BI Financeiro",
+        "Planilhas de tesouraria",
+        "Sistema bancário (extratos)",
+        "Sistemas regulatórios"
+      ],
+      "dependencias": "Laxmi (tesouraria) · Juno (controladoria) · Veritas (BI financeiro) · Nemesis (jurídico) · Júpiter (BI consolidado) · Marte (custos de produção)"
     },
     {
       "id": "urano",
@@ -168,7 +443,48 @@
         "paula"
       ],
       "donoTecnico": "cleber",
-      "status": "planejado"
+      "status": "planejado",
+      "descricaoDetalhada": "Coordena a frente de comunidade e relacionamento direto com fãs da marca — orquestra Vesta (gestão de espaços: WhatsApp, Discord, Telegram), Freya (programa de embaixadores), Caliope (UGC: coleta, curadoria, pipeline pra Vênus/marketing) e Pele (eventos e ativações). Sua função central é transformar consumidores em multiplicadores: identificar superfãs nos canais (com Vesta), recrutá-los pro programa de embaixadores (com Freya), coletar UGC autêntico (com Caliope) e ativar comunidade em eventos físicos (com Pele). Mantém pulso da marca via escuta direta da comunidade.",
+      "skills": [
+        {
+          "n": "ux-writing",
+          "s": "todo"
+        },
+        {
+          "n": "journey-map",
+          "s": "todo"
+        },
+        {
+          "n": "experience-map",
+          "s": "todo"
+        },
+        {
+          "n": "empathy-map",
+          "s": "todo"
+        },
+        {
+          "n": "ux-strategy",
+          "s": "todo"
+        },
+        {
+          "n": "design-rationale",
+          "s": "todo"
+        },
+        {
+          "n": "orquestração de comunidade",
+          "s": "todo"
+        }
+      ],
+      "mcpTools": [],
+      "ferramentas": [
+        "WhatsApp",
+        "Discord",
+        "Telegram",
+        "Instagram",
+        "Plataforma de embaixadores",
+        "Sistema de eventos"
+      ],
+      "dependencias": "Vesta (espaços) · Freya (embaixadores) · Caliope (UGC) · Pele (eventos) · Vênus (handoff UGC → marketing) · Helena/Paula (curadoria humana)"
     }
   ],
   "especialistas": [
@@ -1381,7 +1697,51 @@
         "cleber"
       ],
       "donoTecnico": "cleber",
-      "status": "planejado"
+      "status": "planejado",
+      "descricaoDetalhada": "Agente de QA transversal — valida outputs de todos os outros agentes antes que cheguem ao humano. Sua função é catch-the-error: confere se o que Atena gera em ad copy bate com brand guidelines de Vênus, se a fórmula que Saraswati propõe respeita restrições MAPA/ANVISA validadas por Nemesis, se o número que Sofia reporta bate com os dados crus de Maia. Trabalha em background — só dispara alerta quando detecta inconsistência. Reduz dependência de Cleber pra revisar cada output manualmente.",
+      "skills": [
+        {
+          "n": "heuristic-evaluation",
+          "s": "todo"
+        },
+        {
+          "n": "accessibility-audit",
+          "s": "todo"
+        },
+        {
+          "n": "responsive-audit",
+          "s": "todo"
+        },
+        {
+          "n": "audit-system",
+          "s": "todo"
+        },
+        {
+          "n": "design-token-audit",
+          "s": "todo"
+        },
+        {
+          "n": "validação cross-agente",
+          "s": "todo"
+        }
+      ],
+      "mcpTools": [
+        {
+          "n": "get_deployment_build_logs",
+          "s": "ready"
+        },
+        {
+          "n": "get_runtime_logs",
+          "s": "ready"
+        }
+      ],
+      "ferramentas": [
+        "Linters",
+        "Schemas de validação",
+        "Diff tools",
+        "Sistema de regras de negócio"
+      ],
+      "dependencias": "Todos os agentes (audita outputs) · Heket (Tests) · Ananke (regras de arquitetura)"
     },
     {
       "id": "clio",
@@ -1392,7 +1752,47 @@
         "cleber"
       ],
       "donoTecnico": "cleber",
-      "status": "planejado"
+      "status": "planejado",
+      "descricaoDetalhada": "Agente de documentação automática — mantém docs vivas dos agentes, fluxos e skills. Sua função é evitar que conhecimento operacional vire silo no Cleber ou em sócio individual: cada decisão arquitetural vira ata, cada agente novo ganha JD versionada, cada skill ganha SKILL.md atualizado. Lê o estado real (código, JSONs, sessões) e gera/atualiza markdown. Detecta drift entre código e doc e alerta. Mantém também `docs/maat-virtual/*` e os perfis em `pessoas/`.",
+      "skills": [
+        {
+          "n": "documentation-template",
+          "s": "todo"
+        },
+        {
+          "n": "naming-convention",
+          "s": "todo"
+        },
+        {
+          "n": "design-rationale",
+          "s": "todo"
+        },
+        {
+          "n": "case-study",
+          "s": "todo"
+        },
+        {
+          "n": "documentação contínua dos agentes",
+          "s": "todo"
+        }
+      ],
+      "mcpTools": [
+        {
+          "n": "deploy_to_vercel",
+          "s": "ready"
+        },
+        {
+          "n": "get_deployment",
+          "s": "ready"
+        }
+      ],
+      "ferramentas": [
+        "Markdown",
+        "Git",
+        "Painel virtual.bebamaat.com.br (renderização)",
+        "Sistema de atas"
+      ],
+      "dependencias": "Todos os agentes (documenta) · Ananke (padrões de doc) · Temis (atas estratégicas)"
     },
     {
       "id": "egide",
@@ -1403,7 +1803,51 @@
         "cleber"
       ],
       "donoTecnico": "cleber",
-      "status": "planejado"
+      "status": "planejado",
+      "descricaoDetalhada": "Agente de segurança transversal — guarda credenciais, audita integrações e monitora vazamentos. Sua função é eliminar a janela em que tokens ficam expostos: cada nova integração (Pipedrive API, Shopify Admin, Bling, Klaviyo, Make) entra com credencial rotacionada, escopos mínimos e log de uso. Audita repositórios públicos pra evitar leaks (token no commit). Faz threat modeling de novos fluxos antes do go-live. Cria política de credencial pra cada agente baseada no que ele realmente precisa.",
+      "skills": [
+        {
+          "n": "accessibility-audit",
+          "s": "todo"
+        },
+        {
+          "n": "audit-system",
+          "s": "todo"
+        },
+        {
+          "n": "error-handling-ux",
+          "s": "todo"
+        },
+        {
+          "n": "auditoria de credenciais",
+          "s": "todo"
+        },
+        {
+          "n": "threat modeling",
+          "s": "todo"
+        }
+      ],
+      "mcpTools": [
+        {
+          "n": "get_runtime_logs",
+          "s": "ready"
+        },
+        {
+          "n": "list_deployments",
+          "s": "ready"
+        },
+        {
+          "n": "get_deployment_build_logs",
+          "s": "ready"
+        }
+      ],
+      "ferramentas": [
+        "Vault/Secret manager",
+        "Vercel env vars",
+        "GitHub secret scanning",
+        "OAuth provider config"
+      ],
+      "dependencias": "Todos os agentes (audita acesso) · Ananke (regras de arquitetura) · Nemesis (compliance LGPD)"
     },
     {
       "id": "heket",
@@ -1414,7 +1858,52 @@
         "cleber"
       ],
       "donoTecnico": "cleber",
-      "status": "planejado"
+      "status": "planejado",
+      "descricaoDetalhada": "Agente de testes automatizados — cobre skills, automações Make/n8n e endpoints com testes que rodam antes de qualquer merge. Sua função é evitar regressão: cada skill nova ganha caso de teste (input → output esperado), cada flow Make ganha smoke test que dispara mensalmente, cada endpoint do painel ganha contract test. Integra com a Vercel pra rodar suite em PR e bloquear merge se vermelha. Mantém o painel de saúde dos testes visível no painel virtual.",
+      "skills": [
+        {
+          "n": "test-plan",
+          "s": "todo"
+        },
+        {
+          "n": "a-b-test-design",
+          "s": "todo"
+        },
+        {
+          "n": "usability-test-plan",
+          "s": "todo"
+        },
+        {
+          "n": "click-test-plan",
+          "s": "todo"
+        },
+        {
+          "n": "testes automatizados de agente",
+          "s": "todo"
+        }
+      ],
+      "mcpTools": [
+        {
+          "n": "get_deployment",
+          "s": "ready"
+        },
+        {
+          "n": "get_deployment_build_logs",
+          "s": "ready"
+        },
+        {
+          "n": "deploy_to_vercel",
+          "s": "ready"
+        }
+      ],
+      "ferramentas": [
+        "Vitest/Jest",
+        "Playwright",
+        "GitHub Actions",
+        "Vercel CI",
+        "Make scenarios"
+      ],
+      "dependencias": "Todos os agentes (testa skills) · Dike (validação cruzada) · Ananke (cobertura mínima exigida)"
     },
     {
       "id": "ananke",
@@ -1425,7 +1914,64 @@
         "cleber"
       ],
       "donoTecnico": "cleber",
-      "status": "planejado"
+      "status": "planejado",
+      "descricaoDetalhada": "Agente de governança técnica geral — define arquitetura, faz code review, mantém padrões transversais (naming, estrutura de pastas, schemas de JSON, regras de validação no `validate.js`). É o agente que materializa a regra constitucional 'donoTécnico = Cleber em todos os agentes': cada PR passa por critérios Ananke antes de merge. Define o template de skill, o template de JD de agente, e a estrutura de dados do `maat-virtual.json`. Mantém o `validate.js` evoluindo conforme novas regras de integridade surgem.",
+      "skills": [
+        {
+          "n": "north-star-vision",
+          "s": "todo"
+        },
+        {
+          "n": "design-principles",
+          "s": "todo"
+        },
+        {
+          "n": "design-token",
+          "s": "todo"
+        },
+        {
+          "n": "theming-system",
+          "s": "todo"
+        },
+        {
+          "n": "design-system-adoption",
+          "s": "todo"
+        },
+        {
+          "n": "naming-convention",
+          "s": "todo"
+        },
+        {
+          "n": "arquitetura e padrões técnicos",
+          "s": "todo"
+        }
+      ],
+      "mcpTools": [
+        {
+          "n": "deploy_to_vercel",
+          "s": "ready"
+        },
+        {
+          "n": "list_deployments",
+          "s": "ready"
+        },
+        {
+          "n": "get_deployment",
+          "s": "ready"
+        },
+        {
+          "n": "get_deployment_build_logs",
+          "s": "ready"
+        }
+      ],
+      "ferramentas": [
+        "GitHub (PR review)",
+        "validate.js",
+        "Schemas de JSON",
+        "Documentação de padrões",
+        "CLAUDE.md"
+      ],
+      "dependencias": "Cleber (donoTécnico transversal) · Dike (QA) · Clio (Docs) · Egide (Security) · Heket (Tests) · Todos os outros agentes (define regras)"
     }
   ],
   "ferramentas": [
@@ -1501,7 +2047,7 @@
     },
     {
       "id": "whatsapp",
-      "nome": "WhatsApp Business + Bot",
+      "nome": "WhatsApp Business + APP de Vendas",
       "categoria": "receita",
       "descricao": "Canal de comunicação direta com maior taxa de abertura da operação — utilizado para atendimento comercial (SAC, PF, PJ, parcerias) e notificações logísticas. Seu objetivo central é automatizar todo o processo de venda e entrega a partir do momento em que uma mensagem chega ao número da MAAT, independente da origem: representantes comerciais, clientes PF, clientes PJ ou o próprio squad interno. Um menu estruturado classifica o tipo de contato, aciona o fluxo correto e escala para humano apenas quando necessário — eliminando o atendimento manual fragmentado e aumentando a taxa de conversão de leads inbound sem depender de disponibilidade humana.",
       "dependencias": [
@@ -1511,7 +2057,7 @@
         "Klaviyo (handoff para email quando fluxo de WA encerra)"
       ],
       "statusImplementacao": "em-implementacao",
-      "notaStatus": "Bot B2B em desenvolvimento por Cleber. Não é API oficial Meta; canal PF/SAC/Parcerias ainda não iniciado.",
+      "notaStatus": "APP de Vendas B2B em desenvolvimento por Cleber. Não é API oficial Meta; canal PF/SAC/Parcerias ainda não iniciado.",
       "corAcento": "#085041"
     },
     {
@@ -1646,13 +2192,13 @@
       "id": "asaas",
       "nome": "Asaas",
       "categoria": "receita",
-      "descricao": "Gateway de pagamento usado pelo canal B2B/Bot — gera boletos e Pix programaticamente via API e integra ao fluxo Bling para conciliação. Escolhido como gateway alternativo ao Mercado Pago (que serve o B2C no Shopify) por suportar emissão sob medida no fluxo conversacional do Bot de Vendas.",
+      "descricao": "Gateway de pagamento usado pelo canal B2B/APP de Vendas — gera boletos e Pix programaticamente via API e integra ao fluxo Bling para conciliação. Escolhido como gateway alternativo ao Mercado Pago (que serve o B2C no Shopify) por suportar emissão sob medida no fluxo conversacional do APP de Vendas.",
       "dependencias": [
         "Bling ERP (conciliação de recebimentos)",
-        "WhatsApp Business + Bot (geração de boleto/Pix dentro da conversa)"
+        "WhatsApp Business + APP de Vendas (geração de boleto/Pix dentro da conversa)"
       ],
       "statusImplementacao": "implementado",
-      "notaStatus": "Gateway de pagamento usado pelo bot de vendas B2B. Geração de boletos e Pix integrada ao fluxo Bling.",
+      "notaStatus": "Gateway de pagamento usado pelo APP de Vendas B2B. Geração de boletos e Pix integrada ao fluxo Bling.",
       "corAcento": "#444441"
     }
   ],
@@ -1998,7 +2544,7 @@
           {
             "id": "wa-rep",
             "nome": "Representantes",
-            "subtitulo": "Bot-Rep — alto giro, tabela fixa de transferência",
+            "subtitulo": "APP-Rep — alto giro, tabela fixa de transferência",
             "corPrincipal": "#085041",
             "etapas": [
               {
@@ -2137,7 +2683,8 @@
                 ],
                 "maatVirtualNota": "Seshat calcula timing ideal de recompra por rep com base no padrão histórico."
               }
-            ]
+            ],
+            "canalNomeOverride": "APP de Vendas"
           },
           {
             "id": "wa-pf",
@@ -2198,7 +2745,7 @@
                 "detalheTecnico": [
                   {
                     "t": "WhatsApp Business API",
-                    "b": "Conversa contínua. Bot responde dúvidas frequentes ou escala pra atendente."
+                    "b": "Conversa contínua. APP de Vendas responde dúvidas frequentes ou escala pra atendente."
                   },
                   {
                     "t": "Pipedrive",
@@ -2955,7 +3502,7 @@
           {
             "periodo": "Abril 2026",
             "titulo": "HOJE — 27%",
-            "subtitulo": "2 ferramentas operacionais (Melhor Envio + Asaas) + 4 em implementação (Shopify, Bling, Pipedrive, WhatsApp Business + Bot)",
+            "subtitulo": "2 ferramentas operacionais (Melhor Envio + Asaas) + 4 em implementação (Shopify, Bling, Pipedrive, WhatsApp Business + APP de Vendas)",
             "atual": true
           },
           {
@@ -3221,7 +3768,7 @@
         "cleber",
         "lucas"
       ],
-      "title": "Terminar bot de vendas",
+      "title": "Terminar APP de Vendas",
       "priority": "high",
       "status": "in_progress",
       "subtasks": []
@@ -3231,7 +3778,7 @@
       "type": "macro",
       "assigneeType": "human",
       "assignee": "cleber",
-      "title": "Incluir lógica dos estoques no bot de vendas",
+      "title": "Incluir lógica dos estoques no APP de Vendas",
       "priority": "medium",
       "status": "in_progress",
       "subtasks": []
