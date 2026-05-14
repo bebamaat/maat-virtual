@@ -1076,9 +1076,11 @@ function StatusView({ setActiveTab }) {
   const pct = Math.round((score / total) * 100);
   const pctExato = ((score / total) * 100).toFixed(1).replace(".", ",");
 
-  const pendOrdenadas = [...data.pendenciasHumanas].sort((a, b) =>
-    (PRIORIDADE_ORDEM[a.prioridade] ?? 99) - (PRIORIDADE_ORDEM[b.prioridade] ?? 99)
-  );
+  const pendOrdenadas = [...data.pendenciasHumanas]
+    .filter(p => p.status !== "resolvida")
+    .sort((a, b) =>
+      (PRIORIDADE_ORDEM[a.prioridade] ?? 99) - (PRIORIDADE_ORDEM[b.prioridade] ?? 99)
+    );
 
   const marcosCron = [...data.marcosConcluidos].sort((a, b) => (a.data || "").localeCompare(b.data || ""));
 
@@ -1388,7 +1390,6 @@ export default function Dashboard() {
     { id: "agents", label: "Time Virtual" },
     { id: "fluxo", label: "Fluxo Operacional" },
     { id: "status", label: "Status" },
-    { id: "pendencias", label: "Tarefas", alert: pendingCount },
   ];
 
   return (
@@ -1460,24 +1461,14 @@ export default function Dashboard() {
                 <div className="stat-label">Itens no Roadmap</div>
               </div>
               <div className="stat clickable" onClick={() => setActiveTab("status")}>
-                <div className="stat-value" style={{ color: data.pendenciasHumanas.length > 0 ? "var(--accent-alerta)" : "var(--accent-sucesso)" }}>{data.pendenciasHumanas.length}</div>
+                <div className="stat-value" style={{ color: data.pendenciasHumanas.filter(p => p.status !== "resolvida").length > 0 ? "var(--accent-alerta)" : "var(--accent-sucesso)" }}>{data.pendenciasHumanas.filter(p => p.status !== "resolvida").length}</div>
                 <div className="stat-label">Decisões Pendentes</div>
-              </div>
-              <div className="stat clickable" onClick={() => setActiveTab("pendencias")}>
-                <div className="stat-value" style={{ color: pendingCount > 0 ? "var(--accent-alerta)" : "var(--accent-sucesso)" }}>{pendingCount}</div>
-                <div className="stat-label">Tarefas Humanas</div>
               </div>
               <div className="stat">
                 <div className="stat-value">{progressoPct}%</div>
                 <div className="stat-label">Progresso</div>
               </div>
             </div>
-
-            {pendingCount > 0 && (
-              <div className="alert-banner" onClick={() => setActiveTab("pendencias")}>
-                <strong>{pendingCount} tarefa{pendingCount !== 1 ? "s" : ""} human{pendingCount !== 1 ? "as" : "a"}</strong> esperando resposta ou ação
-              </div>
-            )}
 
             <div className="section-title">Roadmap — {data.roadmap.prioridades.length} Prioridades</div>
             <a href="/roadmap" className="card roadmap-card" style={{ display: "block", marginBottom: "2rem", textDecoration: "none", color: "inherit" }}>
@@ -1523,42 +1514,6 @@ export default function Dashboard() {
           <div>
             <div className="section-title">Organograma MAAT Virtual</div>
             <HierarquiaView />
-          </div>
-        )}
-
-        {activeTab === "pendencias" && (
-          <div>
-            <div className="section-title">
-              Tarefas dos Humanos <span className="count">{humanMacros.length}</span>
-            </div>
-            {humanMacros.length === 0 ? (
-              <div className="tv-pend-empty">Nenhuma tarefa em aberto.</div>
-            ) : (
-              <div className="tv-pend-list">
-                {humanMacros.map(t => {
-                  const respIds = Array.isArray(t.assignee) ? t.assignee : [t.assignee];
-                  const nomeResp = respIds.map(rid => {
-                    const h = humanosMap[rid] || data.humanos.find(x => x.nome.toLowerCase() === String(rid || "").toLowerCase());
-                    return h ? h.nome : (rid ? rid.charAt(0).toUpperCase() + rid.slice(1) : "");
-                  }).filter(Boolean).join(", ");
-                  return (
-                    <div key={t.id} className="tv-pend-card">
-                      <div className="tv-pend-resp">{nomeResp}</div>
-                      <div className="tv-pend-text">{t.title}</div>
-                    </div>
-                  );
-                })}
-              </div>
-            )}
-
-            <div className="section-title" style={{ marginTop: "2.5rem" }}>
-              Perguntas dos Agentes <span className="count">{pendingQuestions.length}</span>
-            </div>
-            {pendingQuestions.length === 0 ? (
-              <div className="tv-pend-empty">Nenhuma pergunta em aberto. Quando agentes precisarem de info de humanos, aparecem aqui.</div>
-            ) : (
-              pendingQuestions.map(q => <QuestionCard key={q.id} q={q} onAnswer={answerQuestion} />)
-            )}
           </div>
         )}
 
