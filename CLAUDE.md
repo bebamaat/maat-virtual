@@ -1,5 +1,9 @@
 # MAAT Virtual — Empresa Virtual
 
+## Outra maquina? Comece por aqui
+
+Se voce e um Claude Code rodando em outra maquina (sem acesso a memoria persistente local da Julia), leia primeiro **`docs/maat-virtual/contexto-portavel.md`** — consolida tudo que historicamente vivia so na memoria local (mapa dos 15 repos, stack default, regras de UI mobile pt-BR, pricing, projetos ativos, etc.).
+
 ## O que e este projeto
 
 MAAT Virtual e a empresa virtual da MAAT Agroflorestal (bebidas regenerativas). Agentes de IA atuam como diretoria e equipe operacional, supervisionados por 4 humanos. O projeto inclui um painel web central em virtual.bebamaat.com.br.
