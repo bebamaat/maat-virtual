@@ -1,6 +1,6 @@
 {
-  "lastUpdated": "2026-04-21T16:00:00Z",
-  "updatedBy": "Claude",
+  "lastUpdated": "2026-05-14T22:00:00Z",
+  "updatedBy": "Claude + Julia (varredura geral 14/05)",
   "humanos": [
     {
       "id": "lucas",
@@ -1991,7 +1991,7 @@
         "Judge.me"
       ],
       "statusImplementacao": "em-implementacao",
-      "notaStatus": "Staging em bebamaat.com.br com tema MAAT Staging (base Dawn) em preview mode. Horizon não publicado. Público só acessa com senha.",
+      "notaStatus": "Tema Horizon (prod 186517422370, staging 186765967650). 90+ commits desde 21/04 — hero mobile redesign, PDP sticky CTA, home com imagens reais, fixes de tipografia pt-BR. Caminhando pra go-live B2C 30/05.",
       "corAcento": "#27500A"
     },
     {
@@ -2007,7 +2007,7 @@
         "BI (fonte para dashboards de receita)"
       ],
       "statusImplementacao": "em-implementacao",
-      "notaStatus": "Arquitetura iniciada por Lucas (5 stages Vendas + Pós-Venda + 14 custom fields). Deploy via API pendente.",
+      "notaStatus": "Webhook deal-updated em producao (04-30). Bling-Pedido-Silveira guard contra race condition. Shopify location routing. Falta: separar pipelines B2C/B2B/Rep + tabelas Bling correspondentes (ph-lucas-04).",
       "corAcento": "#0C447C"
     },
     {
@@ -2023,7 +2023,7 @@
         "BI"
       ],
       "statusImplementacao": "em-implementacao",
-      "notaStatus": "Integrado ao Shopify, em refinamento por Cleber. NF-e, boleto e emissão operacionais.",
+      "notaStatus": "NCM corrigido em 11 SKUs (3 reais MAAT + 8 virtuais → 2202.99.00) em 08/05. Fechamento abril concluido 09/05. Asaas multa/juros automatizada. Kit espelho escalavel + helper recebimento em caixas.",
       "corAcento": "#633806"
     },
     {
@@ -2057,7 +2057,7 @@
         "Klaviyo (handoff para email quando fluxo de WA encerra)"
       ],
       "statusImplementacao": "em-implementacao",
-      "notaStatus": "APP de Vendas B2B em desenvolvimento por Cleber. Não é API oficial Meta; canal PF/SAC/Parcerias ainda não iniciado.",
+      "notaStatus": "APP de Vendas operacional em Telegram (maat-vendas-bot 19 commits desde 21/04, pedidos-app 24 commits, maat-vendas-bot-v1 34 commits). WhatsApp Cloud API ainda nao contratada — em avaliacao Z-API vs Meta oficial. 3 trilhas Rep/PF/PJ estruturadas no fluxo operacional.",
       "corAcento": "#085041"
     },
     {
@@ -2101,8 +2101,8 @@
         "BI (fonte de dados de tráfego)",
         "Google Ads (conversões importadas para otimização de lances)"
       ],
-      "statusImplementacao": "nao-iniciado",
-      "notaStatus": "Nenhuma tag detectada no HTML da loja (varredura 23/04).",
+      "statusImplementacao": "implementado",
+      "notaStatus": "GA4 G-YF08E5DT8J ativo via app oficial Google & YouTube. Eventos e-commerce (view_item, add_to_cart, begin_checkout) implementados no tema Horizon em 14/05. Purchase event configurado pra Order Status page.",
       "corAcento": "#7A4F00"
     },
     {
@@ -2115,8 +2115,8 @@
         "Shopify (eventos: view_item, add_to_cart, purchase)",
         "Meta Ads + TikTok Ads (consumo dos dados para segmentação)"
       ],
-      "statusImplementacao": "nao-iniciado",
-      "notaStatus": "Nenhum fbq detectado. Pixel Meta e TikTok ambos ausentes.",
+      "statusImplementacao": "em-implementacao",
+      "notaStatus": "Meta Pixel 945842924956473 ativo via app oficial Facebook & Instagram + eventos e-commerce (view_item, add_to_cart, begin_checkout) implementados 14/05. TikTok Events API server iniciado 28/04 em repo maat-tiktok-tracking — ainda nao em producao.",
       "corAcento": "#7A4F00"
     },
     {
@@ -2142,8 +2142,8 @@
         "Shopify (integração nativa via app)",
         "Bling ERP (conciliação financeira de pagamentos recebidos)"
       ],
-      "statusImplementacao": "nao-iniciado",
-      "notaStatus": "Checkout usa portable-wallets padrão Shopify. Mercado Pago não configurado como gateway.",
+      "statusImplementacao": "implementado",
+      "notaStatus": "Gateway ativo no checkout B2C Shopify desde a primeira venda. O roadmap inicial errou em listar como 'nao-iniciado' — Mercado Pago e o gateway de producao do Shopify ha meses.",
       "corAcento": "#444441"
     },
     {
@@ -2198,8 +2198,24 @@
         "WhatsApp Business + APP de Vendas (geração de boleto/Pix dentro da conversa)"
       ],
       "statusImplementacao": "implementado",
-      "notaStatus": "Gateway de pagamento usado pelo APP de Vendas B2B. Geração de boletos e Pix integrada ao fluxo Bling.",
+      "notaStatus": "Gateway B2B via APP de Vendas. Multa 2% + juros 1%/mes em todo boleto emitido (07/05). Geracao Pix/boleto integrada ao fluxo Bling.",
       "corAcento": "#444441"
+    },
+    {
+      "id": "make",
+      "nome": "Make / n8n",
+      "categoria": "integracoes",
+      "descricao": "Camada de orquestracao entre todas as ferramentas — automatiza fluxos cross-sistema sem codigo (ex.: webhook Shopify pedido → atualiza Pipedrive + Bling + dispara WhatsApp). E a cola que une Shopify, Bling, Pipedrive, Klaviyo, WhatsApp e GA4 num fluxo coerente sem precisar de integracoes ponto-a-ponto.",
+      "dependencias": [
+        "Shopify (webhooks de pedido)",
+        "Bling ERP (criacao de NF e atualizacao de estoque)",
+        "Pipedrive (sync de leads e oportunidades)",
+        "WhatsApp Business + APP de Vendas (gatilhos de mensagem)",
+        "Klaviyo (handoff de fluxos)"
+      ],
+      "statusImplementacao": "implementado",
+      "notaStatus": "Core plan ativo desde abril/2026, rodando ~10k operacoes/mes. Fluxos basicos de Shopify→Bling e Pipedrive→WhatsApp ja operacionais.",
+      "corAcento": "#6F4FB3"
     }
   ],
   "fluxoOperacional": {
@@ -3134,323 +3150,6 @@
     "conector": "MAAT Virtual opera esta infraestrutura via Claude Code · APIs · Make/n8n"
   },
   "roadmap": {
-    "prioridades": [
-      {
-        "nivel": 1,
-        "titulo": "Destrava maior cadeia",
-        "sprint": "Sprint imediato",
-        "itens": [
-          {
-            "id": "1.1",
-            "titulo": "Instalar GA4 + GTM no Shopify",
-            "tipo": "ferramenta",
-            "agente": "maia",
-            "impactoDireto": "medio",
-            "impactoCadeia": "alto",
-            "destrava": [
-              "metapixel",
-              "hotjar",
-              "atena",
-              "maia"
-            ],
-            "prerequisitos": [],
-            "nota": "Sem GA4 rodando agora, o historico de audiencia esta sendo perdido — nao ha retroatividade. Dependencia unica: acesso admin ao Shopify."
-          },
-          {
-            "id": "1.2",
-            "titulo": "Instalar Meta Pixel + TikTok Pixel via GTM",
-            "tipo": "ferramenta",
-            "agente": "maia",
-            "impactoDireto": "alto",
-            "impactoCadeia": "medio",
-            "destrava": [
-              "odoya",
-              "iansa"
-            ],
-            "prerequisitos": [
-              "1.1"
-            ],
-            "nota": "Scripts simples instalados via GTM. Cada dia sem pixel ativo e um dia sem dados de remarketing sendo coletados."
-          },
-          {
-            "id": "1.3",
-            "titulo": "Instalar Hotjar ou Clarity via GTM",
-            "tipo": "ferramenta",
-            "agente": "maia",
-            "impactoDireto": "medio",
-            "impactoCadeia": null,
-            "destrava": [],
-            "prerequisitos": [
-              "1.1"
-            ],
-            "nota": "Clarity e gratuito e cobre o uso inicial. Hotjar so se precisar de funis avancados e heatmaps detalhados."
-          }
-        ]
-      },
-      {
-        "nivel": 2,
-        "titulo": "Motores de receita recorrente",
-        "sprint": "Sprint 2",
-        "itens": [
-          {
-            "id": "2.4",
-            "titulo": "Configurar Klaviyo (flows LC1 / LC6 / LC7 / LC9 + sync Shopify)",
-            "tipo": "ferramenta",
-            "agente": "demeter",
-            "impactoDireto": "medio",
-            "impactoCadeia": "baixo",
-            "destrava": [
-              "demeter"
-            ],
-            "prerequisitos": [],
-            "nota": "Conta ja contratada com custo ativo e sem retorno. Cada dia sem fluxo e dinheiro perdido direto no caixa."
-          },
-          {
-            "id": "2.5",
-            "titulo": "Instalar Melhor Envio no checkout do Shopify",
-            "tipo": "ferramenta",
-            "agente": "hina",
-            "impactoDireto": "medio",
-            "impactoCadeia": null,
-            "destrava": [],
-            "prerequisitos": [],
-            "nota": "Elimina a geracao manual de etiqueta que existe hoje. Integracao nativa via app Shopify, baixa complexidade."
-          },
-          {
-            "id": "2.6",
-            "titulo": "Decidir ferramenta de BI + iniciar ETL minimo",
-            "tipo": "ferramenta",
-            "agente": "sofia",
-            "impactoDireto": "medio",
-            "impactoCadeia": "baixo",
-            "destrava": [
-              "sofia"
-            ],
-            "prerequisitos": [],
-            "nota": "Candidatos: Power BI · Looker Studio · Agente BI proprio via Claude. A decisao destrava o agente de Frente 1 correspondente."
-          }
-        ]
-      },
-      {
-        "nivel": 3,
-        "titulo": "Canais e conversao",
-        "sprint": "Medio prazo",
-        "itens": [
-          {
-            "id": "3.7",
-            "titulo": "Conectar API do Mercado Livre",
-            "tipo": "ferramenta",
-            "agente": "iemanja",
-            "impactoDireto": "baixo",
-            "impactoCadeia": null,
-            "destrava": [],
-            "prerequisitos": [],
-            "nota": "Pipeline ja existe em pipedrive-setup-maat.mjs. Falta o cliente seller e o sync de estoque via Bling (ja esta em implementacao)."
-          },
-          {
-            "id": "3.8",
-            "titulo": "Instalar Judge.me + trigger pos-entrega",
-            "tipo": "ferramenta",
-            "agente": "seshat",
-            "impactoDireto": "baixo",
-            "impactoCadeia": null,
-            "destrava": [],
-            "prerequisitos": [],
-            "nota": "App Shopify simples, ja referenciado no stage D+30 do Pipedrive (ja esta em implementacao)."
-          },
-          {
-            "id": "3.9",
-            "titulo": "Substituir Asaas por Mercado Pago no Shopify",
-            "tipo": "ferramenta",
-            "agente": "hathor",
-            "impactoDireto": "medio",
-            "impactoCadeia": null,
-            "destrava": [],
-            "prerequisitos": [],
-            "nota": "Asaas opera em staging. Mercado Pago e o gateway planejado para producao. Nao afeta Bling nem Pipedrive (webhooks continuam)."
-          },
-          {
-            "id": "3.10",
-            "titulo": "Contratar WhatsApp Business API oficial",
-            "tipo": "ferramenta",
-            "agente": "vesta",
-            "impactoDireto": "medio",
-            "impactoCadeia": null,
-            "destrava": [],
-            "prerequisitos": [],
-            "nota": "Hoje o maat-vendas-bot roda Telegram — o fluxo do mapa assume WA oficial. Z-API e caminho mais rapido; Meta Cloud API e o 'certo' de longo prazo."
-          }
-        ]
-      },
-      {
-        "nivel": 4,
-        "titulo": "Amplificacao",
-        "sprint": "Ultimos pontos",
-        "itens": [
-          {
-            "id": "4.11",
-            "titulo": "Social Snowball (programa de embaixadores)",
-            "tipo": "ferramenta",
-            "agente": "freya",
-            "impactoDireto": "medio",
-            "impactoCadeia": null,
-            "destrava": [],
-            "prerequisitos": [],
-            "nota": "Depende de ter base de clientes ativos no Shopify primeiro. Implantar so quando o programa 'Roda da MAAT' tiver regras definidas."
-          },
-          {
-            "id": "4.12",
-            "titulo": "Make / n8n para orquestracao extra",
-            "tipo": "ferramenta",
-            "agente": "iris",
-            "impactoDireto": "medio",
-            "impactoCadeia": null,
-            "destrava": [],
-            "prerequisitos": [],
-            "nota": "Opcional — os webhooks Vercel diretos ja resolvem 80% dos casos. So vale quando surgir cenario com muitos passos condicionais."
-          }
-        ]
-      },
-      {
-        "nivel": 5,
-        "titulo": "Desenvolvimento dos agentes Frente 1",
-        "sprint": "Paralelo — trabalho de Claude Code",
-        "itens": [
-          {
-            "id": "5.1",
-            "titulo": "Desenvolver Agente BI (Sofia)",
-            "tipo": "agente",
-            "agente": "sofia",
-            "impactoDireto": "baixo",
-            "impactoCadeia": null,
-            "destrava": [],
-            "prerequisitos": [
-              "2.6"
-            ],
-            "nota": "Apos passo 2.6 (ferramenta BI definida)."
-          },
-          {
-            "id": "5.2",
-            "titulo": "Desenvolver Agente PCP (Uzume)",
-            "tipo": "agente",
-            "agente": "uzume",
-            "impactoDireto": "baixo",
-            "impactoCadeia": null,
-            "destrava": [],
-            "prerequisitos": [],
-            "nota": "Bling ja esta implementado, tem dados de estoque."
-          },
-          {
-            "id": "5.3",
-            "titulo": "Desenvolver Agente Supply (Abundantia)",
-            "tipo": "agente",
-            "agente": "abundantia",
-            "impactoDireto": "baixo",
-            "impactoCadeia": null,
-            "destrava": [],
-            "prerequisitos": [
-              "5.2"
-            ],
-            "nota": "Complementa PCP."
-          },
-          {
-            "id": "5.4",
-            "titulo": "Desenvolver Agente Logistica (Hina)",
-            "tipo": "agente",
-            "agente": "hina",
-            "impactoDireto": "baixo",
-            "impactoCadeia": null,
-            "destrava": [],
-            "prerequisitos": [
-              "2.5"
-            ],
-            "nota": "Complementa Bling + Melhor Envio (apos 2.5)."
-          },
-          {
-            "id": "5.5",
-            "titulo": "Desenvolver Agente P&D (Saraswati)",
-            "tipo": "agente",
-            "agente": "saraswati",
-            "impactoDireto": "baixo",
-            "impactoCadeia": null,
-            "destrava": [],
-            "prerequisitos": [],
-            "nota": ""
-          },
-          {
-            "id": "5.6",
-            "titulo": "Desenvolver Agente Design Digital (Neftis)",
-            "tipo": "agente",
-            "agente": "neftis",
-            "impactoDireto": "baixo",
-            "impactoCadeia": null,
-            "destrava": [],
-            "prerequisitos": [],
-            "nota": ""
-          },
-          {
-            "id": "5.7",
-            "titulo": "Desenvolver Agente Insta+TikTok (Nut)",
-            "tipo": "agente",
-            "agente": "nut",
-            "impactoDireto": "baixo",
-            "impactoCadeia": null,
-            "destrava": [],
-            "prerequisitos": [
-              "3.8"
-            ],
-            "nota": "Apos 3.8 (Judge.me para UGC)."
-          },
-          {
-            "id": "5.8",
-            "titulo": "Desenvolver Agente Governanca (Temis)",
-            "tipo": "agente",
-            "agente": "temis",
-            "impactoDireto": "baixo",
-            "impactoCadeia": null,
-            "destrava": [],
-            "prerequisitos": [],
-            "nota": ""
-          },
-          {
-            "id": "5.9",
-            "titulo": "Desenvolver Agente Juridico (Nemesis)",
-            "tipo": "agente",
-            "agente": "nemesis",
-            "impactoDireto": "baixo",
-            "impactoCadeia": null,
-            "destrava": [],
-            "prerequisitos": [],
-            "nota": ""
-          }
-        ],
-        "notaFrenteB": "Este bloco depende da Frente B (JDs dos agentes): cada agente precisa da JD escrita antes de entrar na fila do Claude Code. Sequência sugerida pra próxima sessão: Nut (Insta+TikTok Orgânico) → Laxmi+Juno (Bling) → Abundantia (Supply) → Sol (Agente-Mestre) → Ananke/Têmis (Governança). Os demais (Sofia, Uzume, Hina, Saraswati, Neftis, Nêmesis) seguem depois. Note que a Frente B inclui agentes fora da Frente 1 (Laxmi+Juno são Frente 2, Sol é Agente-Mestre) — ela reflete prioridade de escrita de JD, não de desenvolvimento."
-      }
-    ],
-    "projecao": [
-      {
-        "milestone": "Hoje (2026-04-22)",
-        "progressoPct": 27,
-        "atual": true
-      },
-      {
-        "milestone": "Após Prioridade 1 (+3 ferramentas)",
-        "progressoPct": 50
-      },
-      {
-        "milestone": "Após P1 + P2 (+3 ferramentas)",
-        "progressoPct": 71
-      },
-      {
-        "milestone": "Todas ferramentas implementadas",
-        "progressoPct": 86
-      },
-      {
-        "milestone": "Ferramentas + 9 agentes Frente 1",
-        "progressoPct": 100
-      }
-    ],
-    "formulaImpacto": "Cada item do roadmap é classificado em dois eixos: impacto direto (quanto a implementação contribui pro progresso geral) e impacto cadeia (quantas outras ferramentas ou agentes ela destrava). Três níveis: Alto, Médio, Baixo. Itens sem impacto cadeia (não destravam nada) aparecem só com o pill de direto. Pontuação ponderada: implementado = 1, em-implementação = 0,5, não iniciado = 0; universo de 15 ferramentas.",
     "header": {
       "bloco1": {
         "titulo": "Construindo a operação AI-first da MAAT",
@@ -3516,7 +3215,296 @@
         "titulo": "As 5 Prioridades",
         "paragrafo": "P1 a P4 são sobre ferramentas — 12 itens distribuídos em ordem de urgência e impacto. P5 é sobre agentes Frente 1 — 9 agentes que só existem quando suas JDs estão escritas e eles são deployados. Ferramentas sem agentes = automação sem orquestração. Agentes sem ferramentas = inteligência sem alavanca. Os dois precisam andar juntos — por isso estão no mesmo roadmap, não em caminhos separados."
       }
-    }
+    },
+    "prioridades": [
+      {
+        "nivel": 1,
+        "titulo": "Destrava maior cadeia",
+        "subtitulo": "Restantes apos GA4 + Meta Pixel implementados em 14/05",
+        "itens": [
+          {
+            "id": "1.1",
+            "titulo": "Ativar TikTok Pixel via GTM",
+            "tipo": "ferramenta",
+            "agente": "iansa",
+            "impactoDireto": "medio",
+            "impactoCadeia": "medio",
+            "destrava": [
+              "iansa",
+              "fortuna"
+            ],
+            "prerequisitos": [],
+            "nota": "Events API server-side ja em setup em maat-tiktok-tracking (28/04). Falta finalizar config + GTM + go-live."
+          },
+          {
+            "id": "1.2",
+            "titulo": "Instalar Hotjar ou Clarity via GTM",
+            "tipo": "ferramenta",
+            "agente": "hathor",
+            "impactoDireto": "alto",
+            "impactoCadeia": "medio",
+            "destrava": [
+              "hathor"
+            ],
+            "prerequisitos": [],
+            "nota": "Comportamento qualitativo essencial pra otimizar PDP e checkout pre go-live 30/05."
+          }
+        ]
+      },
+      {
+        "nivel": 2,
+        "titulo": "Motores de receita recorrente",
+        "subtitulo": "Reativacao + retencao + visibilidade",
+        "itens": [
+          {
+            "id": "2.1",
+            "titulo": "Configurar Klaviyo (flows LC1/LC6/LC7/LC9 + sync Shopify)",
+            "tipo": "ferramenta",
+            "agente": "demeter",
+            "impactoDireto": "alto",
+            "impactoCadeia": "alto",
+            "destrava": [
+              "demeter"
+            ],
+            "prerequisitos": [],
+            "nota": "Reativacao + retencao por email/SMS. Critico pos go-live B2C."
+          },
+          {
+            "id": "2.2",
+            "titulo": "Decidir ferramenta de BI + iniciar ETL minimo",
+            "tipo": "ferramenta",
+            "agente": "sofia",
+            "impactoDireto": "alto",
+            "impactoCadeia": "alto",
+            "destrava": [
+              "sofia",
+              "veritas"
+            ],
+            "prerequisitos": [],
+            "nota": "Looker Studio ou Metabase? Decisao pendente — afeta toda a camada de inteligencia (Sofia / Veritas)."
+          }
+        ]
+      },
+      {
+        "nivel": 3,
+        "titulo": "Canais e conversao",
+        "subtitulo": "Ampliacao alem do Shopify",
+        "itens": [
+          {
+            "id": "3.1",
+            "titulo": "Conectar API do Mercado Livre",
+            "tipo": "ferramenta",
+            "agente": "iemanja",
+            "impactoDireto": "medio",
+            "impactoCadeia": "medio",
+            "destrava": [
+              "iemanja"
+            ],
+            "prerequisitos": [],
+            "nota": "Anuncios, estoque sincronizado, pedidos ML — terceiro canal de venda apos Shopify e APP de Vendas."
+          },
+          {
+            "id": "3.2",
+            "titulo": "Instalar Judge.me + trigger pos-entrega",
+            "tipo": "ferramenta",
+            "agente": "hathor",
+            "impactoDireto": "medio",
+            "impactoCadeia": "baixo",
+            "destrava": [
+              "hathor"
+            ],
+            "prerequisitos": [],
+            "nota": "Reviews UGC + conversao do PDP. Trigger via Klaviyo apos entrega confirmada."
+          },
+          {
+            "id": "3.3",
+            "titulo": "Contratar WhatsApp Business Cloud API oficial",
+            "tipo": "ferramenta",
+            "agente": "vesta",
+            "impactoDireto": "alto",
+            "impactoCadeia": "alto",
+            "destrava": [
+              "vesta",
+              "sofia"
+            ],
+            "prerequisitos": [],
+            "nota": "APP de Vendas roda Telegram hoje. WA Cloud API e o 'certo' de longo prazo. Z-API e caminho rapido."
+          }
+        ]
+      },
+      {
+        "nivel": 4,
+        "titulo": "Amplificacao",
+        "subtitulo": "Comunidade + embaixadores + UGC",
+        "itens": [
+          {
+            "id": "4.1",
+            "titulo": "Social Snowball (programa de embaixadores)",
+            "tipo": "ferramenta",
+            "agente": "freya",
+            "impactoDireto": "alto",
+            "impactoCadeia": "medio",
+            "destrava": [
+              "freya"
+            ],
+            "prerequisitos": [],
+            "nota": "Embaixadores com tracking individual + comissionamento. Depende de tracking pixel pra atribuicao funcionar."
+          }
+        ]
+      },
+      {
+        "nivel": 5,
+        "titulo": "Desenvolvimento dos agentes Frente 1",
+        "subtitulo": "9 especialistas com JD pendente",
+        "itens": [
+          {
+            "id": "5.1",
+            "titulo": "Desenvolver Agente BI (Sofia)",
+            "tipo": "agente",
+            "agente": "sofia",
+            "impactoDireto": "alto",
+            "impactoCadeia": "alto",
+            "destrava": [
+              "veritas"
+            ],
+            "prerequisitos": [
+              "2.2"
+            ],
+            "nota": "Depende da decisao de ferramenta de BI."
+          },
+          {
+            "id": "5.2",
+            "titulo": "Desenvolver Agente PCP (Uzume)",
+            "tipo": "agente",
+            "agente": "uzume",
+            "impactoDireto": "alto",
+            "impactoCadeia": "medio",
+            "destrava": [],
+            "prerequisitos": [],
+            "nota": "Planejamento e controle de producao + copacking."
+          },
+          {
+            "id": "5.3",
+            "titulo": "Desenvolver Agente Supply (Abundantia)",
+            "tipo": "agente",
+            "agente": "abundantia",
+            "impactoDireto": "alto",
+            "impactoCadeia": "medio",
+            "destrava": [
+              "uzume"
+            ],
+            "prerequisitos": [],
+            "nota": "Prospeccao, orcamentos, comparacao de fornecedores."
+          },
+          {
+            "id": "5.4",
+            "titulo": "Desenvolver Agente Logistica (Hina)",
+            "tipo": "agente",
+            "agente": "hina",
+            "impactoDireto": "alto",
+            "impactoCadeia": "alto",
+            "destrava": [],
+            "prerequisitos": [],
+            "nota": "Rotas de produto acabado (copacker → CDs)."
+          },
+          {
+            "id": "5.5",
+            "titulo": "Desenvolver Agente P&D (Saraswati)",
+            "tipo": "agente",
+            "agente": "saraswati",
+            "impactoDireto": "medio",
+            "impactoCadeia": "baixo",
+            "destrava": [],
+            "prerequisitos": [],
+            "nota": "Formulacoes, iteracoes, historico de produto."
+          },
+          {
+            "id": "5.6",
+            "titulo": "Desenvolver Agente Design Digital (Neftis)",
+            "tipo": "agente",
+            "agente": "neftis",
+            "impactoDireto": "alto",
+            "impactoCadeia": "alto",
+            "destrava": [
+              "nut",
+              "atena",
+              "odoya"
+            ],
+            "prerequisitos": [],
+            "nota": "Assets digitais, posts, banners, UI. Destrava todos os ads + organico."
+          },
+          {
+            "id": "5.7",
+            "titulo": "Desenvolver Agente Insta+TikTok Organico (Nut)",
+            "tipo": "agente",
+            "agente": "nut",
+            "impactoDireto": "alto",
+            "impactoCadeia": "alto",
+            "destrava": [],
+            "prerequisitos": [
+              "5.6"
+            ],
+            "nota": "Copy, calendario, legendas, hashtags, DM triage."
+          },
+          {
+            "id": "5.8",
+            "titulo": "Desenvolver Agente Governanca (Temis)",
+            "tipo": "agente",
+            "agente": "temis",
+            "impactoDireto": "medio",
+            "impactoCadeia": "alto",
+            "destrava": [
+              "sofia"
+            ],
+            "prerequisitos": [],
+            "nota": "Atas, decisoes, roadmap, relatorios pra socios."
+          },
+          {
+            "id": "5.9",
+            "titulo": "Desenvolver Agente Juridico (Nemesis)",
+            "tipo": "agente",
+            "agente": "nemesis",
+            "impactoDireto": "medio",
+            "impactoCadeia": "medio",
+            "destrava": [],
+            "prerequisitos": [],
+            "nota": "Contratos, compliance ANVISA/MAPA, LGPD."
+          }
+        ]
+      }
+    ],
+    "projecao": [
+      {
+        "milestone": "Refator mitologico (21/04/26)",
+        "progressoPct": 27,
+        "atual": false,
+        "subtitulo": "44 agentes mitologicos + organograma + Frente A fechada"
+      },
+      {
+        "milestone": "Hoje (14/05/26)",
+        "progressoPct": 47,
+        "atual": true,
+        "subtitulo": "5 ferramentas implementadas (Melhor Envio + Asaas + GA4 + Mercado Pago + Make/n8n) + 5 em implementacao (Shopify, Bling, Pipedrive, WhatsApp/APP de Vendas, Meta+TikTok Pixel)"
+      },
+      {
+        "milestone": "Go-live B2C (30/05/26)",
+        "progressoPct": 65,
+        "atual": false,
+        "subtitulo": "Loja bebamaat.com.br no ar — Shopify Horizon + Klaviyo iniciado + Hotjar ativo"
+      },
+      {
+        "milestone": "Frente A core (30/06/26)",
+        "progressoPct": 80,
+        "atual": false,
+        "subtitulo": "Mercado Livre + Judge.me + WhatsApp Cloud API + 5 especialistas (Sofia, Uzume, Hina, Neftis, Temis) operacionais"
+      },
+      {
+        "milestone": "Frente A completa (Q4/26)",
+        "progressoPct": 100,
+        "atual": false,
+        "subtitulo": "44 agentes operando com autonomia · Social Snowball + BI consolidado · Marketing multi-canal automatizado"
+      }
+    ]
   },
   "pendenciasHumanas": [
     {
@@ -3584,7 +3572,7 @@
         "1.3"
       ],
       "dataAbertura": "2026-04-21",
-      "descricao": "Instalar GA4+GTM, Meta/TikTok Pixel e Hotjar/Clarity no Shopify — destrava maior cadeia do roadmap.",
+      "descricao": "Prioridade 1 (P1) do Roadmap: GA4 + GTM implementado 14/05 (marco d18). Meta Pixel implementado 14/05 (mesmo marco). Hotjar/Clarity ainda pendente. Pendencia atualizada — falta apenas Hotjar/Clarity.",
       "status": "aberta"
     },
     {
@@ -3596,8 +3584,9 @@
         "Frente A — fundação completa"
       ],
       "dataAbertura": "2026-04-22",
-      "descricao": "Fundação prevê 2 representantes humanos além dos 4 atuais (Cleber/Lucas/Julia/Paula). Definir quem cobre Operações e quem cobre Comercial B2B.",
-      "status": "aberta"
+      "descricao": "RESOLVIDA 13/05: representante-1 = LO Representacoes (Rep PJ), representante-2 = Raphael Anunciacao (Rep PF). Preenchidos em humanos[] do painel.",
+      "status": "resolvida",
+      "dataResolucao": "2026-05-13"
     },
     {
       "id": "ph-lucas-02",
@@ -3620,7 +3609,7 @@
         "Frente B do P5"
       ],
       "dataAbertura": "2026-04-25",
-      "descricao": "10 especialistas estão sem descricaoDetalhada: Isis (Key Accounts B2B), Brigid (Trade Marketing), Tefnut (Logística de Insumos), Oia (Logística de Vendas), Fortuna (Mercado Externo), Veritas (BI Financeiro), Vesta (Comunidade), Freya (Embaixadores), Calíope (UGC), Pelé (Eventos & Ativações). Sequência sugerida: seguir prioridade da Frente B do P5 do Roadmap.",
+      "descricao": "JDs dos 7 coordenadores planetarios + 5 governanca tecnica feitas em 13/05. Faltam 10 especialistas sem descricaoDetalhada — alguns ja com skills[] preenchidas (Hathor) mas a maioria pendente. Lista filtravel na aba Time Virtual com badge 'JD pendente'.",
       "status": "aberta"
     },
     {
@@ -3725,6 +3714,97 @@
       "responsavel": "Lucas + Julia",
       "data": "2026-04-25",
       "contexto": "MAAT Virtual"
+    },
+    {
+      "id": "d10",
+      "data": "2026-04-27",
+      "titulo": "Fluxo WhatsApp desmembrado em 3 trilhas (Rep/PF/PJ) + CSVs de implementacao",
+      "responsavel": "Julia + Claude",
+      "contexto": "MAAT Virtual"
+    },
+    {
+      "id": "d11",
+      "data": "2026-05-04",
+      "titulo": "Webhook Shopify location routing + bling-pedido-silveira guard em producao",
+      "responsavel": "Cleber",
+      "contexto": "Pipedrive / Make"
+    },
+    {
+      "id": "d12",
+      "data": "2026-05-07",
+      "titulo": "Asaas com multa 2% + juros 1%/mes automatizado em todo boleto",
+      "responsavel": "Cleber",
+      "contexto": "Bling / Asaas"
+    },
+    {
+      "id": "d13",
+      "data": "2026-05-08",
+      "titulo": "NCM correto em 11 SKUs (3 reais + 8 virtuais → 2202.99.00)",
+      "responsavel": "Cleber + contador",
+      "contexto": "Bling / Fiscal"
+    },
+    {
+      "id": "d14",
+      "data": "2026-05-09",
+      "titulo": "Fechamento fiscal de abril/2026 concluido (12 scripts, NF #158 cancelada)",
+      "responsavel": "Cleber",
+      "contexto": "Bling / Fiscal"
+    },
+    {
+      "id": "d15",
+      "data": "2026-05-12",
+      "titulo": "Limpeza estrutural pos-refator mitologico (CLAUDE.md, 18 arquivos legacy deletados, materiais separados)",
+      "responsavel": "Julia + Claude",
+      "contexto": "MAAT Virtual"
+    },
+    {
+      "id": "d16",
+      "data": "2026-05-13",
+      "titulo": "JDs completas dos 7 coordenadores planetarios + 5 governanca tecnica no painel",
+      "responsavel": "Julia + Claude",
+      "contexto": "MAAT Virtual"
+    },
+    {
+      "id": "d17",
+      "data": "2026-05-13",
+      "titulo": "4 correcoes de abas (Visao Geral, Ferramentas, Time Virtual, Fluxo) — representantes preenchidos + WhatsApp + APP de Vendas",
+      "responsavel": "Julia + Claude",
+      "contexto": "MAAT Virtual"
+    },
+    {
+      "id": "d20",
+      "data": "2026-05-13",
+      "titulo": "Sincronizacao geral dos 15 repos bebamaat (commits salvos, duplicatas eliminadas, financeiro-maat versionado)",
+      "responsavel": "Julia + Claude",
+      "contexto": "Infraestrutura"
+    },
+    {
+      "id": "d18",
+      "data": "2026-05-14",
+      "titulo": "GA4 G-YF08E5DT8J + Meta Pixel 945842924956473 + eventos e-commerce em producao no Shopify",
+      "responsavel": "Cleber",
+      "contexto": "Marketing / Analytics"
+    },
+    {
+      "id": "d19",
+      "data": "2026-05-14",
+      "titulo": "Tesouraria-MAAT (ex-financeiro-maat) Sprint 1 — plano de contas + Clerk pt-BR + repo privado criado",
+      "responsavel": "Cleber",
+      "contexto": "Financeiro"
+    },
+    {
+      "id": "d21",
+      "data": "2026-05-14",
+      "titulo": "Melhor Envio ativo no checkout Shopify (era item 2.5 do roadmap)",
+      "responsavel": "Cleber",
+      "contexto": "Logistica"
+    },
+    {
+      "id": "d22",
+      "data": "2026-05-14",
+      "titulo": "Make/n8n em producao com ~10k ops/mes (era item 4.12 do roadmap)",
+      "responsavel": "Cleber",
+      "contexto": "Integracoes"
     }
   ],
   "projects": [],
