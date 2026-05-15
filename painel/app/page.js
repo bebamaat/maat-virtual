@@ -612,9 +612,11 @@ function MapaEstrategicoView({ setActiveTab }) {
             {s.subsetores.map(ss => (
               <div key={ss.nome} className="me-subsetor">
                 <div className="me-subsetor-nome">{ss.nome}</div>
-                <div className="me-tool-list">
-                  {ss.ferramentas.map(renderTool)}
-                </div>
+                {(ss.ferramentas || []).length > 0 && (
+                  <div className="me-tool-list">
+                    {(ss.ferramentas || []).map(renderTool)}
+                  </div>
+                )}
               </div>
             ))}
           </div>
@@ -638,15 +640,32 @@ function MapaEstrategicoView({ setActiveTab }) {
         <div className="me-org-sub">{mapaEstrategico.areas.length} áreas · {ferramentas.length} ferramentas</div>
       </div>
 
-      <div className="me-areas">
-        {mapaEstrategico.areas.map(a => (
-          <div key={a.id} className="me-area">
-            <div className="me-area-head">{a.nome}</div>
-            <div className="me-setores">
-              {a.setores.map(renderSetor)}
+      <div className="me-camada me-camada-transversal">
+        <div className="me-camada-label">Camada transversal · sustenta toda a operação</div>
+        <div className="me-areas-transversal">
+          {mapaEstrategico.areas.filter(a => a.camada === "transversal").map(a => (
+            <div key={a.id} className="me-area me-area-transversal">
+              <div className="me-area-head">{a.nome}</div>
+              <div className="me-setores">
+                {a.setores.map(renderSetor)}
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
+      </div>
+
+      <div className="me-camada me-camada-operacao">
+        <div className="me-camada-label">Camada de operação · negócio</div>
+        <div className="me-areas-operacao">
+          {mapaEstrategico.areas.filter(a => a.camada !== "transversal").map(a => (
+            <div key={a.id} className="me-area me-area-operacao">
+              <div className="me-area-head">{a.nome}</div>
+              <div className="me-setores">
+                {a.setores.map(renderSetor)}
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
 
       <div className="me-legenda">

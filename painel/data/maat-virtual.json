@@ -2974,14 +2974,14 @@
     "convergenciaCritica": "Operacoes (NF + etiqueta) e o unico ponto onde os tres canais convergem — Bling + Melhor Envio + Make. Qualquer falha aqui paralisa todos os canais simultaneamente."
   },
   "mapaEstrategico": {
-    "descricaoTopo": "Esse é o mapa de implementação de ferramentas para operação MAAT Agroflorestal Ltda. Ferramentas que apoiam as operações físicas.",
+    "descricaoTopo": "Mapa de implementacao da MAAT Agroflorestal Ltda — duas camadas transversais (Estrategia e Tecnologia) sustentam as tres areas de operacao (Adm Financeiro, Producao, Receita). Cobre as ferramentas das operacoes fisicas e a infraestrutura da MAAT Virtual.",
     "areas": [
       {
         "id": "estrategia",
         "nome": "Estrategia",
         "setores": [
           {
-            "nome": "Governanca",
+            "nome": "Governança Corporativa",
             "ferramentas": [
               "bi"
             ]
@@ -2992,12 +2992,45 @@
               "pipedrive",
               "bi"
             ]
-          },
+          }
+        ],
+        "camada": "transversal"
+      },
+      {
+        "id": "tecnologia",
+        "nome": "Tecnologia",
+        "camada": "transversal",
+        "setores": [
           {
-            "nome": "Inteligencia Digital",
+            "nome": "Inteligência Digital",
             "ferramentas": [
               "ga4",
               "bi"
+            ]
+          },
+          {
+            "nome": "Governança Técnica",
+            "subsetores": [
+              {
+                "nome": "QA",
+                "ferramentas": []
+              },
+              {
+                "nome": "Documentação",
+                "ferramentas": []
+              },
+              {
+                "nome": "Segurança",
+                "ferramentas": []
+              },
+              {
+                "nome": "Testes",
+                "ferramentas": []
+              },
+              {
+                "nome": "Arquitetura",
+                "ferramentas": []
+              }
             ]
           }
         ]
@@ -3026,7 +3059,8 @@
               "bling"
             ]
           }
-        ]
+        ],
+        "camada": "operacao"
       },
       {
         "id": "producao",
@@ -3080,7 +3114,8 @@
               }
             ]
           }
-        ]
+        ],
+        "camada": "operacao"
       },
       {
         "id": "receita",
@@ -3144,7 +3179,8 @@
               }
             ]
           }
-        ]
+        ],
+        "camada": "operacao"
       }
     ],
     "conector": "MAAT Virtual opera esta infraestrutura via Claude Code · APIs · Make/n8n"
