@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-05-14T23:30:00Z",
+  "lastUpdated": "2026-05-17T18:00:00Z",
   "updatedBy": "Claude + Julia (varredura geral 14/05)",
   "humanos": [
     {
@@ -3102,7 +3102,7 @@
     "header": {
       "bloco1": {
         "titulo": "Construindo a operação AI-first da MAAT",
-        "paragrafo": "A MAAT está sendo construída como uma operação onde agentes Claude executam funções que normalmente exigiriam um time humano. Este roadmap cobre duas camadas que precisam andar juntas: a camada de ferramentas operacionais (15 no total — Shopify, Bling, Pipedrive, GA4, Klaviyo, Asaas e outras que compõem o cérebro digital) e a camada de agentes (44 no total: 1 Agente-Mestre + 7 Coordenadores + 31 Especialistas + 5 de Governança Técnica que operam essas ferramentas). Hoje estamos em 27% da construção. Destino: 100% em setembro de 2026."
+        "paragrafo": "A MAAT está sendo construída como uma operação onde agentes Claude executam funções que normalmente exigiriam um time humano. Este roadmap cobre duas camadas que precisam andar juntas: a camada de ferramentas operacionais (16 no total — Shopify, Bling, Pipedrive, GA4, Klaviyo, Make/n8n e outras que compõem o cérebro digital) e a camada de agentes (44 no total: 1 Agente-Mestre + 7 Coordenadores + 31 Especialistas + 5 de Governança Técnica que operam essas ferramentas). Em maio de 2026 estamos em 53% da construção. Destino: 100% no Q4 de 2026."
       },
       "bloco2": {
         "titulo": "As 4 Frentes",
@@ -3128,7 +3128,7 @@
             },
             {
               "rotulo": "Frente B",
-              "texto": "escrita das JDs dos agentes priorizados. 21 JDs já escritas, 10 pendentes. Próxima sessão segue a sequência: Nut → Laxmi+Juno → Abundantia → Sol → Ananke/Têmis."
+              "texto": "escrita das JDs dos agentes. JDs dos 7 Coordenadores e dos 5 de Governança Técnica concluídas; 21 dos 31 Especialistas com JD escrita. Faltam 10: Ísis, Brigid, Tefnut, Oiá, Fortuna, Veritas, Vesta, Freya, Calíope e Pelé."
             }
           ]
         },
@@ -3148,21 +3148,21 @@
             "subtitulo": "Organograma mitológico, painel Virtual funcional, 21 JDs escritas, 7 marcos entregues"
           },
           {
-            "periodo": "Abril 2026",
-            "titulo": "HOJE — 27%",
-            "subtitulo": "2 ferramentas operacionais (Melhor Envio + Asaas) + 4 em implementação (Shopify, Bling, Pipedrive, WhatsApp Business + APP de Vendas)",
+            "periodo": "Maio 2026",
+            "titulo": "HOJE — 53%",
+            "subtitulo": "6 ferramentas implementadas (Melhor Envio, Asaas, GA4, Mercado Pago, Make/n8n, Microsoft Clarity) + 5 em implementação (Shopify, Bling, Pipedrive, WhatsApp/APP de Vendas, Meta+TikTok Pixel)",
             "atual": true
           },
           {
-            "periodo": "Setembro 2026",
+            "periodo": "Q4 2026",
             "titulo": "Destino: 100%",
-            "subtitulo": "14 ferramentas implementadas + 9 agentes Frente 1 operacionais"
+            "subtitulo": "16 ferramentas implementadas + 9 agentes Frente 1 operacionais"
           }
         ]
       },
       "bloco4": {
         "titulo": "As 5 Prioridades",
-        "paragrafo": "P1 a P4 são sobre ferramentas — 12 itens distribuídos em ordem de urgência e impacto. P5 é sobre agentes Frente 1 — 9 agentes que só existem quando suas JDs estão escritas e eles são deployados. Ferramentas sem agentes = automação sem orquestração. Agentes sem ferramentas = inteligência sem alavanca. Os dois precisam andar juntos — por isso estão no mesmo roadmap, não em caminhos separados."
+        "paragrafo": "P1 a P4 são sobre ferramentas — 7 itens distribuídos em ordem de urgência e impacto (os itens já concluídos viraram marcos na aba Status). P5 é sobre agentes Frente 1 — 9 agentes que só existem quando suas JDs estão escritas e eles são deployados. Ferramentas sem agentes = automação sem orquestração. Agentes sem ferramentas = inteligência sem alavanca. Os dois precisam andar juntos — por isso estão no mesmo roadmap, não em caminhos separados."
       }
     },
     "prioridades": [
@@ -3417,7 +3417,7 @@
         "subtitulo": "44 agentes mitologicos + organograma + Frente A fechada"
       },
       {
-        "milestone": "Hoje (14/05/26)",
+        "milestone": "Hoje (17/05/26)",
         "progressoPct": 53,
         "atual": true,
         "subtitulo": "6 ferramentas implementadas (Melhor Envio + Asaas + GA4 + Mercado Pago + Make/n8n + Microsoft Clarity) + 5 em implementacao"
