@@ -1409,7 +1409,8 @@ export default function Dashboard() {
 
   const humanosReais = data.humanos.filter(h => !h.placeholder);
   const representantes = data.humanos.filter(h => h.placeholder);
-  const totalAgentes = 1 + data.coordenadores.length + data.especialistas.length + data.governancaTecnica.length;
+  // Nos coordenadores com ehHumano (ex: Tecnologia = Cleber) nao sao agentes de IA — nao contam aqui.
+  const totalAgentes = 1 + data.coordenadores.filter(c => !c.ehHumano).length + data.especialistas.length + data.governancaTecnica.length;
   const totalItensRoadmap = data.roadmap.prioridades.reduce((acc, p) => acc + p.itens.length, 0);
   const ferramentasImplementadas = data.ferramentas.filter(f => f.statusImplementacao === "implementado").length;
   const ferramentasEmImplementacao = data.ferramentas.filter(f => f.statusImplementacao === "em-implementacao").length;
