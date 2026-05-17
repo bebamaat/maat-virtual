@@ -150,7 +150,8 @@
         "WhatsApp Business + APP de Vendas",
         "Klaviyo"
       ],
-      "dependencias": "Seshat (Pipedrive) · Hathor (Shopify) · Iemanja (Mercado Livre) · Isis (Key Accounts) · Júpiter (BI consolidado de receita)"
+      "dependencias": "Seshat (Pipedrive) · Hathor (Shopify) · Iemanja (Mercado Livre) · Isis (Key Accounts) · Júpiter (BI consolidado de receita)",
+      "areaMestra": "receita"
     },
     {
       "id": "venus",
@@ -218,7 +219,8 @@
         "TikTok",
         "Canva/Figma"
       ],
-      "dependencias": "Atena/Odoya/Iansa (Ads) · Nut (Orgânico) · Demeter (Email/SMS) · Neftis (Design Digital) · Oxum (Design Produto) · Brigid (Trade) · Júpiter (atribuição/CAC)"
+      "dependencias": "Atena/Odoya/Iansa (Ads) · Nut (Orgânico) · Demeter (Email/SMS) · Neftis (Design Digital) · Oxum (Design Produto) · Brigid (Trade) · Júpiter (atribuição/CAC)",
+      "areaMestra": "receita"
     },
     {
       "id": "netuno",
@@ -270,7 +272,8 @@
         "Planilhas de transportadora",
         "Sistemas dos copackers"
       ],
-      "dependencias": "Tefnut (logística insumos) · Hina (logística produto) · Oia (logística vendas) · Marte (produção/PCP) · Saturno (custos de frete)"
+      "dependencias": "Tefnut (logística insumos) · Hina (logística produto) · Oia (logística vendas) · Marte (produção/PCP) · Saturno (custos de frete)",
+      "areaMestra": "producao"
     },
     {
       "id": "marte",
@@ -314,7 +317,8 @@
         "Documentos técnicos do copacker",
         "Sistema regulatório MAPA/ANVISA"
       ],
-      "dependencias": "Abundantia (supply) · Uzume (PCP) · Saraswati (P&D) · Netuno (logística de insumos) · Nemesis (compliance regulatório) · Mercurio (demanda projetada)"
+      "dependencias": "Abundantia (supply) · Uzume (PCP) · Saraswati (P&D) · Netuno (logística de insumos) · Nemesis (compliance regulatório) · Mercurio (demanda projetada)",
+      "areaMestra": "producao"
     },
     {
       "id": "jupiter",
@@ -386,7 +390,8 @@
         "Notion (atas)",
         "Looker Studio"
       ],
-      "dependencias": "Temis (governança) · Sofia (BI) · Maia (analytics) · Iris (integrações) · Fortuna (mercado) · Todos os outros coordenadores (alimenta com dados)"
+      "dependencias": "Temis (governança) · Sofia (BI) · Maia (analytics) · Iris (integrações) · Fortuna (mercado) · Todos os outros coordenadores (alimenta com dados)",
+      "areaMestra": "estrategia"
     },
     {
       "id": "saturno",
@@ -431,7 +436,8 @@
         "Sistema bancário (extratos)",
         "Sistemas regulatórios"
       ],
-      "dependencias": "Laxmi (tesouraria) · Juno (controladoria) · Veritas (BI financeiro) · Nemesis (jurídico) · Júpiter (BI consolidado) · Marte (custos de produção)"
+      "dependencias": "Laxmi (tesouraria) · Juno (controladoria) · Veritas (BI financeiro) · Nemesis (jurídico) · Júpiter (BI consolidado) · Marte (custos de produção)",
+      "areaMestra": "adm-financeiro"
     },
     {
       "id": "urano",
@@ -484,7 +490,22 @@
         "Plataforma de embaixadores",
         "Sistema de eventos"
       ],
-      "dependencias": "Vesta (espaços) · Freya (embaixadores) · Caliope (UGC) · Pele (eventos) · Vênus (handoff UGC → marketing) · Helena/Paula (curadoria humana)"
+      "dependencias": "Vesta (espaços) · Freya (embaixadores) · Caliope (UGC) · Pele (eventos) · Vênus (handoff UGC → marketing) · Helena/Paula (curadoria humana)",
+      "areaMestra": "comunidade"
+    },
+    {
+      "id": "tecnologia",
+      "nomeMitologico": "Cleber",
+      "ehHumano": true,
+      "area": "tecnologia",
+      "areaLabel": "Tecnologia",
+      "areaMestra": "tecnologia",
+      "descricao": "Coordena a infraestrutura digital e a governança técnica da MAAT Virtual — analytics, automação e qualidade de código. Coordenação direta do CTIO.",
+      "donoNegocio": [
+        "cleber"
+      ],
+      "donoTecnico": "cleber",
+      "status": "em-operacao"
     }
   ],
   "especialistas": [
@@ -608,7 +629,10 @@
         }
       ],
       "dependencias": "Shopify (webhooks de pedido) · WhatsApp Business API (leads de conversa) · Klaviyo (sincronização de segmentos) · Agente BI (métricas de funil)",
-      "origemMapID": "ag_pipedrive"
+      "origemMapID": "ag_pipedrive",
+      "ferramentasIds": [
+        "pipedrive"
+      ]
     },
     {
       "id": "hathor",
@@ -686,7 +710,12 @@
         }
       ],
       "dependencias": "Bling ERP (sincronização de estoque) · Melhor Envio (cálculo de frete) · Mercado Pago (status de pagamento) · Hotjar/Clarity (comportamento qualitativo)",
-      "origemMapID": "ag_shopify"
+      "origemMapID": "ag_shopify",
+      "ferramentasIds": [
+        "shopify",
+        "mpago",
+        "judgeme"
+      ]
     },
     {
       "id": "iemanja",
@@ -723,7 +752,10 @@
       ],
       "mcpTools": [],
       "dependencias": "Bling ERP (estoque sincronizado e NF) · Agente BI (receita e performance do canal) · Agente Pipedrive (migração de clientes ML→canal próprio)",
-      "origemMapID": "ag_ml"
+      "origemMapID": "ag_ml",
+      "ferramentasIds": [
+        "ml"
+      ]
     },
     {
       "id": "isis",
@@ -735,7 +767,11 @@
         "Pipedrive",
         "WhatsApp"
       ],
-      "status": "planejado"
+      "status": "planejado",
+      "ferramentasIds": [
+        "pipedrive",
+        "whatsapp"
+      ]
     },
     {
       "id": "atena",
@@ -776,7 +812,8 @@
       ],
       "mcpTools": [],
       "dependencias": "GA4 + GTM (conversões) · Shopify (dados de produto para Shopping) · Agente BI (ROAS e MER consolidados)",
-      "origemMapID": "ag_gads"
+      "origemMapID": "ag_gads",
+      "ferramentasIds": []
     },
     {
       "id": "odoya",
@@ -825,7 +862,10 @@
       ],
       "mcpTools": [],
       "dependencias": "Meta Pixel (audiências e conversões) · Agente Design (criativos) · Agente BI (CAC e ROAS por campanha)",
-      "origemMapID": "ag_meta"
+      "origemMapID": "ag_meta",
+      "ferramentasIds": [
+        "metapixel"
+      ]
     },
     {
       "id": "iansa",
@@ -866,7 +906,10 @@
       ],
       "mcpTools": [],
       "dependencias": "TikTok Pixel (conversões) · Agente Insta+TikTok (conteúdo orgânico para Spark Ads) · Agente BI (performance consolidada)",
-      "origemMapID": "ag_tiktok"
+      "origemMapID": "ag_tiktok",
+      "ferramentasIds": [
+        "metapixel"
+      ]
     },
     {
       "id": "nut",
@@ -916,7 +959,8 @@
       ],
       "mcpTools": [],
       "dependencias": "Judge.me (reviews para curadoria de UGC) · Agente Design (assets visuais) · Klaviyo (alinhamento de campanhas email + social) · GA4 (dados de tráfego vindo de redes sociais)",
-      "origemMapID": "social"
+      "origemMapID": "social",
+      "ferramentasIds": []
     },
     {
       "id": "demeter",
@@ -957,7 +1001,10 @@
       ],
       "mcpTools": [],
       "dependencias": "Shopify (eventos de compra e abandono) · Pipedrive (segmentos de CRM) · Judge.me (trigger de review pós-entrega)",
-      "origemMapID": "ag_klaviyo"
+      "origemMapID": "ag_klaviyo",
+      "ferramentasIds": [
+        "klaviyo"
+      ]
     },
     {
       "id": "neftis",
@@ -1163,7 +1210,8 @@
       ],
       "mcpTools": [],
       "dependencias": "Agente Insta+TikTok (assets para conteudo) · Shopify (banners e imagens de produto) · Agente Governanca (apresentacoes)",
-      "origemMapID": "design:neftis"
+      "origemMapID": "design:neftis",
+      "ferramentasIds": []
     },
     {
       "id": "oxum",
@@ -1179,7 +1227,8 @@
       "skills": [],
       "mcpTools": [],
       "dependencias": "Agente Supply (especificacoes de insumos) · Agente P&D (fichas tecnicas) · Agente Governanca (aprovacao de campanhas)",
-      "origemMapID": "design:oxum"
+      "origemMapID": "design:oxum",
+      "ferramentasIds": []
     },
     {
       "id": "brigid",
@@ -1191,6 +1240,9 @@
       "status": "planejado",
       "pendencias": [
         "Decidir se vira agente dedicado ou e coberto por Seshat (Pipedrive)"
+      ],
+      "ferramentasIds": [
+        "pipedrive"
       ]
     },
     {
@@ -1203,7 +1255,10 @@
         "Bling",
         "Melhor Envio"
       ],
-      "status": "planejado"
+      "status": "planejado",
+      "ferramentasIds": [
+        "bling"
+      ]
     },
     {
       "id": "hina",
@@ -1241,7 +1296,11 @@
       ],
       "mcpTools": [],
       "dependencias": "Bling ERP (NFs de transferência e romaneios) · Melhor Envio (frete last-mile B2C) · Agente Supply (agenda de recebimento de insumos) · Agente PCP (volumes de produção para planejamento de transporte)",
-      "origemMapID": "logistica"
+      "origemMapID": "logistica",
+      "ferramentasIds": [
+        "bling",
+        "melhor"
+      ]
     },
     {
       "id": "oia",
@@ -1253,7 +1312,11 @@
         "Melhor Envio",
         "WA"
       ],
-      "status": "planejado"
+      "status": "planejado",
+      "ferramentasIds": [
+        "melhor",
+        "whatsapp"
+      ]
     },
     {
       "id": "abundantia",
@@ -1291,7 +1354,10 @@
       ],
       "mcpTools": [],
       "dependencias": "Bling ERP (níveis de estoque e movimentações) · Agente PCP (demanda projetada e ordens de produção) · Agente Logística (prazos de entrega dos fornecedores)",
-      "origemMapID": "supply"
+      "origemMapID": "supply",
+      "ferramentasIds": [
+        "bling"
+      ]
     },
     {
       "id": "uzume",
@@ -1328,7 +1394,10 @@
       ],
       "mcpTools": [],
       "dependencias": "Bling ERP (estoque e ordens) · Agente Supply (disponibilidade de insumos) · Agente Logística (prazos de entrega de insumos e produto acabado)",
-      "origemMapID": "pcp"
+      "origemMapID": "pcp",
+      "ferramentasIds": [
+        "bling"
+      ]
     },
     {
       "id": "saraswati",
@@ -1363,7 +1432,8 @@
       ],
       "mcpTools": [],
       "dependencias": "Agente Supply (cotação de insumos para novas fórmulas) · Agente PCP (viabilidade produtiva) · Agente Jurídico (conformidade ANVISA para novos ingredientes)",
-      "origemMapID": "pd"
+      "origemMapID": "pd",
+      "ferramentasIds": []
     },
     {
       "id": "temis",
@@ -1426,7 +1496,10 @@
       ],
       "mcpTools": [],
       "dependencias": "Agente BI (dados consolidados para relatórios) · Agente Jurídico (decisões com implicação legal) · Bling ERP (dados financeiros)",
-      "origemMapID": "governanca"
+      "origemMapID": "governanca",
+      "ferramentasIds": [
+        "bi"
+      ]
     },
     {
       "id": "sofia",
@@ -1471,13 +1544,16 @@
       ],
       "mcpTools": [],
       "dependencias": "Todas as fontes: Shopify · Bling · Pipedrive · Klaviyo · GA4 · Meta Ads · Google Ads · Mercado Livre",
-      "origemMapID": "biagent"
+      "origemMapID": "biagent",
+      "ferramentasIds": [
+        "bi"
+      ]
     },
     {
       "id": "maia",
       "nomeMitologico": "Maia",
       "funcao": "GA4 / GTM",
-      "coordenador": "jupiter",
+      "coordenador": "tecnologia",
       "descricao": "Eventos, pixels, relatorios de trafego.",
       "ferramentas": [
         "GA4",
@@ -1509,13 +1585,18 @@
       ],
       "mcpTools": [],
       "dependencias": "Shopify (eventos de e-commerce) · Meta + TikTok Pixel (validação de disparo) · Agente BI (fonte de dados de tráfego)",
-      "origemMapID": "ag_ga4"
+      "origemMapID": "ag_ga4",
+      "ferramentasIds": [
+        "ga4",
+        "metapixel",
+        "hotjar"
+      ]
     },
     {
       "id": "iris",
       "nomeMitologico": "Iris",
       "funcao": "Make / n8n",
-      "coordenador": "jupiter",
+      "coordenador": "tecnologia",
       "descricao": "Orquestracao de integracoes entre ferramentas.",
       "ferramentas": [
         "Make",
@@ -1543,7 +1624,10 @@
       ],
       "mcpTools": [],
       "dependencias": "Todas as ferramentas conectadas: Shopify · Bling · Pipedrive · Klaviyo · WhatsApp · Melhor Envio · ML API",
-      "origemMapID": "ag_make"
+      "origemMapID": "ag_make",
+      "ferramentasIds": [
+        "make"
+      ]
     },
     {
       "id": "fortuna",
@@ -1552,7 +1636,8 @@
       "coordenador": "jupiter",
       "descricao": "Inteligencia competitiva, LATAM, tendencias.",
       "ferramentas": [],
-      "status": "planejado"
+      "status": "planejado",
+      "ferramentasIds": []
     },
     {
       "id": "laxmi",
@@ -1568,7 +1653,12 @@
       "skills": [],
       "mcpTools": [],
       "dependencias": "Bling ERP API · Shopify (receita) · Mercado Pago (conciliacao de pagamentos)",
-      "origemMapID": "ag_bling:laxmi"
+      "origemMapID": "ag_bling:laxmi",
+      "ferramentasIds": [
+        "bling",
+        "mpago",
+        "asaas"
+      ]
     },
     {
       "id": "juno",
@@ -1601,7 +1691,11 @@
       ],
       "mcpTools": [],
       "dependencias": "Shopify (pedidos) · Mercado Livre (pedidos) · Melhor Envio (etiquetas) · Agente BI (dados financeiros consolidados)",
-      "origemMapID": "ag_bling:juno"
+      "origemMapID": "ag_bling:juno",
+      "ferramentasIds": [
+        "bling",
+        "bi"
+      ]
     },
     {
       "id": "veritas",
@@ -1612,7 +1706,10 @@
       "ferramentas": [
         "Looker Studio"
       ],
-      "status": "planejado"
+      "status": "planejado",
+      "ferramentasIds": [
+        "bi"
+      ]
     },
     {
       "id": "nemesis",
@@ -1643,7 +1740,8 @@
       ],
       "mcpTools": [],
       "dependencias": "Agente P&D (conformidade de novos ingredientes) · Agente Governança (decisões com implicação legal) · Agente Supply (contratos com fornecedores)",
-      "origemMapID": "juridico"
+      "origemMapID": "juridico",
+      "ferramentasIds": []
     },
     {
       "id": "vesta",
@@ -1655,7 +1753,10 @@
         "WhatsApp",
         "Discord"
       ],
-      "status": "planejado"
+      "status": "planejado",
+      "ferramentasIds": [
+        "whatsapp"
+      ]
     },
     {
       "id": "freya",
@@ -1666,7 +1767,10 @@
       "ferramentas": [
         "Social Snowball"
       ],
-      "status": "planejado"
+      "status": "planejado",
+      "ferramentasIds": [
+        "snowball"
+      ]
     },
     {
       "id": "caliope",
@@ -1675,7 +1779,10 @@
       "coordenador": "urano",
       "descricao": "Coleta, curadoria, incentivos, pipeline pra mkt.",
       "ferramentas": [],
-      "status": "planejado"
+      "status": "planejado",
+      "ferramentasIds": [
+        "judgeme"
+      ]
     },
     {
       "id": "pele",
@@ -1684,7 +1791,8 @@
       "coordenador": "urano",
       "descricao": "Eventos, ativacoes, kits de embaixadores.",
       "ferramentas": [],
-      "status": "planejado"
+      "status": "planejado",
+      "ferramentasIds": []
     }
   ],
   "governancaTecnica": [
@@ -1741,7 +1849,10 @@
         "Diff tools",
         "Sistema de regras de negócio"
       ],
-      "dependencias": "Todos os agentes (audita outputs) · Heket (Tests) · Ananke (regras de arquitetura)"
+      "dependencias": "Todos os agentes (audita outputs) · Heket (Tests) · Ananke (regras de arquitetura)",
+      "ferramentasIds": [
+        "make"
+      ]
     },
     {
       "id": "clio",
@@ -1792,7 +1903,10 @@
         "Painel virtual.bebamaat.com.br (renderização)",
         "Sistema de atas"
       ],
-      "dependencias": "Todos os agentes (documenta) · Ananke (padrões de doc) · Temis (atas estratégicas)"
+      "dependencias": "Todos os agentes (documenta) · Ananke (padrões de doc) · Temis (atas estratégicas)",
+      "ferramentasIds": [
+        "make"
+      ]
     },
     {
       "id": "egide",
@@ -1847,7 +1961,8 @@
         "GitHub secret scanning",
         "OAuth provider config"
       ],
-      "dependencias": "Todos os agentes (audita acesso) · Ananke (regras de arquitetura) · Nemesis (compliance LGPD)"
+      "dependencias": "Todos os agentes (audita acesso) · Ananke (regras de arquitetura) · Nemesis (compliance LGPD)",
+      "ferramentasIds": []
     },
     {
       "id": "heket",
@@ -1903,7 +2018,10 @@
         "Vercel CI",
         "Make scenarios"
       ],
-      "dependencias": "Todos os agentes (testa skills) · Dike (validação cruzada) · Ananke (cobertura mínima exigida)"
+      "dependencias": "Todos os agentes (testa skills) · Dike (validação cruzada) · Ananke (cobertura mínima exigida)",
+      "ferramentasIds": [
+        "make"
+      ]
     },
     {
       "id": "ananke",
@@ -1971,7 +2089,10 @@
         "Documentação de padrões",
         "CLAUDE.md"
       ],
-      "dependencias": "Cleber (donoTécnico transversal) · Dike (QA) · Clio (Docs) · Egide (Security) · Heket (Tests) · Todos os outros agentes (define regras)"
+      "dependencias": "Cleber (donoTécnico transversal) · Dike (QA) · Clio (Docs) · Egide (Security) · Heket (Tests) · Todos os outros agentes (define regras)",
+      "ferramentasIds": [
+        "make"
+      ]
     }
   ],
   "ferramentas": [
@@ -2974,215 +3095,7 @@
     "convergenciaCritica": "Operacoes (NF + etiqueta) e o unico ponto onde os tres canais convergem — Bling + Melhor Envio + Make. Qualquer falha aqui paralisa todos os canais simultaneamente."
   },
   "mapaEstrategico": {
-    "descricaoTopo": "Mapa de implementacao da MAAT Agroflorestal Ltda — duas camadas transversais (Estrategia e Tecnologia) sustentam as tres areas de operacao (Adm Financeiro, Producao, Receita). Cobre as ferramentas das operacoes fisicas e a infraestrutura da MAAT Virtual.",
-    "areas": [
-      {
-        "id": "estrategia",
-        "nome": "Estrategia",
-        "setores": [
-          {
-            "nome": "Governança Corporativa",
-            "ferramentas": [
-              "bi"
-            ]
-          },
-          {
-            "nome": "Planejamento",
-            "ferramentas": [
-              "pipedrive",
-              "bi"
-            ]
-          }
-        ],
-        "camada": "transversal"
-      },
-      {
-        "id": "tecnologia",
-        "nome": "Tecnologia",
-        "camada": "transversal",
-        "setores": [
-          {
-            "nome": "Inteligência Digital",
-            "ferramentas": [
-              "ga4",
-              "bi"
-            ]
-          },
-          {
-            "nome": "Governança Técnica",
-            "subsetores": [
-              {
-                "nome": "QA",
-                "ferramentas": []
-              },
-              {
-                "nome": "Documentação",
-                "ferramentas": []
-              },
-              {
-                "nome": "Segurança",
-                "ferramentas": []
-              },
-              {
-                "nome": "Testes",
-                "ferramentas": []
-              },
-              {
-                "nome": "Arquitetura",
-                "ferramentas": []
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "id": "adm-financeiro",
-        "nome": "Adm Financeiro",
-        "setores": [
-          {
-            "nome": "Tesouraria",
-            "ferramentas": [
-              "bling",
-              "mpago"
-            ]
-          },
-          {
-            "nome": "Controladoria",
-            "ferramentas": [
-              "bling",
-              "bi"
-            ]
-          },
-          {
-            "nome": "Juridico",
-            "ferramentas": [
-              "bling"
-            ]
-          }
-        ],
-        "camada": "operacao"
-      },
-      {
-        "id": "producao",
-        "nome": "Producao",
-        "setores": [
-          {
-            "nome": "Operacoes",
-            "subsetores": [
-              {
-                "nome": "Supply",
-                "ferramentas": [
-                  "bling"
-                ]
-              },
-              {
-                "nome": "P&D",
-                "ferramentas": [
-                  "bling"
-                ]
-              },
-              {
-                "nome": "Copacking",
-                "ferramentas": [
-                  "bling"
-                ]
-              }
-            ]
-          },
-          {
-            "nome": "Logistica",
-            "subsetores": [
-              {
-                "nome": "Logistica Produto",
-                "ferramentas": [
-                  "bling",
-                  "melhor"
-                ]
-              },
-              {
-                "nome": "Logistica Vendas",
-                "ferramentas": [
-                  "melhor",
-                  "whatsapp"
-                ]
-              },
-              {
-                "nome": "Logistica Insumos",
-                "ferramentas": [
-                  "bling"
-                ]
-              }
-            ]
-          }
-        ],
-        "camada": "operacao"
-      },
-      {
-        "id": "receita",
-        "nome": "Receita",
-        "setores": [
-          {
-            "nome": "Vendas",
-            "subsetores": [
-              {
-                "nome": "Key Accounts",
-                "ferramentas": [
-                  "pipedrive",
-                  "whatsapp",
-                  "bling"
-                ]
-              },
-              {
-                "nome": "Rep SC",
-                "ferramentas": [
-                  "pipedrive",
-                  "whatsapp",
-                  "bling"
-                ]
-              },
-              {
-                "nome": "E-commerce",
-                "ferramentas": [
-                  "shopify",
-                  "ml",
-                  "mpago",
-                  "melhor",
-                  "judgeme"
-                ]
-              }
-            ]
-          },
-          {
-            "nome": "Marketing",
-            "subsetores": [
-              {
-                "nome": "Digital",
-                "ferramentas": [
-                  "ga4",
-                  "metapixel",
-                  "hotjar"
-                ]
-              },
-              {
-                "nome": "Produto",
-                "ferramentas": [
-                  "klaviyo",
-                  "snowball"
-                ]
-              },
-              {
-                "nome": "Trade",
-                "ferramentas": [
-                  "pipedrive",
-                  "bi"
-                ]
-              }
-            ]
-          }
-        ],
-        "camada": "operacao"
-      }
-    ],
+    "descricaoTopo": "Estrutura organizacional da MAAT Agroflorestal — 2 camadas transversais (Estratégia e Tecnologia) sustentam 4 áreas de operação (Receita, Produção, ADM Financeiro, Comunidade). Cada setor é um agente especialista e as ferramentas que ele opera. Espelha o Organograma (hierarquia) e o Time Virtual (JDs).",
     "conector": "MAAT Virtual opera esta infraestrutura via Claude Code · APIs · Make/n8n"
   },
   "roadmap": {
@@ -3872,6 +3785,64 @@
       "priority": "medium",
       "status": "in_progress",
       "subtasks": []
+    }
+  ],
+  "areasMestras": [
+    {
+      "id": "estrategia",
+      "nome": "Estratégia",
+      "camada": "transversal",
+      "descricao": "Define a direção da MAAT — governança corporativa, leitura de mercado e inteligência de negócio que orientam todas as decisões.",
+      "coordenadores": [
+        "jupiter"
+      ]
+    },
+    {
+      "id": "tecnologia",
+      "nome": "Tecnologia",
+      "camada": "transversal",
+      "descricao": "Sustenta a infraestrutura digital e a qualidade técnica de todos os agentes — analytics, automação de dados e governança técnica.",
+      "coordenadores": [
+        "tecnologia"
+      ]
+    },
+    {
+      "id": "receita",
+      "nome": "Receita",
+      "camada": "operacao",
+      "descricao": "Gera e converte demanda — todas as frentes de venda e marketing que transformam interesse em receita.",
+      "coordenadores": [
+        "mercurio",
+        "venus"
+      ]
+    },
+    {
+      "id": "producao",
+      "nome": "Produção",
+      "camada": "operacao",
+      "descricao": "Faz o produto chegar pronto — da matéria-prima ao produto acabado no centro de distribuição.",
+      "coordenadores": [
+        "marte",
+        "netuno"
+      ]
+    },
+    {
+      "id": "adm-financeiro",
+      "nome": "ADM Financeiro",
+      "camada": "operacao",
+      "descricao": "Cuida da saúde financeira e da conformidade — caixa, controladoria, indicadores e jurídico.",
+      "coordenadores": [
+        "saturno"
+      ]
+    },
+    {
+      "id": "comunidade",
+      "nome": "Comunidade",
+      "camada": "operacao",
+      "descricao": "Transforma consumidores em multiplicadores — comunidade, embaixadores, conteúdo gerado por usuários e eventos.",
+      "coordenadores": [
+        "urano"
+      ]
     }
   ]
 }

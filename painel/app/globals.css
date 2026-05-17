@@ -915,9 +915,86 @@ td { padding: 0.8rem; border-bottom: 1px solid var(--border); vertical-align: to
 .me-virtual-title { font-size: 0.9rem; font-weight: 600; color: var(--text-primary); margin-bottom: 0.3rem; }
 .me-virtual-sub { font-size: 0.75rem; color: var(--text-muted); }
 
+/* ===== Camada de área-mestra — alinhamento Mapa / Organograma / Time Virtual ===== */
+
+/* Mapa Estratégico — descrições + grupos + setores como cards */
+.me-areas-operacao {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.25rem;
+}
+.me-area-desc {
+  font-size: 0.74rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+.me-grupos { display: flex; flex-direction: column; gap: 1.1rem; }
+.me-grupo { display: flex; flex-direction: column; gap: 0.5rem; }
+.me-grupo-nome {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: var(--accent-atencao);
+}
+.me-setores {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+  gap: 0.7rem;
+}
+.me-setor {
+  background: var(--bg-primary);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0.6rem 0.7rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+.me-setor-desc { font-size: 0.68rem; color: var(--text-muted); line-height: 1.4; }
+
+/* Cabeçalho de área — usado no Organograma e no Time Virtual */
+.organograma-area, .tv-area { margin-top: 1.6rem; }
+.organograma-area-head, .tv-area-head {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  padding-bottom: 0.5rem;
+  margin-bottom: 0.9rem;
+  border-bottom: 2px solid var(--border-strong);
+}
+.organograma-area-camada, .tv-area-camada {
+  font-size: 0.58rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 0.15rem 0.45rem;
+  border-radius: 4px;
+  background: var(--bg-card);
+  color: var(--text-muted);
+}
+.organograma-area-transversal .organograma-area-camada,
+.tv-area-transversal .tv-area-camada {
+  background: var(--accent-atencao);
+  color: #fff;
+}
+.organograma-area-nome, .tv-area-nome {
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.2px;
+}
+.tv-area-desc {
+  font-size: 0.76rem;
+  color: var(--text-secondary);
+  margin: -0.4rem 0 1.1rem;
+  line-height: 1.5;
+}
+
 @media (max-width: 768px) {
   .me-areas-operacao { grid-template-columns: 1fr; }
   .me-area-transversal .me-setores { grid-template-columns: 1fr; }
+  .me-setores { grid-template-columns: 1fr; }
 }
 
 /* FLUXO OPERACIONAL */

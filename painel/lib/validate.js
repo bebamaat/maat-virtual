@@ -193,6 +193,33 @@ export function validateMaatVirtual(data) {
     if (!isStr(m.titulo)) errs.push(err(ctx, "titulo obrigatorio"));
   });
 
+  // ───────────────────────────────────────────────────────────────
+  // areasMestras — arvore organizacional espelhada por Mapa / Organograma / Time Virtual
+  // ───────────────────────────────────────────────────────────────
+  const areasMestras = Array.isArray(data.areasMestras) ? data.areasMestras : [];
+  const CAMADAS_VALIDAS = new Set(["transversal", "operacao"]);
+  const areaIds = new Set();
+  areasMestras.forEach((a, i) => {
+    const ctx = `areasMestras[${i}${a && a.id ? ` id=${a.id}` : ""}]`;
+    if (!isStr(a.id)) errs.push(err(ctx, "id obrigatorio"));
+    if (!isStr(a.nome)) errs.push(err(ctx, "nome obrigatorio"));
+    if (!CAMADAS_VALIDAS.has(a.camada)) errs.push(err(ctx, `camada invalida: ${a.camada}`));
+    if (!Array.isArray(a.coordenadores) || a.coordenadores.length < 1) errs.push(err(ctx, "coordenadores deve ter >= 1 item"));
+    (a.coordenadores || []).forEach(cid => {
+      if (!coordIds.has(cid)) errs.push(err(ctx, `coordenador referencia id inexistente: ${cid}`));
+    });
+    if (a.id && areaIds.has(a.id)) errs.push(err(ctx, `id duplicado: ${a.id}`));
+    if (a.id) areaIds.add(a.id);
+  });
+  // Todo coordenador deve apontar pra uma area-mestra valida — garante o espelho
+  if (areasMestras.length > 0) {
+    coordenadores.forEach((c, i) => {
+      if (c.areaMestra && !areaIds.has(c.areaMestra)) {
+        errs.push(err(`coordenadores[${i} id=${c.id}]`, `areaMestra referencia id inexistente: ${c.areaMestra}`));
+      }
+    });
+  }
+
   if (errs.length > 0) {
     throw new Error(`maat-virtual.json invalido (${errs.length} erro(s)):\n  - ${errs.join("\n  - ")}`);
   }

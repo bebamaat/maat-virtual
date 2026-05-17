@@ -363,102 +363,90 @@ function AgenteModal({ agente, onClose }) {
 const COORD_AREA_ORDEM = ["estrategia", "financeiro", "producao", "operacoes", "vendas", "marketing", "comunidade"];
 
 function TimeVirtualView() {
-  const { coordenadores, especialistas, governancaTecnica } = data;
+  const { coordenadores, especialistas, governancaTecnica, areasMestras } = data;
   const porCoord = agruparPorCoordenador(especialistas);
   const [agenteAberto, setAgenteAberto] = useState(null);
-
-  const coordenadoresOrdenados = [...coordenadores].sort((a, b) => {
-    const ia = COORD_AREA_ORDEM.indexOf(a.area);
-    const ib = COORD_AREA_ORDEM.indexOf(b.area);
-    return (ia === -1 ? 99 : ia) - (ib === -1 ? 99 : ib);
-  });
 
   // Sintetiza campos faltantes (coordenador nao tem `funcao`; governanca/coord
   // ganham marcador _tipo pra que frenteDoAgente exiba o label correto)
   function abrirCoordenador(c) {
     setAgenteAberto({ ...c, funcao: c.areaLabel || c.area, _tipo: "coordenador" });
   }
-  function abrirEspecialista(e) {
-    setAgenteAberto(e);
-  }
   function abrirGovernanca(g) {
     setAgenteAberto({ ...g, _tipo: "governanca" });
   }
 
+  function renderCard(a, onClick) {
+    const tools = (a.ferramentas || []).slice(0, 3);
+    const semJD = !a.descricaoDetalhada;
+    return (
+      <button key={a.id} id={`agente-${a.id}`} type="button" className={`tv-card${semJD ? " tv-card-jd-pendente" : ""}`} onClick={onClick}>
+        {semJD && <span className="tv-card-jd-badge">JD pendente</span>}
+        <div className="tv-card-name">{a.nomeMitologico}</div>
+        <div className="tv-card-funcao">{a.funcao}</div>
+        <div className="tv-card-desc">{a.descricao}</div>
+        {tools.length > 0 && (
+          <div className="tv-card-tools">
+            {tools.map(t => <span key={t} className="tv-card-tool">{t}</span>)}
+          </div>
+        )}
+        <span className={`badge ${STATUS_BADGE[a.status]} tv-card-status`}>{STATUS_LABEL[a.status]}</span>
+      </button>
+    );
+  }
+
+  function renderCoordGrupo(c) {
+    const esps = porCoord[c.id] || [];
+    const coordSemJD = !c.descricaoDetalhada;
+    return (
+      <div key={c.id} className="tv-grupo">
+        <div
+          className={`tv-grupo-head tv-grupo-head-clickable${coordSemJD ? " tv-grupo-head-jd-pendente" : ""}`}
+          role="button"
+          tabIndex={0}
+          onClick={() => abrirCoordenador(c)}
+          onKeyDown={e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); abrirCoordenador(c); } }}
+          aria-label={`Ver JD do coordenador ${c.nomeMitologico}`}
+        >
+          <div className="tv-grupo-area">{c.areaLabel}</div>
+          <div className="tv-grupo-coord">{c.nomeMitologico}</div>
+          <div className="tv-grupo-count">{esps.length} especialista{esps.length !== 1 ? "s" : ""}</div>
+          {coordSemJD && <span className="tv-card-jd-badge tv-grupo-jd-badge">JD pendente</span>}
+        </div>
+        <div className="tv-cards">
+          {esps.map(e => renderCard(e, () => setAgenteAberto(e)))}
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="tv-catalogo">
-      {coordenadoresOrdenados.map(c => {
-        const esps = porCoord[c.id] || [];
-        const coordSemJD = !c.descricaoDetalhada;
+      {areasMestras.map(area => {
+        const coordsDaArea = coordenadores.filter(c => c.areaMestra === area.id);
         return (
-          <div key={c.id} className="tv-grupo">
-            <div
-              className={`tv-grupo-head tv-grupo-head-clickable${coordSemJD ? " tv-grupo-head-jd-pendente" : ""}`}
-              role="button"
-              tabIndex={0}
-              onClick={() => abrirCoordenador(c)}
-              onKeyDown={e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); abrirCoordenador(c); } }}
-              aria-label={`Ver JD do coordenador ${c.nomeMitologico}`}
-            >
-              <div className="tv-grupo-area">{c.areaLabel}</div>
-              <div className="tv-grupo-coord">{c.nomeMitologico}</div>
-              <div className="tv-grupo-count">{esps.length} especialista{esps.length !== 1 ? "s" : ""}</div>
-              {coordSemJD && <span className="tv-card-jd-badge tv-grupo-jd-badge">JD pendente</span>}
+          <div key={area.id} className={`tv-area tv-area-${area.camada}`}>
+            <div className="tv-area-head">
+              <span className="tv-area-camada">{area.camada === "transversal" ? "Transversal" : "Operação"}</span>
+              <span className="tv-area-nome">{area.nome}</span>
             </div>
-            <div className="tv-cards">
-              {esps.map(e => {
-                const tools = (e.ferramentas || []).slice(0, 3);
-                const semJD = !e.descricaoDetalhada;
-                return (
-                  <button key={e.id} id={`agente-${e.id}`} type="button" className={`tv-card${semJD ? " tv-card-jd-pendente" : ""}`} onClick={() => abrirEspecialista(e)}>
-                    {semJD && <span className="tv-card-jd-badge">JD pendente</span>}
-                    <div className="tv-card-name">{e.nomeMitologico}</div>
-                    <div className="tv-card-funcao">{e.funcao}</div>
-                    <div className="tv-card-desc">{e.descricao}</div>
-                    {tools.length > 0 && (
-                      <div className="tv-card-tools">
-                        {tools.map(t => <span key={t} className="tv-card-tool">{t}</span>)}
-                      </div>
-                    )}
-                    <span className={`badge ${STATUS_BADGE[e.status]} tv-card-status`}>{STATUS_LABEL[e.status]}</span>
-                  </button>
-                );
-              })}
-            </div>
+            {area.descricao && <div className="tv-area-desc">{area.descricao}</div>}
+            {coordsDaArea.map(renderCoordGrupo)}
+            {area.id === "tecnologia" && governancaTecnica.length > 0 && (
+              <div className="tv-grupo tv-grupo-gov">
+                <div className="tv-grupo-head">
+                  <div className="tv-grupo-area">Governança Técnica</div>
+                  <div className="tv-grupo-coord">Transversal · donoTécnico = Cleber</div>
+                  <div className="tv-grupo-count">{governancaTecnica.length} agentes</div>
+                </div>
+                <div className="tv-cards">
+                  {governancaTecnica.map(g => renderCard(g, () => abrirGovernanca(g)))}
+                </div>
+              </div>
+            )}
           </div>
         );
       })}
-
-      {governancaTecnica && governancaTecnica.length > 0 && (
-        <div className="tv-grupo tv-grupo-gov">
-          <div className="tv-grupo-head">
-            <div className="tv-grupo-area">Governança Técnica</div>
-            <div className="tv-grupo-coord">Transversal · donoTécnico = Cleber</div>
-            <div className="tv-grupo-count">{governancaTecnica.length} agentes</div>
-          </div>
-          <div className="tv-cards">
-            {governancaTecnica.map(g => {
-              const tools = (g.ferramentas || []).slice(0, 3);
-              const semJD = !g.descricaoDetalhada;
-              return (
-                <button key={g.id} id={`agente-${g.id}`} type="button" className={`tv-card${semJD ? " tv-card-jd-pendente" : ""}`} onClick={() => abrirGovernanca(g)}>
-                  {semJD && <span className="tv-card-jd-badge">JD pendente</span>}
-                  <div className="tv-card-name">{g.nomeMitologico}</div>
-                  <div className="tv-card-funcao">{g.funcao}</div>
-                  <div className="tv-card-desc">{g.descricao}</div>
-                  {tools.length > 0 && (
-                    <div className="tv-card-tools">
-                      {tools.map(t => <span key={t} className="tv-card-tool">{t}</span>)}
-                    </div>
-                  )}
-                  <span className={`badge ${STATUS_BADGE[g.status]} tv-card-status`}>{STATUS_LABEL[g.status]}</span>
-                </button>
-              );
-            })}
-          </div>
-        </div>
-      )}
-
       <AgenteModal agente={agenteAberto} onClose={() => setAgenteAberto(null)} />
     </div>
   );
@@ -576,10 +564,32 @@ function ToolModal({ ferramenta, onClose, onNavigateToRoadmap, prioridadeId }) {
   );
 }
 
+// Deriva os grupos (setores) de uma area-mestra a partir de coordenadores + especialistas.
+// Espelho garantido: a estrutura vem da mesma fonte do Organograma e Time Virtual.
+function gruposDaArea(area, coordMap, especialistas, governancaTecnica) {
+  if (area.id === "tecnologia") {
+    return [
+      { nome: "Inteligência Digital", agentes: especialistas.filter(e => e.coordenador === "tecnologia") },
+      { nome: "Governança Técnica", agentes: governancaTecnica },
+    ];
+  }
+  const coords = (area.coordenadores || []).map(cid => coordMap[cid]).filter(Boolean);
+  if (coords.length === 1) {
+    return [{ nome: null, agentes: especialistas.filter(e => e.coordenador === coords[0].id) }];
+  }
+  return coords.map(c => ({
+    nome: c.areaLabel,
+    coordenador: c,
+    agentes: especialistas.filter(e => e.coordenador === c.id),
+  }));
+}
+
 function MapaEstrategicoView({ setActiveTab }) {
-  const { mapaEstrategico, ferramentas } = data;
+  const { mapaEstrategico, areasMestras, coordenadores, especialistas, governancaTecnica } = data;
   const [toolOpen, setToolOpen] = useState(null);
   const [statusFilter, setStatusFilter] = useState(["implementado", "em-implementacao", "nao-iniciado"]);
+  const coordMap = Object.fromEntries(coordenadores.map(c => [c.id, c]));
+  const totalAgentes = especialistas.length + governancaTecnica.length;
 
   function toggleStatus(s) {
     setStatusFilter(prev => prev.includes(s) ? prev.filter(x => x !== s) : [...prev, s]);
@@ -603,31 +613,41 @@ function MapaEstrategicoView({ setActiveTab }) {
     );
   }
 
-  function renderSetor(s) {
+  function renderAgente(a) {
+    const tools = a.ferramentasIds || [];
     return (
-      <div key={s.nome} className="me-setor">
-        <div className="me-setor-nome">{s.nome}</div>
-        {s.subsetores ? (
-          <div className="me-subsetores">
-            {s.subsetores.map(ss => (
-              <div key={ss.nome} className="me-subsetor">
-                <div className="me-subsetor-nome">{ss.nome}</div>
-                {(ss.ferramentas || []).length > 0 && (
-                  <div className="me-tool-list">
-                    {(ss.ferramentas || []).map(renderTool)}
-                  </div>
-                )}
-              </div>
-            ))}
-          </div>
-        ) : (
-          <div className="me-tool-list">
-            {(s.ferramentas || []).map(renderTool)}
-          </div>
+      <div key={a.id} className="me-setor">
+        <div className="me-setor-nome">{a.nomeMitologico} · {a.funcao}</div>
+        {a.descricao && <div className="me-setor-desc">{a.descricao}</div>}
+        {tools.length > 0 && (
+          <div className="me-tool-list">{tools.map(renderTool)}</div>
         )}
       </div>
     );
   }
+
+  function renderArea(area) {
+    const grupos = gruposDaArea(area, coordMap, especialistas, governancaTecnica);
+    return (
+      <div key={area.id} className={`me-area me-area-${area.camada}`}>
+        <div className="me-area-head">{area.nome}</div>
+        {area.descricao && <div className="me-area-desc">{area.descricao}</div>}
+        <div className="me-grupos">
+          {grupos.map((g, i) => (
+            <div key={g.nome || i} className="me-grupo">
+              {g.nome && <div className="me-grupo-nome">{g.nome}</div>}
+              <div className="me-setores">
+                {g.agentes.map(renderAgente)}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    );
+  }
+
+  const transversais = areasMestras.filter(a => a.camada === "transversal");
+  const operacao = areasMestras.filter(a => a.camada !== "transversal");
 
   return (
     <div className="me-root">
@@ -637,34 +657,20 @@ function MapaEstrategicoView({ setActiveTab }) {
 
       <div className="me-org-head">
         <div className="me-org-nome">MAAT Agroflorestal LTDA</div>
-        <div className="me-org-sub">{mapaEstrategico.areas.length} áreas · {ferramentas.length} ferramentas</div>
+        <div className="me-org-sub">{areasMestras.length} áreas · {coordenadores.length} coordenadores · {totalAgentes} agentes</div>
       </div>
 
       <div className="me-camada me-camada-transversal">
         <div className="me-camada-label">Camada transversal · sustenta toda a operação</div>
         <div className="me-areas-transversal">
-          {mapaEstrategico.areas.filter(a => a.camada === "transversal").map(a => (
-            <div key={a.id} className="me-area me-area-transversal">
-              <div className="me-area-head">{a.nome}</div>
-              <div className="me-setores">
-                {a.setores.map(renderSetor)}
-              </div>
-            </div>
-          ))}
+          {transversais.map(renderArea)}
         </div>
       </div>
 
       <div className="me-camada me-camada-operacao">
         <div className="me-camada-label">Camada de operação · negócio</div>
         <div className="me-areas-operacao">
-          {mapaEstrategico.areas.filter(a => a.camada !== "transversal").map(a => (
-            <div key={a.id} className="me-area me-area-operacao">
-              <div className="me-area-head">{a.nome}</div>
-              <div className="me-setores">
-                {a.setores.map(renderSetor)}
-              </div>
-            </div>
-          ))}
+          {operacao.map(renderArea)}
         </div>
       </div>
 
@@ -1229,15 +1235,37 @@ function RoadmapView({ navigateToAgent }) {
 }
 
 function HierarquiaView() {
-  const { humanos, agenteMestre: mestre, coordenadores, especialistas, governancaTecnica } = data;
+  const { humanos, agenteMestre: mestre, coordenadores, especialistas, governancaTecnica, areasMestras } = data;
   const porCoord = agruparPorCoordenador(especialistas);
   const [openCoords, setOpenCoords] = useState({});
   const toggle = (id) => setOpenCoords(s => ({ ...s, [id]: !s[id] }));
 
+  function renderCoordGroup(c) {
+    const esps = porCoord[c.id] || [];
+    const isOpen = !!openCoords[c.id];
+    return (
+      <div key={c.id} className={`organograma-coord-group ${isOpen ? "open" : ""}`}>
+        <button className="organograma-coord" onClick={() => toggle(c.id)} type="button">
+          <div className="organograma-coord-area">{c.areaLabel}</div>
+          <div className="organograma-card-name">{c.nomeMitologico}</div>
+          <div className="organograma-card-desc">{c.descricao}</div>
+          <div className="organograma-card-meta">
+            <span className={`badge ${STATUS_BADGE[c.status]}`}>{STATUS_LABEL[c.status]}</span>
+            <span className="organograma-card-dono">{c.donoNegocio.map(labelDono).join(" · ")}</span>
+          </div>
+          <div className="organograma-coord-counter">{esps.length} especialista{esps.length !== 1 ? "s" : ""}</div>
+        </button>
+        <div className="organograma-esps">
+          {esps.map(e => <AgenteCard key={e.id} a={e} className="organograma-esp" />)}
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="organograma">
       <div className="organograma-layer">
-        <div className="organograma-layer-title">Nucleo Humano</div>
+        <div className="organograma-layer-title">Núcleo Humano</div>
         <div className="organograma-humanos">
           {humanos.map(h => (
             <div key={h.id} className={`organograma-humano ${h.placeholder ? "pending" : ""}`}>
@@ -1263,38 +1291,27 @@ function HierarquiaView() {
       </div>
 
       <div className="organograma-layer">
-        <div className="organograma-layer-title">Coordenadores ({coordenadores.length}) · Especialistas ({especialistas.length})</div>
+        <div className="organograma-layer-title">Áreas · Coordenadores · Especialistas</div>
         <div className="organograma-layer-hint">Toque no coordenador pra expandir os especialistas</div>
-        <div className="organograma-coords">
-          {coordenadores.map(c => {
-            const esps = porCoord[c.id] || [];
-            const isOpen = !!openCoords[c.id];
-            return (
-              <div key={c.id} className={`organograma-coord-group ${isOpen ? "open" : ""}`}>
-                <button className="organograma-coord" onClick={() => toggle(c.id)} type="button">
-                  <div className="organograma-coord-area">{c.areaLabel}</div>
-                  <div className="organograma-card-name">{c.nomeMitologico}</div>
-                  <div className="organograma-card-desc">{c.descricao}</div>
-                  <div className="organograma-card-meta">
-                    <span className={`badge ${STATUS_BADGE[c.status]}`}>{STATUS_LABEL[c.status]}</span>
-                    <span className="organograma-card-dono">{c.donoNegocio.map(labelDono).join(" · ")}</span>
-                  </div>
-                  <div className="organograma-coord-counter">{esps.length} especialista{esps.length !== 1 ? "s" : ""}</div>
-                </button>
-                <div className="organograma-esps">
-                  {esps.map(e => <AgenteCard key={e.id} a={e} className="organograma-esp" />)}
-                </div>
+        {areasMestras.map(area => {
+          const coordsDaArea = coordenadores.filter(c => c.areaMestra === area.id);
+          return (
+            <div key={area.id} className={`organograma-area organograma-area-${area.camada}`}>
+              <div className="organograma-area-head">
+                <span className="organograma-area-camada">{area.camada === "transversal" ? "Transversal" : "Operação"}</span>
+                <span className="organograma-area-nome">{area.nome}</span>
               </div>
-            );
-          })}
-        </div>
-      </div>
-
-      <div className="organograma-layer organograma-gov-layer">
-        <div className="organograma-layer-title">Governanca Tecnica · Transversal (Cleber)</div>
-        <div className="organograma-gov-row">
-          {governancaTecnica.map(g => <AgenteCard key={g.id} a={g} className="organograma-gov-card" />)}
-        </div>
+              <div className="organograma-coords">
+                {coordsDaArea.map(renderCoordGroup)}
+              </div>
+              {area.id === "tecnologia" && (
+                <div className="organograma-gov-row">
+                  {governancaTecnica.map(g => <AgenteCard key={g.id} a={g} className="organograma-gov-card" />)}
+                </div>
+              )}
+            </div>
+          );
+        })}
       </div>
     </div>
   );
