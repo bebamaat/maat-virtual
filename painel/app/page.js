@@ -589,7 +589,7 @@ function MapaEstrategicoView({ setActiveTab }) {
   const [toolOpen, setToolOpen] = useState(null);
   const [statusFilter, setStatusFilter] = useState(["implementado", "em-implementacao", "nao-iniciado"]);
   const coordMap = Object.fromEntries(coordenadores.map(c => [c.id, c]));
-  const totalAgentes = especialistas.length + governancaTecnica.length;
+  const totalSetores = especialistas.length + governancaTecnica.length;
 
   function toggleStatus(s) {
     setStatusFilter(prev => prev.includes(s) ? prev.filter(x => x !== s) : [...prev, s]);
@@ -613,11 +613,13 @@ function MapaEstrategicoView({ setActiveTab }) {
     );
   }
 
-  function renderAgente(a) {
+  // No Mapa Estrategico mostramos o SETOR (funcao), nao o agente (nome mitologico).
+  // Agentes ficam no Organograma e no Time Virtual.
+  function renderSetor(a) {
     const tools = a.ferramentasIds || [];
     return (
       <div key={a.id} className="me-setor">
-        <div className="me-setor-nome">{a.nomeMitologico} · {a.funcao}</div>
+        <div className="me-setor-nome">{a.funcao}</div>
         {a.descricao && <div className="me-setor-desc">{a.descricao}</div>}
         {tools.length > 0 && (
           <div className="me-tool-list">{tools.map(renderTool)}</div>
@@ -637,7 +639,7 @@ function MapaEstrategicoView({ setActiveTab }) {
             <div key={g.nome || i} className="me-grupo">
               {g.nome && <div className="me-grupo-nome">{g.nome}</div>}
               <div className="me-setores">
-                {g.agentes.map(renderAgente)}
+                {g.agentes.map(renderSetor)}
               </div>
             </div>
           ))}
@@ -657,7 +659,7 @@ function MapaEstrategicoView({ setActiveTab }) {
 
       <div className="me-org-head">
         <div className="me-org-nome">MAAT Agroflorestal LTDA</div>
-        <div className="me-org-sub">{areasMestras.length} áreas · {coordenadores.length} coordenadores · {totalAgentes} agentes</div>
+        <div className="me-org-sub">{areasMestras.length} áreas · {totalSetores} setores · {data.ferramentas.length} ferramentas</div>
       </div>
 
       <div className="me-camada me-camada-transversal">
